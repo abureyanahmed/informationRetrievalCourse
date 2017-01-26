@@ -3,6 +3,15 @@
   */
 package initializer
 
-object initalizer {
+import booleansearch._
 
+object initalizer {
+  def main(args: Array[String]) :Unit ={
+
+    booleansearch.Utilities.readFromFile()
+
+    //booleansearch.Utilities.niceFeedbackReadResource()
+
+
+  }
 }
