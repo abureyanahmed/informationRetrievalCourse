@@ -19,6 +19,7 @@ object initalizer {
     var queryString = ""
     breakable {
       while (true) {
+        println("*************************************************")
         println("What query would you like to run on this index? Please capitalize the operator as shown in Examples below.")
         println("Eg: schizophrenia AND drug")
         println("Eg: breakthrough OR new")
@@ -42,11 +43,11 @@ object initalizer {
             else {
               println("Thank You. Unfortunately, there were no documents that matched your query :" + queryString + ". Please try again with another query.")
             }
-            println("*************************************************")
             println()
           }
           else {
             println("Invalid query. Try again")
+            println()
           }
         }
       }
