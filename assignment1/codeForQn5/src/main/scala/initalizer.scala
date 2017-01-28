@@ -40,7 +40,7 @@ object initalizer {
               println("Thank You. The documents in which you can find the results for your query:" + queryString + " are document ids: " + queryResult.mkString(","))
             }
             else {
-              println("Thank You. Unfortunately, there were no documents that mathched your query :" + queryString + "Please try again with another query.")
+              println("Thank You. Unfortunately, there were no documents that matched your query :" + queryString + ". Please try again with another query.")
             }
             println("*************************************************")
             println()
