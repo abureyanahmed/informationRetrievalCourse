@@ -85,26 +85,26 @@ object  Utilities {
 
   }
 
-  case class TermNotFoundException(smth: String) extends Exception
+  case class TermNotFoundException(excptn: String) extends Exception
 
   def parseTheQuery(userQuery: String): ListBuffer[Int] = {
-    var conjunctedList = ListBuffer[Int]()
+    var returnList = ListBuffer[Int]()
     try {
-
       operator match {
         case "AND" => {
-          conjunctedList = matchBooleanAndQuery(term1, term2, operator)
-
+          returnList = matchBooleanAndQuery(term1, term2, operator)
         }
-        case "OR" => print("operator is OR")
+        case "OR" =>
+        {
+          returnList = matchBooleanORQuery(term1, term2, operator)
+        }
         case _ => print("invalid operator.")
       }
-
     }
     catch{
       case ex: TermNotFoundException => println("The terms you entered for query doesn't exist in the given postings list. Try again.")
     }
-    return conjunctedList
+    return returnList
   }
 
   def matchBooleanAndQuery(term1: String, term2: String, myOperator: String): ListBuffer[Int] = {
@@ -131,6 +131,32 @@ object  Utilities {
     return conjList;
 
   }
+
+  def matchBooleanORQuery(term1: String, term2: String, myOperator: String): ListBuffer[Int] = {
+    var disjList = new ListBuffer[Int]()
+
+    var term1Postings = new ListBuffer[Int]()
+    var term2Postings = new ListBuffer[Int]()
+    if (dictionaryForInvertedIndex.contains(term1)) {
+      //if the term is already present in the dictionary, retreive its postings list
+      term1Postings = dictionaryForInvertedIndex(term1);
+    }
+    else {
+      throw new TermNotFoundException("Given term not found in the list.")
+    }
+    if (dictionaryForInvertedIndex.contains(term2)) {
+      //if the term is already present in the dictionary, retreive its postings list
+      term2Postings = dictionaryForInvertedIndex(term2);
+    }
+    else {
+      throw new TermNotFoundException("Given term not found in the list.")
+    }
+
+    disjList = disjunction(term1Postings, term2Postings)
+    return disjList;
+
+  }
+
 
   def conjunction(postingsOfTerm1: ListBuffer[Int], postingsOfTerm2: ListBuffer[Int]): ListBuffer[Int] = {
     val conjunctedList = new ListBuffer[Int]();
@@ -182,18 +208,18 @@ object  Utilities {
     }
     while (parentListCounter < parentlist.length && childListCounter < childlist.length) {
       if (childlist(childListCounter) == parentlist(parentListCounter)) {
+        disjList += (childlist(childListCounter))
         childListCounter = childListCounter + 1
         parentListCounter = parentListCounter + 1
       }
       else {
         if (childlist(childListCounter) < parentlist(parentListCounter)) {
-          childListCounter = childListCounter + 1
           disjList += (childlist(childListCounter))
-
+          childListCounter = childListCounter + 1
         }
         else {
-          parentListCounter = parentListCounter + 1
           disjList += (parentlist(parentListCounter))
+          parentListCounter = parentListCounter + 1
         }
       }
     }

@@ -19,8 +19,12 @@ object initalizer {
     var queryString = ""
     breakable {
       while (true) {
-        println("What query would you like to run on this index? Please capitalize the operator. Eg: approach AND drug. Type 0 to exit.")
-        println(":")
+        println("What query would you like to run on this index? Please capitalize the operator as shown in Examples below.")
+        println("Eg: schizophrenia AND drug")
+        println("Eg: breakthrough OR new")
+        println("Type 0 to exit.")
+
+        println("Type your input here:")
         queryString = StdIn.readLine()
 
         if (queryString == "0") {
@@ -32,8 +36,11 @@ object initalizer {
           val verify = booleansearch.Utilities.verifyInputQueryStringForBinaryQuery(queryString)
           if (verify) {
             val queryResult = booleansearch.Utilities.parseTheQuery(queryString)
-            if(queryResult.length>0) {
-              println("Thank You. The documents in which you can find the results for your query:" + queryString + " are document ids:" + queryResult.mkString(","))
+            if (queryResult.length > 0) {
+              println("Thank You. The documents in which you can find the results for your query:" + queryString + " are document ids: " + queryResult.mkString(","))
+            }
+            else {
+              println("Thank You. Unfortunately, there were no documents that mathched your query :" + queryString + "Please try again with another query.")
             }
             println("*************************************************")
             println()
