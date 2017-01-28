@@ -161,15 +161,53 @@ object  Utilities {
         }
       }
     }
-
-    //once we break out of the loop- which means the smaller list has finished, now write out the left over in parent list
-    while (parentListCounter < parentlist.length) {
-      conjunctedList += parentlist(parentListCounter)
-      parentListCounter = parentListCounter + 1
-    }
     return conjunctedList
 
   }
+
+
+  def disjunction(postingsOfTerm1: ListBuffer[Int], postingsOfTerm2: ListBuffer[Int]): ListBuffer[Int] = {
+    val disjList = new ListBuffer[Int]();
+    var childListCounter = 0
+    var parentListCounter = 0
+    var parentlist = new ListBuffer[Int]();
+    var childlist = new ListBuffer[Int]();
+    if (postingsOfTerm1.length > postingsOfTerm2.length) {
+      parentlist = postingsOfTerm1
+      childlist = postingsOfTerm2
+    }
+    else {
+      parentlist = postingsOfTerm2
+      childlist = postingsOfTerm1
+    }
+    while (parentListCounter < parentlist.length && childListCounter < childlist.length) {
+      if (childlist(childListCounter) == parentlist(parentListCounter)) {
+        childListCounter = childListCounter + 1
+        parentListCounter = parentListCounter + 1
+      }
+      else {
+        if (childlist(childListCounter) < parentlist(parentListCounter)) {
+          childListCounter = childListCounter + 1
+          disjList += (childlist(childListCounter))
+
+        }
+        else {
+          parentListCounter = parentListCounter + 1
+          disjList += (parentlist(parentListCounter))
+        }
+      }
+    }
+
+    //once we break out of the loop- which means the smaller list has finished, now write out the left over in parent list
+    while (parentListCounter < parentlist.length) {
+      disjList += parentlist(parentListCounter)
+      parentListCounter = parentListCounter + 1
+    }
+    return disjList
+
+  }
+
+
 
   def verifyInputQueryStringForBinaryQuery(userQuery: String): Boolean = {
     println("verifying user input...")
