@@ -32,7 +32,9 @@ object initalizer {
           val verify = booleansearch.Utilities.verifyInputQueryStringForBinaryQuery(queryString)
           if (verify) {
             val queryResult = booleansearch.Utilities.parseTheQuery(queryString)
-            println("Thank You. The documents in which you can find the results for your query:" + queryString + " are document ids:" + queryResult.mkString(","))
+            if(queryResult.length>0) {
+              println("Thank You. The documents in which you can find the results for your query:" + queryString + " are document ids:" + queryResult.mkString(","))
+            }
             println("*************************************************")
             println()
           }

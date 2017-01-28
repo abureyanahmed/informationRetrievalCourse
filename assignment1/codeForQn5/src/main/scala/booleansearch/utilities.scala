@@ -19,7 +19,7 @@ object  Utilities {
 
   val resourcesDirectory = "src/main/resources/"
   val inputFileForInvIndex = "inputfile.txt";
-  var dictionaryForInvertedIndex:  Map [String, ListBuffer[Int]] = Map();
+  var dictionaryForInvertedIndex: Map[String, ListBuffer[Int]] = Map();
   var term1 = "";
   var operator = "";
   var term2 = "";
@@ -85,61 +85,70 @@ object  Utilities {
 
   }
 
-  def parseTheQuery(userQuery: String): ListBuffer[Int] = {
-    var conjunctedList= ListBuffer[Int]()
-    operator match {
-      case "AND" => {
-         conjunctedList= matchBooleanAndQuery(term1, term2, operator)
+  case class TermNotFoundException(smth: String) extends Exception
 
+  def parseTheQuery(userQuery: String): ListBuffer[Int] = {
+    var conjunctedList = ListBuffer[Int]()
+    try {
+
+      operator match {
+        case "AND" => {
+          conjunctedList = matchBooleanAndQuery(term1, term2, operator)
+
+        }
+        case "OR" => print("operator is OR")
+        case _ => print("invalid operator.")
       }
-      case "OR" => print("operator is OR")
-      case _ => print("invalid operator.")
+
     }
-   return conjunctedList
+    catch{
+      case ex: TermNotFoundException => println("The terms you entered for query doesn't exist in the given postings list. Try again.")
+    }
+    return conjunctedList
   }
 
   def matchBooleanAndQuery(term1: String, term2: String, myOperator: String): ListBuffer[Int] = {
-    var conjList= new ListBuffer[Int]()
+    var conjList = new ListBuffer[Int]()
 
-    var term1Postings=new ListBuffer[Int]()
-    var term2Postings=new ListBuffer[Int]()
+    var term1Postings = new ListBuffer[Int]()
+    var term2Postings = new ListBuffer[Int]()
     if (dictionaryForInvertedIndex.contains(term1)) {
       //if the term is already present in the dictionary, retreive its postings list
-       term1Postings = dictionaryForInvertedIndex(term1);
+      term1Postings = dictionaryForInvertedIndex(term1);
+    }
+    else {
+      throw new TermNotFoundException("Given term not found in the list.")
     }
     if (dictionaryForInvertedIndex.contains(term2)) {
       //if the term is already present in the dictionary, retreive its postings list
       term2Postings = dictionaryForInvertedIndex(term2);
     }
-//    println("the postings for term 1 is:")
-//    println(term1Postings)
-//
-//    println("the postings for term 2 is:")
-//    println(term2Postings)
+    else {
+      throw new TermNotFoundException("Given term not found in the list.")
+    }
 
-    conjList=conjunction(term1Postings,term2Postings)
+    conjList = conjunction(term1Postings, term2Postings)
     return conjList;
 
   }
 
-  def conjunction(postingsOfTerm1: ListBuffer[Int], postingsOfTerm2: ListBuffer[Int]):ListBuffer[Int]=
-  {
-    val conjunctedList= new ListBuffer[Int]();
-    var childListCounter=0
-    var parentListCounter=0
-    var parentlist=new ListBuffer[Int]();
-    var childlist=new ListBuffer[Int]();
-    if(postingsOfTerm1.length > postingsOfTerm2.length) {
-       parentlist = postingsOfTerm1
-       childlist = postingsOfTerm2
+  def conjunction(postingsOfTerm1: ListBuffer[Int], postingsOfTerm2: ListBuffer[Int]): ListBuffer[Int] = {
+    val conjunctedList = new ListBuffer[Int]();
+    var childListCounter = 0
+    var parentListCounter = 0
+    var parentlist = new ListBuffer[Int]();
+    var childlist = new ListBuffer[Int]();
+    if (postingsOfTerm1.length > postingsOfTerm2.length) {
+      parentlist = postingsOfTerm1
+      childlist = postingsOfTerm2
     }
     else {
       parentlist = postingsOfTerm2
       childlist = postingsOfTerm1
     }
-    while(parentListCounter< parentlist.length && childListCounter < childlist.length) {
+    while (parentListCounter < parentlist.length && childListCounter < childlist.length) {
       if (childlist(childListCounter) == parentlist(parentListCounter)) {
-        conjunctedList+=(childlist(childListCounter))
+        conjunctedList += (childlist(childListCounter))
         childListCounter = childListCounter + 1
         parentListCounter = parentListCounter + 1
       }
@@ -155,12 +164,13 @@ object  Utilities {
 
     //once we break out of the loop- which means the smaller list has finished, now write out the left over in parent list
     while (parentListCounter < parentlist.length) {
-      conjunctedList+=parentlist(parentListCounter)
+      conjunctedList += parentlist(parentListCounter)
       parentListCounter = parentListCounter + 1
     }
     return conjunctedList
 
   }
+
   def verifyInputQueryStringForBinaryQuery(userQuery: String): Boolean = {
     println("verifying user input...")
     val queryContent = userQuery.split("\\s+");
