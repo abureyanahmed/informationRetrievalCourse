@@ -19,7 +19,7 @@ object  Utilities {
 
   val resourcesDirectory = "src/main/resources/"
   val inputFileForInvIndex = "inputfile.txt";
-  var dictionaryForInvertedIndex: Map[String, ListBuffer[(Integer)]] = Map()
+  var dictionaryForInvertedIndex:  Map [String, ListBuffer[Int]] = Map();
   var term1 = "";
   var operator = "";
   var term2 = "";
@@ -55,7 +55,7 @@ object  Utilities {
               }
               else {
                 //else create a new postings list as value and the token as key.
-                var postings = new ListBuffer[(Integer)]
+                val postings = new ListBuffer[(Int)]
                 postings.append(docid);
                 dictionaryForInvertedIndex += (individualToken -> postings);
 
@@ -77,7 +77,7 @@ object  Utilities {
 
   }
 
-  def printDictionaryPostings(dictionaryPostings: Map[String, ListBuffer[(Integer)]]): Unit = {
+  def printDictionaryPostings(dictionaryPostings: Map[String, ListBuffer[(Int)]]): Unit = {
 
     for ((k, v) <- dictionaryPostings) {
       println(k + "->" + v.mkString("->"))
@@ -85,28 +85,41 @@ object  Utilities {
 
   }
 
-  def parseTheQuery(userQuery: String): Unit =
-  {
-    operator match{
-      case "AND" => println("operator is AND")
+  def parseTheQuery(userQuery: String): Unit = {
+    operator match {
+      case "AND" => matchBooleanAndQuery(term1,term2,operator)
       case "OR" => print("operator is OR")
       case _ => print("invalid operator.")
     }
+  }
+
+  def matchBooleanAndQuery(term1: String, term2: String, myOperator: String): ListBuffer[Int] = {
+    var conjList= new ListBuffer[Int]()
+
+    var term1Postings=new ListBuffer[Int]()
+    var term2Postings=new ListBuffer[Int]()
+    if (dictionaryForInvertedIndex.contains(term1)) {
+      //if the term is already present in the dictionary, retreive its postings list
+       term1Postings = dictionaryForInvertedIndex(term1);
+    }
+
+    if (dictionaryForInvertedIndex.contains(term2)) {
+      //if the term is already present in the dictionary, retreive its postings list
+      term2Postings = dictionaryForInvertedIndex(term2);
+    }
+
+    return conjList;
 
   }
+
   def verifyInputQueryStringForBinaryQuery(userQuery: String): Boolean = {
     println("verifying user input...")
-
     val queryContent = userQuery.split("\\s+");
-
     var flag = false;
-
-
     if (queryContent.length > 1) {
-       term1 = queryContent(0);
-       operator = queryContent(1);
-       term2 = queryContent(2);
-
+      term1 = queryContent(0);
+      operator = queryContent(1);
+      term2 = queryContent(2);
       if (operator == "AND" || operator == "OR") {
         println("yep,. Input query looks ok.")
         flag = true;
@@ -114,14 +127,10 @@ object  Utilities {
       else {
         flag = false;
       }
-
     }
     else {
       flag = false;
-
     }
-
-
     return flag;
   }
 }
