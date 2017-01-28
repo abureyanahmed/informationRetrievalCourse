@@ -239,7 +239,7 @@ object  Utilities {
     println("verifying user input...")
     val queryContent = userQuery.split("\\s+");
     var flag = false;
-    if (queryContent.length > 1) {
+    if (queryContent.length > 2) {
       term1 = queryContent(0);
       operator = queryContent(1);
       term2 = queryContent(2);
