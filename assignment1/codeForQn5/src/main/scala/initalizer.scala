@@ -44,5 +44,6 @@ object initalizer {
 
     }
     println("Thank You. Below are the documents where you can find results for your query:" + queryString)
+    booleansearch.Utilities.parseTheQuery(queryString)
   }
 }
