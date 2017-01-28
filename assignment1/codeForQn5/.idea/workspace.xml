@@ -31,8 +31,8 @@
       <file leaf-file-name="initalizer.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/initalizer.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="43" column="121" selection-start-line="43" selection-start-column="121" selection-end-line="43" selection-end-column="121" />
+            <state relative-caret-position="92">
+              <caret line="24" column="42" selection-start-line="23" selection-start-column="8" selection-end-line="24" selection-end-column="42" />
               <folding>
                 <element signature="e#68#90#0" expanded="true" />
               </folding>
@@ -715,8 +715,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/initalizer.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="43" column="121" selection-start-line="43" selection-start-column="121" selection-end-line="43" selection-end-column="121" />
+        <state relative-caret-position="92">
+          <caret line="24" column="42" selection-start-line="23" selection-start-column="8" selection-end-line="24" selection-end-column="42" />
           <folding>
             <element signature="e#68#90#0" expanded="true" />
           </folding>
