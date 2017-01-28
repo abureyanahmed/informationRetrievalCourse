@@ -85,15 +85,17 @@ object  Utilities {
 
   }
 
-  def parseTheQuery(userQuery: String): Unit = {
+  def parseTheQuery(userQuery: String): ListBuffer[Int] = {
+    var conjunctedList= ListBuffer[Int]()
     operator match {
       case "AND" => {
-        val conjunctedList= matchBooleanAndQuery(term1, term2, operator)
-        println("Result:"+ conjunctedList.mkString(","))
+         conjunctedList= matchBooleanAndQuery(term1, term2, operator)
+
       }
       case "OR" => print("operator is OR")
       case _ => print("invalid operator.")
     }
+   return conjunctedList
   }
 
   def matchBooleanAndQuery(term1: String, term2: String, myOperator: String): ListBuffer[Int] = {

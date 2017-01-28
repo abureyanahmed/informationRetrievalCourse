@@ -15,11 +15,11 @@ object initalizer {
     println()
     booleansearch.Utilities.readFromFile()
     println()
-    println("What query would you like to run on this index? Please capitalize the operator. Eg: approach AND drug. Type 0 to exit.")
 
     var queryString = ""
     breakable {
       while (true) {
+        println("What query would you like to run on this index? Please capitalize the operator. Eg: approach AND drug. Type 0 to exit.")
         println(":")
         queryString = StdIn.readLine()
 
@@ -30,20 +30,18 @@ object initalizer {
         }
         else {
           val verify = booleansearch.Utilities.verifyInputQueryStringForBinaryQuery(queryString)
-
           if (verify) {
-            break();
+            val queryResult = booleansearch.Utilities.parseTheQuery(queryString)
+            println("Thank You. The documents in which you can find the results for your query:" + queryString + " are document ids:" + queryResult.mkString(","))
+            println("*************************************************")
+            println()
           }
-
           else {
             println("Invalid query. Try again")
-
           }
         }
       }
 
     }
-    println("Thank You. Below are the documents where you can find results for your query:" + queryString)
-    booleansearch.Utilities.parseTheQuery(queryString)
   }
 }
