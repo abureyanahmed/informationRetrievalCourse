@@ -30,7 +30,7 @@ object initalizer {
 
         if (queryString == "0") {
           println("Sad to see you leave. Do come back again. Bye.")
-          sys.exit(0);
+          sys.exit;
 
         }
         else {
@@ -38,10 +38,10 @@ object initalizer {
           if (verify) {
             val queryResult = booleansearch.Utilities.parseTheQuery(queryString)
             if (queryResult.length > 0) {
-              println("Thank You. The documents in which you can find the results for your query:" + queryString + " are document ids: " + queryResult.mkString(","))
+              println("Thank You. The documents in which you can find the results for your query:\"" + queryString + "\" are document ids: " + queryResult.mkString(","))
             }
             else {
-              println("Thank You. Unfortunately, there were no documents that matched your query :" + queryString + ". Please try again with another query.")
+              println("Thank You. Unfortunately, there were no documents that matched your query :\"" + queryString + "\". Please try again with another query.")
             }
             println()
           }

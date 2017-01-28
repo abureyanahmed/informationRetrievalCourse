@@ -28,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="initalizer.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="initalizer.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/initalizer.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="36" column="64" selection-start-line="36" selection-start-column="64" selection-end-line="36" selection-end-column="64" />
+            <state relative-caret-position="332">
+              <caret line="43" column="121" selection-start-line="43" selection-start-column="121" selection-end-line="43" selection-end-column="121" />
               <folding>
                 <element signature="e#68#90#0" expanded="true" />
               </folding>
@@ -40,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utilities.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="utilities.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/booleansearch/utilities.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="241" column="34" selection-start-line="241" selection-start-column="34" selection-end-line="241" selection-end-column="34" />
+            <state relative-caret-position="503">
+              <caret line="238" column="38" selection-start-line="238" selection-start-column="38" selection-end-line="238" selection-end-column="38" />
               <folding>
                 <element signature="e#23#74#0" expanded="true" />
               </folding>
@@ -62,8 +62,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/scala/initalizer.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/booleansearch/utilities.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/initalizer.scala" />
       </list>
     </option>
   </component>
@@ -703,22 +703,22 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/scala/initalizer.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/booleansearch/utilities.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="36" column="64" selection-start-line="36" selection-start-column="64" selection-end-line="36" selection-end-column="64" />
+        <state relative-caret-position="503">
+          <caret line="238" column="38" selection-start-line="238" selection-start-column="38" selection-end-line="238" selection-end-column="38" />
           <folding>
-            <element signature="e#68#90#0" expanded="true" />
+            <element signature="e#23#74#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/booleansearch/utilities.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/initalizer.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="241" column="34" selection-start-line="241" selection-start-column="34" selection-end-line="241" selection-end-column="34" />
+        <state relative-caret-position="332">
+          <caret line="43" column="121" selection-start-line="43" selection-start-column="121" selection-end-line="43" selection-end-column="121" />
           <folding>
-            <element signature="e#23#74#0" expanded="true" />
+            <element signature="e#68#90#0" expanded="true" />
           </folding>
         </state>
       </provider>
