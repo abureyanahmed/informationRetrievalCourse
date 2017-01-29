@@ -122,10 +122,23 @@ object initializer extends SimpleParser {
             case Success(matched, _) => {
               println("Found that :" + matched)
             }
-            case Failure(msg, _) => println("There is something wrong with the query you entered.: " + msg)
+            case Failure(msg, _) => {
+              parse(parWordOperatorWordPar, queryStringForMl) match {
+                case Success(matched, _) => {
+                  println("Found that :" + matched)
+                }
+                case Failure(msg, _) => println("There is something wrong with the query you entered.: " + msg)
+                case Error(msg, _) => println("ERROR: " + msg)
+
+              }
+              //println("There is something wrong with the query you entered.: " + msg)
+            }
             case Error(msg, _) => println("ERROR: " + msg)
 
           }
+
+
+
         }
 
       }

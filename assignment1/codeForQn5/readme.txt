@@ -32,8 +32,12 @@ Eg:(drug OR treatment) AND schizophrenia
 
 Notes
 1. Parenthesis is supported.
-2. The operator priority is determined by the parenthesis.
+2. The operator priority is determined by the parenthesis. Hence a query where the operator priority is not specified explicitly with parenthesis will throw an error.
+Eg: drug OR treatment AND schizophrenia
+
 3. A query without parenthesis won’t work.
+
+4. Please refer to the pdf attached herewith for details about test cases covered by this parser.
 
 
 : A long set of ************************************************* denotes that the entire application has restarted.
