@@ -33,11 +33,12 @@ case class parseMyQuery(term1: String, term2: String, operator: String) {
 }
 
 class SimpleParser extends RegexParsers {
-  def parenthesis: Parser[String]   = """[(]+""".r       ^^ { _.toString }
+  def lparenthesis: Parser[String]   = """[(]""".r       ^^ { _.toString }
+  def rparenthesis: Parser[String]   = """[)]""".r       ^^ { _.toString }
   def word: Parser[String]   = """[a-z]+""".r       ^^ { _.toString }
   def operator: Parser[String]   = """[AND|OR]+""".r       ^^ { _.toString }
   def number: Parser[Int]    = """(0|[1-9]\d*)""".r ^^ { _.toInt }
   def freq: Parser[WordFreq] = word ~ number        ^^ { case wd ~ fr => WordFreq(wd,fr) }
-  def parWordOperator: Parser[parseMyQuery] = parenthesis ~ word ~ operator ~word        ^^ { case par ~ wd1 ~op ~ wd2=> parseMyQuery(wd1,wd2,op) }
+  def parWordOperator: Parser[parseMyQuery] = lparenthesis ~ word ~ operator ~ word  ~ rparenthesis      ^^ { case lpar ~ wd1 ~op ~ wd2 ~ rpar=> parseMyQuery(wd1,wd2,op) }
 
 }
