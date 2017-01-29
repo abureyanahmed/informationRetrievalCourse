@@ -4,40 +4,41 @@ Type “sbt run” and follow the prompts.
 
 
 
-To test for Qns5.1 and qn5.2: i.e simple two word queries separated by an operator.
+To test for Qns5.1 and Qn5.2: i.e simple two word queries separated by an operator.
 Eg:schizophrenia AND drug
 
 1. type sbt run
 2. choose option 1
 3. type in your query
 
-Note: parenthesis is not supported. This is a simple LR parser now.
+Notes: 
+
+1. parenthesis is not supported. This is a simple LR parser now.
+2. supports AND queries
+3. supports OR queries.
 
 
 To test for Qn 5.3:
+i.e simple two word queries separated by an operator.
+Eg:(drug OR treatment) AND schizophrenia
+
 
 1. type sbt run
 2. choose option 2
 3. type in your query
 
 
-Note: A long set of ************************************************* denotes that the entire application has restarted.
 
 
-Features:
-
-Currently below are the functionalities supported by this code.
-
-1. supports boolean AND queries
-Eg: schizophrenia AND drug
-
-2. supports boolean OR queries.
-Eg: breakthrough OR new
+Notes
+1. Parenthesis is supported.
+2. The operator priority is determined by the parenthesis.
+3. A query without parenthesis won’t work.
 
 
-Qn) What it does not support?
+: A long set of ************************************************* denotes that the entire application has restarted.
 
-Ans: currently it doesn’t support multiple concatenated queries.
+
 
 Eg: (schizophrenia AND drug) OR (breakthrough OR new)
 

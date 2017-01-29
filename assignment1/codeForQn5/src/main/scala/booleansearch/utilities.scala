@@ -128,6 +128,23 @@ object  Utilities {
     return returnList
   }
 
+  def conjunctionGivenListAndTerm(term1: String, term2Postings: ListBuffer[Int]): ListBuffer[Int] = {
+    var conjList = new ListBuffer[Int]()
+    var term1Postings = new ListBuffer[Int]()
+    //var term2Postings = new ListBuffer[Int]()
+    if (dictionaryForInvertedIndex.contains(term1)) {
+      //if the term is already present in the dictionary, retreive its postings list
+      term1Postings = dictionaryForInvertedIndex(term1);
+    }
+    else {
+      throw new TermNotFoundException("Given term not found in the list.")
+    }
+
+    conjList = conjunction(term1Postings, term2Postings)
+    return conjList;
+
+  }
+
   def matchBooleanAndQuery(term1: String, term2: String, myOperator: String): ListBuffer[Int] = {
     var conjList = new ListBuffer[Int]()
 
