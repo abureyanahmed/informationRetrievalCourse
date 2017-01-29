@@ -118,9 +118,9 @@ object initializer extends SimpleParser {
           println("Eg: (drug OR treatment) AND schizophrenia")
           println("Type your input here:")
           val queryStringForMl = StdIn.readLine()
-          parse(parenthesis, queryStringForMl) match {
+          parse(parWord, queryStringForMl) match {
             case Success(matched, _) => println("Found what you asked me to find which is:"+matched)
-            case Failure(msg, _) => println("FAILURE: " + msg)
+            case Failure(msg, _) => println("There is something wrong with the query you entered.: " + msg)
             case Error(msg, _) => println("ERROR: " + msg)
 
           }
