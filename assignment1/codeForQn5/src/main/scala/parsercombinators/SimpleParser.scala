@@ -12,18 +12,18 @@ case class WordFreq(word: String, count: Int) {
 }
 
 
-case class parsedQuery(word: String, operator: String) {
-  override def toString = "query term 1 is  <" + word + "> " +
-    "and the operator is" + operator
+case class parsedQuery(term1: String, term2: String,operator: String) {
+  override def toString = "query term 1 is  " + term1 + " ." +
+    "query term 2 is  " + term2 +
+    " and the operator is:" + operator
 }
 
 class SimpleParser extends RegexParsers {
   def parenthesis: Parser[String]   = """[(]+""".r       ^^ { _.toString }
   def word: Parser[String]   = """[a-z]+""".r       ^^ { _.toString }
-  def operator: Parser[String]   = """[AND]+""".r       ^^ { _.toString }
+  def operator: Parser[String]   = """[AND|OR]+""".r       ^^ { _.toString }
   def number: Parser[Int]    = """(0|[1-9]\d*)""".r ^^ { _.toInt }
-
   def freq: Parser[WordFreq] = word ~ number        ^^ { case wd ~ fr => WordFreq(wd,fr) }
-  def parWord: Parser[parsedQuery] = parenthesis ~ word         ^^ { case par ~ wd => parsedQuery(par,wd) }
-  //def firstQuery: Parser[parsedQuery] = parenthesis ~ word ~ word        ^^ { case wd ~ fr => parsedQuery(parenthesis,wd) }
+  def parWordOperator: Parser[parsedQuery] = parenthesis ~ word ~ operator ~word        ^^ { case par ~ wd1 ~op ~ wd2=> parsedQuery(wd1,wd2,op) }
+
 }
