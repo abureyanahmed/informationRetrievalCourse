@@ -4,6 +4,24 @@ Type “sbt run” and follow the prompts.
 
 
 
+To test for Qns5.1 and qn5.2: i.e simple two word queries separated by an operator.
+Eg:schizophrenia AND drug
+
+1. type sbt run
+2. choose option 1
+3. type in your query
+
+Note: parenthesis is not supported. This is a simple LR parser now.
+
+
+To test for Qn 5.3:
+
+1. type sbt run
+2. choose option 2
+3. type in your query
+
+
+Note: A long set of ************************************************* denotes that the entire application has restarted.
 
 
 Features:
