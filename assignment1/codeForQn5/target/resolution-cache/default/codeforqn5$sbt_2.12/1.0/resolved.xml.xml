@@ -4,7 +4,7 @@
 		module="codeforqn5$sbt_2.12"
 		revision="1.0"
 		status="integration"
-		publication="20170127233133"
+		publication="20170129013156"
 	/>
 	<configurations>
 		<conf name="default" visibility="public"/>
