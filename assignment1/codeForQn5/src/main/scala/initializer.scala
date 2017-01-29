@@ -119,7 +119,12 @@ object initializer extends SimpleParser {
           println("Type your input here:")
           val queryStringForMl = StdIn.readLine()
           parse(parWordOperator, queryStringForMl) match {
-            case Success(matched, _) => println("Found what you asked me to find which is:"+matched)
+            case Success(matched, _) => {
+              println("Found that :" + matched)
+
+
+
+            }
             case Failure(msg, _) => println("There is something wrong with the query you entered.: " + msg)
             case Error(msg, _) => println("ERROR: " + msg)
 

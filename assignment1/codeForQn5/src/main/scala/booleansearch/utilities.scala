@@ -87,6 +87,27 @@ object  Utilities {
 
   case class TermNotFoundException(excptn: String) extends Exception
 
+  def parseTheQueryGivenAll3Terms(term1Passed: String,term2Passed: String,operatorPassed: String): ListBuffer[Int] = {
+    var returnList = ListBuffer[Int]()
+    try {
+      operatorPassed match {
+        case "AND" => {
+          returnList = matchBooleanAndQuery(term1Passed, term2Passed, operatorPassed)
+        }
+        case "OR" =>
+        {
+          returnList = matchBooleanORQuery(term1Passed, term2Passed, operatorPassed)
+        }
+        case _ => print("invalid operator.")
+      }
+    }
+    catch{
+      case ex: TermNotFoundException => println("The terms you entered for query doesn't exist in the given postings list. Try again.")
+    }
+    return returnList
+  }
+
+
   def parseTheQuery(userQuery: String): ListBuffer[Int] = {
     var returnList = ListBuffer[Int]()
     try {
