@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/qn7.iml" filepath="$PROJECT_DIR$/.idea/modules/qn7.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/qn7-build.iml" filepath="$PROJECT_DIR$/.idea/modules/qn7-build.iml" />
     </modules>
   </component>
 </project>
