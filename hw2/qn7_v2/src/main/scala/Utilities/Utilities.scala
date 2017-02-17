@@ -90,17 +90,19 @@ object  Utilities {
 
               //if the term is already present in the dictionary, retreive its postings list, attach the new docid and attach it back
               if (dictionaryForInvertedIndex.contains(individualToken)) {
-                //                var baseCounter = 0;
-                //                var existingPostings = dictionaryForInvertedIndex(individualToken);
+
+                var existingPostings = dictionaryForInvertedIndex(individualToken);
+                val objdocumentIDPositions = documentIDPositions(docid, positions)
+                //val postingsList = ListBuffer[documentIDPositions]();
+                existingPostings.append(objdocumentIDPositions)
+                dictionaryForInvertedIndex += (individualToken -> existingPostings);
                 //                existingPostings.append(docid);
                 //                dictionaryForInvertedIndex += (individualToken -> existingPostings);
               }
               else {
                 //else create a new postings list as value and the token as key.
 
-                //                case class documentIDPositions (var docId:Int, var positions: ListBuffer[Int]);
-                //                var dictionaryForInvertedIndex: Map[String, ListBuffer[documentIDPositions]] = Map();
-                //
+
 
                 val objdocumentIDPositions = documentIDPositions(docid, positions)
                 val postingsList = ListBuffer[documentIDPositions]();
@@ -125,12 +127,13 @@ object  Utilities {
 
     } catch {
       case NonFatal(t) => {println(NonFatal.toString())}
-      case _: Throwable => {println("throwable exception found\n")}
+
       case ex: Exception => {
         println("An exception happened. Not able to find the file. Full stack trace is being printed as below")
         println(ex.toString())
-        System.exit(1);
+
       }
+      case _: Throwable => {println("throwable exception found\n")}
         throw new FileNotFoundException(inputFileForInvIndex)
     }
 
@@ -138,12 +141,23 @@ object  Utilities {
 
   def printDictionaryPostings(dictionaryPostings: Map[String, ListBuffer[documentIDPositions]]): Unit = {
 
+    println("going to print postings list:")
     for ((k, v) <- dictionaryPostings) {
-      println(k + "->" )
-      for ((postingsList) <- dictionaryPostings) {
-        val documentId=postingsList._1
-        println(documentId+ "->" )
+      print(k + "->" )
+      for ((postingsList) <- v) {
+        val documentId=postingsList.docId
+        print(documentId+ ":" )
+        //print each of the positions in this document
+        for(positions<-postingsList.positions)
+          {
+            //print in this format:
+            //Gates: 1: 〈3〉; 2: 〈6〉; 3: 〈2,17〉; 4: 〈1〉;
+
+            print("<"+positions+">"+ "," )
+          }
+        print(";" )
       }
+      println("");
 
 
     }

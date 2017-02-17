@@ -4,7 +4,7 @@
 		module="codeforqn5$sources_2.12"
 		revision="1.0"
 		status="integration"
-		publication="20170129013200"
+		publication="20170217134515"
 	/>
 	<configurations>
 		<conf name="default" visibility="public" description=""/>
