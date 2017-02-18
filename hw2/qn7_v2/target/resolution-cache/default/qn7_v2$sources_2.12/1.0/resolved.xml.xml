@@ -4,7 +4,7 @@
 		module="qn7_v2$sources_2.12"
 		revision="1.0"
 		status="integration"
-		publication="20170216224735"
+		publication="20170217231012"
 	/>
 	<configurations>
 		<conf name="default" visibility="public" description=""/>

@@ -303,16 +303,16 @@ object  Utilities {
               if(positions2>positions1) {
 
                 println("found that positions2 is bigger than positions1")
-                if (positions1 <= (positions2 - proximityIndicator)) {
-                  println("found that these two terms exist in the proximity of:" + proximityIndicator)
+                if ((positions2 -positions1) == proximityIndicator) {
+                  println("found that these two terms exist in the proximity of:" + proximityIndicator+"in document id:"+documentId1)
                 }
               }
               else
               if(positions2 < positions1)
                 {
                   println("found that positions1 is bigger than positions2")
-                  if (positions2 <= (positions1 - proximityIndicator)) {
-                    println("found that these two terms exist in the proximity of:" + proximityIndicator)
+                  if ((positions1-positions2) == proximityIndicator) {
+                    println("found that these two terms exist in the proximity of:" + proximityIndicator+"in document id:"+documentId1)
                   }
                 }
               else
