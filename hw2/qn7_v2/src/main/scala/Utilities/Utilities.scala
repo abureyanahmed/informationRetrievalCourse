@@ -296,20 +296,22 @@ object  Utilities {
             for (positions2 <- positionsList2) {
 
               println("value of position1 is:" + positions1)
-              println("value of position1 is:" + positions1)
-              
+              println("value of position2 is:" + positions2)
+              println("value of proximityIndicator is:" + proximityIndicator)
+
               //find which one is bigger- i cant find a nicer way of doing mod operator. There is %, but its an overkill
               if(positions2>positions1) {
 
                 println("found that positions2 is bigger than positions1")
-                if (positions1 < (positions2 - proximityIndicator)) {
+                if (positions1 <= (positions2 - proximityIndicator)) {
                   println("found that these two terms exist in the proximity of:" + proximityIndicator)
                 }
               }
               else
               if(positions2 < positions1)
                 {
-                  if (positions2 < (positions1 - proximityIndicator)) {
+                  println("found that positions1 is bigger than positions2")
+                  if (positions2 <= (positions1 - proximityIndicator)) {
                     println("found that these two terms exist in the proximity of:" + proximityIndicator)
                   }
                 }
