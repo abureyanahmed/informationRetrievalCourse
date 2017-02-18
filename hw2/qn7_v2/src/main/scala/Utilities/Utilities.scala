@@ -263,36 +263,67 @@ object  Utilities {
   def checkIfInSameDocument(postingsOfTerm1: ListBuffer[documentIDPositions], postingsOfTerm2: ListBuffer[documentIDPositions], proximityIndicator: Int): ListBuffer[Int] = {
 
     println("going to  checkIfInSameDocument list:")
-    val postingsList = ListBuffer[documentIDPositions]();
+
 
     //val objdocumentIDPositions = new documentIDPositions(Int, ListBuffer[Int]);
     //var term2Postings = new ListBuffer[documentIDPositions]();
     var flagDocIdMatch = false;
     for (objdocumentIDPositions1 <- postingsOfTerm1) {
       val documentId1 = objdocumentIDPositions1.docId
+      var positionsList1 = ListBuffer[Int]();
+      positionsList1=objdocumentIDPositions1.positions;
       //the values here will be the list of objdocumentIDPositions
 
       //
       //          postingsList.append(objdocumentIDPositions)
       //          dictionaryForInvertedIndex += (individualToken -> postingsList);
 
-      println("current document id for term 1 is:" + documentId1)
+     // println("current document id for term 1 is:" + documentId1)
 
       for (objdocumentIDPositions2 <- postingsOfTerm2) {
         val documentId2 = objdocumentIDPositions2.docId
-        println("current document id for term 1 is:" + documentId2)
+
+        var positionsList2 = ListBuffer[Int]();
+        positionsList2=objdocumentIDPositions2.positions;
+        //println("current document id for term 2 is:" + documentId2)
 
         //if you find the corresponding doc id in the list of term2, proceed, else your job is done, just exit.
         if (documentId1 == documentId2) {
           flagDocIdMatch = true;
           println("found that these two terms exist in the same document which is document number:" + documentId2)
           println("going to start proximity search.")
+          for (positions1 <- positionsList1) {
+            for (positions2 <- positionsList2) {
+
+              println("value of position1 is:" + positions1)
+              println("value of position1 is:" + positions1)
+              
+              //find which one is bigger- i cant find a nicer way of doing mod operator. There is %, but its an overkill
+              if(positions2>positions1) {
+
+                println("found that positions2 is bigger than positions1")
+                if (positions1 < (positions2 - proximityIndicator)) {
+                  println("found that these two terms exist in the proximity of:" + proximityIndicator)
+                }
+              }
+              else
+              if(positions2 < positions1)
+                {
+                  if (positions2 < (positions1 - proximityIndicator)) {
+                    println("found that these two terms exist in the proximity of:" + proximityIndicator)
+                  }
+                }
+              else
+                {throw new TermNotFoundException("They are both at the same position. Error")}
+
+            }
+          }
         }
       }
 
     }
     if (flagDocIdMatch == false) {
-      throw new TermNotFoundException("Given terms dont exist in the same document.")
+      throw new TermNotFoundException("Given terms don't exist in the same document.")
     }
 
 
