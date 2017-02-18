@@ -1,5 +1,5 @@
 package booleansearch
-
+import scala.util.matching.Regex
 import java.io.{File, FileNotFoundException, InputStream}
 import java.util
 import initializer._
@@ -36,90 +36,63 @@ object  Utilities {
       else {
         println("input directory is empty")
       }
-
-
       if (noofFiles == 0) {
         //todo: throw an error here
         println("no files in the input directory")
-
       }
       else {
-
         println(" no of files found in input directory is:" + noofFiles + ":Going to parallelize")
-        //commenting out the parallelized part since it was giving errors in a non multi core machine
-        //        val listOfFiles = new File(fullScrapedDirectoryPath).listFiles().par
-        //        listOfFiles.tasksupport = new ForkJoinTaskSupport(new scala.concurrent.forkjoin.ForkJoinPool(nthreads))
-
         val listOfFiles = new File(resourcesDirectory).listFiles()
-        //for (line <- Source.fromResource(inputFileForInvIndex).getLines()) {
+
 
 
         val pathToInputFile = resourcesDirectory + inputFileForInvIndex;
         println("value of the path to the file is" + pathToInputFile)
 
-        for (line <- io.Source.fromFile(pathToInputFile).getLines()) {
+        //for (line <- io.Source.fromFile(pathToInputFile).getLines()) {
+        for (line <- Source.fromResource(inputFileForInvIndex).getLines()) {
 
 
           println("getting here at 1");
           val content = line.split("\\s+");
-           println("getting here at 2");
+          println("getting here at 2");
           var termCounter = 0;
           println("getting here at 3");
 
 
           if (content.length > 1) {
             val content = line.split("\\s+");
-
             //this counter is for actualtoken in sentences only- i.e we are ignoring the words doc and 1
             var positionOfTheTerm = 1;
-
             var docid = content(1).toInt;
-
-            var noOfTokensDenotingDocId=1;
-
+            var noOfTokensDenotingDocId = 1;
             println("getting here at 4");
             //there is confusion if the first word is going to be doc1 or doc space 1- writing code for both separated by a boolean flag
-            if(initializer.useDoc1)
-            {
-              noOfTokensDenotingDocId=noOfTokensDenotingDocId+1
+            if (initializer.useDoc1) {
+              noOfTokensDenotingDocId = noOfTokensDenotingDocId + 1
               println(content.mkString(" "))
               //in hw2 input, there is no space between doc and 1.
               //split it based on number
-
               //create a regex for the number 1
-              val stringToSplit="doc1dock"
-              val NumberOne="1".r();
+              val stringToSplit = "doc1dock"
+              val NumberOne = "1".r();
               println(content(0))
               //println(content(1))
               //var firstword = content(0).split("\\d")
               //var firstword = content(0).split(NumberOne).map(_.trim)
-              var firstword =stringToSplit.split("1")
-
-              println("length of firstword is"+firstword.length)
+              var firstword = stringToSplit.split("1")
+              println("length of firstword is" + firstword.length)
               println(firstword(1))
-              System.exit(1)
-
-
-               docid = firstword(1).toInt;
+              docid = firstword(1).toInt;
               println(docid)
               println("getting here at 5");
-
               println("getting here at 6");
-
             }
-
-
-
-            //for each term in a document
+            //for each term in the sentence
             for (individualToken <- content) {
-
-
               //ignore the first two individualToken since it contains only "doc 1"
               if (termCounter <= noOfTokensDenotingDocId) {
                 termCounter = termCounter + 1;
-                //positionOfTheTerm = positionOfTheTerm +1;
-
-
               }
 
               else {
@@ -134,24 +107,13 @@ object  Utilities {
 
                   var existingPostings = dictionaryForInvertedIndex(individualToken);
                   val objdocumentIDPositions = documentIDPositions(docid, positions)
-                  //val postingsList = ListBuffer[documentIDPositions]();
                   existingPostings.append(objdocumentIDPositions)
                   dictionaryForInvertedIndex += (individualToken -> existingPostings);
-                  //                existingPostings.append(docid);
-                  //                dictionaryForInvertedIndex += (individualToken -> existingPostings);
                 }
                 else {
-                  //else create a new postings list as value and the token as key.
-
-
                   val objdocumentIDPositions = documentIDPositions(docid, positions)
                   val postingsList = ListBuffer[documentIDPositions]();
                   postingsList.append(objdocumentIDPositions)
-
-
-
-
-
                   dictionaryForInvertedIndex += (individualToken -> postingsList);
 
                 }
@@ -193,9 +155,7 @@ object  Utilities {
         print(documentId + ":")
         //print each of the positions in this document
         for (positions <- postingsList.positions) {
-          //print in this format:
-          //Gates: 1: 〈3〉; 2: 〈6〉; 3: 〈2,17〉; 4: 〈1〉;
-
+          //print in this format: Gates: 1: 〈3〉; 2: 〈6〉; 3: 〈2,17〉; 4: 〈1〉;
           print(",<" + positions + ">")
         }
         print(";")
@@ -207,49 +167,53 @@ object  Utilities {
 
   }
 
+
+  case class TermNotFoundException(excptn: String) extends Exception
+
+  def parseTheQueryForNonDirectionalProximitySearch(term1Passed: String, term2Passed: String, proximityIndicator: Int): ListBuffer[Int] = {
+    var returnList = ListBuffer[Int]()
+
+
+    try {
+      returnList = checkTermsExist(term1Passed, term2Passed, proximityIndicator)
+      //        operatorPassed match {
+      //          case "AND" => {
+      //
+      //          }
+      //          case "OR" =>
+      //          {
+      //            //returnList = matchBooleanORQuery(term1Passed, term2Passed, operatorPassed)
+      //          }
+      //          case _ => print("invalid operator.")
+    }
+
+    catch {
+      case ex: TermNotFoundException => println("The terms you entered for query doesn't exist in the given postings list. Try again.")
+    }
+    return returnList
+  }
+
   //
-  //  case class TermNotFoundException(excptn: String) extends Exception
   //
-  //  def parseTheQueryGivenAll3Terms(term1Passed: String,term2Passed: String,operatorPassed: String): ListBuffer[Int] = {
-  //    var returnList = ListBuffer[Int]()
-  //    try {
-  //      operatorPassed match {
-  //        case "AND" => {
-  //          //returnList = matchBooleanAndQuery(term1Passed, term2Passed, operatorPassed)
+  //    def parseTheQuery(userQuery: String): ListBuffer[Int] = {
+  //      var returnList = ListBuffer[Int]()
+  //      try {
+  //        operator match {
+  //          case "AND" => {
+  //            returnList = checkTermsExist(term1, term2, operator)
+  //          }
+  //          case "OR" =>
+  //          {
+  //            // returnList = matchBooleanORQuery(term1, term2, operator)
+  //          }
+  //          case _ => print("invalid operator.")
   //        }
-  //        case "OR" =>
-  //        {
-  //          //returnList = matchBooleanORQuery(term1Passed, term2Passed, operatorPassed)
-  //        }
-  //        case _ => print("invalid operator.")
   //      }
-  //    }
-  //    catch{
-  //      case ex: TermNotFoundException => println("The terms you entered for query doesn't exist in the given postings list. Try again.")
-  //    }
-  //    return returnList
-  //  }
-  //
-  //
-  //  def parseTheQuery(userQuery: String): ListBuffer[Int] = {
-  //    var returnList = ListBuffer[Int]()
-  //    try {
-  //      operator match {
-  //        case "AND" => {
-  //          //returnList = matchBooleanAndQuery(term1, term2, operator)
-  //        }
-  //        case "OR" =>
-  //        {
-  //          // returnList = matchBooleanORQuery(term1, term2, operator)
-  //        }
-  //        case _ => print("invalid operator.")
+  //      catch{
+  //        case ex: TermNotFoundException => println("The terms you entered for query doesn't exist in the given postings list. Try again.")
   //      }
+  //      return returnList
   //    }
-  //    catch{
-  //      case ex: TermNotFoundException => println("The terms you entered for query doesn't exist in the given postings list. Try again.")
-  //    }
-  //    return returnList
-  //  }
 
   //  def conjunctionGivenListAndTerm(term1: String, term2Postings: ListBuffer[Int]): ListBuffer[Int] = {
   //    var conjList = new ListBuffer[Int]()
@@ -268,59 +232,85 @@ object  Utilities {
   //
   //  }
   //
-  //  def matchBooleanAndQuery(term1: String, term2: String, myOperator: String): ListBuffer[Int] = {
-  //    var conjList = new ListBuffer[Int]()
-  //
-  //    var term1Postings = new ListBuffer[Int]()
-  //    var term2Postings = new ListBuffer[Int]()
-  //    if (dictionaryForInvertedIndex.contains(term1)) {
-  //      //if the term is already present in the dictionary, retreive its postings list
-  //      term1Postings = dictionaryForInvertedIndex(term1);
-  //    }
-  //    else {
-  //      throw new TermNotFoundException("Given term not found in the list.")
-  //    }
-  //    if (dictionaryForInvertedIndex.contains(term2)) {
-  //      //if the term is already present in the dictionary, retreive its postings list
-  //      term2Postings = dictionaryForInvertedIndex(term2);
-  //    }
-  //    else {
-  //      throw new TermNotFoundException("Given term not found in the list.")
-  //    }
-  //
-  //    conjList = conjunction(term1Postings, term2Postings)
-  //    return conjList;
-  //
-  //  }
+  def checkTermsExist(term1: String, term2: String, proximityIndicator: Int): ListBuffer[Int] = {
+    var conjList = new ListBuffer[Int]()
 
-  //  def matchBooleanORQuery(term1: String, term2: String, myOperator: String): ListBuffer[Int] = {
-  //    var disjList = new ListBuffer[Int]()
-  //
-  //    var term1Postings = new ListBuffer[Int]()
-  //    var term2Postings = new ListBuffer[Int]()
-  //    if (dictionaryForInvertedIndex.contains(term1)) {
-  //      //if the term is already present in the dictionary, retreive its postings list
-  //      term1Postings = dictionaryForInvertedIndex(term1);
-  //    }
-  //    else {
-  //      throw new TermNotFoundException("Given term not found in the list.")
-  //    }
-  //    if (dictionaryForInvertedIndex.contains(term2)) {
-  //      //if the term is already present in the dictionary, retreive its postings list
-  //      term2Postings = dictionaryForInvertedIndex(term2);
-  //    }
-  //    else {
-  //      throw new TermNotFoundException("Given term not found in the list.")
-  //    }
-  //
-  //    disjList = disjunction(term1Postings, term2Postings)
-  //    return disjList;
-  //
-  //  }
-  //
+    var term1Postings = new ListBuffer[documentIDPositions]();
+    var term2Postings = new ListBuffer[documentIDPositions]();
 
-  //  def conjunction(postingsOfTerm1: ListBuffer[Int], postingsOfTerm2: ListBuffer[Int]): ListBuffer[Int] = {
-  //    val conjunctedList = new ListBuffer[Int]();
+    //
+    if (dictionaryForInvertedIndex.contains(term1)) {
+      //if the term is already present in the dictionary, retreive its postings list
+      term1Postings = dictionaryForInvertedIndex(term1);
+    }
+    else {
+      throw new TermNotFoundException("Given term not found in the list.")
+    }
+    if (dictionaryForInvertedIndex.contains(term2)) {
+      //if the term is already present in the dictionary, retreive its postings list
+      term2Postings = dictionaryForInvertedIndex(term2);
+    }
+    else {
+      throw new TermNotFoundException("Given term not found in the list.")
+    }
+
+    conjList = checkIfInSameDocument(term1Postings, term2Postings, proximityIndicator)
+    return conjList;
+
+  }
+
+  //a function to check if both the terms even exist in the same document. Else exit to square one.
+  def checkIfInSameDocument(postingsOfTerm1: ListBuffer[documentIDPositions], postingsOfTerm2: ListBuffer[documentIDPositions], proximityIndicator: Int): ListBuffer[Int] = {
+
+    println("going to  checkIfInSameDocument list:")
+    val postingsList = ListBuffer[documentIDPositions]();
+
+    //val objdocumentIDPositions = new documentIDPositions(Int, ListBuffer[Int]);
+    //var term2Postings = new ListBuffer[documentIDPositions]();
+    var flagDocIdMatch = false;
+    for (objdocumentIDPositions1 <- postingsOfTerm1) {
+      val documentId1 = objdocumentIDPositions1.docId
+      //the values here will be the list of objdocumentIDPositions
+
+      //
+      //          postingsList.append(objdocumentIDPositions)
+      //          dictionaryForInvertedIndex += (individualToken -> postingsList);
+
+      println("current document id for term 1 is:" + documentId1)
+
+      for (objdocumentIDPositions2 <- postingsOfTerm2) {
+        val documentId2 = objdocumentIDPositions2.docId
+        println("current document id for term 1 is:" + documentId2)
+
+        //if you find the corresponding doc id in the list of term2, proceed, else your job is done, just exit.
+        if (documentId1 == documentId2) {
+          flagDocIdMatch = true;
+          println("found that these two terms exist in the same document which is document number:" + documentId2)
+          println("going to start proximity search.")
+        }
+      }
+
+    }
+    if (flagDocIdMatch == false) {
+      throw new TermNotFoundException("Given terms dont exist in the same document.")
+    }
+
+
+
+    //        //print each of the positions in this document
+    //        for (positions <- objdocumentIDPositions.positions) {
+    //          //print in this format: Gates: 1: 〈3〉; 2: 〈6〉; 3: 〈2,17〉; 4: 〈1〉;
+    //          print(",<" + positions + ">")
+    //        }
+    print(";")
+    val conjunctedList = new ListBuffer[Int]();
+    return conjunctedList
+
+
+  }
+
+  //
+  //
   //    var childListCounter = 0
   //    var parentListCounter = 0
   //    var parentlist = new ListBuffer[Int]();
@@ -348,9 +338,41 @@ object  Utilities {
   //        }
   //      }
   //    }
-  //    return conjunctedList
-  //
-  //  }
+
+
+  def conjunction(postingsOfTerm1: ListBuffer[Int], postingsOfTerm2: ListBuffer[Int]): ListBuffer[Int] = {
+    val conjunctedList = new ListBuffer[Int]();
+    var childListCounter = 0
+    var parentListCounter = 0
+    var parentlist = new ListBuffer[Int]();
+    var childlist = new ListBuffer[Int]();
+    if (postingsOfTerm1.length > postingsOfTerm2.length) {
+      parentlist = postingsOfTerm1
+      childlist = postingsOfTerm2
+    }
+    else {
+      parentlist = postingsOfTerm2
+      childlist = postingsOfTerm1
+    }
+    while (parentListCounter < parentlist.length && childListCounter < childlist.length) {
+      if (childlist(childListCounter) == parentlist(parentListCounter)) {
+        conjunctedList += (childlist(childListCounter))
+        childListCounter = childListCounter + 1
+        parentListCounter = parentListCounter + 1
+      }
+      else {
+        if (childlist(childListCounter) < parentlist(parentListCounter)) {
+          childListCounter = childListCounter + 1
+        }
+        else {
+          parentListCounter = parentListCounter + 1
+        }
+      }
+    }
+    return conjunctedList
+
+  }
+
   //
   //
   //  def disjunction(postingsOfTerm1: ListBuffer[Int], postingsOfTerm2: ListBuffer[Int]): ListBuffer[Int] = {
@@ -395,27 +417,30 @@ object  Utilities {
   //  }
 
 
-  //  def verifyInputQueryStringForBinaryQuery(userQuery: String): Boolean = {
-  //    println("verifying user input...")
-  //    val queryContent = userQuery.split("\\s+");
-  //    var flag = false;
-  //    if (queryContent.length > 2) {
-  //      term1 = queryContent(0);
-  //      operator = queryContent(1);
-  //      term2 = queryContent(2);
-  //      if (operator == "AND" || operator == "OR") {
-  //        println("yep,. Input query looks ok.")
-  //        flag = true;
-  //      }
-  //      else {
-  //        flag = false;
-  //      }
-  //    }
-  //    else {
-  //      flag = false;
-  //    }
-  //    return flag;
-  //  }
+  def verifyInputQueryStringForNonDirectional(userQuery: String): Boolean = {
+    println("verifying user input...")
+    val queryContent = userQuery.split("\\s+");
+    var flag = false;
+    if (queryContent.length > 2) {
+      //if the query has 3 words
+      term1 = queryContent(0);
+      operator = queryContent(1);
+      term2 = queryContent(2);
+      //a regular expression to check if the query has a slash followed by an integer
+      val regexForSlashInt = new Regex("/[0-9]");
+      println((regexForSlashInt.findAllIn(operator)).mkString(","))
+      sys.exit(1);
+      //        if (operator.matches(regexForSlashInt) {
+      //          println("yep,. Input query looks ok.")
+      //          flag = true;
+      //        }
+      //        else {
+      //          flag = false;
+      //        }
+    }
+    else {
+      flag = false;
+    }
+    return flag;
+  }
 }
-
-
