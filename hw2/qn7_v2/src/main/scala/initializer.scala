@@ -8,6 +8,9 @@ import util.control.Breaks._;
 
 object initializer  {
 
+  //there is confusion if the first word is going to be doc1 or doc space 1- writing code for both separated by a boolean flag
+  val useDoc1=false;
+
   //this is the main function for qn1 and qn2. Commenting it to test parser for qn3
   //  def main(args: Array[String]): Unit = {
   //
@@ -69,7 +72,7 @@ object initializer  {
 
     var queryString = ""
     breakable {
-      while (true) {
+     // while (true) {
         println("*************************************************")
         println("What would you like to do?")
         println("Type 0 to exit.")
@@ -77,13 +80,13 @@ object initializer  {
         println("Type 2 for Boolean proximity queries (directional)")
 
         println("Type your input here:")
-        val typeOfProgram = StdIn.readLine()
-
-        if (typeOfProgram == "0") {
-          println("Sad to see you leave. Do come back again. Bye.")
-          sys.exit;
-
-        }
+//        val typeOfProgram = StdIn.readLine()
+//
+//        if (typeOfProgram == "0") {
+//          println("Sad to see you leave. Do come back again. Bye.")
+//          sys.exit;
+//
+//        }
 
 
 //        else if (typeOfProgram == "1") {
@@ -139,7 +142,7 @@ object initializer  {
 //
 //        }
 
-      }
+      //  }
     }
   }
 }
