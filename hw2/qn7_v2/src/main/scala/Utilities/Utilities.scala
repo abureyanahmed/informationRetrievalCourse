@@ -188,7 +188,7 @@ object  Utilities {
     }
 
     catch {
-      case ex: TermNotFoundException => println("The terms you entered for query doesn't exist in the given postings list. Try again.")
+      case ex: TermNotFoundException => println(ex.excptn)
     }
     return returnList
   }
@@ -254,15 +254,15 @@ object  Utilities {
       throw new TermNotFoundException("Given term not found in the list.")
     }
 
-    conjList = checkIfInSameDocument(term1Postings, term2Postings, proximityIndicator)
+    conjList = checkIfInSameDocument(term1, term2, term1Postings, term2Postings, proximityIndicator)
     return conjList;
 
   }
 
   //a function to check if both the terms even exist in the same document. Else exit to square one.
-  def checkIfInSameDocument(postingsOfTerm1: ListBuffer[documentIDPositions], postingsOfTerm2: ListBuffer[documentIDPositions], proximityIndicator: Int): ListBuffer[Int] = {
+  def checkIfInSameDocument(term1:String, term2:String, postingsOfTerm1: ListBuffer[documentIDPositions], postingsOfTerm2: ListBuffer[documentIDPositions], proximityIndicator: Int): ListBuffer[Int] = {
 
-    println("going to  checkIfInSameDocument list:")
+    //println("going to  checkIfInSameDocument list:")
 
 
     //val objdocumentIDPositions = new documentIDPositions(Int, ListBuffer[Int]);
@@ -289,7 +289,7 @@ object  Utilities {
 
         //if you find the corresponding doc id in the list of term2, proceed, else your job is done, just exit.
         if (documentId1 == documentId2) {
-          flagDocIdMatch = true;
+
         //  println("found that these two terms exist in the same document which is document number:" + documentId2)
         //  println("going to start proximity search.")
           for (positions1 <- positionsList1) {
@@ -304,7 +304,8 @@ object  Utilities {
 
                // println("found that positions2 is bigger than positions1")
                 if ((positions2 -positions1) == proximityIndicator) {
-                  println("found that these two terms exist in the proximity of:" + proximityIndicator+"in document id:"+documentId1)
+                  println("found that the two terms that you asked viz., "+term1+" and "+term2 +" exist in the proximity of: " + proximityIndicator+" in the document with Document Id: "+documentId1)
+                  flagDocIdMatch = true;
                 }
               }
               else
@@ -312,7 +313,8 @@ object  Utilities {
                 {
                  // println("found that positions1 is bigger than positions2")
                   if ((positions1-positions2) == proximityIndicator) {
-                    println("found that these two terms exist in the proximity of:" + proximityIndicator+"in document id:"+documentId1)
+                    println("found that the two terms that you asked viz., "+term1+" and "+term2 +" exist in the proximity of: " + proximityIndicator+" in the document with Document Id: "+documentId1)
+                    flagDocIdMatch = true;
                   }
                 }
               else
@@ -325,7 +327,7 @@ object  Utilities {
 
     }
     if (flagDocIdMatch == false) {
-      throw new TermNotFoundException("Given terms don't exist in the same document.")
+      throw new TermNotFoundException("Given terms don't exist in the same document, atleast not in the proximity you asked for.")
     }
 
 

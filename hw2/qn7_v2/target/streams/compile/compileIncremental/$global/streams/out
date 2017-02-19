@@ -2,23 +2,30 @@
 [0m[[0mdebug[0m] [0mInitial source changes: [0m
 [0m[[0mdebug[0m] [0m	removed:Set()[0m
 [0m[[0mdebug[0m] [0m	added: Set()[0m
-[0m[[0mdebug[0m] [0m	modified: Set(/home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/src/main/scala/initializer.scala, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/src/main/scala/parsercombinators/SimpleParser.scala)[0m
-[0m[[0mdebug[0m] [0mRemoved products: Set(/home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes/initializer/initializer.class, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes/parsercombinators/parseMyQuery3words.class, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes/parsercombinators/parseMyQuery3words$.class, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes/parsercombinators/WordFreq.class, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes/parsercombinators/WordFreq$.class, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes/parsercombinators/SimpleParser.class, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes/initializer/initializer$.class)[0m
+[0m[[0mdebug[0m] [0m	modified: Set(/home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/src/main/scala/Utilities/Utilities.scala)[0m
+[0m[[0mdebug[0m] [0mRemoved products: Set(/home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes/booleansearch/Utilities.class, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes/booleansearch/documentIDPositions$.class, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes/booleansearch/Utilities$TermNotFoundException$.class, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes/booleansearch/documentIDPositions.class, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes/booleansearch/Utilities$.class, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes/booleansearch/Utilities$TermNotFoundException.class)[0m
 [0m[[0mdebug[0m] [0mExternal API changes: API Changes: Set()[0m
 [0m[[0mdebug[0m] [0mModified binary dependencies: Set()[0m
-[0m[[0mdebug[0m] [0mInitial directly invalidated sources: Set(/home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/src/main/scala/initializer.scala, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/src/main/scala/parsercombinators/SimpleParser.scala)[0m
+[0m[[0mdebug[0m] [0mInitial directly invalidated sources: Set(/home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/src/main/scala/Utilities/Utilities.scala)[0m
 [0m[[0mdebug[0m] [0m[0m
 [0m[[0mdebug[0m] [0mSources indirectly invalidated by:[0m
-[0m[[0mdebug[0m] [0m	product: Set(/home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/src/main/scala/initializer.scala, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/src/main/scala/parsercombinators/SimpleParser.scala)[0m
+[0m[[0mdebug[0m] [0m	product: Set(/home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/src/main/scala/Utilities/Utilities.scala)[0m
 [0m[[0mdebug[0m] [0m	binary dep: Set()[0m
 [0m[[0mdebug[0m] [0m	external source: Set()[0m
-[0m[[0mdebug[0m] [0mAll initially invalidated sources: Set(/home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/src/main/scala/initializer.scala, /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/src/main/scala/parsercombinators/SimpleParser.scala)[0m
-[0m[[0minfo[0m] [0mCompiling 2 Scala sources to /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes...[0m
+[0m[[0mdebug[0m] [0mAll initially invalidated sources: Set(/home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/src/main/scala/Utilities/Utilities.scala)[0m
+[0m[[0minfo[0m] [0mCompiling 1 Scala source to /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes...[0m
 [0m[[0mdebug[0m] [0mGetting compiler-interface from component compiler for Scala 2.12.1[0m
 [0m[[0mdebug[0m] [0mGetting compiler-interface from component compiler for Scala 2.12.1[0m
-[0m[[0mdebug[0m] [0mRunning cached compiler 19e47d1c, interfacing (CompilerInterface) with Scala compiler version 2.12.1[0m
+[0m[[0mdebug[0m] [0mRunning cached compiler 15559c75, interfacing (CompilerInterface) with Scala compiler version 2.12.1[0m
 [0m[[0mdebug[0m] [0mCalling Scala compiler with arguments  (CompilerInterface):[0m
 [0m[[0mdebug[0m] [0m	-bootclasspath[0m
 [0m[[0mdebug[0m] [0m	/usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/classes:/home/mithunpaul/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.1.jar[0m
 [0m[[0mdebug[0m] [0m	-classpath[0m
 [0m[[0mdebug[0m] [0m	/home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/scala-2.12/classes:/home/mithunpaul/.ivy2/cache/org.scala-lang.modules/scala-parser-combinators_2.12/bundles/scala-parser-combinators_2.12-1.0.5.jar[0m
+[0m[[0mdebug[0m] [0mScala compilation took 6.632033069 s[0m
+[0m[[0mdebug[0m] [0mNew invalidations:[0m
+[0m[[0mdebug[0m] [0m	Set()[0m
+[0m[[0mdebug[0m] [0mInitial set of included nodes: Set()[0m
+[0m[[0mdebug[0m] [0mPreviously invalidated, but (transitively) depend on new invalidations:[0m
+[0m[[0mdebug[0m] [0m	Set()[0m
+[0m[[0mdebug[0m] [0mAll newly invalidated sources after taking into account (previously) recompiled sources:Set()[0m
