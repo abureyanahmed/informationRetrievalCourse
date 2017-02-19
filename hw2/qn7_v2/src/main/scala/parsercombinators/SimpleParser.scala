@@ -15,14 +15,14 @@ case class WordFreq(word: String, count: Int) {
 
 case class parseMyQuery3words(term1: String, term2: String, operator1: String, distance: Int ) {
 
-  println("getting into the function parseMyQuery3words")
-  val stringToParse = "query term 1 is  " + term1 + " ." +
-    "query term 2 is  " + term2 +
-    " and the operator is:" + operator1 +
-  " and the proximity value is:" + distance
-  println(stringToParse);
+//  println("getting into the function parseMyQuery3words")
+//  val stringToParse = "query term 1 is  " + term1 + " ." +
+//    "query term 2 is  " + term2 +
+//    " and the operator is:" + operator1 +
+//  " and the proximity value is:" + distance
+//  println(stringToParse);
 
-  println("Going to parse this query...")
+  //println("Going to parse this query...")
   val queryResult1 = booleansearch.Utilities.parseTheQueryForNonDirectionalProximitySearch(term1, term2, distance)
 
   if (queryResult1.length > 0) {
@@ -36,7 +36,7 @@ case class parseMyQuery3words(term1: String, term2: String, operator1: String, d
     //    }
   }
   else {
-    println("Thank You. Unfortunately, there were no documents that matched your query. Please try again with another query.")
+    //println("Thank You. Unfortunately, there were no documents that matched your query. Please try again with another query.")
   }
 
 

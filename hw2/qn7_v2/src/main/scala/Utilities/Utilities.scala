@@ -290,19 +290,19 @@ object  Utilities {
         //if you find the corresponding doc id in the list of term2, proceed, else your job is done, just exit.
         if (documentId1 == documentId2) {
           flagDocIdMatch = true;
-          println("found that these two terms exist in the same document which is document number:" + documentId2)
-          println("going to start proximity search.")
+        //  println("found that these two terms exist in the same document which is document number:" + documentId2)
+        //  println("going to start proximity search.")
           for (positions1 <- positionsList1) {
             for (positions2 <- positionsList2) {
 
-              println("value of position1 is:" + positions1)
-              println("value of position2 is:" + positions2)
-              println("value of proximityIndicator is:" + proximityIndicator)
+             // println("value of position1 is:" + positions1)
+             // println("value of position2 is:" + positions2)
+             // println("value of proximityIndicator is:" + proximityIndicator)
 
               //find which one is bigger- i cant find a nicer way of doing mod operator. There is %, but its an overkill
               if(positions2>positions1) {
 
-                println("found that positions2 is bigger than positions1")
+               // println("found that positions2 is bigger than positions1")
                 if ((positions2 -positions1) == proximityIndicator) {
                   println("found that these two terms exist in the proximity of:" + proximityIndicator+"in document id:"+documentId1)
                 }
@@ -310,7 +310,7 @@ object  Utilities {
               else
               if(positions2 < positions1)
                 {
-                  println("found that positions1 is bigger than positions2")
+                 // println("found that positions1 is bigger than positions2")
                   if ((positions1-positions2) == proximityIndicator) {
                     println("found that these two terms exist in the proximity of:" + proximityIndicator+"in document id:"+documentId1)
                   }

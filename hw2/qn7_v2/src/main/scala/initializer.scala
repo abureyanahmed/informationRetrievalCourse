@@ -53,7 +53,7 @@ object initializer  extends SimpleParser {
           val queryStringForPos = StdIn.readLine()
           parse(parWordOperator, queryStringForPos) match {
             case Success(matched, _) => {
-              println("Found that :" + matched)
+              println("Success. Found a result for the query you asked.");
             }
             case Failure(msg, _) => {
               println("There is something wrong with the query you entered.: " + msg)

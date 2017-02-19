@@ -1,0 +1,1 @@
+In qn 5, In the input file, I am assuming there is a space between the word "doc" and document id" Eg: "Doc 1". Kindly input the files accordingly, or use the sample input file provided in the resources folder (/src/main/resources)
