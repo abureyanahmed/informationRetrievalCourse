@@ -9,3 +9,13 @@ In qn 7, In the input file, I am assuming there is a space between the word "doc
 Also in Qn 7: I am assuming the input will be in small letters. My parser will through an error if it sees "Drug" instead of "drug". I can fix it to take capital letters too, but then I thought this is not a compilers class and you probably wont care.
 
 Proximity is defined to start from 1. i.e the proximity between the words drug and schizophrenia in "drug schizophrenia" is 1 and  "drug for schizophrenia" is 2.
+
+The input : drug /78789876757867 hopes will fail, because that integer is beyond what Int in scala can understand.
+
+I tried on the maximum value of Int. So:
+drug /2147483647 hopes : will work
+drug /2147483648 hopes : will fail
+
+Below are a list of test cases I have tested this code on. Its highly possible that I might have missed out some edge test case. But the code works fine for all positive test cases, I think.
+
+

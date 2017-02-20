@@ -21,9 +21,9 @@ object  Utilities {
   val inputFileForInvIndex = "inputfile.txt";
 
   var dictionaryForInvertedIndex: Map[String, ListBuffer[documentIDPositions]] = Map();
-  var term1 = "";
+  //var term1 = "";
   var operator = "";
-  var term2 = "";
+  //var term2 = "";
 
   def readFromFile() = {
     try {
@@ -53,11 +53,11 @@ object  Utilities {
         for (line <- Source.fromResource(inputFileForInvIndex).getLines()) {
 
 
-          println("getting here at 1");
+         // println("getting here at 1");
           val content = line.split("\\s+");
-          println("getting here at 2");
+         // println("getting here at 2");
           var termCounter = 0;
-          println("getting here at 3");
+        //  println("getting here at 3");
 
 
           if (content.length > 1) {
@@ -66,7 +66,7 @@ object  Utilities {
             var positionOfTheTerm = 1;
             var docid = content(1).toInt;
             var noOfTokensDenotingDocId = 1;
-            println("getting here at 4");
+           // println("getting here at 4");
             //there is confusion if the first word is going to be doc1 or doc space 1- writing code for both separated by a boolean flag
             if (initializer.useDoc1) {
               noOfTokensDenotingDocId = noOfTokensDenotingDocId + 1
@@ -85,8 +85,8 @@ object  Utilities {
               println(firstword(1))
               docid = firstword(1).toInt;
               println(docid)
-              println("getting here at 5");
-              println("getting here at 6");
+            //  println("getting here at 5");
+            //  println("getting here at 6");
             }
             //for each term in the sentence
             for (individualToken <- content) {
@@ -173,18 +173,11 @@ object  Utilities {
   def parseTheQueryForNonDirectionalProximitySearch(term1Passed: String, term2Passed: String, proximityIndicator: Int): ListBuffer[Int] = {
     var returnList = ListBuffer[Int]()
 
-
+//    println("term1="+term1Passed)
+//    println("term2="+term2Passed)
     try {
       returnList = checkTermsExist(term1Passed, term2Passed, proximityIndicator)
-      //        operatorPassed match {
-      //          case "AND" => {
-      //
-      //          }
-      //          case "OR" =>
-      //          {
-      //            //returnList = matchBooleanORQuery(term1Passed, term2Passed, operatorPassed)
-      //          }
-      //          case _ => print("invalid operator.")
+
     }
 
     catch {
@@ -233,6 +226,9 @@ object  Utilities {
   //  }
   //
   def checkTermsExist(term1: String, term2: String, proximityIndicator: Int): ListBuffer[Int] = {
+//    println("getting into checkTermsExist");
+//    println("term1="+term1)
+//    println("term2="+term2)
     var conjList = new ListBuffer[Int]()
 
     var term1Postings = new ListBuffer[documentIDPositions]();
@@ -254,19 +250,25 @@ object  Utilities {
       throw new TermNotFoundException("Given term not found in the list.")
     }
 
-    conjList = checkIfInSameDocument(term1, term2, term1Postings, term2Postings, proximityIndicator)
+    if(initializer.checkDirectionalProximity==true)
+      {
+        println("initializer.checkDirectionalProximity ==true . going to get into checkProximityForDirectional");
+
+        conjList = checkProximityForDirectional(term1, term2, term1Postings, term2Postings, proximityIndicator)
+      }
+    else {
+      println("initializer.checkDirectionalProximity ==false . going to get into checkProximityForNonDirectional");
+
+      conjList = checkProximityForNonDirectional(term1, term2, term1Postings, term2Postings, proximityIndicator)
+    }
     return conjList;
 
   }
 
   //a function to check if both the terms even exist in the same document. Else exit to square one.
-  def checkIfInSameDocument(term1:String, term2:String, postingsOfTerm1: ListBuffer[documentIDPositions], postingsOfTerm2: ListBuffer[documentIDPositions], proximityIndicator: Int): ListBuffer[Int] = {
+  def checkProximityForNonDirectional(term1:String, term2:String, postingsOfTerm1: ListBuffer[documentIDPositions], postingsOfTerm2: ListBuffer[documentIDPositions], proximityIndicator: Int): ListBuffer[Int] = {
 
-    //println("going to  checkIfInSameDocument list:")
-
-
-    //val objdocumentIDPositions = new documentIDPositions(Int, ListBuffer[Int]);
-    //var term2Postings = new ListBuffer[documentIDPositions]();
+    println("inside checkProximityForNonDirectional")
     var flagDocIdMatch = false;
     for (objdocumentIDPositions1 <- postingsOfTerm1) {
       val documentId1 = objdocumentIDPositions1.docId
@@ -274,30 +276,19 @@ object  Utilities {
       positionsList1=objdocumentIDPositions1.positions;
       //the values here will be the list of objdocumentIDPositions
 
-      //
-      //          postingsList.append(objdocumentIDPositions)
-      //          dictionaryForInvertedIndex += (individualToken -> postingsList);
 
-     // println("current document id for term 1 is:" + documentId1)
 
       for (objdocumentIDPositions2 <- postingsOfTerm2) {
         val documentId2 = objdocumentIDPositions2.docId
 
         var positionsList2 = ListBuffer[Int]();
         positionsList2=objdocumentIDPositions2.positions;
-        //println("current document id for term 2 is:" + documentId2)
 
         //if you find the corresponding doc id in the list of term2, proceed, else your job is done, just exit.
         if (documentId1 == documentId2) {
 
-        //  println("found that these two terms exist in the same document which is document number:" + documentId2)
-        //  println("going to start proximity search.")
           for (positions1 <- positionsList1) {
             for (positions2 <- positionsList2) {
-
-             // println("value of position1 is:" + positions1)
-             // println("value of position2 is:" + positions2)
-             // println("value of proximityIndicator is:" + proximityIndicator)
 
               //find which one is bigger- i cant find a nicer way of doing mod operator. There is %, but its an overkill
               if(positions2>positions1) {
@@ -312,7 +303,6 @@ object  Utilities {
               else
               if(positions2 < positions1)
                 {
-                 // println("found that positions1 is bigger than positions2")
                   if ((positions1-positions2) == proximityIndicator) {
                     println("Found that the two terms that you asked viz., \""+term1+"\" and \""+term2 +"\" exist in the proximity of: " + proximityIndicator+" in the document with Document Id: "+documentId1)
                     flagDocIdMatch = true;
@@ -345,35 +335,109 @@ object  Utilities {
 
   }
 
-  //
-  //
-  //    var childListCounter = 0
-  //    var parentListCounter = 0
-  //    var parentlist = new ListBuffer[Int]();
-  //    var childlist = new ListBuffer[Int]();
-  //    if (postingsOfTerm1.length > postingsOfTerm2.length) {
-  //      parentlist = postingsOfTerm1
-  //      childlist = postingsOfTerm2
-  //    }
-  //    else {
-  //      parentlist = postingsOfTerm2
-  //      childlist = postingsOfTerm1
-  //    }
-  //    while (parentListCounter < parentlist.length && childListCounter < childlist.length) {
-  //      if (childlist(childListCounter) == parentlist(parentListCounter)) {
-  //        conjunctedList += (childlist(childListCounter))
-  //        childListCounter = childListCounter + 1
-  //        parentListCounter = parentListCounter + 1
-  //      }
-  //      else {
-  //        if (childlist(childListCounter) < parentlist(parentListCounter)) {
-  //          childListCounter = childListCounter + 1
-  //        }
-  //        else {
-  //          parentListCounter = parentListCounter + 1
-  //        }
-  //      }
-  //    }
+
+  def checkProximityForDirectional(term1:String, term2:String, postingsOfTerm1: ListBuffer[documentIDPositions], postingsOfTerm2: ListBuffer[documentIDPositions], proximityIndicator: Int): ListBuffer[Int] = {
+
+   // println("inside checkProximityForDirectional")
+
+    //val objdocumentIDPositions = new documentIDPositions(Int, ListBuffer[Int]);
+    //var term2Postings = new ListBuffer[documentIDPositions]();
+    var flagDocIdMatch = false;
+    for (objdocumentIDPositions1 <- postingsOfTerm1) {
+      val documentId1 = objdocumentIDPositions1.docId
+      var positionsList1 = ListBuffer[Int]();
+      positionsList1=objdocumentIDPositions1.positions;
+      //the values here will be the list of objdocumentIDPositions
+
+      //
+      //          postingsList.append(objdocumentIDPositions)
+      //          dictionaryForInvertedIndex += (individualToken -> postingsList);
+
+      // println("current document id for term 1 is:" + documentId1)
+
+      for (objdocumentIDPositions2 <- postingsOfTerm2) {
+        val documentId2 = objdocumentIDPositions2.docId
+
+        var positionsList2 = ListBuffer[Int]();
+        positionsList2 = objdocumentIDPositions2.positions;
+        //println("current document id for term 2 is:" + documentId2)
+
+        //if you find the corresponding doc id in the list of term2, proceed, else your job is done, just exit.
+        if (documentId1 == documentId2) {
+
+          //println("found that these two terms exist in the same document which is document number:" + documentId2)
+          // println("going to start proximity search.")
+          for (positions1 <- positionsList1) {
+            for (positions2 <- positionsList2) {
+
+              //println("term 1 "+term1+" is at position:" + positions1)
+              // println("term 2 "+term2+" is at position:" + positions2)
+              // println("value of proximityIndicator is:" + proximityIndicator)
+
+              //in case of directional search,
+              //if position of term1 (i.e the first term the user entered on teh left side of /2) is greater than position of term2, throw error.
+              if (positions1 > positions2) {
+                {
+                  throw new TermNotFoundException("In a directional query you cant have the second position lesser than the first position.")
+                }
+              }
+
+
+              //find which one is bigger- i cant find a nicer way of doing mod operator. There is %, but its an overkill
+              if (positions2 > positions1) {
+
+                // println("found that positions2 is bigger than positions1")
+                if ((positions2 - positions1) == proximityIndicator) {
+                  println("Found that the two terms that you asked viz., \"" + term1 + "\" and \"" + term2 + "\" exist in the proximity of: " + proximityIndicator + " in the document with Document Id: " + documentId1)
+                  flagDocIdMatch = true;
+                }
+
+              }
+              //              else
+              //              if(positions2 < positions1)
+              //              {
+              //                // println("found that positions1 is bigger than positions2")
+              //
+              //                //if they have asked for directional query, position 2 has to be bigger than position 1
+              //                if(initializer.checkDirectionalProximity==true)
+              //                {
+              //
+              //                }
+              //
+              //
+              //                if ((positions1-positions2) == proximityIndicator) {
+              //                  println("Found that the two terms that you asked viz., \""+term1+"\" and \""+term2 +"\" exist in the proximity of: " + proximityIndicator+" in the document with Document Id: "+documentId1)
+              //                  flagDocIdMatch = true;
+              //                }
+              //              }
+              else {
+                throw new TermNotFoundException("They are both at the same position. Error")
+              }
+
+            }
+          }
+        }
+      }
+
+    }
+    if (flagDocIdMatch == false) {
+      throw new TermNotFoundException("Given terms viz., \""+term1+"\" and \""+term2 +"\" don't exist in the same document, atleast not in the proximity you asked for.")
+    }
+
+
+
+    //        //print each of the positions in this document
+    //        for (positions <- objdocumentIDPositions.positions) {
+    //          //print in this format: Gates: 1: 〈3〉; 2: 〈6〉; 3: 〈2,17〉; 4: 〈1〉;
+    //          print(",<" + positions + ">")
+    //        }
+    //print(";")
+    val conjunctedList = new ListBuffer[Int]();
+    return conjunctedList
+
+
+  }
+
 
 
   def conjunction(postingsOfTerm1: ListBuffer[Int], postingsOfTerm2: ListBuffer[Int]): ListBuffer[Int] = {
@@ -459,9 +523,11 @@ object  Utilities {
     var flag = false;
     if (queryContent.length > 2) {
       //if the query has 3 words
-      term1 = queryContent(0);
+     val term1 = queryContent(0);
       operator = queryContent(1);
-      term2 = queryContent(2);
+      val term2 = queryContent(2);
+      println("term1="+term1)
+      println("term2="+term2)
       //a regular expression to check if the query has a slash followed by an integer
       val regexForSlashInt = new Regex("/[0-9]");
       println((regexForSlashInt.findAllIn(operator)).mkString(","))

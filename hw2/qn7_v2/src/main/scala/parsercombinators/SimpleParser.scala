@@ -15,7 +15,7 @@ case class WordFreq(word: String, count: Int) {
 
 case class parseMyQuery3words(term1: String, term2: String, operator1: String, distance: Int ) {
 
-//  println("getting into the function parseMyQuery3words")
+ // println("getting into the function parseMyQuery3words")
 //  val stringToParse = "query term 1 is  " + term1 + " ." +
 //    "query term 2 is  " + term2 +
 //    " and the operator is:" + operator1 +
