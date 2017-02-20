@@ -252,12 +252,12 @@ object  Utilities {
 
     if(initializer.checkDirectionalProximity==true)
       {
-        println("initializer.checkDirectionalProximity ==true . going to get into checkProximityForDirectional");
+       // println("initializer.checkDirectionalProximity ==true . going to get into checkProximityForDirectional");
 
         conjList = checkProximityForDirectional(term1, term2, term1Postings, term2Postings, proximityIndicator)
       }
     else {
-      println("initializer.checkDirectionalProximity ==false . going to get into checkProximityForNonDirectional");
+     // println("initializer.checkDirectionalProximity ==false . going to get into checkProximityForNonDirectional");
 
       conjList = checkProximityForNonDirectional(term1, term2, term1Postings, term2Postings, proximityIndicator)
     }
@@ -268,7 +268,8 @@ object  Utilities {
   //a function to check if both the terms even exist in the same document. Else exit to square one.
   def checkProximityForNonDirectional(term1:String, term2:String, postingsOfTerm1: ListBuffer[documentIDPositions], postingsOfTerm2: ListBuffer[documentIDPositions], proximityIndicator: Int): ListBuffer[Int] = {
 
-    println("inside checkProximityForNonDirectional")
+
+   // println("inside checkProximityForNonDirectional")
     var flagDocIdMatch = false;
     for (objdocumentIDPositions1 <- postingsOfTerm1) {
       val documentId1 = objdocumentIDPositions1.docId
@@ -378,17 +379,18 @@ object  Utilities {
               //if position of term1 (i.e the first term the user entered on teh left side of /2) is greater than position of term2, throw error.
               if (positions1 > positions2) {
                 {
-                  throw new TermNotFoundException("In a directional query you cant have the second position lesser than the first position.")
+                  println("Found that the two terms that you asked viz., \"" + term1 + "\" and \"" + term2 + "\" exist in the same document. i.e in the document with Document Id: " + documentId1 +". " +
+                    "But in a directional query you cant have the term2 occuring BEFORE term1. So ignoring this result and moving on");
                 }
               }
 
 
               //find which one is bigger- i cant find a nicer way of doing mod operator. There is %, but its an overkill
-              if (positions2 > positions1) {
+             else if (positions2 > positions1) {
 
                 // println("found that positions2 is bigger than positions1")
                 if ((positions2 - positions1) == proximityIndicator) {
-                  println("Found that the two terms that you asked viz., \"" + term1 + "\" and \"" + term2 + "\" exist in the proximity of: " + proximityIndicator + " in the document with Document Id: " + documentId1)
+                  println("***Success. Found that the two terms that you asked viz., \"" + term1 + "\" and \"" + term2 + "\" exist in the proximity of: " + proximityIndicator + " in the document with Document Id: " + documentId1)
                   flagDocIdMatch = true;
                 }
 
@@ -410,7 +412,7 @@ object  Utilities {
               //                  flagDocIdMatch = true;
               //                }
               //              }
-              else {
+              else if (positions2 == positions1) {
                 throw new TermNotFoundException("They are both at the same position. Error")
               }
 
