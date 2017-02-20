@@ -47,8 +47,8 @@ object initializer  extends SimpleParser {
           checkDirectionalProximity=false
           println()
           println("What two word positional query would you like to run on this index? ")
-          println("Eg: schizophrenia /2 drug")
-          println("Eg: breakthrough /3 new")
+          println("Eg: schizophrenia /1 drug")
+          println("Eg: new /2 for")
           println("Type your input here:")
 
           //just basic parsing, checking number of words etc
@@ -75,8 +75,8 @@ object initializer  extends SimpleParser {
 
           println()
           println("What two word positional DIRECTIONAL query would you like to run on this index? ")
-          println("Eg: schizophrenia /2 drug")
-          println("Eg: breakthrough /3 new")
+          println("Eg: schizophrenia /1 drug")
+          println("Eg: new /2 for")
           println("Type your input here:")
 
           //just basic parsing, checking number of words etc

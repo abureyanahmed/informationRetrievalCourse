@@ -380,7 +380,7 @@ object  Utilities {
               if (positions1 > positions2) {
                 {
                   println("Found that the two terms that you asked viz., \"" + term1 + "\" and \"" + term2 + "\" exist in the same document. i.e in the document with Document Id: " + documentId1 +". " +
-                    "But in a directional query you cant have the term2 occuring BEFORE term1. So ignoring this result and moving on");
+                    "But in a directional query you cant have the term2 occurring BEFORE term1. So ignoring this result and moving on.\n");
                 }
               }
 
@@ -390,7 +390,7 @@ object  Utilities {
 
                 // println("found that positions2 is bigger than positions1")
                 if ((positions2 - positions1) == proximityIndicator) {
-                  println("***Success. Found that the two terms that you asked viz., \"" + term1 + "\" and \"" + term2 + "\" exist in the proximity of: " + proximityIndicator + " in the document with Document Id: " + documentId1)
+                  println("\n***Success. Found that the two terms that you asked viz., \"" + term1 + "\" and \"" + term2 + "\" exist in the proximity of: " + proximityIndicator + " in the document with Document Id: " + documentId1+"\n")
                   flagDocIdMatch = true;
                 }
 
@@ -423,7 +423,7 @@ object  Utilities {
 
     }
     if (flagDocIdMatch == false) {
-      throw new TermNotFoundException("Given terms viz., \""+term1+"\" and \""+term2 +"\" don't exist in the same document, atleast not in the proximity you asked for.")
+      throw new TermNotFoundException("Given terms viz., \""+term1+"\" and \""+term2 +"\" don't exist in the same document, atleast not in the proximity and/or direction you asked for.")
     }
 
 
