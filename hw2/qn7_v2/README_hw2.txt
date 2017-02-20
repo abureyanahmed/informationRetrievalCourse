@@ -1,1 +1,14 @@
-In qn 5, In the input file, I am assuming there is a space between the word "doc" and document id" Eg: "Doc 1". Kindly input the files accordingly, or use the sample input file provided in the resources folder (/src/main/resources)
+How to run:
+
+Self explanatory/follow the instructions on screen.
+
+
+In qn 7, In the input file, I am assuming there is a space between the word "doc" and document id" Eg: "Doc 1". Kindly input the files accordingly, or use the sample input file provided in the resources folder (/src/main/resources)
+
+
+Also in Qn 7: I am assuming the input will be in small letters. My parser will through an error if it sees "Drug" instead of "drug". I can fix it to take capital letters too, but then I thought this is not a compilers class and you probably wont care.
+
+Proximity is defined to start from 1. i.e the proximity between the words drug and schizophrenia in "drug schizophrenia" is 1 and  "drug for schizophrenia" is 2.
+
+
+Below are a list of test cases I have tested this code on. Its highly possible that I might have missed out some edge test case. But the code works fine for all positive test cases, I think.

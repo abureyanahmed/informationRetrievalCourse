@@ -304,16 +304,17 @@ object  Utilities {
 
                // println("found that positions2 is bigger than positions1")
                 if ((positions2 -positions1) == proximityIndicator) {
-                  println("found that the two terms that you asked viz., "+term1+" and "+term2 +" exist in the proximity of: " + proximityIndicator+" in the document with Document Id: "+documentId1)
+                  println("Found that the two terms that you asked viz., \""+term1+"\" and \""+term2 +"\" exist in the proximity of: " + proximityIndicator+" in the document with Document Id: "+documentId1)
                   flagDocIdMatch = true;
                 }
+
               }
               else
               if(positions2 < positions1)
                 {
                  // println("found that positions1 is bigger than positions2")
                   if ((positions1-positions2) == proximityIndicator) {
-                    println("found that the two terms that you asked viz., "+term1+" and "+term2 +" exist in the proximity of: " + proximityIndicator+" in the document with Document Id: "+documentId1)
+                    println("Found that the two terms that you asked viz., \""+term1+"\" and \""+term2 +"\" exist in the proximity of: " + proximityIndicator+" in the document with Document Id: "+documentId1)
                     flagDocIdMatch = true;
                   }
                 }
@@ -327,7 +328,7 @@ object  Utilities {
 
     }
     if (flagDocIdMatch == false) {
-      throw new TermNotFoundException("Given terms don't exist in the same document, atleast not in the proximity you asked for.")
+      throw new TermNotFoundException("Given terms viz., \""+term1+"\" and \""+term2 +"\" don't exist in the same document, atleast not in the proximity you asked for.")
     }
 
 
@@ -337,7 +338,7 @@ object  Utilities {
     //          //print in this format: Gates: 1: 〈3〉; 2: 〈6〉; 3: 〈2,17〉; 4: 〈1〉;
     //          print(",<" + positions + ">")
     //        }
-    print(";")
+    //print(";")
     val conjunctedList = new ListBuffer[Int]();
     return conjunctedList
 
