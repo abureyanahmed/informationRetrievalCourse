@@ -1,4 +1,4 @@
-[0m[[0minfo[0m] [0mUpdating {file:/home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/}qn7_v2...[0m
+[0m[[0minfo[0m] [0mUpdating {file:/Users/mithun/Google%20Drive/Arizona-Uof/spring2017/IRClassCS583/codeFromGithub/hw2/qn7_v2/}qn7_v2...[0m
 [0m[[0mdebug[0m] [0m:: resolving dependencies :: default#qn7_v2_2.12;1.0[0m
 [0m[[0mdebug[0m] [0m	confs: [compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool][0m
 [0m[[0mdebug[0m] [0m	validate = true[0m
@@ -7,7 +7,7 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#qn7_v2_2.12;1.0 [compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#qn7_v2_2.12;1.0->org.scala-lang#scala-library;2.12.1 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.12.1 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@572b4f3f[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@6097de9a[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-library;2.12.1[0m
 [0m[[0mdebug[0m] [0m	found org.scala-lang#scala-library;2.12.1 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m	[2.12.1] org.scala-lang#scala-library;2.12.1[0m
@@ -195,19 +195,19 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-reflect;2.12.1!scala-reflect.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang.modules#scala-xml_2.12;1.0.6!scala-xml_2.12.jar(bundle)[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] jline#jline;2.14.1!jline.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 244ms :: artifacts dl 10ms[0m
-[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 compile produced in /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-compile.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 runtime produced in /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-runtime.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 test produced in /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-test.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 provided produced in /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-provided.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 optional produced in /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-optional.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 compile-internal produced in /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-compile-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 runtime-internal produced in /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-runtime-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 test-internal produced in /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-test-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 plugin produced in /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-plugin.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 sources produced in /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-sources.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 docs produced in /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-docs.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 pom produced in /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-pom.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 scala-tool produced in /home/mithunpaul/spring2017/mihaisIRcourse/allCodesAndHomeworks/informationRetrievalCourse/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (244ms resolve - 10ms download)[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 167ms :: artifacts dl 5ms[0m
+[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 compile produced in /Users/mithun/Google Drive/Arizona-Uof/spring2017/IRClassCS583/codeFromGithub/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-compile.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 runtime produced in /Users/mithun/Google Drive/Arizona-Uof/spring2017/IRClassCS583/codeFromGithub/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-runtime.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 test produced in /Users/mithun/Google Drive/Arizona-Uof/spring2017/IRClassCS583/codeFromGithub/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-test.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 provided produced in /Users/mithun/Google Drive/Arizona-Uof/spring2017/IRClassCS583/codeFromGithub/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-provided.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 optional produced in /Users/mithun/Google Drive/Arizona-Uof/spring2017/IRClassCS583/codeFromGithub/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-optional.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 compile-internal produced in /Users/mithun/Google Drive/Arizona-Uof/spring2017/IRClassCS583/codeFromGithub/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-compile-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 runtime-internal produced in /Users/mithun/Google Drive/Arizona-Uof/spring2017/IRClassCS583/codeFromGithub/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-runtime-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 test-internal produced in /Users/mithun/Google Drive/Arizona-Uof/spring2017/IRClassCS583/codeFromGithub/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-test-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 plugin produced in /Users/mithun/Google Drive/Arizona-Uof/spring2017/IRClassCS583/codeFromGithub/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-plugin.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 sources produced in /Users/mithun/Google Drive/Arizona-Uof/spring2017/IRClassCS583/codeFromGithub/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-sources.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 docs produced in /Users/mithun/Google Drive/Arizona-Uof/spring2017/IRClassCS583/codeFromGithub/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-docs.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 pom produced in /Users/mithun/Google Drive/Arizona-Uof/spring2017/IRClassCS583/codeFromGithub/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-pom.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#qn7_v2_2.12;1.0 scala-tool produced in /Users/mithun/Google Drive/Arizona-Uof/spring2017/IRClassCS583/codeFromGithub/hw2/qn7_v2/target/resolution-cache/reports/default-qn7_v2_2.12-scala-tool.xml[0m
+[0m[[0mdebug[0m] [0m	resolve done (167ms resolve - 5ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m
