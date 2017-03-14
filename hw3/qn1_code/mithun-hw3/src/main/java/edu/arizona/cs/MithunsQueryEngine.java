@@ -49,7 +49,7 @@ public class MithunsQueryEngine {
 
 
             //String querystr = "title:information OR title:retrieval";Score:1.1655893
-            String querystr = "information AND retrieval";
+            //String querystr = "information AND retrieval";
 
             //Score:1.1655893
             //String querystr = "title:information AND title:retrieval"; //Score:1.1655893
@@ -67,13 +67,50 @@ public class MithunsQueryEngine {
             /*String querystr = "title:information AND -title:retrieval";
             For Qn 1.1 found 0 hits for your query:title:information AND -title:retrieval
                     */
+            String querystr="";
+            //for proximity queries we wanted the syntax with double quotes
+            //Eg:"retriever dog"~3
 
-//            for(int i=0;i<args.length;i++)
-//            {
-//                System.out.println(args[i]);
-//                querystr=querystr+args[i];
-//                querystr=querystr+" ";
-//            }
+
+            //if the length of arguments is less than or equal to 3, we assume simple boolean query.
+
+            if(args.length>3) {
+                querystr = querystr+"\"";
+                //else assume proximity query
+                for (int i = 0; i < args.length; i++) {
+                    System.out.println(args[i]);
+                    //querystr=querystr+args[i];
+
+                    try {
+                        int op1 = Integer.parseInt(args[i]);
+                        String newquerystr = querystr.trim();
+                        querystr = newquerystr;
+                        querystr = querystr + "\"";
+                        querystr = querystr + "~" + op1;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Wrong number");
+                        querystr = querystr + args[i];
+                        querystr = querystr + " ";
+                    }
+
+
+                }
+            }
+            else
+            {
+                for (int i = 0; i < args.length; i++) {
+                    querystr = querystr + args[i];
+                    querystr = querystr + " ";
+                }
+
+
+
+            }
+
+
+//            querystr=querystr+"information retrieval";
+//            querystr = querystr+"\"";
+//            querystr = querystr+"~1";
 
             System.out.println("the query string is:"+querystr);
             Query myQuery= new QueryParser("title", analyzer).parse(querystr);
@@ -118,7 +155,7 @@ public class MithunsQueryEngine {
     private static void displayResults( IndexSearcher searcher,ScoreDoc[] hits, String querystr) {
 
         try {
-            System.out.println("For Qn 1.1 found " + hits.length + " hits for your query:"+querystr);
+            System.out.println("Found " + hits.length + " hits for your query:"+querystr);
             for (int i = 0; i < hits.length; ++i) {
                 int docId = hits[i].doc;
                 Document d = searcher.doc(docId);
