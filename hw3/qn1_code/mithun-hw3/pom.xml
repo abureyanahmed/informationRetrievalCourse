@@ -46,11 +46,11 @@
     </executions>
     <configuration>
       <!-- TODO: if your main class is called something else, change it here -->
-      <mainClass>edu.arizona.cs.App</mainClass>
+      <mainClass>edu.arizona.cs.MithunsQueryEngine</mainClass>
       <!-- TODO: if your class takes command line arguments, change them here -->
       <arguments>
-        <argument>foo</argument>
-        <argument>bar</argument>
+        <argument>information</argument>
+        <argument>retrieval</argument>
       </arguments>
     </configuration>
   </plugin>
