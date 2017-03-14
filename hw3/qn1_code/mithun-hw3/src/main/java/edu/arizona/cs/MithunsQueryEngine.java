@@ -34,14 +34,14 @@ public class MithunsQueryEngine {
             Directory index = new RAMDirectory();
 
             IndexWriterConfig config = new IndexWriterConfig(analyzer);
-           config.setSimilarity(new ClassicSimilarity());
+          // config.setSimilarity(new ClassicSimilarity());
 
             IndexWriter w = new IndexWriter(index, config);
 
 
-            addDoc(w, "information retrieval is the most awesome information class I ever took.","Document #1");
+            addDoc(w, "information retrieval is the most awesome class I ever took.","Document #1");
             addDoc(w, "the retrieval of private information from your emails is a job that the NSA loves.","Document #2");
-            addDoc(w, "at university of arizona you learn information about data science.","Document #3");
+            addDoc(w, "at university of arizona you learn about data science.","Document #3");
             addDoc(w, "the labrador retriever is a great dog.","Document #4");
             w.close();
 
@@ -126,7 +126,7 @@ public class MithunsQueryEngine {
 
         try {
 
-            searcher.setSimilarity(new ClassicSimilarity());
+            //searcher.setSimilarity(new ClassicSimilarity());
             TopDocs docs = searcher.search(myQuery, hitsPerPage);
             hits = docs.scoreDocs;
             //System.out.println(searcher.explain(myQuery, hits[0].doc));

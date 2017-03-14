@@ -9,20 +9,19 @@ Tool: Lucene
 <version>6.4.2</version>
 
 Tool: Maven
-Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-10T09:41:47-07:00)
+Apache Maven 3.3.9 
+
 
 
 Steps to Export Path:
-
-Add the following to ~/.profile and ~/.bash_profile
-export JAVA_HOME= `/usr/libexec/java_home -v 1.8`
-export PATH=/Users/mithun/Desktop/apache-maven-3.3.9/bin:$PATH
+1.Add the following to ~/.profile and ~/.bash_profile
+2. export JAVA_HOME= `/usr/libexec/java_home -v 1.8`
+3. export PATH=/Users/mithun/Desktop/apache-maven-3.3.9/bin:$PATH
 
 Note: this will change depending on the location of java and maven in your machine.
 
 
 Steps to Compile/Run:
-
 1. change directory to the directory which has pom.xml
 Eg: cd /hw3/qn1_code/mithun-hw3/
 2. mvn compile
@@ -53,4 +52,11 @@ Notes:
 
 Note: If you test more boolean queries, make sure they are all in the same argument. If there are more than 3 arguments, my code assumes that the 4th argument is the proximity distance.
 
+
+3. For Qn 1.4
+
+To test ClassicSimilarity instead of the default BM25 please uncomment the following lines of code:
+
+line 37: // config.setSimilarity(new ClassicSimilarity());
+line 129:   //searcher.setSimilarity(new ClassicSimilarity());
 

@@ -50,9 +50,9 @@
       <!-- TODO: if your class takes command line arguments, change them here -->
       <arguments>
 
-        <!--For Qn 1.1
+        <!--For Qn 1.1-->
         <argument>information</argument>
-        <argument>retrieval</argument>-->
+        <argument>retrieval</argument>
 
         <!--For Qn 1.3.a
         <argument>information</argument>
@@ -70,10 +70,9 @@
         <argument>retrieval</argument>
         <argument>1</argument>-->
 
-        <!--For testing-->
+        <!--For testing
         <argument>information</argument>
-        <argument>retrieval</argument>
-
+        <argument>retrieval</argument>-->
         </arguments>
       </configuration>
     </plugin>
