@@ -2,6 +2,7 @@ package edu.arizona.cs;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import java.io.IOException;
+import java.io.*;
 import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.search.similarities.ClassicSimilarity;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -39,10 +40,54 @@ public class MithunsQueryEngine {
             IndexWriter w = new IndexWriter(index, config);
 
 
-            addDoc(w, "information retrieval is the most awesome class I ever took.","Document #1");
-            addDoc(w, "the retrieval of private information from your emails is a job that the NSA loves.","Document #2");
-            addDoc(w, "at university of arizona you learn about data science.","Document #3");
-            addDoc(w, "the labrador retriever is a great dog.","Document #4");
+            /*
+            trying to read from a file instead of hard coded documents
+             */
+
+            // The name of the file to open.
+            String fileName = "input.txt";
+
+            // This will reference one line at a time
+            String line = null;
+
+
+            try {
+                // FileReader reads text files in the default encoding.
+                FileReader fileReader =
+                        new FileReader(fileName);
+
+                // Always wrap FileReader in BufferedReader.
+                BufferedReader bufferedReader =
+                        new BufferedReader(fileReader);
+
+                int docCounter=1;
+
+                while((line = bufferedReader.readLine()) != null) {
+                    System.out.println(line);
+                    addDoc(w, line,"Document #"+docCounter);
+                    docCounter= docCounter+1;
+                }
+
+                // Always close files.
+                bufferedReader.close();
+            }
+            catch(FileNotFoundException ex) {
+                System.out.println(
+                        "Unable to open file '" +
+                                fileName + "'");
+            }
+            catch(IOException ex) {
+                System.out.println(
+                        "Error reading file '"
+                                + fileName + "'");
+                // Or we could just do this:
+                // ex.printStackTrace();
+            }
+//*/
+//            addDoc(w, "information retrieval is the most awesome class I ever took.","Document #1");
+//            addDoc(w, "the retrieval of private information from your emails is a job that the NSA loves.","Document #2");
+//            addDoc(w, "at university of arizona you learn about data science.","Document #3");
+//            addDoc(w, "the labrador retriever is a great dog.","Document #4");
             w.close();
 
 

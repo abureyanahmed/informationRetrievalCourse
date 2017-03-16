@@ -24,12 +24,14 @@ Note: this will change depending on the location of java and maven in your machi
 Steps to Compile/Run:
 1. change directory to the directory which has pom.xml
 Eg: cd /hw3/qn1_code/mithun-hw3/
-2. mvn compile
-3. mvn exec:java
+2. type “mvn compile”
+3. type “mvn exec:java”
+4. input is taken from the file input.txt kept at hw3/qn1_code/mithun-hw3/input.txt.
+Note: this is at the same level at which pom.xml is kept.
 
 
 Notes:
-1.For Qn 1.1: Please use the following entry in pom.xml to test 
+1.For Qn 1.1: Please use/uncomment the following entry in pom.xml to test 
  	 <!--For Qn 1.1-->
         <argument>information</argument>
         <argument>retrieval</argument>
