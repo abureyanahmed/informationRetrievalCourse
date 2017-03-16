@@ -26,7 +26,7 @@ Steps to Compile/Run:
 Eg: cd /hw3/qn1_code/mithun-hw3/
 2. type “mvn compile”
 3. type “mvn exec:java”
-4. input is taken from the file input.txt kept at hw3/qn1_code/mithun-hw3/input.txt.
+4. input document content is taken from the file input.txt kept at hw3/qn1_code/mithun-hw3/input.txt.
 Note: this is at the same level at which pom.xml is kept.
 
 
