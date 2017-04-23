@@ -44,12 +44,12 @@
       <file leaf-file-name="myUtilities.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/brain/myUtilities.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="212" column="68" selection-start-line="212" selection-start-column="68" selection-end-line="212" selection-end-column="68" />
+            <state relative-caret-position="351">
+              <caret line="254" column="0" selection-start-line="249" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
               <folding>
                 <element signature="e#15#47#0" expanded="true" />
-                <element signature="e#3431#3979#0" expanded="false" />
-                <element signature="e#3983#4763#0" expanded="false" />
+                <element signature="e#4259#4807#0" expanded="false" />
+                <element signature="e#4811#5591#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -682,55 +682,55 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/brain/myUtilities.scala</url>
-          <line>172</line>
+          <line>192</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/brain/myUtilities.scala</url>
-          <line>181</line>
+          <line>201</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/brain/myUtilities.scala</url>
-          <line>184</line>
+          <line>204</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/brain/myUtilities.scala</url>
-          <line>211</line>
+          <line>231</line>
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/brain/myUtilities.scala</url>
-          <line>170</line>
+          <line>190</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/brain/myUtilities.scala</url>
-          <line>173</line>
+          <line>193</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/brain/myUtilities.scala</url>
-          <line>177</line>
+          <line>197</line>
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/brain/myUtilities.scala</url>
-          <line>169</line>
+          <line>189</line>
           <properties />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/brain/myUtilities.scala</url>
-          <line>166</line>
+          <line>186</line>
           <properties />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
@@ -760,8 +760,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#15#47#0" expanded="true" />
-            <element signature="e#3431#3979#0" expanded="false" />
-            <element signature="e#3983#4763#0" expanded="false" />
+            <element signature="e#4259#4807#0" expanded="false" />
+            <element signature="e#4811#5591#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -820,12 +820,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/brain/myUtilities.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="212" column="68" selection-start-line="212" selection-start-column="68" selection-end-line="212" selection-end-column="68" />
+        <state relative-caret-position="351">
+          <caret line="254" column="0" selection-start-line="249" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
           <folding>
             <element signature="e#15#47#0" expanded="true" />
-            <element signature="e#3431#3979#0" expanded="false" />
-            <element signature="e#3983#4763#0" expanded="false" />
+            <element signature="e#4259#4807#0" expanded="false" />
+            <element signature="e#4811#5591#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -1,7 +1,7 @@
 
 package brain
 import scala.util.matching.Regex
-import java.io.{File, FileNotFoundException, InputStream}
+import java.io._
 import java.util
 
 import scala.collection.mutable
@@ -19,9 +19,22 @@ import dataStructures._;
 object  myUtilities {
 
   //the class where all the functions are stored.
+
+
+  //list of input paths
   val resourcesDirectory = "./src/main/resources/"
   val inputDirectoryForTrainingSpam = "spam-train";
   val inputDirectoryForTrainingNSpam = "nonspam-train";
+
+  //list of output files and paths
+  val outputDirectoryPath = "./src/main/outputs/"
+
+
+  val filemapTrTokenSpam ="mapTrTokenSpam.txt"
+  val filemapTrTokenNonSpam ="mapTrTokenNonSpam.txt"
+  val filelistOfAllTrTokens ="listOfAllTrTokens.txt"
+  val filespamWeightage ="spamWeightage.txt"
+  val filenonSpamWeightage ="nonSpamWeightage.txt"
 
 
 
@@ -102,6 +115,13 @@ object  myUtilities {
 
 
     calculateTermWeightage(totalSpamTokenFrequency,totalNonSpamTokenFrequency,mapTrTokenSpam,mapTrTokenNonSpam,listOfAllTrTokens , spamWeightage ,nonSpamWeightage )
+
+    //write all the data structures to file for verification
+    writeToFile(mapTrTokenNonSpam.mkString("\n"),filemapTrTokenNonSpam,outputDirectoryPath)
+    writeToFile(mapTrTokenSpam.mkString("\n"),filemapTrTokenSpam,outputDirectoryPath)
+    writeToFile(listOfAllTrTokens.mkString("\n"),filelistOfAllTrTokens,outputDirectoryPath)
+    writeToFile(nonSpamWeightage.mkString("\n"),filenonSpamWeightage,outputDirectoryPath)
+    writeToFile(spamWeightage.mkString("\n"),filespamWeightage,outputDirectoryPath)
 
 
   }
@@ -215,8 +235,30 @@ object  myUtilities {
 
 
 
-    //go through the list of all unique tokens, calculate nonspam weightage for each
+
 
   }
 
+  def writeToFile(stringToWrite: String, outputFilename: String, outputDirectoryPath: String): Unit = {
+
+    val outFileoutputFileForThisNewsArticle = new File(outputDirectoryPath, outputFilename)
+    //remove if it exists. And create a new one to append And keep adding to it- in the for loop below.
+    if (outFileoutputFileForThisNewsArticle.exists) {
+      outFileoutputFileForThisNewsArticle.delete()
+    }
+
+//    // create a new file of the same name and write into it some emptyline
+//    val file2 = new File(outputDirectoryPath + outputFilename)
+//    val bw1 = new BufferedWriter(new FileWriter(file2))
+//    bw1.write("")
+//    bw1.close()
+
+
+    val outFile = new File(outputDirectoryPath, outputFilename)
+    val bw = new BufferedWriter(new FileWriter(outFile))
+    bw.write(stringToWrite)
+    bw.close()
+
+
+  }
 }
