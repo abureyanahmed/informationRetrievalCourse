@@ -37,6 +37,7 @@ object  myUtilities {
   val filelistOfAllTrTokens ="listOfAllTrTokens.txt"
   val filespamWeightage ="spamWeightage.txt"
   val filenonSpamWeightage ="nonSpamWeightage.txt"
+  val fileGoldPredLabels ="fileGoldPredLabels.txt"
 
   case class goldPredictedLabel(var docId:String, var goldLabel:String, var predictedLabel:String);
 
@@ -130,6 +131,8 @@ object  myUtilities {
     writeToFile(listOfAllTrTokens.mkString("\n"),filelistOfAllTrTokens,outputDirectoryPath)
     writeToFile(nonSpamWeightage.mkString("\n"),filenonSpamWeightage,outputDirectoryPath)
     writeToFile(spamWeightage.mkString("\n"),filespamWeightage,outputDirectoryPath)
+
+
 
 
 
@@ -284,7 +287,34 @@ object  myUtilities {
   {
 
     //read and predict spam training data
+    var goldLabel="spam"
     var fullPathinputDirectoryForTestingSpam = resourcesDirectory + inputDirectoryForTestingSpam
+    getPrediction(goldLabel,fullPathinputDirectoryForTestingSpam,spamWeightage : Map[String, Double],nonSpamWeightage : Map[String, Double], SpamPrior:Double,nonSpamPrior:Double ,listOfGoldPredictedLabel: ListBuffer[goldPredictedLabel])
+
+
+    println("no of lines in listOfGoldPredictedLabel is:" + listOfGoldPredictedLabel.size)
+
+    //read and predict nonspam training data
+    goldLabel="non-spam"
+    var fullPathinputDirectoryForTestingNonSpam = resourcesDirectory + inputDirectoryForTestingNSpam
+    getPrediction(goldLabel,fullPathinputDirectoryForTestingSpam,spamWeightage : Map[String, Double],nonSpamWeightage : Map[String, Double], SpamPrior:Double,nonSpamPrior:Double ,listOfGoldPredictedLabel: ListBuffer[goldPredictedLabel])
+
+
+    println("no of lines in listOfGoldPredictedLabel is:" + listOfGoldPredictedLabel.size)
+
+
+    writeToFile(listOfGoldPredictedLabel.mkString("\n"),fileGoldPredLabels,outputDirectoryPath)
+
+
+
+
+  }
+
+
+  def getPrediction( goldLabel:String,  fullPathinputDirectoryForTestingSpam:String, spamWeightage : Map[String, Double],nonSpamWeightage : Map[String, Double], SpamPrior:Double,nonSpamPrior:Double ,listOfGoldPredictedLabel: ListBuffer[goldPredictedLabel]): Unit =
+  {
+
+
     if (checkFolderExists(fullPathinputDirectoryForTestingSpam)) {
       //read spam-testing data
 
@@ -322,7 +352,7 @@ object  myUtilities {
               sumofTermWeightsSpam=sumofTermWeightsSpam + log(mySpamWeightage)
             }
             else {
-              println("this word doesnt have spam weightage:"+indivWord)
+              // println("this word doesnt have spam weightage:"+indivWord)
             }
 
 
@@ -334,7 +364,7 @@ object  myUtilities {
               sumofTermWeightsNonSpam=sumofTermWeightsNonSpam + log(mynonSpamWeightage)
             }
             else {
-              println("this word doesnt have non-spam weightage:"+indivWord)
+              // println("this word doesnt have non-spam weightage:"+indivWord)
             }
 
 
@@ -349,13 +379,13 @@ object  myUtilities {
 
         var predLabel="spam"
         if(CmapNonSpam>CmapSpam)
-          {
-            predLabel="nonspam"
-          }
+        {
+          predLabel="nonspam"
+        }
 
         //add the document id and its labels
 
-        var objGoldPred = new goldPredictedLabel(indivFileName.getName(),"spam", predLabel)
+        var objGoldPred = new goldPredictedLabel(indivFileName.getName(),goldLabel, predLabel)
         listOfGoldPredictedLabel+=objGoldPred
 
 
@@ -363,7 +393,7 @@ object  myUtilities {
 
     }
 
-    println(listOfGoldPredictedLabel.mkString("\n"));
+   // println(listOfGoldPredictedLabel.mkString("\n"));
 
   }
 
