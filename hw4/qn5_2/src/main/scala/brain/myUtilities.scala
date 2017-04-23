@@ -138,19 +138,58 @@ object  myUtilities {
     /************************Testing Part*********************/
 
 
-    //list of data structures
-    //var predictedLabels: Map[String, String, String]= Map();
-    //var mapTrTokenSpam: Map[String, Int]= Map();
 
-
-    //antonym adjectivePairs found for a given template
     var listGoldPredictedLabel = new ListBuffer[goldPredictedLabel]()
 
 
     processTestingData( spamWeightage,nonSpamWeightage , SpamPrior,NonSpamPrior,listGoldPredictedLabel)
 
+    calculateF1Score(listGoldPredictedLabel)
 
 
+
+  }
+
+  def calculateF1Score(listGoldPredictedLabel : ListBuffer[goldPredictedLabel]): Unit= {
+
+
+    var TP=0;
+    var FP=0;
+    var TN=0;
+    var FN=0;
+
+    //go through the list and calculate TP,FP etc
+    for(indivLabels<-listGoldPredictedLabel)
+      {
+
+        //if gold label is spam and predicted label is spam, increase TP
+        if(indivLabels.goldLabel=="spam" && indivLabels.predictedLabel=="spam")
+          {
+            TP=TP+1;
+          }
+
+        //if gold label is not-spam and predicted label is spam, increase FP
+        if(indivLabels.goldLabel=="non-spam" && indivLabels.predictedLabel=="spam")
+        {
+          FP=FP+1;
+        }
+        //if gold label is spam and predicted label is nonspam, increase FN
+        if(indivLabels.goldLabel=="spam" && indivLabels.predictedLabel=="non-spam")
+        {
+          FN=FN+1;
+        }
+        //if gold label is nonspam and predicted label is nonspam, increase TP
+        if(indivLabels.goldLabel=="non-spam" && indivLabels.predictedLabel=="non-spam")
+        {
+          TN=TN+1;
+        }
+
+      }
+
+    println("TP:"+TP)
+    println("FP:"+FP)
+    println("FN:"+FN)
+    println("TN:"+TN)
   }
 
   def checkFolderExists(fullScrapedDirectoryPath: String): Boolean = {
