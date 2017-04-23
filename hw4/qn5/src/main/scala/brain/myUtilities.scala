@@ -26,28 +26,40 @@ object  myUtilities {
 
   def readAndProcessTrainingData() = {
 
-    var trainLen = mapTrTokenSpam.size
+
     //read spam training data
     var fullScrapedDirectoryPath = resourcesDirectory + inputDirectoryForTrainingSpam
 
     if (checkFolderExists(fullScrapedDirectoryPath)) {
 
-      readSpamNSpamData(fullScrapedDirectoryPath)
+
+      var mapTrTokenSpam: Map[String, Int]= Map();
+
+
+      readTrainingData(fullScrapedDirectoryPath,mapTrTokenSpam)
+
+      println("no of lines in mapTrTokenSpam is:" + mapTrTokenSpam.size)
+
 
     }
 
-    println("no of lines in mapTrTokenSpam is:" + mapTrTokenSpam.size)
+
 
 
     //read nonspam training data
-    fullScrapedDirectoryPath = resourcesDirectory + inputDirectoryForTrainingNSpam
-    if (checkFolderExists(fullScrapedDirectoryPath)) {
+    val nonSpamTrainingFolder = resourcesDirectory + inputDirectoryForTrainingNSpam
+    if (checkFolderExists(nonSpamTrainingFolder)) {
 
-      readSpamNSpamData(fullScrapedDirectoryPath)
+
+
+      var mapTrTokenNonSpam: Map[String, Int] = Map();
+
+      readTrainingData(nonSpamTrainingFolder,mapTrTokenNonSpam)
+      println("no of lines in mapTrTokenNonSpam is:" + mapTrTokenNonSpam.size)
 
     }
 
-    println("no of lines in mapTrTokenSpam is:" + mapTrTokenSpam.size)
+
 
 
   }
@@ -80,7 +92,7 @@ object  myUtilities {
 
   }
 
-  def readSpamNSpamData(folderToReadFrom: String) = {
+  def readTrainingData(folderToReadFrom: String, mapTrTokenSpam: Map[String, Int]= Map()) = {
 
 
     val listOfFiles = new File(folderToReadFrom).listFiles()
@@ -92,11 +104,11 @@ object  myUtilities {
     for (indivFileName <- listOfFiles) {
 
       for (lineFromInput <- Source.fromFile(indivFileName).getLines()) {
-        
+
 
         val words = lineFromInput.split("\\s+")
-        for (indivWord <- words) {
-
+        for (wordToTrim <- words) {
+          var indivWord = wordToTrim.trim();
           if (mapTrTokenSpam.contains(indivWord)) {
             var wordCounter = mapTrTokenSpam(indivWord)
             wordCounter = wordCounter + 1
@@ -104,6 +116,8 @@ object  myUtilities {
           }
 
           else {
+
+            if(mapTrTokenSpam != " ")
             mapTrTokenSpam += (indivWord -> 1)
           }
 
@@ -113,4 +127,40 @@ object  myUtilities {
 
 
   }
+
+//  def readNonSpamTrData(folderToReadFrom: String,mapTrTokenNonSpam: Map[String, Int]) = {
+//
+//
+//    val listOfFiles = new File(folderToReadFrom).listFiles()
+//
+//
+//
+//    var fileCounter = 0;
+//
+//    for (indivFileName <- listOfFiles) {
+//
+//      for (lineFromInput <- Source.fromFile(indivFileName).getLines()) {
+//
+//
+//        val words = lineFromInput.split("\\s+")
+//        for (wordToTrim <- words) {
+//
+//         var indivWord = wordToTrim.trim();
+//
+//          if (mapTrTokenNonSpam.contains(indivWord)) {
+//            var wordCounter = mapTrTokenNonSpam(indivWord)
+//            wordCounter = wordCounter + 1
+//            mapTrTokenNonSpam.put(indivWord, wordCounter);
+//          }
+//
+//          else {
+//            mapTrTokenNonSpam += (indivWord -> 1)
+//          }
+//
+//        }
+//      }
+//    }
+//
+//
+//  }
 }

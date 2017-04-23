@@ -10,7 +10,8 @@ object dataStructures {
 //  case class templateCount(templateId: Int, count: Int)
 //  var seqOfSeedAntonymTemplates = new ListBuffer[SeedTemplateForAntonyms]()
 
-  var mapTrTokenSpam: Map[String, Int]= Map();
+  ();
+
 
 
 }
