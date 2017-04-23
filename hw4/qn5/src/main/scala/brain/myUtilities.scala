@@ -36,6 +36,8 @@ object  myUtilities {
     var mapTrTokenSpam: Map[String, Int]= Map();
     var mapTrTokenNonSpam: Map[String, Int] = Map();
     var listOfAllTrTokens : Map[String, Int] = Map();
+    var spamWeightage : Map[String, Double] = Map();
+    var nonSpamWeightage : Map[String, Double] = Map();
 
 
     //list of variables
@@ -47,7 +49,7 @@ object  myUtilities {
     if (checkFolderExists(fullScrapedDirectoryPath)) {
        noofSpamFiles = new File(fullScrapedDirectoryPath).listFiles().length
       readTrainingData(fullScrapedDirectoryPath,mapTrTokenSpam)
-      println("no of lines in mapTrTokenSpam is:" + mapTrTokenSpam.size)
+
     }
 
 
@@ -56,7 +58,7 @@ object  myUtilities {
     if (checkFolderExists(nonSpamTrainingFolder)) {
       noofNonSpamFiles = new File(nonSpamTrainingFolder).listFiles().length
       readTrainingData(nonSpamTrainingFolder,mapTrTokenNonSpam)
-      println("no of lines in mapTrTokenNonSpam is:" + mapTrTokenNonSpam.size)
+
     }
 
     val totalTrainingFiles:Double=noofNonSpamFiles+noofSpamFiles
@@ -66,13 +68,6 @@ object  myUtilities {
     println("value of SpamPrior is:" + SpamPrior)
     println("value of NonSpamPrior is:" + NonSpamPrior)
 
-
-    /* var listOfAllTrTokens : Map[String, Int] = Map();
-
-
-    //list of variables
-    var totalSpamTokenFrequency:Double=0
-    var totalNonSpamTokenFrequency:Double=0*/
 
     //combine tokens in both hashtable to get a total unique set of tokens. Also calculate total frequencies in each classe
     for((spamToken,freq)<-mapTrTokenSpam)
@@ -88,7 +83,7 @@ object  myUtilities {
 
     //do the same for non spam hashtable also
 
-    for((nonSpamToken,nonSpamfreq)<-mapTrTokenSpam)
+    for((nonSpamToken,nonSpamfreq)<-mapTrTokenNonSpam)
     {
       totalNonSpamTokenFrequency=totalNonSpamTokenFrequency+nonSpamfreq
       if (listOfAllTrTokens.contains(nonSpamToken)) {
@@ -99,8 +94,16 @@ object  myUtilities {
       }
     }
 
+    println("no of lines in mapTrTokenNonSpam is:" + mapTrTokenNonSpam.size)
+    println("no of lines in mapTrTokenSpam is:" + mapTrTokenSpam.size)
+    println("no of lines in listOfAllTrTokens is:" + listOfAllTrTokens.size)
     println("value of totalSpamTokenFrequency is:" + totalSpamTokenFrequency)
     println("value of totalNonSpamTokenFrequency is:" + totalNonSpamTokenFrequency)
+
+
+    calculateTermWeightage(totalSpamTokenFrequency,totalNonSpamTokenFrequency,mapTrTokenSpam,mapTrTokenNonSpam,listOfAllTrTokens , spamWeightage ,nonSpamWeightage )
+
+
   }
 
   def checkFolderExists(fullScrapedDirectoryPath: String): Boolean = {
@@ -153,7 +156,30 @@ object  myUtilities {
     }
   }
 
-  def calculatePriors() = {
+  def calculateTermWeightage(totalSpamTokenFrequency:Double,totalNonSpamTokenFrequency:Double,
+                              mapTrTokenSpam: Map[String, Int],mapTrTokenNonSpam: Map[String, Int] ,
+                              listOfAllTrTokens : Map[String, Int] , spamWeightage : Map[String, Double],nonSpamWeightage : Map[String, Double]) = {
+
+    //go through the list of all unique tokens, calculate spam weightage for each
+    var totalUniqTokenCount=listOfAllTrTokens.size
+    for((alltokens,myvalues)<-listOfAllTrTokens)
+      {
+        //for each unique token, get its spam frequency, add 1,
+        var spamFrequency = mapTrTokenSpam(alltokens)
+        spamFrequency = spamFrequency+1
+
+        // divide it by (total spam term frequency+ total number of tokens- i.e length of listOfAllTrTokens)
+        var spamWeightageOfThisToken=spamFrequency/(totalUniqTokenCount+totalSpamTokenFrequency)
+
+        //add it to spam weightage Map
+        spamWeightage += (alltokens -> spamWeightageOfThisToken)
+      }
+
+    println(spamWeightage.mkString("\n"))
+
+
+
+    //go through the list of all unique tokens, calculate nonspam weightage for each
 
   }
 
