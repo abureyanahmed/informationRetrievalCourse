@@ -162,20 +162,56 @@ object  myUtilities {
 
     //go through the list of all unique tokens, calculate spam weightage for each
     var totalUniqTokenCount=listOfAllTrTokens.size
+
+
     for((alltokens,myvalues)<-listOfAllTrTokens)
       {
+
+        var spamFrequency=0
         //for each unique token, get its spam frequency, add 1,
-        var spamFrequency = mapTrTokenSpam(alltokens)
-        spamFrequency = spamFrequency+1
+        if(mapTrTokenSpam.contains(alltokens)) {
+          spamFrequency = mapTrTokenSpam(alltokens)
+          spamFrequency = spamFrequency + 1
+        }
+        else
+          {
+            spamFrequency = spamFrequency + 1
+          }
 
         // divide it by (total spam term frequency+ total number of tokens- i.e length of listOfAllTrTokens)
         var spamWeightageOfThisToken=spamFrequency/(totalUniqTokenCount+totalSpamTokenFrequency)
 
         //add it to spam weightage Map
         spamWeightage += (alltokens -> spamWeightageOfThisToken)
+
+
+
+        //do the same for non spam weightage
+
+        var nonSpamFrequency=0
+        //for each unique token, get its spam frequency, add 1,
+        if(mapTrTokenNonSpam.contains(alltokens)) {
+          nonSpamFrequency = mapTrTokenNonSpam(alltokens)
+          nonSpamFrequency = nonSpamFrequency + 1
+        }
+        else
+        {
+          nonSpamFrequency = nonSpamFrequency + 1
+        }
+
+        // divide it by (total spam term frequency+ total number of tokens- i.e length of listOfAllTrTokens)
+        var nonspamWeightageOfThisToken=nonSpamFrequency/(totalUniqTokenCount+totalNonSpamTokenFrequency)
+
+        //add it to spam weightage Map
+        nonSpamWeightage += (alltokens -> spamWeightageOfThisToken)
+
+
+
       }
 
-    println(spamWeightage.mkString("\n"))
+    println("no of lines in totalUniqTokenCount is:" + totalUniqTokenCount)
+    println("no of lines in spamWeightage is:" + spamWeightage.size)
+    println("no of lines in nonSpamWeightage is:" + nonSpamWeightage.size)
 
 
 
