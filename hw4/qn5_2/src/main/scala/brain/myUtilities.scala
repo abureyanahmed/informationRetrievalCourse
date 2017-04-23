@@ -38,6 +38,7 @@ object  myUtilities {
   val filespamWeightage ="spamWeightage.txt"
   val filenonSpamWeightage ="nonSpamWeightage.txt"
   val fileGoldPredLabels ="fileGoldPredLabels.txt"
+  val fileLogFile ="fileLogFile.txt"
 
   case class goldPredictedLabel(var docId:String, var goldLabel:String, var predictedLabel:String);
 
@@ -131,9 +132,7 @@ object  myUtilities {
     writeToFile(listOfAllTrTokens.mkString("\n"),filelistOfAllTrTokens,outputDirectoryPath)
     writeToFile(nonSpamWeightage.mkString("\n"),filenonSpamWeightage,outputDirectoryPath)
     writeToFile(spamWeightage.mkString("\n"),filespamWeightage,outputDirectoryPath)
-
-
-
+    writeToFile("LogFile:\n",fileLogFile ,outputDirectoryPath)
 
 
     /************************Testing Part*********************/
@@ -377,14 +376,24 @@ object  myUtilities {
         var CmapNonSpam= scala.math.log10(nonSpamPrior )+sumofTermWeightsNonSpam
 
 
+
+
+
         var predLabel="spam"
         if(CmapNonSpam>CmapSpam)
         {
           predLabel="nonspam"
+          appendToFile("found that CmapNonSpam is  > CmapSpam",fileLogFile ,outputDirectoryPath)
+        }
+
+
+
+        //code to debug. take it outside if loop later.
+        if( goldLabel=="nonspam") {
+          appendToFile("\n\nfilename:" + indivFileName.getName() + " goldLabel:" + goldLabel + " predLabel:" + predLabel + " CmapSpam:" + CmapSpam + " CmapNonSpam:" + CmapNonSpam, fileLogFile, outputDirectoryPath)
         }
 
         //add the document id and its labels
-
         var objGoldPred = new goldPredictedLabel(indivFileName.getName(),goldLabel, predLabel)
         listOfGoldPredictedLabel+=objGoldPred
 
@@ -396,5 +405,14 @@ object  myUtilities {
    // println(listOfGoldPredictedLabel.mkString("\n"));
 
   }
+
+  def appendToFile(stringToWrite: String, outputFilename: String, outputDirectoryPath: String): Unit = {
+
+    val outFile = new File(outputDirectoryPath, outputFilename)
+    val bw = new BufferedWriter(new FileWriter(outFile, true))
+    bw.write(stringToWrite)
+    bw.close()
+  }
+
 
 }
