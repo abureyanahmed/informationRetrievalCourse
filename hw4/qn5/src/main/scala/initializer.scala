@@ -34,17 +34,33 @@ object initializer {
       * ****************************************
       * For testing:
       * * For each file in testing spam data, read through each lines.
+      *
+            * calculate the Probability of being in class SPam :
+            *   i.e find prior of class spam from training data.
+            *   for each word
+            *     get its corresponding term weightage value for class spam
+            *     product it all up (or sum it up, if you are taking log)
+
+      * calculate the Probability of being in class SPam :
+      *   i.e find prior of class spam from training data.
+      *   for each word
+      *     get its corresponding term weightage value for class spam
+      *     product it all up (or sum it up, if you are taking log)
+      *
+      *     * Based on the classification, and whichever class has highr MAP value, add label to another data structure
+      * with docid,label, original label.
+      * :
+       For each file in testing nonspam data, read through each lines.
       * for each word,
       * calculate the Probability of being in class SPam and Class Non Spam.
       * Based on the classification, and whichever has highr MAP value, add label to another data structure
-      * with docid,label, original label.
-      * :
-      * repeat the same for non-spam test dataset
+      * with docid,gold,predicted labels.
       **
       *Calculate F1 score
       *
       * */
     myUtilities.readAndProcessTrainingData()
+
 
     //    println()
     //

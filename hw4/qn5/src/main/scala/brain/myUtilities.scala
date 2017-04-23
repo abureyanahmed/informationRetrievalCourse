@@ -24,44 +24,83 @@ object  myUtilities {
   val inputDirectoryForTrainingNSpam = "nonspam-train";
 
 
+
   def readAndProcessTrainingData() = {
 
 
     //read spam training data
     var fullScrapedDirectoryPath = resourcesDirectory + inputDirectoryForTrainingSpam
 
+
+    //list of data structures
+    var mapTrTokenSpam: Map[String, Int]= Map();
+    var mapTrTokenNonSpam: Map[String, Int] = Map();
+    var listOfAllTrTokens : Map[String, Int] = Map();
+
+
+    //list of variables
+    var totalSpamTokenFrequency:Double=0
+    var totalNonSpamTokenFrequency:Double=0
+    var noofSpamFiles:Double=0
+    var noofNonSpamFiles:Double=0
+
     if (checkFolderExists(fullScrapedDirectoryPath)) {
-
-
-      var mapTrTokenSpam: Map[String, Int]= Map();
-
-
+       noofSpamFiles = new File(fullScrapedDirectoryPath).listFiles().length
       readTrainingData(fullScrapedDirectoryPath,mapTrTokenSpam)
-
       println("no of lines in mapTrTokenSpam is:" + mapTrTokenSpam.size)
-
-
     }
-
-
 
 
     //read nonspam training data
     val nonSpamTrainingFolder = resourcesDirectory + inputDirectoryForTrainingNSpam
     if (checkFolderExists(nonSpamTrainingFolder)) {
-
-
-
-      var mapTrTokenNonSpam: Map[String, Int] = Map();
-
+      noofNonSpamFiles = new File(nonSpamTrainingFolder).listFiles().length
       readTrainingData(nonSpamTrainingFolder,mapTrTokenNonSpam)
       println("no of lines in mapTrTokenNonSpam is:" + mapTrTokenNonSpam.size)
-
     }
 
+    val totalTrainingFiles:Double=noofNonSpamFiles+noofSpamFiles
+    val SpamPrior:Double=noofSpamFiles/totalTrainingFiles
+    val NonSpamPrior:Double=noofNonSpamFiles/totalTrainingFiles
+
+    println("value of SpamPrior is:" + SpamPrior)
+    println("value of NonSpamPrior is:" + NonSpamPrior)
 
 
+    /* var listOfAllTrTokens : Map[String, Int] = Map();
 
+
+    //list of variables
+    var totalSpamTokenFrequency:Double=0
+    var totalNonSpamTokenFrequency:Double=0*/
+
+    //combine tokens in both hashtable to get a total unique set of tokens. Also calculate total frequencies in each classe
+    for((spamToken,freq)<-mapTrTokenSpam)
+      {
+        totalSpamTokenFrequency=totalSpamTokenFrequency+freq
+        if (listOfAllTrTokens.contains(spamToken)) {
+          //check for unique. add only if doesnt exist.
+        }
+        else {
+          listOfAllTrTokens += (spamToken -> 1)
+        }
+      }
+
+    //do the same for non spam hashtable also
+
+    for((nonSpamToken,nonSpamfreq)<-mapTrTokenSpam)
+    {
+      totalNonSpamTokenFrequency=totalNonSpamTokenFrequency+nonSpamfreq
+      if (listOfAllTrTokens.contains(nonSpamToken)) {
+        //check for unique. add only if doesnt exist.
+      }
+      else {
+        listOfAllTrTokens += (nonSpamToken -> 1)
+      }
+    }
+
+    println("value of totalSpamTokenFrequency is:" + totalSpamTokenFrequency)
+    println("value of totalNonSpamTokenFrequency is:" + totalNonSpamTokenFrequency)
   }
 
   def checkFolderExists(fullScrapedDirectoryPath: String): Boolean = {
@@ -93,19 +132,10 @@ object  myUtilities {
   }
 
   def readTrainingData(folderToReadFrom: String, mapTrTokenSpam: Map[String, Int]= Map()) = {
-
-
     val listOfFiles = new File(folderToReadFrom).listFiles()
-
-
-
     var fileCounter = 0;
-
     for (indivFileName <- listOfFiles) {
-
       for (lineFromInput <- Source.fromFile(indivFileName).getLines()) {
-
-
         val words = lineFromInput.split("\\s+")
         for (wordToTrim <- words) {
           var indivWord = wordToTrim.trim();
@@ -114,53 +144,17 @@ object  myUtilities {
             wordCounter = wordCounter + 1
             mapTrTokenSpam.put(indivWord, wordCounter);
           }
-
           else {
-
             if(mapTrTokenSpam != " ")
             mapTrTokenSpam += (indivWord -> 1)
           }
-
         }
       }
     }
+  }
 
+  def calculatePriors() = {
 
   }
 
-//  def readNonSpamTrData(folderToReadFrom: String,mapTrTokenNonSpam: Map[String, Int]) = {
-//
-//
-//    val listOfFiles = new File(folderToReadFrom).listFiles()
-//
-//
-//
-//    var fileCounter = 0;
-//
-//    for (indivFileName <- listOfFiles) {
-//
-//      for (lineFromInput <- Source.fromFile(indivFileName).getLines()) {
-//
-//
-//        val words = lineFromInput.split("\\s+")
-//        for (wordToTrim <- words) {
-//
-//         var indivWord = wordToTrim.trim();
-//
-//          if (mapTrTokenNonSpam.contains(indivWord)) {
-//            var wordCounter = mapTrTokenNonSpam(indivWord)
-//            wordCounter = wordCounter + 1
-//            mapTrTokenNonSpam.put(indivWord, wordCounter);
-//          }
-//
-//          else {
-//            mapTrTokenNonSpam += (indivWord -> 1)
-//          }
-//
-//        }
-//      }
-//    }
-//
-//
-//  }
 }
