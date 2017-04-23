@@ -222,12 +222,24 @@ object  myUtilities {
         }
         else
           {
+            //if the value doesnt exist in spam map, assign it value of 1
             spamFrequency = spamFrequency + 1
           }
+
+
 
         // divide it by (total spam term frequency+ total number of tokens- i.e length of listOfAllTrTokens)
         var spamWeightageOfThisToken=spamFrequency/(totalUniqTokenCount+totalSpamTokenFrequency)
 
+//        //used for debugging
+//        if(alltokens=="linda")
+//        {
+//          println()
+//          println("linda, "+"\tspamFrequency:"+spamFrequency+"\ttotalUniqTokenCount:"+totalUniqTokenCount+"\ttotalSpamTokenFrequency"+totalSpamTokenFrequency+"\tspamWeightageOfThisToken:"+spamWeightageOfThisToken)
+//        }
+
+        //just to check if scaling the values makes a difference.
+        spamWeightageOfThisToken=spamWeightageOfThisToken*100000000
         //add it to spam weightage Map
         spamWeightage += (alltokens -> spamWeightageOfThisToken)
 
@@ -249,8 +261,19 @@ object  myUtilities {
         // divide it by (total spam term frequency+ total number of tokens- i.e length of listOfAllTrTokens)
         var nonspamWeightageOfThisToken=nonSpamFrequency/(totalUniqTokenCount+totalNonSpamTokenFrequency)
 
-        //add it to spam weightage Map
-        nonSpamWeightage += (alltokens -> spamWeightageOfThisToken)
+//        if(alltokens=="linda")
+//        {
+//
+//          println("linda, "+"\tnonSpamFrequency:"+nonSpamFrequency+"\ttotalUniqTokenCount:"+totalUniqTokenCount+"\ttotalNonSpamTokenFrequency"+totalNonSpamTokenFrequency+"\tnonspamWeightageOfThisToken:"+nonspamWeightageOfThisToken)
+//          println()
+//        }
+
+
+        //var localnonspamWeightageOfThisToken:Double=nonspamWeightageOfThisToken
+        nonspamWeightageOfThisToken=nonspamWeightageOfThisToken*100000000
+
+        //add it to non spam weightage Map
+        nonSpamWeightage += (alltokens -> nonspamWeightageOfThisToken)
 
 
 
@@ -321,6 +344,9 @@ object  myUtilities {
       var fileCounter = 0;
       for (indivFileName <- listOfFiles) {
 
+        if(indivFileName.getName()=="spmsgb90.txt") {
+          //appendToFile("\n\nfilename:" + indivFileName.getName() , fileLogFile, outputDirectoryPath)
+        }
         /* For each file in testing spam data, read through each lines.
 
         calculate the Probability of being in class Spam :
@@ -342,16 +368,18 @@ object  myUtilities {
             var indivWord = wordToTrim.trim();
 
             /*for each word     *     get its corresponding term weightage value for class spam*/
-
-
             if (spamWeightage.contains(indivWord)) {
               var mySpamWeightage = spamWeightage(indivWord)
 
               /*product it all up (or sum it up, if you are taking log)*/
               sumofTermWeightsSpam=sumofTermWeightsSpam + log(mySpamWeightage)
+              if(indivFileName.getName()=="spmsgb90.txt") {
+               // appendToFile("\n word :" + indivWord + " mySpamWeightage:" + mySpamWeightage + " log(mySpamWeightage):" + log(mySpamWeightage) + " sumofTermWeightsSpam:" + sumofTermWeightsSpam, fileLogFile, outputDirectoryPath)
+              }
             }
             else {
               // println("this word doesnt have spam weightage:"+indivWord)
+             // appendToFile("\n word :" + indivWord + " doesnt have spam weightage" , fileLogFile, outputDirectoryPath)
             }
 
 
@@ -361,13 +389,19 @@ object  myUtilities {
 
               /*product it all up (or sum it up, if you are taking log)*/
               sumofTermWeightsNonSpam=sumofTermWeightsNonSpam + log(mynonSpamWeightage)
+              if(indivFileName.getName()=="spmsgb90.txt") {
+             //    appendToFile("\n word :" + indivWord + " mynonSpamWeightage:" + mynonSpamWeightage +" log(mynonSpamWeightage):"+log(mynonSpamWeightage)+ " sumofTermWeightsNonSpam:" + sumofTermWeightsNonSpam, fileLogFile, outputDirectoryPath)
+              }
+
             }
             else {
-              // println("this word doesnt have non-spam weightage:"+indivWord)
+           //   appendToFile("\n word :" + indivWord + " doesnt have non spam weightage" , fileLogFile, outputDirectoryPath)
             }
+
 
 
           }
+
         }
 
 
@@ -382,15 +416,15 @@ object  myUtilities {
         var predLabel="spam"
         if(CmapNonSpam>CmapSpam)
         {
-          predLabel="nonspam"
-          appendToFile("found that CmapNonSpam is  > CmapSpam",fileLogFile ,outputDirectoryPath)
+          predLabel="non-spam"
+          appendToFile("\nfound that CmapNonSpam is  > CmapSpam",fileLogFile ,outputDirectoryPath)
         }
 
 
 
         //code to debug. take it outside if loop later.
-        if( goldLabel=="nonspam") {
-          appendToFile("\n\nfilename:" + indivFileName.getName() + " goldLabel:" + goldLabel + " predLabel:" + predLabel + " CmapSpam:" + CmapSpam + " CmapNonSpam:" + CmapNonSpam, fileLogFile, outputDirectoryPath)
+        if( goldLabel=="non-spam") {
+          appendToFile("\n\nfilename:" + indivFileName.getName() + "\tgoldLabel:" + goldLabel + "\tpredLabel:" + predLabel + "\tCmapSpam:" + CmapSpam + "\tCmapNonSpam:" + CmapNonSpam, fileLogFile, outputDirectoryPath)
         }
 
         //add the document id and its labels

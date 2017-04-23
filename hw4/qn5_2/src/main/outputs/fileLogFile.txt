@@ -1,1 +1,266 @@
 LogFile:
+
+found that CmapNonSpam is  > CmapSpam
+found that CmapNonSpam is  > CmapSpam
+
+filename:spmsgc69.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:3825.5524531428664	CmapNonSpam:3323.7407865350883
+
+filename:spmsga119.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:208.09079304527435	CmapNonSpam:177.02537767095347
+
+filename:spmsgb129.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:597.7978282881663	CmapNonSpam:570.1377305901419
+
+filename:spmsgb96.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:3138.969743918858	CmapNonSpam:2905.6230466922657
+
+filename:spmsgb71.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2194.4037251619106	CmapNonSpam:1885.2821969528406
+
+filename:spmsgb69.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:420.8622932169639	CmapNonSpam:380.4631386893238
+
+filename:spmsgb101.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:4617.020830382613	CmapNonSpam:4239.101273204756
+
+filename:spmsgb121.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:5756.589627406546	CmapNonSpam:5195.6479557946
+
+filename:spmsgc25.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:1018.0945411876772	CmapNonSpam:891.7565282788128
+
+filename:spmsgc18.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:14034.06968312597	CmapNonSpam:12925.002620152107
+
+filename:spmsgb66.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:136.89086930432683	CmapNonSpam:121.39066322203855
+
+filename:spmsgb72.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:584.4047666626616	CmapNonSpam:530.4056874893818
+
+filename:spmsga163.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:20928.27397693554	CmapNonSpam:18281.555605686513
+
+filename:spmsgc138.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:191.12929206344265	CmapNonSpam:163.8262559398166
+
+filename:spmsgb5.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:164.74530716292438	CmapNonSpam:142.55928337608955
+
+filename:spmsga132.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:559.0571748158687	CmapNonSpam:487.25287307620954
+
+filename:spmsgc136.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:1138.133979168426	CmapNonSpam:1044.0009418258335
+
+filename:spmsgc114.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:473.5284991462557	CmapNonSpam:414.922714698211
+
+filename:spmsgb85.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2609.315020126531	CmapNonSpam:2399.49047111008
+
+filename:spmsgc55.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:708.5971845590608	CmapNonSpam:639.7043388983916
+
+filename:spmsgb100.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:845.5301431651413	CmapNonSpam:746.7656115517572
+
+filename:spmsgc143.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:265.91361156647395	CmapNonSpam:227.23654030983448
+
+filename:spmsgb27.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:5844.559906809681	CmapNonSpam:5078.109270869651
+
+filename:spmsgb22.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:5404.693131697497	CmapNonSpam:4654.663197340092
+
+filename:spmsgc53.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:1374.7113325918187	CmapNonSpam:1179.5846362357956
+
+filename:spmsgc100.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2128.0664817528245	CmapNonSpam:1834.621657081383
+
+filename:spmsgc111.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:1047.4896784439666	CmapNonSpam:952.6017123474983
+
+filename:spmsga121.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:8976.593839177272	CmapNonSpam:7864.082391966704
+
+filename:spmsga12.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:234.48974192618368	CmapNonSpam:227.20595730079006
+
+filename:spmsgb94.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:14376.488199600084	CmapNonSpam:12399.926151294747
+
+filename:spmsga58.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:290.8440202570405	CmapNonSpam:248.16774798933574
+
+filename:spmsgb47.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2746.394304456754	CmapNonSpam:2526.0420857608815
+
+filename:spmsgc16.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:7853.3778659169975	CmapNonSpam:6845.095014273839
+
+filename:spmsga102.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:6128.2302306337815	CmapNonSpam:5389.7046206826735
+
+filename:spmsga65.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:1890.437194522772	CmapNonSpam:1689.4432253301072
+
+filename:spmsgc112.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:125.69708508906159	CmapNonSpam:109.60464864413174
+
+filename:spmsgc63.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:4993.666785719572	CmapNonSpam:4333.4286171829135
+
+filename:spmsga11.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2161.3811009740834	CmapNonSpam:1974.102758446774
+
+filename:spmsgb108.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:276.52515400447066	CmapNonSpam:270.5239941139257
+
+filename:spmsgc32.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:433.84374995700574	CmapNonSpam:419.2251464649556
+
+filename:spmsgb23.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:3011.379104248963	CmapNonSpam:2708.1895643334847
+
+filename:spmsgb83.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2834.946946357825	CmapNonSpam:2509.3797224160226
+
+filename:spmsga84.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:398.0689034031667	CmapNonSpam:348.81957683277983
+
+filename:spmsgb98.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:529.906500100613	CmapNonSpam:447.54224774509026
+
+filename:spmsgb137.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:581.0147947359977	CmapNonSpam:494.38371010476885
+
+filename:spmsgc141.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:271.1285961718953	CmapNonSpam:254.02139389905366
+
+filename:spmsgc110.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:4407.374246910178	CmapNonSpam:3882.3165765583217
+
+filename:spmsga159.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:1157.6358120085954	CmapNonSpam:1030.580431520277
+
+filename:spmsgb92.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:5198.306140576909	CmapNonSpam:4576.4232829947905
+
+filename:spmsgb52.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:3005.9150808813356	CmapNonSpam:2724.5408626565604
+
+filename:spmsga17.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:457.84535653245445	CmapNonSpam:413.9869591392036
+
+filename:spmsgb19.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:332.6515579272137	CmapNonSpam:278.49818248997093
+
+filename:spmsgb39.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:441.52572048282815	CmapNonSpam:374.4495879142802
+
+filename:spmsgc44.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:433.84374995700574	CmapNonSpam:419.2251464649556
+
+filename:spmsga42.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:5039.87162494222	CmapNonSpam:4517.617844999928
+found that CmapNonSpam is  > CmapSpam
+
+filename:spmsga125.txt	goldLabel:non-spam	predLabel:non-spam	CmapSpam:965.2545333659785	CmapNonSpam:992.3844102707207
+
+filename:spmsgb48.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:3228.834013702435	CmapNonSpam:3010.3566073401016
+
+filename:spmsga66.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:1393.7337568303562	CmapNonSpam:1245.2488449011541
+
+filename:spmsgc49.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:663.4625977023522	CmapNonSpam:620.8191639523741
+
+filename:spmsga94.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2104.4361525009103	CmapNonSpam:1818.3131210490901
+
+filename:spmsgb156.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:621.3390279862905	CmapNonSpam:580.0672062030276
+
+filename:spmsgb89.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:529.8786968129815	CmapNonSpam:455.8774192643838
+
+filename:spmsgc137.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:589.678700750436	CmapNonSpam:539.259289656077
+
+filename:spmsgb133.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:1910.7677870526686	CmapNonSpam:1697.354828466468
+
+filename:spmsgc52.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:432.88469254495925	CmapNonSpam:408.6941185263674
+
+filename:spmsgb136.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:235.68509225937373	CmapNonSpam:202.06990530277974
+
+filename:spmsgb140.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2546.5900350664815	CmapNonSpam:2219.353432108617
+
+filename:spmsgb78.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:464.3548305928916	CmapNonSpam:412.07648241654084
+
+filename:spmsga23.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:1450.1292952024394	CmapNonSpam:1293.6185314746954
+
+filename:spmsga81.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:423.3251720877548	CmapNonSpam:367.95544096524003
+
+filename:spmsgc117.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2054.646564314931	CmapNonSpam:1975.020984155931
+
+filename:spmsgc134.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:257.6901018879962	CmapNonSpam:219.98675704424463
+
+filename:spmsgc21.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:6716.528409472149	CmapNonSpam:5799.352041237226
+
+filename:spmsgb67.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:362.368184301983	CmapNonSpam:326.2561664826561
+
+filename:spmsgb20.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:21595.305527704484	CmapNonSpam:18568.800997070502
+
+filename:spmsgb141.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:4286.2105310024135	CmapNonSpam:3853.3586013603667
+
+filename:spmsgb64.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:780.8135767584662	CmapNonSpam:689.2284723753684
+
+filename:spmsgc10.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:13859.340227455714	CmapNonSpam:11937.136951746268
+
+filename:spmsgc22.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:6716.528409472149	CmapNonSpam:5799.352041237226
+
+filename:spmsgb10.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:516.9802411223653	CmapNonSpam:436.72091507665573
+
+filename:spmsga138.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:1964.819337517168	CmapNonSpam:1834.1878336182708
+
+filename:spmsgb163.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2947.214401414734	CmapNonSpam:2657.6602060107753
+
+filename:spmsga134.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:748.8737343364871	CmapNonSpam:641.8121820393511
+
+filename:spmsgb35.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:4257.195653693164	CmapNonSpam:3760.2302050840863
+
+filename:spmsgb134.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:980.7157548398949	CmapNonSpam:859.1513166608545
+
+filename:spmsgb91.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:442.9616756032627	CmapNonSpam:374.49993380760395
+
+filename:spmsga25.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:16539.2829846535	CmapNonSpam:14343.916888053569
+
+filename:spmsga80.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:3895.065372746169	CmapNonSpam:3518.548972716831
+
+filename:spmsga91.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:866.2679996131479	CmapNonSpam:761.7409674708889
+
+filename:spmsgc3.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:993.8065499899219	CmapNonSpam:867.4633873333901
+
+filename:spmsgb150.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2652.1249638399554	CmapNonSpam:2497.690699962584
+
+filename:spmsgb154.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:78.3413192846038	CmapNonSpam:61.569781126916205
+
+filename:spmsga141.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:964.1037500457309	CmapNonSpam:871.1097820499239
+
+filename:spmsgc104.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:676.178735629668	CmapNonSpam:599.9489922598307
+
+filename:spmsgc79.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:562.5603616249551	CmapNonSpam:498.03875152576336
+
+filename:spmsgb15.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:334.8714572558881	CmapNonSpam:279.91510397796293
+
+filename:spmsgb87.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:8961.03637918426	CmapNonSpam:7947.930791315577
+
+filename:spmsga130.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:264.53608082163447	CmapNonSpam:232.05749695660276
+
+filename:spmsgb113.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2275.3664311179477	CmapNonSpam:1966.548744420879
+
+filename:spmsgb57.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2457.5828056038395	CmapNonSpam:2252.4202748545404
+
+filename:spmsgb86.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:888.2334856869577	CmapNonSpam:819.1061720989994
+
+filename:spmsga90.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:544.0844972399792	CmapNonSpam:513.1044853885855
+
+filename:spmsga37.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:477.77706742547144	CmapNonSpam:408.78986923106726
+
+filename:spmsga96.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:692.0828095214807	CmapNonSpam:633.6013909247396
+
+filename:spmsgc142.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:508.8499999551766	CmapNonSpam:461.64311278915665
+
+filename:spmsgc144.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:1005.0458788845737	CmapNonSpam:908.6471659307522
+
+filename:spmsgc31.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:408.73904958855934	CmapNonSpam:371.07195978413677
+
+filename:spmsga35.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:1536.986298525554	CmapNonSpam:1416.0876381442704
+
+filename:spmsgb50.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:358.65354485030525	CmapNonSpam:320.3951975479612
+
+filename:spmsga29.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:302.73560460694466	CmapNonSpam:277.525764119661
+
+filename:spmsgb158.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:41.38004506167702	CmapNonSpam:34.42579872618744
+
+filename:spmsgc133.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:256.9787874034808	CmapNonSpam:221.41387339988475
+
+filename:spmsga147.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2036.9389666908257	CmapNonSpam:1841.3047505301151
+
+filename:spmsga62.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:6768.0184452392405	CmapNonSpam:6053.491621095486
+
+filename:spmsgb97.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2816.8180006104976	CmapNonSpam:2555.9332233026953
+
+filename:spmsgb26.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:3312.134107100325	CmapNonSpam:2952.1083240314124
+
+filename:spmsga70.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:6878.493697779371	CmapNonSpam:5948.141967780121
+
+filename:spmsgc67.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:731.9396983199994	CmapNonSpam:630.2861748228527
+
+filename:spmsga27.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:4212.483079347753	CmapNonSpam:3713.4132914141287
+
+filename:spmsgb51.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:4257.195653693164	CmapNonSpam:3760.2302050840863
+
+filename:spmsga135.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:1669.2614477244906	CmapNonSpam:1471.4611218510604
+
+filename:spmsgc78.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:737.175970624409	CmapNonSpam:655.085121008825
+
+filename:spmsgc58.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:3579.053743330308	CmapNonSpam:3132.243595908394
+
+filename:spmsga150.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:1681.8881941734294	CmapNonSpam:1541.9374207618762
+
+filename:spmsgc109.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:2110.38242754106	CmapNonSpam:1809.3986137966256
+
+filename:spmsgc7.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:684.1865750108734	CmapNonSpam:577.0502077984961
+
+filename:spmsgb68.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:5989.916140356215	CmapNonSpam:5385.463516596456
+
+filename:spmsga59.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:6737.468185627443	CmapNonSpam:5844.615341399005
+found that CmapNonSpam is  > CmapSpam
+
+filename:spmsgb90.txt	goldLabel:non-spam	predLabel:non-spam	CmapSpam:533.461691880305	CmapNonSpam:541.2698993346344
+
+filename:spmsga47.txt	goldLabel:non-spam	predLabel:spam	CmapSpam:3813.888765366712	CmapNonSpam:3401.895712413252
