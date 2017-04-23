@@ -153,14 +153,23 @@ object  myUtilities {
   def calculateF1Score(listGoldPredictedLabel : ListBuffer[goldPredictedLabel]): Unit= {
 
 
-    var TP=0;
-    var FP=0;
-    var TN=0;
-    var FN=0;
+    var TP:Double=0;
+    var FP:Double=0;
+    var TN:Double=0;
+    var FN:Double=0;
+    var accuracyNr:Double=0
 
     //go through the list and calculate TP,FP etc
     for(indivLabels<-listGoldPredictedLabel)
       {
+
+        //every time the labels match, accuracy increases
+
+        if(indivLabels.goldLabel==indivLabels.predictedLabel)
+          {
+
+            accuracyNr=accuracyNr+1
+          }
 
         //if gold label is spam and predicted label is spam, increase TP
         if(indivLabels.goldLabel=="spam" && indivLabels.predictedLabel=="spam")
@@ -168,28 +177,44 @@ object  myUtilities {
             TP=TP+1;
           }
 
-        //if gold label is not-spam and predicted label is spam, increase FP
-        if(indivLabels.goldLabel=="non-spam" && indivLabels.predictedLabel=="spam")
-        {
-          FP=FP+1;
-        }
+//        //if gold label is not-spam and predicted label is spam, increase FP
+//        if(indivLabels.goldLabel=="non-spam" && indivLabels.predictedLabel=="spam")
+//        {
+//          FP=FP+1;
+//        }
         //if gold label is spam and predicted label is nonspam, increase FN
         if(indivLabels.goldLabel=="spam" && indivLabels.predictedLabel=="non-spam")
         {
           FN=FN+1;
         }
         //if gold label is nonspam and predicted label is nonspam, increase TP
-        if(indivLabels.goldLabel=="non-spam" && indivLabels.predictedLabel=="non-spam")
-        {
-          TN=TN+1;
-        }
+        //update: qn says ignore non-spam
+//        if(indivLabels.goldLabel=="non-spam" && indivLabels.predictedLabel=="non-spam")
+//        {
+//          TN=TN+1;
+//        }
 
       }
 
-    println("TP:"+TP)
+    var accuracy:Double=accuracyNr/listGoldPredictedLabel.size
+    println("\naccuracy:"+accuracy)
+
+    println("\nTP:"+TP)
     println("FP:"+FP)
     println("FN:"+FN)
     println("TN:"+TN)
+
+    var precision:Double = TP/(TP+FP)
+
+    var recall:Double = TP/(TP+FN)
+
+    println("\nprecision:"+precision)
+    println("recall:"+recall)
+
+    var F1score:Double=2*precision*recall/(precision+recall)
+
+    println("F1score:"+F1score)
+
   }
 
   def checkFolderExists(fullScrapedDirectoryPath: String): Boolean = {
