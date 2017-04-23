@@ -247,13 +247,6 @@ object  myUtilities {
       outFileoutputFileForThisNewsArticle.delete()
     }
 
-//    // create a new file of the same name and write into it some emptyline
-//    val file2 = new File(outputDirectoryPath + outputFilename)
-//    val bw1 = new BufferedWriter(new FileWriter(file2))
-//    bw1.write("")
-//    bw1.close()
-
-
     val outFile = new File(outputDirectoryPath, outputFilename)
     val bw = new BufferedWriter(new FileWriter(outFile))
     bw.write(stringToWrite)
