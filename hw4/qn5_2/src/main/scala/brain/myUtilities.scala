@@ -353,7 +353,6 @@ object  myUtilities {
             predLabel="nonspam"
           }
 
-
         //add the document id and its labels
 
         var objGoldPred = new goldPredictedLabel(indivFileName.getName(),"spam", predLabel)
