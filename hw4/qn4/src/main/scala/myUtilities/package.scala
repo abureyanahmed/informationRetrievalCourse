@@ -28,17 +28,18 @@ package object myUtilities {
 
 //  case class documentIDPositions(var docId: Int, var positions: ListBuffer[Int]);
 
-  case class docIdWordFreq(var docId: Int, var wordsAndFreq: Map[String, Int]);
+
 
   case class docIdLMValue(var docId: Int, var score: Double);
 
-  var wordDocIdrank: Map[String, ListBuffer[docIdLMValue] ] = Map();
+
 
   //to store a ranks of doc ids like 3>4>2>1
   var docIdranks = new ListBuffer[Int]()
 
   //var listOfDocIdWordMaps = new ListBuffer[Map[String, Int]]()
 
+  case class docIdWordFreq(var docId: Int, var wordsAndFreq: Map[String, Int]);
   var listOfDocIdWordMaps = new ListBuffer[docIdWordFreq]()
 
   var lamdba:Double = 0.5;
@@ -63,7 +64,7 @@ package object myUtilities {
         println("no files in the input directory")
       }
       else {
-        println(" no of files found in input directory is:" + noofFiles + ":Going to parallelize")
+        //println(" no of files found in input directory is:" + noofFiles + ":Going to parallelize")
         val listOfFiles = new File(resourcesDirectory).listFiles()
         val pathToInputFile = resourcesDirectory + inputFileForInvIndex;
 
@@ -153,6 +154,8 @@ package object myUtilities {
       println(listOfDocIdWordMaps.mkString("\n"))
 
 
+
+
     } catch {
       case NonFatal(t) => {
         println(NonFatal.toString())
@@ -174,6 +177,8 @@ package object myUtilities {
   def parseQueryAndCalculateScores(query:String): Unit =
   {
 
+    var wordDocIdrank: Map[String, ListBuffer[docIdLMValue] ] = Map();
+
     if (query != "") {
 
       //split the query into words
@@ -181,13 +186,17 @@ package object myUtilities {
 
 
       //total number of words
-      var totalWordsInCorpus=0
+
 
 
       //for each word find its value in each of the maps
 
       for(queryWord<-content)
         {
+          var totalWordsInCorpus=0
+
+
+          var listOfDocIdValue = new ListBuffer[docIdLMValue]()
 
           var totalOccurenceOfThisWordInCorpus=0
           for(indivMaps<-listOfDocIdWordMaps)
@@ -272,20 +281,83 @@ package object myUtilities {
             println("word:"+queryWord+"\tscoreOfThisDoc:"+scoreOfThisDoc)
 
 
-            //var objdocIdLMValue = new docIdLMValue(indivMaps.docId, )
-
+            var objdocIdLMValue = new docIdLMValue(indivMaps.docId,scoreOfThisDoc )
+            listOfDocIdValue.append(objdocIdLMValue)
           }
 
+          wordDocIdrank += (queryWord -> listOfDocIdValue);
+
         }
+
+
+      println(wordDocIdrank.mkString("\n"));
+    }
+
+
+    //go through this list multiply for each document. store in a new map4
+    var DocIdfinalValue: Map[Int, Double] = Map();
+
+    var finalValueForDoc1:Double=1
+    var finalValueForDoc2:Double=1
+    var finalValueForDoc3:Double=1
+    var finalValueForDoc4:Double=1
+
+    for((indivQueryword,listDocs)<-wordDocIdrank)
+    {
+
+      //var wordDocIdrank: Map[String, ListBuffer[docIdLMValue] ] = Map();
+      //case class docIdLMValue(var docId: Int, var score: Double);
+      for(eachDoc<-listDocs)
+        {
+          if(eachDoc.docId==1)
+            {
+              finalValueForDoc1=eachDoc.score *finalValueForDoc1
+
+            }
+          if(eachDoc.docId==2)
+          {
+            finalValueForDoc2=eachDoc.score *finalValueForDoc2
+
+          }
+          if(eachDoc.docId==3)
+          {
+            finalValueForDoc3=eachDoc.score *finalValueForDoc3
+
+          }
+          if(eachDoc.docId==4)
+          {
+            finalValueForDoc4=eachDoc.score *finalValueForDoc4
+
+          }
+        }
+
 
     }
 
 
-//    case class docIdLMValue(var docId: Int, var score: Double);
-//
-//    var wordDocIdrank: Map[String, ListBuffer[docIdLMValue] ] = Map();
-//
-//    wordDocIdrank
+    println()
+    println("\nfinalValueForDoc1:"+finalValueForDoc1)
+    println("finalValueForDoc2:"+finalValueForDoc2)
+    println("finalValueForDoc3:"+finalValueForDoc3)
+    println("finalValueForDoc4:"+finalValueForDoc4)
+
+    println("\nvalues of documents ids  and Language model values for the given query are as follows. ")
+    DocIdfinalValue+=(1->finalValueForDoc1)
+    DocIdfinalValue+=(2->finalValueForDoc2)
+    DocIdfinalValue+=(3->finalValueForDoc3)
+    DocIdfinalValue+=(4->finalValueForDoc4)
+
+
+    println(DocIdfinalValue.mkString("\n"))
+
+
+    println("\nRanked document ids and values are as follows. Top most doc id is the most relevant for this query.")
+    //sort based on the value
+    val sortedHashMap =   ListMap(DocIdfinalValue.toSeq.sortBy(_._2):_*)
+
+    println(sortedHashMap.mkString("\n"))
+
+
   }
 }
 
