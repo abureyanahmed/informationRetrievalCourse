@@ -26,10 +26,16 @@ package object myUtilities {
   val resourcesDirectory = "./src/main/resources/"
   val inputFileForInvIndex = "inputfile.txt";
 
-  case class documentIDPositions(var docId: Int, var positions: ListBuffer[Int]);
+//  case class documentIDPositions(var docId: Int, var positions: ListBuffer[Int]);
 
   case class docIdWordFreq(var docId: Int, var wordsAndFreq: Map[String, Int]);
 
+  case class docIdLMValue(var docId: Int, var score: Double);
+
+  var wordDocIdrank: Map[String, ListBuffer[docIdLMValue] ] = Map();
+
+  //to store a ranks of doc ids like 3>4>2>1
+  var docIdranks = new ListBuffer[Int]()
 
   //var listOfDocIdWordMaps = new ListBuffer[Map[String, Int]]()
 
@@ -41,8 +47,7 @@ package object myUtilities {
   def readFromFile() = {
     try {
 
-      //hard coded query for the time being.
-      var query="information retrieval"
+
 
       var noofFiles = 0
 
@@ -103,18 +108,18 @@ package object myUtilities {
               var noOfTokensDenotingDocId = 1;
 
               //            //for each term in the sentence
-              for (individualToken <- content) {
+              for (eachWord <- content) {
                 //ignore the first two individualToken since it contains only "doc 1"
                 if (termCounter <= noOfTokensDenotingDocId) {
                   termCounter = termCounter + 1;
                 }
 
                 else {
-                  //for each of the term you are seeing, get its position and add it to the postings list data structure
-                  //i am calling this the inner data structure.
-                  //                val positions = new ListBuffer[(Int)]
-                  //                positions.append(positionOfTheTerm);
-                  //                positionOfTheTerm = positionOfTheTerm + 1;
+
+                  var individualToken = eachWord.stripSuffix("\"").trim
+                  individualToken = individualToken.stripSuffix(".").trim
+                  individualToken = individualToken.stripPrefix("\"").trim
+                  individualToken = individualToken.stripSuffix(".").trim
 
 
                   //if the term is already present in the dictionary, retreive its postings list, attach the new docid and attach it back
@@ -164,6 +169,65 @@ package object myUtilities {
         throw new FileNotFoundException(inputFileForInvIndex)
     }
 
+  }
+
+  def parseQueryAndCalculateScores(query:String): Unit =
+  {
+
+    if (query != "") {
+
+      //split the query into words
+       val content = query.split("\\s+");
+
+
+      //total number of words
+      var totalWordsInCorpus=0
+
+
+      //for each word find its value in each of the maps
+
+      for(queryWord<-content)
+        {
+
+          var totalOccurenceOfThisWordInCorpus=0
+          for(indivMaps<-listOfDocIdWordMaps)
+            {
+
+              var noOfWordsInThisDocument=0
+
+              //run throuigh this document and find total number of words it has.
+              for((key,value)<- indivMaps.wordsAndFreq)
+                {
+                  noOfWordsInThisDocument=noOfWordsInThisDocument+value;
+                }
+
+              //go through each of the document maps, and find how many times information occurs in it, keep adding it up.
+
+
+              if(indivMaps.wordsAndFreq.contains(queryWord))
+                {
+                  //get its value and keep summing up
+                  var noOfExistence= indivMaps.wordsAndFreq(queryWord)
+
+                  totalOccurenceOfThisWordInCorpus=totalOccurenceOfThisWordInCorpus+noOfExistence
+                }
+
+
+              //var objdocIdLMValue = new docIdLMValue(indivMaps.docId, )
+
+              totalWordsInCorpus=totalWordsInCorpus+noOfWordsInThisDocument
+            }
+
+        }
+
+    }
+
+
+//    case class docIdLMValue(var docId: Int, var score: Double);
+//
+//    var wordDocIdrank: Map[String, ListBuffer[docIdLMValue] ] = Map();
+//
+//    wordDocIdrank
   }
 }
 

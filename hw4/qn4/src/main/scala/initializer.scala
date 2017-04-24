@@ -15,6 +15,11 @@ object initializer {
 
     myUtilities.readFromFile()
 
+    //hard coded query for the time being.
+    var query="information retrieval"
+
+    myUtilities.parseQueryAndCalculateScores(query)
+
     println()
 
     }
