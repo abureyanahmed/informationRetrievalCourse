@@ -1,0 +1,41 @@
+//package GradabilityClassifier
+
+
+
+import GradabilityClassifier._
+import RAPShell._
+//package agiga
+//Just a main file to trigger the required parsing. Either for adjective or adverb
+//update: after merging world-modeling and agroclassifier- this file should act as the one single entry point. Its control
+//floow is as follows
+//1. initialize and run the classifier
+//2. Run RAP shell
+// 3. Use this classifier to grade adjectives found in RAPShell
+// update://the main file remains outside the 2 packages we use. Historically thsee 2 packages were two different projects
+
+object initializer {
+  def main(args: Array[String]) = println("Exiting main program")
+
+  //val runOnServer = true;
+  val runOnServer = false;
+  //call the adjective parser.
+  //  agigParser.readFiles();
+
+  //call the adverb parser
+  //adverbParser.readFiles();
+
+  //var myngrams =ratioCalculator.characterNgramCalculator("coldest",3);
+
+  //call the adjective -er form checker
+  var hashmapOfColderCold = removeErFromAdj.readErRemovedFile(runOnServer);
+
+
+  //functions that fill up the hashmaps
+  //ratioCalculator.triggerFunction();
+
+  //once the hashmaps are filled up with word frequency, call the classifier class
+  classifierForAgro.initializeAndClassify(runOnServer, hashmapOfColderCold);
+
+  shell.RapShellInitializer();
+
+}
