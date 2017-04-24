@@ -39,8 +39,8 @@
       <file leaf-file-name="myUtilities.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/brain/myUtilities.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="58" column="4" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="48" />
+            <state relative-caret-position="398">
+              <caret line="496" column="0" selection-start-line="494" selection-start-column="0" selection-end-line="496" selection-end-column="0" />
               <folding>
                 <element signature="e#15#47#0" expanded="true" />
                 <element signature="e#6808#7356#0" expanded="false" />
@@ -808,8 +808,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/brain/myUtilities.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="58" column="4" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="48" />
+        <state relative-caret-position="398">
+          <caret line="496" column="0" selection-start-line="494" selection-start-column="0" selection-end-line="496" selection-end-column="0" />
           <folding>
             <element signature="e#15#47#0" expanded="true" />
             <element signature="e#6808#7356#0" expanded="false" />

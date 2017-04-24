@@ -28,8 +28,12 @@ package object myUtilities {
 
   case class documentIDPositions(var docId: Int, var positions: ListBuffer[Int]);
 
+  case class docIdWordFreq(var docId: Int, var wordsAndFreq: Map[String, Int]);
 
-  var listOfDocIdWordMaps = new ListBuffer[Map[String, Int]]()
+
+  //var listOfDocIdWordMaps = new ListBuffer[Map[String, Int]]()
+
+  var listOfDocIdWordMaps = new ListBuffer[docIdWordFreq]()
 
   var operator = "";
 
@@ -37,9 +41,8 @@ package object myUtilities {
   def readFromFile() = {
     try {
 
-
-
-
+      //hard coded query for the time being.
+      var query="information retrieval"
 
       var noofFiles = 0
 
@@ -59,81 +62,84 @@ package object myUtilities {
         val listOfFiles = new File(resourcesDirectory).listFiles()
         val pathToInputFile = resourcesDirectory + inputFileForInvIndex;
 
-//        for (indivFileName <- listOfFiles) {
-//
-//
-//          println("value of the path to the file is" + pathToInputFile)
-//
-//          val doc = agiga.toDocuments(indivFileName.getAbsolutePath)
-//
-//          for (newsArticles <- doc) {
-//
-//            println(newsArticles)
-//
-//          }
-//        }
+        //        for (indivFileName <- listOfFiles) {
+        //
+        //
+        //          println("value of the path to the file is" + pathToInputFile)
+        //
+        //          val doc = agiga.toDocuments(indivFileName.getAbsolutePath)
+        //
+        //          for (newsArticles <- doc) {
+        //
+        //            println(newsArticles)
+        //
+        //          }
+        //        }
 
         for (line <- io.Source.fromFile(pathToInputFile).getLines()) {
 
           //create a map for each document
-          var wordFreq: Map[String, Int ] = Map();
+          var wordFreq: Map[String, Int] = Map();
 
-
-          // println("getting here at 1");
-          val content = line.split("\\s+");
-          // println("getting here at 2");
-          var termCounter = 0;
-          //  println("getting here at 3");
-
-
-          if (content.length > 1) {
+          if (line != "") {
+            // println("getting here at 1");
             val content = line.split("\\s+");
-            //this counter is for actualtoken in sentences only- i.e we are ignoring the words doc and 1
-            var positionOfTheTerm = 1;
-            var docidCombined = content(1).split("#")
+            // println("getting here at 2");
+            var termCounter = 0;
+            //  println("getting here at 3");
 
-           var strippedValue = content(1).stripSuffix(":").trim
-             strippedValue = strippedValue.stripPrefix("#").trim
+            var docid = 0
+            if (content.length > 1) {
+              val content = line.split("\\s+");
+              //this counter is for actualtoken in sentences only- i.e we are ignoring the words doc and 1
+              var positionOfTheTerm = 1;
+              var docidCombined = content(1).split("#")
 
-            var docid=strippedValue.toInt;
+              var strippedValue = content(1).stripSuffix(":").trim
+              strippedValue = strippedValue.stripPrefix("#").trim
 
-            var noOfTokensDenotingDocId = 1;
+              docid = strippedValue.toInt;
 
-//            //for each term in the sentence
-            for (individualToken <- content) {
-              //ignore the first two individualToken since it contains only "doc 1"
-              if (termCounter <= noOfTokensDenotingDocId) {
-                termCounter = termCounter + 1;
-              }
+              var noOfTokensDenotingDocId = 1;
 
-              else {
-                //for each of the term you are seeing, get its position and add it to the postings list data structure
-                //i am calling this the inner data structure.
-//                val positions = new ListBuffer[(Int)]
-//                positions.append(positionOfTheTerm);
-//                positionOfTheTerm = positionOfTheTerm + 1;
-
-
-                //if the term is already present in the dictionary, retreive its postings list, attach the new docid and attach it back
-                if (wordFreq.contains(individualToken)) {
-
-                  var existingFrequency = wordFreq(individualToken);
-                  existingFrequency=existingFrequency+1
-
-
-                  wordFreq += (individualToken -> existingFrequency);
+              //            //for each term in the sentence
+              for (individualToken <- content) {
+                //ignore the first two individualToken since it contains only "doc 1"
+                if (termCounter <= noOfTokensDenotingDocId) {
+                  termCounter = termCounter + 1;
                 }
+
                 else {
+                  //for each of the term you are seeing, get its position and add it to the postings list data structure
+                  //i am calling this the inner data structure.
+                  //                val positions = new ListBuffer[(Int)]
+                  //                positions.append(positionOfTheTerm);
+                  //                positionOfTheTerm = positionOfTheTerm + 1;
 
-                  wordFreq += (individualToken -> 1);
 
+                  //if the term is already present in the dictionary, retreive its postings list, attach the new docid and attach it back
+                  if (wordFreq.contains(individualToken)) {
+
+                    var existingFrequency = wordFreq(individualToken);
+                    existingFrequency = existingFrequency + 1
+
+
+                    wordFreq += (individualToken -> existingFrequency);
+                  }
+                  else {
+
+                    wordFreq += (individualToken -> 1);
+
+                  }
                 }
               }
             }
+
+
+
+            var objdocIdWordFreq = new docIdWordFreq(docid, wordFreq)
+            listOfDocIdWordMaps.append(objdocIdWordFreq)
           }
-
-
-          listOfDocIdWordMaps.append(wordFreq)
         }
 
 

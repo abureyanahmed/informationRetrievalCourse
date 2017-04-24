@@ -49,8 +49,8 @@
       <file leaf-file-name="package.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="141" column="46" selection-start-line="141" selection-start-column="46" selection-end-line="141" selection-end-column="46" />
+            <state relative-caret-position="261">
+              <caret line="44" column="15" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="15" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
                 <element signature="e#462#508#0" expanded="false" />
@@ -655,79 +655,79 @@
       <breakpoints>
         <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>82</line>
+          <line>85</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>84</line>
+          <line>87</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>92</line>
+          <line>95</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>61</line>
+          <line>64</line>
           <properties />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>64</line>
+          <line>67</line>
           <properties />
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>66</line>
+          <line>69</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>68</line>
+          <line>71</line>
           <properties />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>70</line>
+          <line>73</line>
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>89</line>
+          <line>92</line>
           <properties />
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>75</line>
+          <line>78</line>
           <properties />
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>78</line>
+          <line>81</line>
           <properties />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>135</line>
+          <line>140</line>
           <properties />
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>102</line>
+          <line>105</line>
           <properties />
           <option name="timeStamp" value="34" />
         </line-breakpoint>
@@ -788,8 +788,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="141" column="46" selection-start-line="141" selection-start-column="46" selection-end-line="141" selection-end-column="46" />
+        <state relative-caret-position="261">
+          <caret line="44" column="15" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="15" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
             <element signature="e#462#508#0" expanded="false" />
