@@ -41,7 +41,7 @@ package object myUtilities {
 
   var listOfDocIdWordMaps = new ListBuffer[docIdWordFreq]()
 
-  var operator = "";
+  var lamdba:Double = 0.5;
 
 
   def readFromFile() = {
@@ -217,6 +217,64 @@ package object myUtilities {
 
               totalWordsInCorpus=totalWordsInCorpus+noOfWordsInThisDocument
             }
+
+          //go through the list of maps again and do the actual lm calculation now
+
+          for(indivMaps<-listOfDocIdWordMaps)
+          {
+
+            var noOfWordsInThisDocument=0
+
+            //run throuigh this document and find total number of words it has.
+            for((key,value)<- indivMaps.wordsAndFreq)
+            {
+              noOfWordsInThisDocument=noOfWordsInThisDocument+value;
+            }
+
+            //go through each of the document maps, and find how many times information occurs in it, keep adding it up.
+
+            var termDoc:Double=0
+            var dbnoOfWordsInThisDocument:Double =noOfWordsInThisDocument
+            var collectionValue:Double=0
+
+            var dbtotalOccurenceOfThisWordInCorpus:Double =totalOccurenceOfThisWordInCorpus
+            var dbtotalWordsInCorpus:Double =totalWordsInCorpus
+
+            collectionValue=dbtotalOccurenceOfThisWordInCorpus/dbtotalWordsInCorpus
+
+            if(indivMaps.wordsAndFreq.contains(queryWord))
+            {
+              //get its value and keep summing up
+              var noOfExistence:Double = indivMaps.wordsAndFreq(queryWord)
+
+              //do the lamda calculation here
+
+              var dbnoOfExistence:Double =noOfExistence
+
+
+
+              termDoc = dbnoOfExistence/dbnoOfWordsInThisDocument
+
+
+
+
+
+            }
+
+            else {
+
+              //this value doesnt exist
+              var dbnoOfExistence:Double =0
+              termDoc = dbnoOfExistence/dbnoOfWordsInThisDocument
+            }
+
+            var scoreOfThisDoc:Double= ( (lamdba*termDoc ) +( (1-lamdba)*collectionValue ))
+            println("word:"+queryWord+"\tscoreOfThisDoc:"+scoreOfThisDoc)
+
+
+            //var objdocIdLMValue = new docIdLMValue(indivMaps.docId, )
+
+          }
 
         }
 

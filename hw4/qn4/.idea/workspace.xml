@@ -49,8 +49,8 @@
       <file leaf-file-name="package.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6">
-              <caret line="191" column="14" selection-start-line="191" selection-start-column="14" selection-end-line="191" selection-end-column="14" />
+            <state relative-caret-position="156">
+              <caret line="225" column="16" selection-start-line="225" selection-start-column="16" selection-end-line="225" selection-end-column="16" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
                 <element signature="e#462#508#0" expanded="false" />
@@ -76,8 +76,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/scala/myUtilities/package.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/initializer.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/myUtilities/package.scala" />
       </list>
     </option>
   </component>
@@ -596,7 +596,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1674" height="1002" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -617,7 +617,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39908257" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39908257" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -659,101 +659,101 @@
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
+        <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
           <line>69</line>
           <properties />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
+        <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
           <line>72</line>
           <properties />
           <option name="timeStamp" value="15" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
+        <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
           <line>74</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
+        <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
           <line>76</line>
           <properties />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
+        <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
           <line>78</line>
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
+        <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
           <line>211</line>
           <properties />
           <option name="timeStamp" value="38" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
+        <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
           <line>217</line>
           <properties />
           <option name="timeStamp" value="39" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>191</line>
-          <properties />
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
+        <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
           <line>195</line>
           <properties />
           <option name="timeStamp" value="41" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
+        <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/initializer.scala</url>
           <line>20</line>
           <properties />
           <option name="timeStamp" value="42" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>176</line>
-          <properties />
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
-          <line>179</line>
-          <properties />
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
+        <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
           <line>183</line>
           <properties />
           <option name="timeStamp" value="45" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
+        <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
           <line>200</line>
           <properties />
           <option name="timeStamp" value="47" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
+        <line-breakpoint type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
           <line>209</line>
           <properties />
           <option name="timeStamp" value="48" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
+          <line>261</line>
+          <properties />
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
+          <line>271</line>
+          <properties />
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala</url>
+          <line>225</line>
+          <properties />
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="49" />
+      <option name="time" value="69" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -804,8 +804,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/myUtilities/package.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6">
-          <caret line="191" column="14" selection-start-line="191" selection-start-column="14" selection-end-line="191" selection-end-column="14" />
+        <state relative-caret-position="156">
+          <caret line="225" column="16" selection-start-line="225" selection-start-column="16" selection-end-line="225" selection-end-column="16" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
             <element signature="e#462#508#0" expanded="false" />
