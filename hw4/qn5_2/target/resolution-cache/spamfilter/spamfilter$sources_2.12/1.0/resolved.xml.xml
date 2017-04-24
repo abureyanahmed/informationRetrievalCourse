@@ -4,7 +4,7 @@
 		module="spamfilter$sources_2.12"
 		revision="1.0"
 		status="integration"
-		publication="20170423015436"
+		publication="20170423204105"
 	/>
 	<configurations>
 		<conf name="default" visibility="public" description=""/>

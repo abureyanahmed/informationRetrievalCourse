@@ -1,8 +1,13 @@
+import org.clulab.processors.Document
+
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
 import java.io.{File, FileNotFoundException, InputStream}
 import java.util
+
 import initializer._
+import org.clulab.agiga
+
 import scala.collection.mutable
 import scala.collection.mutable._
 import scala.io.Source
@@ -23,13 +28,19 @@ package object myUtilities {
 
   case class documentIDPositions(var docId: Int, var positions: ListBuffer[Int]);
 
-  var dictionaryForInvertedIndex: Map[String, ListBuffer[documentIDPositions]] = Map();
+
+  var listOfDocIdWordMaps = new ListBuffer[Map[String, Int]]()
 
   var operator = "";
 
 
   def readFromFile() = {
     try {
+
+
+
+
+
       var noofFiles = 0
 
       val inputDirectoryToList = new File(resourcesDirectory)
@@ -46,13 +57,26 @@ package object myUtilities {
       else {
         println(" no of files found in input directory is:" + noofFiles + ":Going to parallelize")
         val listOfFiles = new File(resourcesDirectory).listFiles()
-
-
-
         val pathToInputFile = resourcesDirectory + inputFileForInvIndex;
-        println("value of the path to the file is" + pathToInputFile)
+
+//        for (indivFileName <- listOfFiles) {
+//
+//
+//          println("value of the path to the file is" + pathToInputFile)
+//
+//          val doc = agiga.toDocuments(indivFileName.getAbsolutePath)
+//
+//          for (newsArticles <- doc) {
+//
+//            println(newsArticles)
+//
+//          }
+//        }
 
         for (line <- io.Source.fromFile(pathToInputFile).getLines()) {
+
+          //create a map for each document
+          var wordFreq: Map[String, Int ] = Map();
 
 
           // println("getting here at 1");
@@ -66,30 +90,15 @@ package object myUtilities {
             val content = line.split("\\s+");
             //this counter is for actualtoken in sentences only- i.e we are ignoring the words doc and 1
             var positionOfTheTerm = 1;
-            var docid = content(1).toInt;
+            var docidCombined = content(1).split("#")
+
+           var strippedValue = content(1).stripSuffix(":").trim
+             strippedValue = strippedValue.stripPrefix("#").trim
+
+            var docid=strippedValue.toInt;
+
             var noOfTokensDenotingDocId = 1;
-            // println("getting here at 4");
-            //there is confusion if the first word is going to be doc1 or doc space 1- writing code for both separated by a boolean flag
-//            if (initializer.useDoc1) {
-//              noOfTokensDenotingDocId = noOfTokensDenotingDocId + 1
-//              println(content.mkString(" "))
-//              //in hw2 input, there is no space between doc and 1.
-//              //split it based on number
-//              //create a regex for the number 1
-//              val stringToSplit = "doc1dock"
-//              val NumberOne = "1".r();
-//              println(content(0))
-//              //println(content(1))
-//              //var firstword = content(0).split("\\d")
-//              //var firstword = content(0).split(NumberOne).map(_.trim)
-//              var firstword = stringToSplit.split("1")
-//              println("length of firstword is" + firstword.length)
-//              println(firstword(1))
-//              docid = firstword(1).toInt;
-//              println(docid)
-//              //  println("getting here at 5");
-//              //  println("getting here at 6");
-//            }
+
 //            //for each term in the sentence
             for (individualToken <- content) {
               //ignore the first two individualToken since it contains only "doc 1"
@@ -100,31 +109,37 @@ package object myUtilities {
               else {
                 //for each of the term you are seeing, get its position and add it to the postings list data structure
                 //i am calling this the inner data structure.
-                val positions = new ListBuffer[(Int)]
-                positions.append(positionOfTheTerm);
-                positionOfTheTerm = positionOfTheTerm + 1;
+//                val positions = new ListBuffer[(Int)]
+//                positions.append(positionOfTheTerm);
+//                positionOfTheTerm = positionOfTheTerm + 1;
+
 
                 //if the term is already present in the dictionary, retreive its postings list, attach the new docid and attach it back
-                if (dictionaryForInvertedIndex.contains(individualToken)) {
+                if (wordFreq.contains(individualToken)) {
 
-                  var existingPostings = dictionaryForInvertedIndex(individualToken);
-                  val objdocumentIDPositions = documentIDPositions(docid, positions)
-                  existingPostings.append(objdocumentIDPositions)
-                  dictionaryForInvertedIndex += (individualToken -> existingPostings);
+                  var existingFrequency = wordFreq(individualToken);
+                  existingFrequency=existingFrequency+1
+
+
+                  wordFreq += (individualToken -> existingFrequency);
                 }
                 else {
-                  val objdocumentIDPositions = documentIDPositions(docid, positions)
-                  val postingsList = ListBuffer[documentIDPositions]();
-                  postingsList.append(objdocumentIDPositions)
-                  dictionaryForInvertedIndex += (individualToken -> postingsList);
+
+                  wordFreq += (individualToken -> 1);
 
                 }
               }
             }
           }
 
+
+          listOfDocIdWordMaps.append(wordFreq)
         }
+
+
       }
+
+      println(listOfDocIdWordMaps.mkString("\n"))
 
 
     } catch {
