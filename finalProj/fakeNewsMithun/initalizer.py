@@ -38,8 +38,8 @@ if __name__ == "__main__":
 
     #give the counts/frequencies of terms to calculate tf-idf of the document
     objdp= src.dataProcessing.ProcessData()
-    my_tf_idf_score=objdp.calculate_tf_idf(counts)
-    print(my_tf_idf_score)
+    #my_tf_idf_score=objdp.calculate_tf_idf(counts)
+    #print(my_tf_idf_score)
 
 
 

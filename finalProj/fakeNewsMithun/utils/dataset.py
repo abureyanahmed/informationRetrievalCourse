@@ -25,8 +25,9 @@ class DataSet():
         for article in articles:
             self.articles[int(article['Body ID'])] = article['articleBody']
 
+        print("Going to print " )
         print("Number of Total stances: " + str(len(self.stances)))
-        print("and the stances are : " + self.stances)
+        print("and the stances are : " + str(self.stances))
         print("Total bodies: " + str(len(self.articles)))
 
 
