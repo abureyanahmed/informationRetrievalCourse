@@ -6,55 +6,31 @@ from tqdm import tqdm
 import sys, webbrowser
 import numpy
 from sklearn.ensemble import GradientBoostingClassifier
-
-
+import utils;
+import src.dataProcessing;
+import sys
+import numpy as np
+from sklearn.ensemble import GradientBoostingClassifier
+from utils.dataset import DataSet
+from utils.score import report_score, LABELS, score_submission
+from sklearn.feature_extraction.text import TfidfTransformer
 from csv import DictReader
 
-
-class DataSet():
-    def __init__(self, path=""):
-        self.path = path
-
-        print("Reading the training dataset")
-        bodies = "train_bodies_original.csv"
-        stances = "train_stances_csc483583.csv"
-
-        articles = self.read(bodies)
-        self.stances = self.read(stances)
-
-        self.articles = dict()
-
-        #make the body ID an integer value
-        for s in self.stances:
-            s['Body ID'] = int(s['Body ID'])
-
-        #copy all bodies into a dictionary
-        for article in articles:
-            self.articles[int(article['Body ID'])] = article['articleBody']
-
-        print("Total stances: " + str(len(self.stances)))
-        print("Total bodies: " + str(len(self.articles)))
-
-
-
-    def read(self,filename):
-        rows = []
-        with open(self.path  + filename, "r", encoding='utf-8') as table:
-            r = DictReader(table)
-
-            for line in r:
-                rows.append(line)
-        return rows
-
-
-#main code starts here
-
-#cwd = os.getcwd()
-#print("current directory is:"+cwd)
-# Now change the directory
-
-   # os.chdir( path )
+#this is just the first file which has main function and strings together various sub modules.
 
 if __name__ == "__main__":
+
     #read the data first
-    d = DataSet()
+    d = utils.dataset.DataSet()
+
+    # Create a term document index
+    counts = [[3, 0, 1],[2, 0, 0],[3, 0, 0],[4, 0, 0],[3, 2, 0],[3, 0, 2]]
+
+    #give the counts/frequencies of terms to calculate tf-idf of the document
+    objdp= src.dataProcessing.ProcessData()
+    my_tf_idf_score=objdp.calculate_tf_idf(counts)
+    print my_tf_idf_score
+
+
+
+

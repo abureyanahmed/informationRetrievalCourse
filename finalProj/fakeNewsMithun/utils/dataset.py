@@ -5,10 +5,9 @@ class DataSet():
     def __init__(self, path="fnc-1"):
         self.path = path
 
-        print("Reading the training dataset")
+        print("Reading dataset")
         bodies = "train_bodies.csv"
-        stances = "train_stances_csc483583.csv"
-
+        stances = "train_stances.csv"
 
         self.stances = self.read(stances)
         articles = self.read(bodies)
