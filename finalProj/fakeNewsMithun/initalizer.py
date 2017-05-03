@@ -11,7 +11,8 @@ import src.dataProcessing;
 import sys
 import numpy as np
 from sklearn.ensemble import GradientBoostingClassifier
-from utils.dataset import DataSet
+from utils.read_data import DataSet
+from utils.process_input_data import tokenize
 from utils.score import report_score, LABELS, score_submission
 from sklearn.feature_extraction.text import TfidfTransformer
 from csv import DictReader
@@ -31,7 +32,20 @@ if __name__ == "__main__":
 
     #read the data first
     cwd = os.getcwd()
-    d = utils.dataset.DataSet(cwd)
+    d = utils.read_data.DataSet(cwd)
+    #print(d.stances)
+
+
+    print("number of stances in d is"+str(len(d.stances)))
+    print("number of bodies in d is"+str(len(d.articles)))
+    print("done reading documents, going to tokenize this document")
+
+    #print(d.articles(0))
+    #print(d.articles[0])
+    tokenizedData= tokenize(d.articles.values())
+
+    print("done tokenizing, number of rows in the tokenized vector is"+str(len(tokenizedData.toarray())))
+    print("done tokenizing, going to calculate tf-idf")
 
     # Create a term document index
     counts = [[3, 0, 1],[2, 0, 0],[3, 0, 0],[4, 0, 0],[3, 2, 0],[3, 0, 2]]
