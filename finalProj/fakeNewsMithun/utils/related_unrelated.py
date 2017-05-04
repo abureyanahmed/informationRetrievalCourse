@@ -124,9 +124,8 @@ def train_for_agree_disagree(d):
     feature_vector= np.array([1])
     labels = np.array([0])
     for s in d.stances:
-        total_pairs=total_pairs+1
+
         #for each headline, get the actual headline text
-        #print(s['Headline'])
         headline = s['Headline']
         #headline="a little bird"
 
@@ -153,6 +152,10 @@ def train_for_agree_disagree(d):
             else:
                 if (stance == "disagree"):
                     np.append(labels, 0)
+                else:
+                    if(stance=="discuss"):
+                        np.append(labels, 2)
+
 
 
             # create avector for cosine similarity for all these documents
