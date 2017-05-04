@@ -177,6 +177,7 @@ def train_for_agree_disagree(d):
     print("number of rows in labels is:" + str(len(labels)))
     #feed the vectors to an an svm, with labels.
     clf = svm.SVC(kernel='linear', C=1.0)
+    feature_vector=feature_vector.reshape(-1, 1)
     clf.fit(feature_vector, labels.ravel())
     print("done training svm:" )
     return clf
