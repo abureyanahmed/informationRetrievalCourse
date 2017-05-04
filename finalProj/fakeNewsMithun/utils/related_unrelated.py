@@ -169,7 +169,7 @@ def train_for_agree_disagree(d):
             # the two different classes known as agree and disagree.
 
 
-    print("no_of_unrelated is:" + str(len(no_of_unrelated)))
+    print("no_of_unrelated is:" + str(no_of_unrelated))
     print("number of rows in feature_vector is:"+str(len(feature_vector)))
     print("number of rows in labels is:" + str(len(labels)))
     #feed the vectors to an an svm, with labels.
