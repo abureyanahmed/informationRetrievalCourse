@@ -6,21 +6,16 @@ from csv import DictReader
 
 import sys, webbrowser
 import numpy
-from sklearn.ensemble import GradientBoostingClassifier
+
 import utils;
 import sys
 
 
-from sklearn.ensemble import GradientBoostingClassifier
 from utils.read_data import load_training_DataSet
 from utils.process_input_data import tokenize
 from utils.process_input_data import cosine_sim
 from utils.process_input_data import calculate_tf_idf
 from utils.score import report_score, LABELS, score_submission
-from sklearn.feature_extraction.text import TfidfTransformer
-from csv import DictReader
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 from utils.fileWriter import writeToOutputFile
 from utils.fileWriter import appendToFile
 from utils.related_unrelated import calculateCosSimilarity
@@ -29,8 +24,6 @@ from utils.related_unrelated import train_for_agree_disagree
 
 import nltk
 import numpy as np
-from sklearn import feature_extraction
-from tqdm import tqdm
 #this is just the first file which has main function and strings together various sub modules.
 
 if __name__ == "__main__":
