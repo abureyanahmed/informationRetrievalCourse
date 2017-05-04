@@ -1,7 +1,11 @@
 from __future__ import division
 from utils.fileWriter import appendToFile
 from utils.process_input_data import cosine_sim
-
+import numpy as np
+from sklearn import svm
+#import matplotlib.pyplot as plt
+#from matplotlib import style
+#style.use("ggplot")
 
 def calculateCosSimilarity(d):
     #writeToOutputFile("\n","cosSimScore_Stance")
@@ -48,7 +52,7 @@ def calculateCosSimilarity(d):
     print ("related_smallest:"+str(related_smallest))
     return unrelated_biggest
 
-def calculateAccuracy(d,unrelated_threshold):
+def calculate_precision(d, unrelated_threshold):
     total_pairs=0
     TP=FP=FN=TN=0
     goldlabel=""
@@ -108,3 +112,61 @@ def calculateAccuracy(d,unrelated_threshold):
     #recall=TP/(TP+FP)
     accuracy=correct_prediction/total_pairs
     return accuracy
+
+
+# This is from your training data. Now we will train only on the "related" ones
+#  use this training data, to calculate cos similarity of each tuple and its gold label/stance
+#. Feed that to an svm.
+#Return: a classifier trained on  "related" tuples
+def train_for_agree_disagree(d):
+
+
+    feature_vector= np.array([1])
+    labels = np.array([0])
+    for s in d.stances:
+        total_pairs=total_pairs+1
+        #for each headline, get the actual headline text
+        #print(s['Headline'])
+        headline = s['Headline']
+        #headline="a little bird"
+
+
+        #get the corresponding body id for this headline
+        bodyid  = s['Body ID']
+        stance= s['Stance']
+
+
+        #WE are looking for stances which are only unrelated
+        if(stance!="unrelated"):
+            #i.e this is the group which has agree,disagree or discuss
+
+            # using that body id, retrieve teh corresponding article
+            actualBody = d.articles[bodyid]
+
+            #find the cosine similarity between this body and headline
+            cos = cosine_sim(actualBody, headline)
+            np.append(feature_vector,cos)
+
+            #lets call agrees as label 1 and disagrees as label 2
+            if (stance == "agree"):
+                np.append(labels, 1)
+            else:
+                if (stance == "disagree"):
+                    np.append(labels, 0)
+
+
+            # create avector for cosine similarity for all these documents
+
+            # # and add it ot the vector along with its stance
+
+
+            # we dont care about prediction any more. We are training on training data, to teach our svm
+            # the two different classes known as agree and disagree.
+
+    print("number of rows in feature_vector is:"+str(len(feature_vector)))
+    print("number of rows in labels is:" + str(len(labels)))
+    #feed the vectors to an an svm, with labels.
+    clf = svm.SVC(kernel='linear', C=1.0)
+    clf.fit(feature_vector, labels)
+    print("done training svm:" )
+    return clf
