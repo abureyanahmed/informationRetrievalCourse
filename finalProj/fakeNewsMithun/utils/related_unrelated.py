@@ -181,3 +181,66 @@ def train_for_agree_disagree(d):
     clf.fit(feature_vector, labels.ravel())
     print("done training svm:" )
     return clf
+
+def test_using_svm_calc_precision(test_data, svm):
+    total_pairs=0
+    TP=FP=FN=TN=0
+    goldlabel=""
+    correct_prediction=0
+
+    for s in test_data.stances:
+        total_pairs=total_pairs+1
+        #for each headline, get the actual headline text
+        #print(s['Headline'])
+        headline = s['Headline']
+        #headline="a little bird"
+
+
+        #get the corresponding body id for this headline
+        bodyid  = s['Body ID']
+        stance= s['Stance']
+
+        #using that body id, retrieve teh corresponding article
+        actualBody=test_data.articles[bodyid]
+        cos=cosine_sim(actualBody,headline)
+
+        pred_class=svm.predict([cos])
+
+        # lets call agrees as label 1 and disagrees as label 2
+        if (pred_class == "1"):
+            pred_label = "agree"
+        else:
+            if (pred_class == "1" ):
+                pred_label = "disagree"
+
+
+            else:
+                if (pred_class == "2"):
+                    pred_label = "discuss"
+
+        goldlabel=stance
+
+
+        if(pred_label==goldlabel):
+            TP = TP + 1
+            correct_prediction=correct_prediction+1
+        else:
+            FP = FP + 1
+
+
+
+    print("TP:"+str(TP))
+    print("FP:"+str(FP))
+
+    print("TN:"+str(TN))
+    print("FN:"+str(FN))
+
+    recall=TN/(TN+FN)
+    precision=TP/(TP+FP)
+    print("precision:"+str(precision))
+    print("recall:"+str(recall))
+
+    accuracy=correct_prediction/total_pairs
+    print("accuracy:" + str(accuracy))
+    return accuracy
+

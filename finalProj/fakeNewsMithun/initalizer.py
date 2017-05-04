@@ -1,29 +1,11 @@
 from __future__ import division
 import os
-import re
-
-from csv import DictReader
-
-import sys, webbrowser
-import numpy
-
 import utils;
-import sys
-
 
 from utils.read_data import load_training_DataSet
-from utils.process_input_data import tokenize
-from utils.process_input_data import cosine_sim
-from utils.process_input_data import calculate_tf_idf
-from utils.score import report_score, LABELS, score_submission
-from utils.fileWriter import writeToOutputFile
-from utils.fileWriter import appendToFile
-from utils.related_unrelated import calculateCosSimilarity
-from utils.related_unrelated import calculate_precision
+from utils.related_unrelated import test_using_svm_calc_precision
 from utils.related_unrelated import train_for_agree_disagree
 
-import nltk
-import numpy as np
 #this is just the first file which has main function and strings together various sub modules.
 
 if __name__ == "__main__":
@@ -74,5 +56,11 @@ if __name__ == "__main__":
     # unrelated_threshold=0.399
     # calculate_precision(training_data)
 
+
     print ("done with training of documents.starting testing")
+    testing_data = utils.read_data.load_testing_DataSet(cwd)
+    print ("done loading testing data. going to test using the trained svm ")
+    accuracy = test_using_svm_calc_precision(testing_data, svm_trained)
+    print ("accuracy:"+str(accuracy))
+
 
