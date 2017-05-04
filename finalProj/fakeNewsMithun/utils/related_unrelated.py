@@ -121,8 +121,8 @@ def calculate_precision(d, unrelated_threshold):
 def train_for_agree_disagree(d):
 
     no_of_unrelated=0
-    feature_vector= np.array([[1]])
-    labels = np.array([[0]])
+    feature_vector= np.array([[]])
+    labels = np.array([[]])
     for s in d.stances:
 
         #for each headline, get the actual headline text
@@ -136,7 +136,9 @@ def train_for_agree_disagree(d):
 
 
         #WE are looking for stances which are only unrelated
-        if(stance!="unrelated"):
+        if(stance=="unrelated"):
+            no_of_unrelated = no_of_unrelated + 1
+        else:
             #i.e this is the group which has agree,disagree or discuss
 
             # using that body id, retrieve teh corresponding article
@@ -144,19 +146,20 @@ def train_for_agree_disagree(d):
 
             #find the cosine similarity between this body and headline
             cos = cosine_sim(actualBody, headline)
-            np.append(feature_vector,cos)
+            feature_vector=np.append(feature_vector,[[cos]])
 
             #lets call agrees as label 1 and disagrees as label 2
             if (stance == "agree"):
-                np.append(labels, 1)
+                labels = np.append(labels, 1)
             else:
                 if (stance == "disagree"):
-                    np.append(labels, 0)
+                    labels = np.append(labels, 0)
+
                 else:
                     if(stance=="discuss"):
-                        np.append(labels, 2)
-        else:
-            no_of_unrelated=no_of_unrelated+1
+                        labels = np.append(labels, 2)
+
+
 
 
 
@@ -174,6 +177,6 @@ def train_for_agree_disagree(d):
     print("number of rows in labels is:" + str(len(labels)))
     #feed the vectors to an an svm, with labels.
     clf = svm.SVC(kernel='linear', C=1.0)
-    clf.fit(feature_vector, labels.values.ravel())
+    clf.fit(feature_vector, labels.ravel())
     print("done training svm:" )
     return clf
