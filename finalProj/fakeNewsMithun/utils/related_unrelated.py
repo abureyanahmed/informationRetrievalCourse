@@ -120,7 +120,7 @@ def calculate_precision(d, unrelated_threshold):
 #Return: a classifier trained on  "related" tuples
 def train_for_agree_disagree(d):
 
-
+    no_of_unrelated=0
     feature_vector= np.array([[1]])
     labels = np.array([[0]])
     for s in d.stances:
@@ -155,6 +155,8 @@ def train_for_agree_disagree(d):
                 else:
                     if(stance=="discuss"):
                         np.append(labels, 2)
+        else:
+            no_of_unrelated=no_of_unrelated+1
 
 
 
@@ -166,10 +168,12 @@ def train_for_agree_disagree(d):
             # we dont care about prediction any more. We are training on training data, to teach our svm
             # the two different classes known as agree and disagree.
 
+
+    print("no_of_unrelated is:" + str(len(no_of_unrelated)))
     print("number of rows in feature_vector is:"+str(len(feature_vector)))
     print("number of rows in labels is:" + str(len(labels)))
     #feed the vectors to an an svm, with labels.
     clf = svm.SVC(kernel='linear', C=1.0)
-    clf.fit(feature_vector, labels)
+    clf.fit(feature_vector, labels.values.ravel())
     print("done training svm:" )
     return clf

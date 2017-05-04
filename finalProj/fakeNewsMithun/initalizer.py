@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
     print("number of stances in d is" + str(len(training_data.stances)))
     print("number of bodies in d is" + str(len(training_data.articles)))
-    print("done reading documents, going to tokenize this document")
+    print("done reading documents, going to train on this document")
 
     svm_trained = train_for_agree_disagree(training_data)
     # unrelated_threshold=0.399
