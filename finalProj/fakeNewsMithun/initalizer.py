@@ -43,23 +43,25 @@ if __name__ == "__main__":
         os.chdir(base_dir_name)
 
 
-    #read the data first
-    cwd = os.getcwd()
-    training_data = utils.read_data.load_training_DataSet(cwd)
+    #Do training
+    # cwd = os.getcwd()
+    # training_data = utils.read_data.load_training_DataSet(cwd)
+    #
+    # print("number of stances in d is" + str(len(training_data.stances)))
+    # print("number of bodies in d is" + str(len(training_data.articles)))
+    # print("done reading documents, going to tokenize this document")
+    #
 
-    print("number of stances in d is" + str(len(training_data.stances)))
-    print("number of bodies in d is" + str(len(training_data.articles)))
-    print("done reading documents, going to tokenize this document")
-
-
-    unrelated_threshold= calculateCosSimilarity(training_data)
+    #unrelated_threshold= calculateCosSimilarity(training_data)
+    unrelated_threshold=0.399
     # calculateAccuracy(training_data)
 
-    print ("done with training of documents.")
+    print ("done with training of documents.starting testing")
 
     ### start of testing phase
     cwd = os.getcwd()
     testing_data = utils.read_data.load_testing_DataSet(cwd)
+    print ("done loading testing data. going to caculate accuracy")
     accuracy=calculateAccuracy(testing_data,unrelated_threshold)
-    print ("accuracy:"+accuracy)
+    print ("accuracy:"+str(accuracy))
 

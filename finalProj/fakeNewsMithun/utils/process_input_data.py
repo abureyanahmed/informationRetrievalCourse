@@ -1,3 +1,4 @@
+from __future__ import division
 import nltk, string
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk import word_tokenize

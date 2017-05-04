@@ -4,7 +4,7 @@
 		module="spamfilter$sources_javadoc_2.12"
 		revision="1.0"
 		status="integration"
-		publication="20170423204106"
+		publication="20170503193048"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>

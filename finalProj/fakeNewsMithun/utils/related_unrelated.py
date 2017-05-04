@@ -1,3 +1,4 @@
+from __future__ import division
 from utils.fileWriter import appendToFile
 from utils.process_input_data import cosine_sim
 
@@ -48,8 +49,10 @@ def calculateCosSimilarity(d):
     return unrelated_biggest
 
 def calculateAccuracy(d,unrelated_threshold):
+    total_pairs=0
     TP=FP=FN=TN=0
     goldlabel=""
+    correct_prediction=0
 
     for s in d.stances:
         total_pairs=total_pairs+1
@@ -74,6 +77,8 @@ def calculateAccuracy(d,unrelated_threshold):
         #rename gold label if its either of agree,disagree or discuss
         if(stance!="unrelated"):
             goldlabel="related"
+        else:
+            goldlabel="unrelated"
 
 
         if(pred_label=="unrelated"):
@@ -90,8 +95,16 @@ def calculateAccuracy(d,unrelated_threshold):
                 FP=FP+1
 
 
+    print("TP:"+str(TP))
+    print("FP:"+str(FP))
+
+    print("TN:"+str(TN))
+    print("FN:"+str(FN))
+
+    recall=TN/(TN+FN)
     precision=TP/(TP+FP)
-    print("precision:"+precision)
+    print("precision:"+str(precision))
+    print("recall:"+str(recall))
     #recall=TP/(TP+FP)
     accuracy=correct_prediction/total_pairs
     return accuracy
