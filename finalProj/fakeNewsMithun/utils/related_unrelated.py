@@ -121,8 +121,8 @@ def calculate_precision(d, unrelated_threshold):
 def train_for_agree_disagree(d):
 
 
-    feature_vector= np.array([1])
-    labels = np.array([0])
+    feature_vector= np.array([[1]])
+    labels = np.array([[0]])
     for s in d.stances:
 
         #for each headline, get the actual headline text
