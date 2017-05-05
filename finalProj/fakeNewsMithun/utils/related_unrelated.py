@@ -4,9 +4,8 @@ from utils.process_input_data import cosine_sim
 import numpy as np
 from sklearn import metrics
 from sklearn import svm
-#import matplotlib.pyplot as plt
-#from matplotlib import style
-#style.use("ggplot")
+from metrics import classification_report
+
 
 def calculateCosSimilarity(d):
     #writeToOutputFile("\n","cosSimScore_Stance")
@@ -185,7 +184,7 @@ def test_using_svm_calc_precision(test_data, svm):
     pred_label=""
 
     list_pred_label=[]
-
+    list_gold_label = []
     pred_label = ""
     # lets call agrees as label 1 and disagrees as label 2
     value2 =2.0
@@ -206,20 +205,21 @@ def test_using_svm_calc_precision(test_data, svm):
 
         #get the corresponding body id for this headline
         bodyid  = s['Body ID']
-        print("body id is:"+ str(bodyid))
+        #print("body id is:"+ str(bodyid))
         stance= s['Stance']
 
         if(stance!="unrelated"):
+
             #using that body id, retrieve teh corresponding article
             actualBody=test_data.articles[bodyid]
             cos=cosine_sim(actualBody,headline)
 
-            print("cosine similarity of this tuple is:"+str(cos))
+            #print("cosine similarity of this tuple is:"+str(cos))
             cos_array=   [cos]
             temp = np.array(cos_array).reshape((1, -1))
             np.set_printoptions(precision=3)
             pred_class=svm.predict(temp)
-            print("predicted class is:"+ str(pred_class[0]))
+           # print("predicted class is:"+ str(pred_class[0]))
 
 
 
@@ -235,9 +235,10 @@ def test_using_svm_calc_precision(test_data, svm):
 
 
             goldlabel=stance
-            print("predicted:"+pred_label+"gold:"+goldlabel)
+           # print("predicted:"+pred_label+"gold:"+goldlabel)
 
             list_pred_label.append(pred_label)
+            list_gold_label.append(stance)
 
             # if(goldlabel=="agree"):
             #     if(pred_label=="agree"):
@@ -271,7 +272,7 @@ def test_using_svm_calc_precision(test_data, svm):
 
     #end of for loop only 1 tab required
 
-    classification_report(test_data.stances,)
+    classification_report(test_data.stances, pred_label)
 
     # print("TP:"+str(TP))
     # print("FP:"+str(FP))
