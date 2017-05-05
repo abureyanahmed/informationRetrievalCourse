@@ -157,9 +157,9 @@ def train_for_agree_disagree(d):
                 if (stance == "disagree"):
                     labels = np.append(labels, 0)
 
-                else:
-                    if(stance=="discuss"):
-                        labels = np.append(labels, 2)
+                # else:
+                #     if(stance=="discuss"):
+                #         labels = np.append(labels, 2)
 
 
 
@@ -206,6 +206,7 @@ def test_using_svm_calc_precision(test_data, svm):
 
         #get the corresponding body id for this headline
         bodyid  = s['Body ID']
+        print("body id is:"+ str(bodyid))
         stance= s['Stance']
 
         if(stance!="unrelated"):
@@ -213,11 +214,12 @@ def test_using_svm_calc_precision(test_data, svm):
             actualBody=test_data.articles[bodyid]
             cos=cosine_sim(actualBody,headline)
 
-
+            print("cosine similarity of this tuple is:"+str(cos))
             cos_array=   [cos]
             temp = np.array(cos_array).reshape((1, -1))
             np.set_printoptions(precision=3)
             pred_class=svm.predict(temp)
+            print("predicted class is:"+ str(pred_class[0]))
 
 
 
@@ -227,19 +229,29 @@ def test_using_svm_calc_precision(test_data, svm):
             else:
                 if (pred_class[0] == value0 ):
                     pred_label = "disagree"
-                else:
-                    if (pred_class[0] == value2 ):
-                        pred_label = "discuss"
-                        print("PREDICTEd label IS:"+pred_label)
+                # else:
+                #     if (pred_class[0] == value2 ):
+                #         pred_label = "discuss"
+
 
             goldlabel=stance
             print("predicted:"+pred_label+"gold:"+goldlabel)
 
-            if(pred_label==goldlabel):
-                TP = TP + 1
-                correct_prediction=correct_prediction+1
-            else:
-                FP = FP + 1
+            if(goldlabel=="agree"):
+                if(pred_label=="agree"):
+                    TP = TP + 1
+                    correct_prediction=correct_prediction+1
+                else:
+                    if(pred_label=="disagree"):
+                        FN=FN+1
+            if(goldlabel=="disagree"):
+                if(pred_label=="disagree"):
+                    TN = TN + 1
+                    correct_prediction=correct_prediction+1
+                else:
+                    if(pred_label=="agree"):
+                        FP=FP+1
+
 
     #end of for loop only 1 tab required
 
