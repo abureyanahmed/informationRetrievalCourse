@@ -2,10 +2,9 @@ from __future__ import division
 from utils.fileWriter import appendToFile
 from utils.process_input_data import cosine_sim
 import numpy as np
-from sklearn import metrics
 from sklearn import svm
-from metrics import classification_report
-
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics import classification_report
 
 def calculateCosSimilarity(d):
     #writeToOutputFile("\n","cosSimScore_Stance")
@@ -175,7 +174,7 @@ def train_for_agree_disagree(d):
     print("done training svm:" )
     return clf
 
-def test_using_svm_calc_precision(test_data, svm):
+def test_using_svm_calc_precision(test_data, my_svm):
 
     total_pairs=1
     TP=FP=FN=TN=1
@@ -218,7 +217,7 @@ def test_using_svm_calc_precision(test_data, svm):
             cos_array=   [cos]
             temp = np.array(cos_array).reshape((1, -1))
             np.set_printoptions(precision=3)
-            pred_class=svm.predict(temp)
+            pred_class=my_svm.predict(temp)
            # print("predicted class is:"+ str(pred_class[0]))
 
 
