@@ -1,18 +1,19 @@
 from __future__ import division
 import os
+import sys;
 import utils;
 import numpy as np
 from utils.read_data import load_training_DataSet
 from utils.related_unrelated import test_using_svm_calc_precision
 from utils.related_unrelated import train_for_agree_disagree
-
+from utils.related_unrelated import calculateCosSimilarity
 #this is just the first file which has main function and strings together various sub modules.
 
 if __name__ == "__main__":
     ###########################-DO NOT DELETE###########################
-    # --code for trainign related- unrelated class...this has to go in a if statement based on user input.
-    # make sure that the current working directory is the starting level
-    # print("value of self.path is :"+ self.path)
+    #--code for trainign related- unrelated class...this has to go in a if statement based on user input.
+    #make sure that the current working directory is the starting level
+
     # cwd = os.getcwd()
     # print("current directory is:" + cwd)
     # base_dir_name = os.path.dirname(os.path.abspath(sys.argv[0]))

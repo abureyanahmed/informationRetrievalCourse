@@ -5,6 +5,8 @@ import numpy as np
 from sklearn import svm
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import classification_report
+import sys
+from utils.process_input_data import tokenize
 
 def calculateCosSimilarity(d):
     #writeToOutputFile("\n","cosSimScore_Stance")
@@ -118,7 +120,6 @@ def calculate_precision(d, unrelated_threshold):
 #. Feed that to an svm.
 #Return: a classifier trained on  "related" tuples
 def train_for_agree_disagree(d):
-
     no_of_unrelated=0
     feature_vector= np.array([[]])
     feature_vector=feature_vector.reshape(-1, 1)
@@ -174,6 +175,73 @@ def train_for_agree_disagree(d):
     print("done training svm:" )
     return clf
 
+def train_for_agree_disagree_with_tf_idf(d):
+    vectorizer = CountVectorizer(min_df=1)
+    corpus = [
+         'This is the first document.',
+         'This is the second second document.',
+          'And the third third third one.',
+           'Is this the first document?',
+        ]
+    X = tokenize(corpus)
+    print(X)
+    sys.exit(1)
+    no_of_unrelated=0
+    feature_vector= np.array([[]])
+    feature_vector=feature_vector.reshape(-1, 1)
+    labels = np.array([[]])
+    for s in d.stances:
+
+        #for each headline, get the actual headline text
+        headline = s['Headline']
+        #headline="a little bird"
+
+
+        #get the corresponding body id for this headline
+        bodyid  = s['Body ID']
+        stance= s['Stance']
+
+
+        #WE are looking for stances which are only unrelated
+        if(stance=="unrelated"):
+            no_of_unrelated = no_of_unrelated + 1
+        else:
+            #i.e this is the group which has agree,disagree or discuss
+
+            # using that body id, retrieve teh corresponding article
+            actualBody = d.articles[bodyid]
+
+            #find the cosine similarity between this body and headline
+            cos = cosine_sim(actualBody, headline)
+            feature_vector=feature_vector.reshape(-1, 1)
+            feature_vector=np.append(feature_vector,[[cos]])
+
+            #lets call agrees as label 1 and disagrees as label 2
+            if (stance == "agree"):
+                labels = np.append(labels, 1)
+            else:
+                if (stance == "disagree"):
+                    labels = np.append(labels, 0)
+                else:
+                    if(stance=="discuss"):
+                        labels = np.append(labels, 2)
+
+
+
+
+
+
+    print("no_of_unrelated is:" + str(no_of_unrelated))
+    print("number of rows in feature_vector is:"+str(len(feature_vector)))
+    print("number of rows in labels is:" + str(len(labels)))
+    #feed the vectors to an an svm, with labels.
+    clf = svm.SVC(kernel='linear', C=1.0)
+    feature_vector=feature_vector.reshape(-1, 1)
+    clf.fit(feature_vector, labels.ravel())
+    print("done training svm:" )
+    return clf
+
+
 def test_using_svm_calc_precision(test_data, my_svm):
 
     total_pairs=1
@@ -220,7 +288,18 @@ def test_using_svm_calc_precision(test_data, my_svm):
             pred_class=my_svm.predict(temp)
            # print("predicted class is:"+ str(pred_class[0]))
 
+            list_pred_label.append(pred_class)
+            gold_label_num=0
+            if(stance=="agree"):
+                gold_label_num=0
+            else:
+                if(stance=="disagree"):
+                    gold_label_num=1;
+                else:
+                    if(stance=="discuss")
+                        gold_label_num=2;
 
+            list_gold_label.append(gold_label_num)
 
 
             if (pred_class[0] == value1 ):
@@ -236,8 +315,7 @@ def test_using_svm_calc_precision(test_data, my_svm):
             goldlabel=stance
            # print("predicted:"+pred_label+"gold:"+goldlabel)
 
-            list_pred_label.append(pred_label)
-            list_gold_label.append(stance)
+
 
             # if(goldlabel=="agree"):
             #     if(pred_label=="agree"):
