@@ -296,7 +296,7 @@ def test_using_svm_calc_precision(test_data, my_svm):
                 if(stance=="disagree"):
                     gold_label_num=1;
                 else:
-                    if(stance=="discuss")
+                    if(stance=="discuss"):
                         gold_label_num=2;
 
             list_gold_label.append(gold_label_num)

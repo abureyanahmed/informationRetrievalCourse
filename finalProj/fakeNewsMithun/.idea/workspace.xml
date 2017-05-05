@@ -20,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="initalizer.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="initalizer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/initalizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="68" column="34" lean-forward="true" selection-start-line="68" selection-start-column="34" selection-end-line="68" selection-end-column="34" />
+            <state relative-caret-position="90">
+              <caret line="58" column="4" lean-forward="false" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -42,15 +42,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="related_unrelated.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="related_unrelated.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/related_unrelated.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="354" column="26" lean-forward="true" selection-start-line="354" selection-start-column="26" selection-end-line="354" selection-end-column="26" />
+            <state relative-caret-position="304">
+              <caret line="298" column="42" lean-forward="false" selection-start-line="298" selection-start-column="42" selection-end-line="298" selection-end-column="42" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
                 <element signature="e#1989#3531#0" expanded="false" />
-                <element signature="e#5663#7750#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -112,8 +111,8 @@
       <find>count</find>
       <find>grad</find>
       <find>tokenize</find>
-      <find>svm</find>
       <find>calculate_tf_idf</find>
+      <find>svm</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -123,8 +122,8 @@
         <option value="$PROJECT_DIR$/utils/fileWriter.py" />
         <option value="$PROJECT_DIR$/utils/read_data.py" />
         <option value="$PROJECT_DIR$/utils/process_input_data.py" />
-        <option value="$PROJECT_DIR$/initalizer.py" />
         <option value="$PROJECT_DIR$/utils/related_unrelated.py" />
+        <option value="$PROJECT_DIR$/initalizer.py" />
       </list>
     </option>
   </component>
@@ -421,7 +420,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -480,7 +479,7 @@
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/initalizer.py</url>
-          <line>68</line>
+          <line>70</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
@@ -500,7 +499,7 @@
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/initalizer.py</url>
-          <line>62</line>
+          <line>64</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -539,7 +538,6 @@
           <folding>
             <element signature="e#0#31#0" expanded="true" />
             <element signature="e#1989#3531#0" expanded="false" />
-            <element signature="e#5663#7750#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -670,7 +668,6 @@
           <folding>
             <element signature="e#0#31#0" expanded="true" />
             <element signature="e#1989#3531#0" expanded="false" />
-            <element signature="e#5663#7750#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -702,7 +699,6 @@
           <folding>
             <element signature="e#0#31#0" expanded="true" />
             <element signature="e#1989#3531#0" expanded="false" />
-            <element signature="e#5663#7750#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -758,7 +754,6 @@
           <folding>
             <element signature="e#0#31#0" expanded="true" />
             <element signature="e#1989#3531#0" expanded="false" />
-            <element signature="e#5663#7750#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -883,24 +878,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/initalizer.py">
+    <entry file="file://$PROJECT_DIR$/utils/related_unrelated.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="68" column="34" lean-forward="true" selection-start-line="68" selection-start-column="34" selection-end-line="68" selection-end-column="34" />
+        <state relative-caret-position="304">
+          <caret line="298" column="42" lean-forward="false" selection-start-line="298" selection-start-column="42" selection-end-line="298" selection-end-column="42" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#1989#3531#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/related_unrelated.py">
+    <entry file="file://$PROJECT_DIR$/initalizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="354" column="26" lean-forward="true" selection-start-line="354" selection-start-column="26" selection-end-line="354" selection-end-column="26" />
+        <state relative-caret-position="90">
+          <caret line="58" column="4" lean-forward="false" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#1989#3531#0" expanded="false" />
-            <element signature="e#5663#7750#0" expanded="false" />
           </folding>
         </state>
       </provider>

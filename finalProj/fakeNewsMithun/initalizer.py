@@ -6,6 +6,7 @@ import numpy as np
 from utils.read_data import load_training_DataSet
 from utils.related_unrelated import test_using_svm_calc_precision
 from utils.related_unrelated import train_for_agree_disagree
+from utils.related_unrelated import train_for_agree_disagree_with_tf_idf
 from utils.related_unrelated import calculateCosSimilarity
 #this is just the first file which has main function and strings together various sub modules.
 
@@ -56,6 +57,7 @@ if __name__ == "__main__":
     print("done reading documents, going to train on this document")
 
     svm_trained = train_for_agree_disagree(training_data)
+   # svm_trained=train_for_agree_disagree_with_tf_idf(training_data)
     # unrelated_threshold=0.399
     # calculate_precision(training_data)
 
