@@ -59,7 +59,7 @@ if __name__ == "__main__":
     # calculate_precision(training_data)
 
 
-    print ("done with training of documents.starting testing")
+    print ("done with training of documents for agree classes. going to read testing data.")
 
 
 

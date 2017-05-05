@@ -2,6 +2,7 @@ from __future__ import division
 from utils.fileWriter import appendToFile
 from utils.process_input_data import cosine_sim
 import numpy as np
+from sklearn import metrics
 from sklearn import svm
 #import matplotlib.pyplot as plt
 #from matplotlib import style
@@ -156,10 +157,9 @@ def train_for_agree_disagree(d):
             else:
                 if (stance == "disagree"):
                     labels = np.append(labels, 0)
-
-                # else:
-                #     if(stance=="discuss"):
-                #         labels = np.append(labels, 2)
+                else:
+                    if(stance=="discuss"):
+                        labels = np.append(labels, 2)
 
 
 
@@ -184,7 +184,7 @@ def test_using_svm_calc_precision(test_data, svm):
     correct_prediction=1
     pred_label=""
 
-
+    list_pred_label=[]
 
     pred_label = ""
     # lets call agrees as label 1 and disagrees as label 2
@@ -229,44 +229,62 @@ def test_using_svm_calc_precision(test_data, svm):
             else:
                 if (pred_class[0] == value0 ):
                     pred_label = "disagree"
-                # else:
-                #     if (pred_class[0] == value2 ):
-                #         pred_label = "discuss"
+                else:
+                    if (pred_class[0] == value2 ):
+                        pred_label = "discuss"
 
 
             goldlabel=stance
             print("predicted:"+pred_label+"gold:"+goldlabel)
 
-            if(goldlabel=="agree"):
-                if(pred_label=="agree"):
-                    TP = TP + 1
-                    correct_prediction=correct_prediction+1
-                else:
-                    if(pred_label=="disagree"):
-                        FN=FN+1
-            if(goldlabel=="disagree"):
-                if(pred_label=="disagree"):
-                    TN = TN + 1
-                    correct_prediction=correct_prediction+1
-                else:
-                    if(pred_label=="agree"):
-                        FP=FP+1
+            list_pred_label.append(pred_label)
 
+            # if(goldlabel=="agree"):
+            #     if(pred_label=="agree"):
+            #         TP = TP + 1
+            #         correct_prediction=correct_prediction+1
+            #     else:
+            #         if(pred_label=="disagree"):
+            #             FN=FN+1
+            # if(goldlabel=="disagree"):
+            #     if(pred_label=="disagree"):
+            #         TN = TN + 1
+            #         correct_prediction=correct_prediction+1
+            #     else:
+            #         if(pred_label=="agree"):
+            #             FP=FP+1
+    #
+    # if (goldlabel == pred_label):
+    #     if (pred_label == "agree"):
+    #         TP = TP + 1
+    #         correct_prediction = correct_prediction + 1
+    #     else:
+    #         if (pred_label == "disagree"):
+    #             FN = FN + 1
+    # if (goldlabel == "disagree"):
+    #     if (pred_label == "disagree"):
+    #         TN = TN + 1
+    #         correct_prediction = correct_prediction + 1
+    #     else:
+    #         if (pred_label == "agree"):
+    #             FP = FP + 1
 
     #end of for loop only 1 tab required
 
-    print("TP:"+str(TP))
-    print("FP:"+str(FP))
+    classification_report(test_data.stances,)
 
-    print("TN:"+str(TN))
-    print("FN:"+str(FN))
-
-    recall=TN/(TN+FN)
-    precision=TP/(TP+FP)
-    print("precision:"+str(precision))
-    print("recall:"+str(recall))
-
-    accuracy=correct_prediction/total_pairs
-    print("accuracy:" + str(accuracy))
+    # print("TP:"+str(TP))
+    # print("FP:"+str(FP))
+    #
+    # print("TN:"+str(TN))
+    # print("FN:"+str(FN))
+    #
+    # recall=TN/(TN+FN)
+    # precision=TP/(TP+FP)
+    # print("precision:"+str(precision))
+    # print("recall:"+str(recall))
+    #
+    # accuracy=correct_prediction/total_pairs
+    # print("accuracy:" + str(accuracy))
     return accuracy
 
