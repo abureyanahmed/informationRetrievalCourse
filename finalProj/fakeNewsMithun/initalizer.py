@@ -1,7 +1,7 @@
 from __future__ import division
 import os
 import utils;
-
+import numpy as np
 from utils.read_data import load_training_DataSet
 from utils.related_unrelated import test_using_svm_calc_precision
 from utils.related_unrelated import train_for_agree_disagree
@@ -9,7 +9,9 @@ from utils.related_unrelated import train_for_agree_disagree
 #this is just the first file which has main function and strings together various sub modules.
 
 if __name__ == "__main__":
-    #make sure that the current working directory is the starting level
+    ###########################-DO NOT DELETE###########################
+    # --code for trainign related- unrelated class...this has to go in a if statement based on user input.
+    # make sure that the current working directory is the starting level
     # print("value of self.path is :"+ self.path)
     # cwd = os.getcwd()
     # print("current directory is:" + cwd)
@@ -58,6 +60,9 @@ if __name__ == "__main__":
 
 
     print ("done with training of documents.starting testing")
+
+
+
     testing_data = utils.read_data.load_testing_DataSet(cwd)
     print ("done loading testing data. going to test using the trained svm ")
     accuracy = test_using_svm_calc_precision(testing_data, svm_trained)

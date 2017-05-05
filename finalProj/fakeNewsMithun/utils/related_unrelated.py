@@ -122,6 +122,7 @@ def train_for_agree_disagree(d):
 
     no_of_unrelated=0
     feature_vector= np.array([[]])
+    feature_vector=feature_vector.reshape(-1, 1)
     labels = np.array([[]])
     for s in d.stances:
 
@@ -146,6 +147,7 @@ def train_for_agree_disagree(d):
 
             #find the cosine similarity between this body and headline
             cos = cosine_sim(actualBody, headline)
+            feature_vector=feature_vector.reshape(-1, 1)
             feature_vector=np.append(feature_vector,[[cos]])
 
             #lets call agrees as label 1 and disagrees as label 2
@@ -163,14 +165,6 @@ def train_for_agree_disagree(d):
 
 
 
-            # create avector for cosine similarity for all these documents
-
-            # # and add it ot the vector along with its stance
-
-
-            # we dont care about prediction any more. We are training on training data, to teach our svm
-            # the two different classes known as agree and disagree.
-
 
     print("no_of_unrelated is:" + str(no_of_unrelated))
     print("number of rows in feature_vector is:"+str(len(feature_vector)))
@@ -183,51 +177,71 @@ def train_for_agree_disagree(d):
     return clf
 
 def test_using_svm_calc_precision(test_data, svm):
-    total_pairs=0
-    TP=FP=FN=TN=0
+
+    total_pairs=1
+    TP=FP=FN=TN=1
     goldlabel=""
-    correct_prediction=0
+    correct_prediction=1
+    pred_label=""
+
+
+
+    pred_label = ""
+    # lets call agrees as label 1 and disagrees as label 2
+    value2 =2.0
+    value1 =1.0
+    value0 =0.0
+
+
 
     for s in test_data.stances:
+
+
         total_pairs=total_pairs+1
         #for each headline, get the actual headline text
-        #print(s['Headline'])
+
         headline = s['Headline']
-        #headline="a little bird"
+
 
 
         #get the corresponding body id for this headline
         bodyid  = s['Body ID']
         stance= s['Stance']
 
-        #using that body id, retrieve teh corresponding article
-        actualBody=test_data.articles[bodyid]
-        cos=cosine_sim(actualBody,headline)
-
-        pred_class=svm.predict([cos])
-
-        # lets call agrees as label 1 and disagrees as label 2
-        if (pred_class == "1"):
-            pred_label = "agree"
-        else:
-            if (pred_class == "1" ):
-                pred_label = "disagree"
+        if(stance!="unrelated"):
+            #using that body id, retrieve teh corresponding article
+            actualBody=test_data.articles[bodyid]
+            cos=cosine_sim(actualBody,headline)
 
 
+            cos_array=   [cos]
+            temp = np.array(cos_array).reshape((1, -1))
+            np.set_printoptions(precision=3)
+            pred_class=svm.predict(temp)
+
+
+
+
+            if (pred_class[0] == value1 ):
+                pred_label = "agree"
             else:
-                if (pred_class == "2"):
-                    pred_label = "discuss"
+                if (pred_class[0] == value0 ):
+                    pred_label = "disagree"
+                else:
+                    if (pred_class[0] == value2 ):
+                        pred_label = "discuss"
+                        print("PREDICTEd label IS:"+pred_label)
 
-        goldlabel=stance
+            goldlabel=stance
+            print("predicted:"+pred_label+"gold:"+goldlabel)
 
+            if(pred_label==goldlabel):
+                TP = TP + 1
+                correct_prediction=correct_prediction+1
+            else:
+                FP = FP + 1
 
-        if(pred_label==goldlabel):
-            TP = TP + 1
-            correct_prediction=correct_prediction+1
-        else:
-            FP = FP + 1
-
-
+    #end of for loop only 1 tab required
 
     print("TP:"+str(TP))
     print("FP:"+str(FP))
