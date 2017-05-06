@@ -175,7 +175,7 @@ def train_for_agree_disagree(d):
     print("done training svm:" )
     return clf
 
-def train_for_agree_disagree_with_tf_idf(d):
+def train_for_agree_disagree_with_tf_idf(data):
     vectorizer = CountVectorizer(min_df=1)
     corpus = [
          'This is the first document.',
@@ -183,14 +183,14 @@ def train_for_agree_disagree_with_tf_idf(d):
           'And the third third third one.',
            'Is this the first document?',
         ]
-    X = tokenize(corpus)
+    X = tokenize(data.stances)
     print(X)
     sys.exit(1)
     no_of_unrelated=0
     feature_vector= np.array([[]])
     feature_vector=feature_vector.reshape(-1, 1)
     labels = np.array([[]])
-    for s in d.stances:
+    for s in data.stances:
 
         #for each headline, get the actual headline text
         headline = s['Headline']
@@ -209,7 +209,7 @@ def train_for_agree_disagree_with_tf_idf(d):
             #i.e this is the group which has agree,disagree or discuss
 
             # using that body id, retrieve teh corresponding article
-            actualBody = d.articles[bodyid]
+            actualBody = data.articles[bodyid]
 
             #find the cosine similarity between this body and headline
             cos = cosine_sim(actualBody, headline)
@@ -349,7 +349,7 @@ def test_using_svm_calc_precision(test_data, my_svm):
 
     #end of for loop only 1 tab required
 
-    classification_report(test_data.stances, pred_label)
+    classification_report(list_gold_label, pred_label)
 
     # print("TP:"+str(TP))
     # print("FP:"+str(FP))

@@ -24,26 +24,26 @@ if __name__ == "__main__":
     #
     #
     # #Do training for 2 classes related-unrelated
-    # cwd = os.getcwd()
-    # training_data = utils.read_data.load_training_DataSet(cwd)
-    #
-    # print("number of stances in d is" + str(len(training_data.stances)))
-    # print("number of bodies in d is" + str(len(training_data.articles)))
-    # print("done reading documents, going to tokenize this document")
-    #
-    #
-    # unrelated_threshold= calculateCosSimilarity(training_data)
-    # #unrelated_threshold=0.399
-    # # calculate_precision(training_data)
-    #
-    # print ("done with training of documents.starting testing")
-    #
-    # ### start of testing phase for 2 classes- related unrelated
-    # cwd = os.getcwd()
+    # # cwd = os.getcwd()
+    #  training_data = utils.read_data.load_training_DataSet(cwd)
+    # #
+    # # print("number of stances in d is" + str(len(training_data.stances)))
+    # # print("number of bodies in d is" + str(len(training_data.articles)))
+    # # print("done reading documents, going to tokenize this document")
+    # #
+    # #
+    #  unrelated_threshold= calculateCosSimilarity(training_data)
+    # # #unrelated_threshold=0.399
+    # # # calculate_precision(training_data)
+    # #
+    # # print ("done with training of documents.starting testing")
+    # #
+    # # ### start of testing phase for 2 classes- related unrelated
+    # # cwd = os.getcwd()
     # testing_data = utils.read_data.load_testing_DataSet(cwd)
-    # print ("done loading testing data. going to caculate accuracy")
-    # accuracy = calculate_precision(testing_data, unrelated_threshold)
-    # print ("accuracy:"+str(accuracy))
+    # # print ("done loading testing data. going to caculate accuracy")
+    # # accuracy = calculate_precision(testing_data, unrelated_threshold)
+    # # print ("accuracy:"+str(accuracy))
 
     #######################end of classification for  2 classes related-unrelated
 
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     print("done reading documents, going to train on this document")
 
     svm_trained = train_for_agree_disagree(training_data)
-   # svm_trained=train_for_agree_disagree_with_tf_idf(training_data)
+    svm_trained=train_for_agree_disagree_with_tf_idf(training_data)
     # unrelated_threshold=0.399
     # calculate_precision(training_data)
 
