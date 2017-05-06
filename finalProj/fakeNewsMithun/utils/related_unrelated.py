@@ -231,7 +231,8 @@ def train_for_agree_disagree_with_tf_idf(data):
     print("size of entire_corpus is:" + str(len(entire_corpus)))
     vectorizer = CountVectorizer(min_df=1)
     X = tokenize(entire_corpus)
-    print(X)
+    print("size of tokenized vector is:" + str(len(X)))
+
     sys.exit(1)
     print("number of rows in feature_vector is:"+str(len(feature_vector)))
     print("number of rows in labels is:" + str(len(labels)))
@@ -360,7 +361,7 @@ def test_using_svm_calc_precision(test_data, my_svm):
     print("first entry in list_gold_label is "+ str((list_gold_label[0])))
     print("first entry in pred_label is "+ str((list_pred_label[0])))
     print(classification_report(list_gold_label, list_pred_label))
-    print(accuracy_score(list_gold_label, list_pred_label))
+    print("accuracy:"+accuracy_score(list_gold_label, list_pred_label))
     #report_score(list_gold_label,list_pred_label)
     # print("TP:"+str(TP))
     # print("FP:"+str(FP))
