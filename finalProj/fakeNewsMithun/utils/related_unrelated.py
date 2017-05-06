@@ -5,8 +5,10 @@ import numpy as np
 from sklearn import svm
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import classification_report
+from sklearn.metrics import accuracy_score
 import sys
 from utils.process_input_data import tokenize
+from utils.score import report_score
 
 def calculateCosSimilarity(d):
     #writeToOutputFile("\n","cosSimScore_Stance")
@@ -176,16 +178,7 @@ def train_for_agree_disagree(d):
     return clf
 
 def train_for_agree_disagree_with_tf_idf(data):
-    vectorizer = CountVectorizer(min_df=1)
-    corpus = [
-         'This is the first document.',
-         'This is the second second document.',
-          'And the third third third one.',
-           'Is this the first document?',
-        ]
-    X = tokenize(data.stances)
-    print(X)
-    sys.exit(1)
+    entire_corpus=['dummy']
     no_of_unrelated=0
     feature_vector= np.array([[]])
     feature_vector=feature_vector.reshape(-1, 1)
@@ -194,12 +187,15 @@ def train_for_agree_disagree_with_tf_idf(data):
 
         #for each headline, get the actual headline text
         headline = s['Headline']
+        entire_corpus.append(headline)
         #headline="a little bird"
 
 
         #get the corresponding body id for this headline
         bodyid  = s['Body ID']
         stance= s['Stance']
+        actualBody=data.articles[bodyid]
+        entire_corpus.append(actualBody)
 
 
         #WE are looking for stances which are only unrelated
@@ -231,7 +227,12 @@ def train_for_agree_disagree_with_tf_idf(data):
 
 
 
-    print("no_of_unrelated is:" + str(no_of_unrelated))
+
+    print("size of entire_corpus is:" + str(len(entire_corpus)))
+    vectorizer = CountVectorizer(min_df=1)
+    X = tokenize(entire_corpus)
+    print(X)
+    sys.exit(1)
     print("number of rows in feature_vector is:"+str(len(feature_vector)))
     print("number of rows in labels is:" + str(len(labels)))
     #feed the vectors to an an svm, with labels.
@@ -251,7 +252,7 @@ def test_using_svm_calc_precision(test_data, my_svm):
     pred_label=""
 
     list_pred_label=[]
-    list_gold_label = []
+    list_gold_label=[]
     pred_label = ""
     # lets call agrees as label 1 and disagrees as label 2
     value2 =2.0
@@ -288,13 +289,14 @@ def test_using_svm_calc_precision(test_data, my_svm):
             pred_class=my_svm.predict(temp)
            # print("predicted class is:"+ str(pred_class[0]))
 
-            list_pred_label.append(pred_class)
+
+            pred_class_num=0
             gold_label_num=0
             if(stance=="agree"):
-                gold_label_num=0
+                gold_label_num=1
             else:
                 if(stance=="disagree"):
-                    gold_label_num=1;
+                    gold_label_num=0;
                 else:
                     if(stance=="discuss"):
                         gold_label_num=2;
@@ -304,15 +306,19 @@ def test_using_svm_calc_precision(test_data, my_svm):
 
             if (pred_class[0] == value1 ):
                 pred_label = "agree"
+                pred_class_num=1
             else:
                 if (pred_class[0] == value0 ):
                     pred_label = "disagree"
+                    pred_class_num=0
                 else:
                     if (pred_class[0] == value2 ):
                         pred_label = "discuss"
+                        pred_class_num=2
 
 
             goldlabel=stance
+            list_pred_label.append(pred_class_num)
            # print("predicted:"+pred_label+"gold:"+goldlabel)
 
 
@@ -349,8 +355,13 @@ def test_using_svm_calc_precision(test_data, my_svm):
 
     #end of for loop only 1 tab required
 
-    classification_report(list_gold_label, pred_label)
-
+    print("number of lines in list_gold_label is "+ str(len(list_gold_label)))
+    print("number of lines in pred_label is "+ str(len(list_pred_label)))
+    print("first entry in list_gold_label is "+ str((list_gold_label[0])))
+    print("first entry in pred_label is "+ str((list_pred_label[0])))
+    print(classification_report(list_gold_label, list_pred_label))
+    print(accuracy_score(list_gold_label, list_pred_label))
+    #report_score(list_gold_label,list_pred_label)
     # print("TP:"+str(TP))
     # print("FP:"+str(FP))
     #
@@ -362,7 +373,7 @@ def test_using_svm_calc_precision(test_data, my_svm):
     # print("precision:"+str(precision))
     # print("recall:"+str(recall))
     #
-    # accuracy=correct_prediction/total_pairs
+   # accuracy=correct_prediction/total_pairs
     # print("accuracy:" + str(accuracy))
-    return accuracy
+    return accuracy_score
 

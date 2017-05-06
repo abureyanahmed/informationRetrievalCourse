@@ -8,6 +8,8 @@ from utils.related_unrelated import test_using_svm_calc_precision
 from utils.related_unrelated import train_for_agree_disagree
 from utils.related_unrelated import train_for_agree_disagree_with_tf_idf
 from utils.related_unrelated import calculateCosSimilarity
+from utils.score import report_score
+
 #this is just the first file which has main function and strings together various sub modules.
 
 if __name__ == "__main__":
@@ -57,7 +59,7 @@ if __name__ == "__main__":
     print("done reading documents, going to train on this document")
 
     svm_trained = train_for_agree_disagree(training_data)
-    svm_trained=train_for_agree_disagree_with_tf_idf(training_data)
+    #svm_trained=train_for_agree_disagree_with_tf_idf(training_data)
     # unrelated_threshold=0.399
     # calculate_precision(training_data)
 
@@ -67,8 +69,9 @@ if __name__ == "__main__":
 
 
     testing_data = utils.read_data.load_testing_DataSet(cwd)
-    print ("done loading testing data. going to test using the trained svm ")
+    print ("done loading testing data. going to test agree-disagree using the trained svm ")
     accuracy = test_using_svm_calc_precision(testing_data, svm_trained)
     print ("accuracy:"+str(accuracy))
+
 
 
