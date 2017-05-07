@@ -72,7 +72,7 @@ if __name__ == "__main__":
     print ("total number of rows in related matrix is:"+str(numrows))
     print ("total number of numcols in related matrix is:"+str(numcols))
 
-    sys.exit(1)
+
     ####################### Start of phase 2: classification for 3 classes :agree, disagree, discuss
 
     # start training for 2 classes agree-disagree within related
@@ -91,7 +91,7 @@ if __name__ == "__main__":
 
     #this training has to be done on the gold training data split based on stance= related
     svm_trained=phase2_training_tf(related_data_gold)
-
+    sys.exit(1)
     # calculate_precision(training_data)
 
 

@@ -327,18 +327,19 @@ def train_for_agree_disagree(d):
     return clf
 
 def phase2_training_tf(data):
+    print("inside phase2_training_tf")
     entire_corpus=[]
 
     #no_of_unrelated=0
-    feature_vector= np.array([[]])
+    #feature_vector= np.array([[]])
     # feature_vector=feature_vector.reshape(-1, 1)
     # labels = np.array([[]])
 
     #just try creating a tf vector for one headline body combination.
     # [headline1, body1, stance1]
     for tuple in data:
-        print(str(tuple))
-        sys.exit(1)
+        #print(str(tuple))
+
         headline_body_str=""
         headline = tuple[0]
         headline_body_str=headline_body_str+headline
@@ -388,9 +389,10 @@ def phase2_training_tf(data):
 
 
     print("size of entire_corpus is:" + str(len(entire_corpus)))
+    print("going to vectorize teh related corpus :" )
     vectorizer = CountVectorizer(min_df=1)
     X = tokenize(entire_corpus)
-    #print(X)
+    print(X)
     print("number of rows in entire_corpus is:" + str(X.shape))
 
     sys.exit(1)
