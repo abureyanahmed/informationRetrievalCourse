@@ -100,11 +100,11 @@ if __name__ == "__main__":
     print ("done loading testing data. going to test agree-disagree using the trained svm ")
 
     #test accuracy on the same data of 6000 related tuples
-    list1, list2  = test_using_svm(related_data_gold, svm_trained_phase2)
+    actual, predicted  = test_using_svm(related_data_gold, svm_trained_phase2)
 
     print ("done classifying testing data for phase 2. going to find score ")
-    actual = [0,0,0,0,1,1,0,3,3]
-    predicted = [0,0,0,0,1,1,2,3,3]
+    #actual = [0,0,0,0,1,1,0,3,3]
+    #predicted = [0,0,0,0,1,1,2,3,3]
 
 
     LABELS = ['agree', 'disagree', 'discuss', 'unrelated']
@@ -112,11 +112,11 @@ if __name__ == "__main__":
     RELATED = LABELS[0:3]
 
     final_score=report_score([LABELS[e] for e in actual],[LABELS[e] for e in predicted])
-    print("final_score is:"+final_score)
+    #print("final_score is:"+str(final_score))
 
     ##print ("accuracy:"+str(accuracy))
 
-    sys.exit(1)
+   # sys.exit(1)
 
 
 

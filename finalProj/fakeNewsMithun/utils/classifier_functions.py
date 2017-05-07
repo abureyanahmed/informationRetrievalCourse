@@ -387,14 +387,15 @@ def phase2_training_tf(data):
 
 def test_using_svm(test_data, svm_phase2):
 
-    list_pred_label=[]
+
     list_gold_label=[]
     entire_corpus=[]
 
-    # lets call agrees as label 1 and disagrees as label 2
-    value2 =2.0
-    value1 =1.0
-    value0 =0.0
+
+
+    value2_int =2
+    value1_int =1
+    value0_int =0
 
 
 
@@ -423,13 +424,13 @@ def test_using_svm(test_data, svm_phase2):
         #agree=1
         #discuss=2
         if (stance == "disagree"):
-            gold_int.append(value0)
+            gold_int.append(value0_int)
         else:
             if (stance == "agree"):
-                gold_int.append(value1)
+                gold_int.append(value1_int)
             else:
                 if(stance=="discuss"):
-                    gold_int.append(value2)
+                    gold_int.append(value2_int)
         #
         gold_predicted_combined.append(gold_int)
         #
@@ -480,6 +481,27 @@ def test_using_svm(test_data, svm_phase2):
     #print(pred_class)
 
 
+    #convert the predicted label to a regular list from numpy matrix
+
+    pred_label_int=[]
+    value2_float =2.0
+    value1_float =1.0
+    value0_float =0.0
+    for x in np.nditer(pred_class):
+        if(x==value2_float):
+            pred_label_int.append(2)
+        else:
+            if(x==value1_float):
+                pred_label_int.append(1)
+            else:
+                if(x==value0_float):
+                    pred_label_int.append(0)
+
+
+
+
+    print("total number of items in pred_label_int is:"+str(len(pred_label_int)))
+
 
 
     #print("going to find number of rows in gold_int:" )
@@ -490,8 +512,9 @@ def test_using_svm(test_data, svm_phase2):
     #print(gold_int)
 
 
-    return gold_int, pred_class
-    
+    return gold_int, pred_label_int
+    #return gold_int,gold_int
+
 
            # print("predicted:"+pred_label+"gold:"+goldlabel)
 
