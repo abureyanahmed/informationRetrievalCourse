@@ -20,56 +20,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="classifier_functions.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="255" column="17" selection-start-line="255" selection-start-column="17" selection-end-line="255" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+                <element signature="e#2108#3650#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="initializer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/initializer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="related_unrelated.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/utils/related_unrelated.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="248" column="5" selection-start-line="248" selection-start-column="5" selection-end-line="248" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-                <element signature="e#2069#3611#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="initializer_svm_tfidf.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/initializer_svm_tfidf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="61" column="32" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="score.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/score.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="process_input_data.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/process_input_data.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+            <state relative-caret-position="187">
+              <caret line="68" column="35" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -80,18 +48,18 @@
       <file leaf-file-name="read_data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/read_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="20">
               <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train_bodies_original.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/train_bodies_original.csv">
+      <file leaf-file-name="score.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/score.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="150" column="276" selection-start-line="150" selection-start-column="276" selection-end-line="150" selection-end-column="276" />
+            <state relative-caret-position="46">
+              <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -124,8 +92,10 @@
         <option value="$PROJECT_DIR$/utils/process_input_data.py" />
         <option value="$PROJECT_DIR$/initalizer.py" />
         <option value="$PROJECT_DIR$/initalizer_svm_tfidf.py" />
-        <option value="$PROJECT_DIR$/initializer.py" />
+        <option value="$PROJECT_DIR$/initializer_svm_tfidf.py" />
         <option value="$PROJECT_DIR$/utils/related_unrelated.py" />
+        <option value="$PROJECT_DIR$/initializer.py" />
+        <option value="$PROJECT_DIR$/utils/classifier_functions.py" />
       </list>
     </option>
   </component>
@@ -233,7 +203,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$USER_HOME$/fall2016/clscraper" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="pyconsole" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
@@ -452,21 +422,21 @@
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24864213" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3993994" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3993994" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
@@ -485,68 +455,58 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/related_unrelated.py</url>
-          <line>104</line>
+          <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
+          <line>105</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/related_unrelated.py</url>
-          <line>105</line>
+          <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
+          <line>106</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/related_unrelated.py</url>
-          <line>111</line>
+          <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
+          <line>112</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/related_unrelated.py</url>
-          <line>112</line>
+          <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
+          <line>113</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/related_unrelated.py</url>
-          <line>170</line>
+          <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
+          <line>319</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/related_unrelated.py</url>
-          <line>301</line>
+          <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
+          <line>448</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/initializer.py</url>
-          <line>72</line>
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/related_unrelated.py</url>
-          <line>279</line>
+          <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
+          <line>426</line>
           <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/related_unrelated.py</url>
-          <line>285</line>
+          <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
+          <line>432</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/related_unrelated.py</url>
-          <line>340</line>
+          <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
+          <line>487</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
-        <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/initializer.py</url>
-          <line>66</line>
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/related_unrelated.py</url>
-          <line>377</line>
+          <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
+          <line>524</line>
           <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/related_unrelated.py</url>
-          <line>34</line>
+          <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
+          <line>35</line>
           <option name="timeStamp" value="71" />
         </line-breakpoint>
       </breakpoints>
@@ -586,13 +546,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/related_unrelated.py">
+    <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#2069#3611#0" expanded="false" />
+            <element signature="e#2108#3650#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -703,13 +663,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/related_unrelated.py">
+    <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#2069#3611#0" expanded="false" />
+            <element signature="e#2108#3650#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -734,13 +694,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/related_unrelated.py">
+    <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#2069#3611#0" expanded="false" />
+            <element signature="e#2108#3650#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -788,13 +748,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/related_unrelated.py">
+    <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#2069#3611#0" expanded="false" />
+            <element signature="e#2108#3650#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -847,13 +807,6 @@
       </provider>
     </entry>
     <entry file="file:///usr/local/lib/python2.7/dist-packages/sklearn/feature_extraction/text.py" />
-    <entry file="file://$PROJECT_DIR$/data/train_stances_csc483583.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="23" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/csv.py" />
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/utils/validation.py" />
     <entry file="file://$PROJECT_DIR$/utils/fileWriter.py">
@@ -871,9 +824,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/train_bodies_original.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="150" column="276" selection-start-line="150" selection-start-column="247" selection-end-line="150" selection-end-column="340" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/read_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/initializer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/train_stances_csc483583.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="23" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/utils/process_input_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="408">
           <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
@@ -883,53 +870,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/score.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+        <state relative-caret-position="46">
+          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/initializer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
+        <state relative-caret-position="187">
+          <caret line="68" column="35" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/initializer_svm_tfidf.py">
+    <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="61" column="32" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/train_bodies_original.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="150" column="276" selection-start-line="150" selection-start-column="276" selection-end-line="150" selection-end-column="276" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/read_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/related_unrelated.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="248" column="5" selection-start-line="248" selection-start-column="5" selection-end-line="248" selection-end-column="5" />
+        <state relative-caret-position="468">
+          <caret line="255" column="17" selection-start-line="255" selection-start-column="17" selection-end-line="255" selection-end-column="17" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#2069#3611#0" expanded="false" />
+            <element signature="e#2108#3650#0" expanded="false" />
           </folding>
         </state>
       </provider>
