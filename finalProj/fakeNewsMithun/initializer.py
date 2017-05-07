@@ -13,6 +13,10 @@ from utils.classifier_functions import split_phase1_predicted_data__related_unre
 from utils.classifier_functions import split_phase1_gold_data__related_unrelated
 from utils.classifier_functions import test_phase2_using_svm
 from utils.classifier_functions import predict_data_phase1
+from utils.classifier_functions import convert_data_to_headline_body_stance_format
+
+
+
 from sklearn.feature_extraction.text import CountVectorizer
 from utils.score import report_score
 
@@ -128,15 +132,20 @@ if __name__ == "__main__":
         print ("done with training of documents for phase1. going to start testing for phase 1")
         testing_data = utils.read_data.load_testing_DataSet(cwd)
         # calculate_precision(training_data)
-        print("number of lines in testing data is:"+str(len(testing_data )))
-        sys.exit(1)
+        #print("number of lines in testing data is:"+str(len(testing_data. )))
+
         #testing_data = utils.read_data.load_testing_DataSet(cwd)
-        print ("done loading testing data. going to test agree-disagree using the trained svm ")
+        testing_data_converted=convert_data_to_headline_body_stance_format(testing_data)
+
+        print("number of rows in testing data after conversion is:"+str(len(testing_data_converted )))
+        print("number of columns in testing data after conversion is:"+str(len(testing_data_converted[0])))
+        print ("done loading testing data. going to test agree-disagree-discuss using the trained svm ")
+
 
         #test accuracy on the same data of 6000 related tuples
         #actual, predicted  = test_using_svm(related_data_gold, svm_trained_phase2)
 
-        actual, predicted  = test_phase2_using_svm(testing_data, svm_trained_phase2, vectorizer_phase2_trained)
+        actual, predicted  = test_phase2_using_svm(testing_data_converted, svm_trained_phase2, vectorizer_phase2_trained)
 
         print ("done classifying testing data for phase 2. going to find score ")
         #actual = [0,0,0,0,1,1,0,3,3]
@@ -147,3 +156,4 @@ if __name__ == "__main__":
 
 
 
+        sys.exit(1)

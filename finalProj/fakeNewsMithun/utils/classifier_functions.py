@@ -266,6 +266,46 @@ def split_phase1_gold_data__related_unrelated(data):
 
     return related_matrix
 
+def convert_data_to_headline_body_stance_format(data):
+    #create a datasstructure of [headline, body, label]- matrix/2d array of strings.
+    #Eg:
+    #this guy related_rows will contain a list of headline_body_label_post_phase1_rows=[]
+    #each headline_body_label_post_phase1_rows=[] will be an array of strings
+    # [headline1, body1, stance1]
+    # [headline2, body2, stance2]
+    # [headline3, body3, stance3]
+
+    related_matrix=[]
+
+    for s in data.stances:
+        #total_pairs=total_pairs+1
+        #for each headline, get the actual headline text
+        #print(s['Headline'])
+        headline = s['Headline']
+        #headline="a little bird"
+
+        #get the corresponding body id for this headline
+        bodyid  = s['Body ID']
+        stance= s['Stance']
+        #using that body id, retrieve the corresponding article
+        actualBody=data.articles[bodyid]
+
+
+        #separate out teh 'related data' into another data set based on the predicted value
+        #list of strings
+        #print(stance)
+
+        headline_body_label=[]
+        headline_body_label.append(headline)
+        headline_body_label.append(actualBody)
+        headline_body_label.append(stance)
+        #append this headline_body_label guy to the big matrix
+        related_matrix.append(headline_body_label)
+
+
+
+    return related_matrix
+
 # This is from your training data. Now we will train only on the "related" ones
 #  use this training data, to calculate cos similarity of each tuple and its gold label/stance
 #. Feed that to an svm.
@@ -474,7 +514,7 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
     print("number of rows in vectorized entire_corpus is:" + str(tf_vector.shape))
     print("going to feed this vectorized tf to a classifier:" )
 
-    sys.exit(1)
+
 
     print("going to predict class")
     #give that vector to your svm for prediction.
