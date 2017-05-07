@@ -26,8 +26,8 @@ def cosine_sim(text1, text2):
     tfidf = vectorizer.fit_transform([text1, text2])
     return ((tfidf * tfidf.T).A)[0,1]
 
-def tokenize(document):
-    vectorizer = CountVectorizer(min_df=1)
+def tokenize(document,vectorizer_phase2):
+    #vectorizer = CountVectorizer(min_df=1)
 
     X = vectorizer.fit_transform(document)
 

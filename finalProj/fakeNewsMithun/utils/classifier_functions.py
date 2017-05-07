@@ -124,15 +124,15 @@ def predict_data_phase1(d, unrelated_threshold):
     correct_prediction=0
 
     #note here we say related=0 and unrelated=1
-
+    gold_int= []
+    predicted_int= []
     gold_predicted_combined=[[],[]]
     # actual = [0,0,0,0,1,1,0,3,3]
     # predicted = [0,0,0,0,1,1,2,3,3]
 
     for s in d.stances:
         total_pairs=total_pairs+1
-        gold_int= []
-        predicted_int= []
+
         #for each headline, get the actual headline text
         #print(s['Headline'])
         headline = s['Headline']
@@ -148,24 +148,24 @@ def predict_data_phase1(d, unrelated_threshold):
         cos=cosine_sim(actualBody,headline)
         if(cos < unrelated_threshold ):
             pred_label="unrelated"
-            predicted_int.append(1)
+            predicted_int=predicted_int.append(1)
         else:
             pred_label="related"
-            predicted_int.append(0)
+            predicted_int=predicted_int.append(0)
 
         #rename gold label if its either of agree,disagree or discuss
-        if(stance!="unrelated"):
-            goldlabel="related"
-            gold_int.append(0)
-        else:
+        if(stance=="unrelated"):
             goldlabel="unrelated"
-            gold_int.append(1)
+            gold_int= gold_int.append(1)
+        else:
+            goldlabel="related"
+            gold_int=gold_int.append(0)
 
-        gold_predicted_combined.append(gold_int)
-        gold_predicted_combined.append(predicted_int)
+        #gold_predicted_combined.append(gold_int)
+        #gold_predicted_combined.append(predicted_int)
 
 
-    return gold_predicted_combined
+    return gold_int,predicted_int
 
 # def split_phase1_predicted_data__related_unrelated
 # This is a useless function. because. earlier i thought i had to train my phase2 bsed on predictions from phase 1.
@@ -326,7 +326,7 @@ def train_for_agree_disagree(d):
     print("done training svm:" )
     return clf
 
-def phase2_training_tf(data):
+def phase2_training_tf(data,vectorizer_phase2):
     print("inside phase2_training_tf")
     entire_corpus=[]
     labels = np.array([[]])
@@ -368,12 +368,12 @@ def phase2_training_tf(data):
 
     print("size of entire_corpus is:" + str(len(entire_corpus)))
     print("going to vectorize teh related corpus :" )
-    vectorizer = CountVectorizer(min_df=1)
-    tf_vector = tokenize(entire_corpus)
+    #tokenize()
+    tf_vector = vectorizer_phase2.fit_transform(entire_corpus)
+     #X = vectorizer.fit_transform(document)
     #print(tf_vector)
     print("number of rows in entire_corpus is:" + str(tf_vector.shape))
     print("going to feed this vectorized tf to a classifier:" )
-
 
 
 
@@ -382,10 +382,10 @@ def phase2_training_tf(data):
     #feature_vector=feature_vector.reshape(-1, 1)
     clf.fit(tf_vector, labels.ravel())
     print("done training svm:" )
-    return clf
+    return clf,vectorizer_phase2
 
 
-def test_using_svm(test_data, svm_phase2):
+def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
 
     list_gold_label=[]
@@ -466,12 +466,15 @@ def test_using_svm(test_data, svm_phase2):
 
 
     print("going to vectorize headline_body_str :" )
-    vectorizer = CountVectorizer(min_df=1)
+    #vectorizer = CountVectorizer(min_df=1)
 
-    tf_vector = tokenize(entire_corpus)
+    #tf_vector = tokenize(entire_corpus)
+    tf_vector =  vectorizer_phase2_trained.transform(entire_corpus)
     #print(tf_vector)
-    print("number of rows in entire_corpus is:" + str(tf_vector.shape))
+    print("number of rows in vectorized entire_corpus is:" + str(tf_vector.shape))
     print("going to feed this vectorized tf to a classifier:" )
+
+    sys.exit(1)
 
     print("going to predict class")
     #give that vector to your svm for prediction.

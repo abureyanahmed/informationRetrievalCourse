@@ -23,8 +23,8 @@
       <file leaf-file-name="classifier_functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="695">
-              <caret line="514" column="35" selection-start-line="514" selection-start-column="21" selection-end-line="514" selection-end-column="35" />
+            <state relative-caret-position="780">
+              <caret line="459" column="9" selection-start-line="459" selection-start-column="9" selection-end-line="459" selection-end-column="9" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
                 <element signature="e#2108#3650#0" expanded="false" />
@@ -36,8 +36,8 @@
       <file leaf-file-name="initializer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/initializer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="102" column="36" selection-start-line="102" selection-start-column="36" selection-end-line="102" selection-end-column="36" />
+            <state relative-caret-position="760">
+              <caret line="137" column="46" selection-start-line="137" selection-start-column="46" selection-end-line="137" selection-end-column="46" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -60,6 +60,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="522">
               <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="process_input_data.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/process_input_data.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -89,11 +99,11 @@
         <option value="$PROJECT_DIR$/utils/pip.py" />
         <option value="$PROJECT_DIR$/utils/fileWriter.py" />
         <option value="$PROJECT_DIR$/utils/read_data.py" />
-        <option value="$PROJECT_DIR$/utils/process_input_data.py" />
         <option value="$PROJECT_DIR$/initalizer.py" />
         <option value="$PROJECT_DIR$/initalizer_svm_tfidf.py" />
         <option value="$PROJECT_DIR$/initializer_svm_tfidf.py" />
         <option value="$PROJECT_DIR$/utils/related_unrelated.py" />
+        <option value="$PROJECT_DIR$/utils/process_input_data.py" />
         <option value="$PROJECT_DIR$/initializer.py" />
         <option value="$PROJECT_DIR$/utils/classifier_functions.py" />
       </list>
@@ -486,12 +496,12 @@
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>521</line>
+          <line>524</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>558</line>
+          <line>561</line>
           <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -513,7 +523,7 @@
         <state relative-caret-position="408">
           <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -566,7 +576,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -600,7 +610,7 @@
         <state relative-caret-position="225">
           <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -715,7 +725,7 @@
         <state relative-caret-position="255">
           <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -768,7 +778,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -811,6 +821,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
           <caret line="1340" column="4" selection-start-line="1340" selection-start-column="4" selection-end-line="1340" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -848,16 +859,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/process_input_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/score.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
@@ -866,10 +867,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/process_input_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="695">
-          <caret line="514" column="35" selection-start-line="514" selection-start-column="21" selection-end-line="514" selection-end-column="35" />
+        <state relative-caret-position="780">
+          <caret line="459" column="9" selection-start-line="459" selection-start-column="9" selection-end-line="459" selection-end-column="9" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
             <element signature="e#2108#3650#0" expanded="false" />
@@ -879,8 +888,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/initializer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="102" column="36" selection-start-line="102" selection-start-column="36" selection-end-line="102" selection-end-column="36" />
+        <state relative-caret-position="760">
+          <caret line="137" column="46" selection-start-line="137" selection-start-column="46" selection-end-line="137" selection-end-column="46" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
