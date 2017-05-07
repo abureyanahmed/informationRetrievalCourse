@@ -337,6 +337,7 @@ def phase2_training_tf(data):
 
     #just try creating a tf vector for one headline body combination.
     # [headline1, body1, stance1]
+
     for tuple in data:
         #print(str(tuple))
 
@@ -384,17 +385,12 @@ def phase2_training_tf(data):
     return clf
 
 
-def test_using_svm_calc_precision(test_data, my_svm):
-
-    total_pairs=1
-    TP=FP=FN=TN=1
-    goldlabel=""
-    correct_prediction=1
-    pred_label=""
+def test_using_svm(test_data, svm_phase2):
 
     list_pred_label=[]
     list_gold_label=[]
-    pred_label = ""
+    entire_corpus=[]
+
     # lets call agrees as label 1 and disagrees as label 2
     value2 =2.0
     value1 =1.0
@@ -402,64 +398,101 @@ def test_using_svm_calc_precision(test_data, my_svm):
 
 
 
-    for s in test_data.stances:
+
+    gold_predicted_combined=[[],[]]
 
 
-        total_pairs=total_pairs+1
-        #for each headline, get the actual headline text
+    gold_int=[]
+    for tuple in test_data:
+        # headline = tuple[0]
+        # actualBody=tuple[1]
+        stance= tuple[2]
 
-        headline = s['Headline']
+        # predicted_int=[]
+        # entire_corpus.append(headline_body_str)
+        headline_body_str=""
+        headline = tuple[0]
+        headline_body_str=headline_body_str+headline
+        #bodyid  = tuple['Body ID']
+        actualBody=tuple[1]
+        headline_body_str=headline_body_str+actualBody
+        entire_corpus.append(headline_body_str)
 
-
-
-        #get the corresponding body id for this headline
-        bodyid  = s['Body ID']
-        #print("body id is:"+ str(bodyid))
-        stance= s['Stance']
-
-        if(stance!="unrelated"):
-
-            #using that body id, retrieve teh corresponding article
-            actualBody=test_data.articles[bodyid]
-            cos=cosine_sim(actualBody,headline)
-
-            #print("cosine similarity of this tuple is:"+str(cos))
-            cos_array=   [cos]
-            temp = np.array(cos_array).reshape((1, -1))
-            np.set_printoptions(precision=3)
-            pred_class=my_svm.predict(temp)
-           # print("predicted class is:"+ str(pred_class[0]))
-
-
-            pred_class_num=0
-            gold_label_num=0
-            if(stance=="agree"):
-                gold_label_num=1
+        #based on what the gold stance is, attach either 0,1,2 to gold label list
+        #disagree=0
+        #agree=1
+        #discuss=2
+        if (stance == "disagree"):
+            gold_int.append(value0)
+        else:
+            if (stance == "agree"):
+                gold_int.append(value1)
             else:
-                if(stance=="disagree"):
-                    gold_label_num=0;
-                else:
-                    if(stance=="discuss"):
-                        gold_label_num=2;
+                if(stance=="discuss"):
+                    gold_int.append(value2)
+        #
+        gold_predicted_combined.append(gold_int)
+        #
+        # headline_body_str=""
+        # headline_body_str=headline_body_str+headline
+        # headline_body_str=headline_body_str+actualBody
+        #
+        # print("going to vectorize headline_body_str :" )
+        # vectorizer = CountVectorizer(min_df=1)
+        # entire_corpus.append(headline_body_str)
+        # tf_vector = tokenize(entire_corpus)
+        # print(tf_vector)
+        #
+        # #give that vector to your svm for prediction.
+        # pred_class=svm_phase2.predict(tf_vector)
+        #
+        # print("predicted class is:"+ str(pred_class[0]))
+        #
+        #
+        #
+        # if (pred_class[0] == value1 ):
+        #     predicted_int.append(1)
+        # else:
+        #     if (pred_class[0] == value0 ):
+        #         predicted_int.append(0)
+        #     else:
+        #         if (pred_class[0] == value2 ):
+        #             predicted_int.append(2)
+        # gold_predicted_combined.append(predicted_int)
 
-            list_gold_label.append(gold_label_num)
 
 
-            if (pred_class[0] == value1 ):
-                pred_label = "agree"
-                pred_class_num=1
-            else:
-                if (pred_class[0] == value0 ):
-                    pred_label = "disagree"
-                    pred_class_num=0
-                else:
-                    if (pred_class[0] == value2 ):
-                        pred_label = "discuss"
-                        pred_class_num=2
 
 
-            goldlabel=stance
-            list_pred_label.append(pred_class_num)
+    print("going to vectorize headline_body_str :" )
+    vectorizer = CountVectorizer(min_df=1)
+
+    tf_vector = tokenize(entire_corpus)
+    #print(tf_vector)
+    print("number of rows in entire_corpus is:" + str(tf_vector.shape))
+    print("going to feed this vectorized tf to a classifier:" )
+
+    print("going to predict class")
+    #give that vector to your svm for prediction.
+    pred_class=svm_phase2.predict(tf_vector)
+    print("going to print pred_class")
+    print("number of rows in pred_classis:" + str(pred_class.shape))
+    #print(pred_class)
+
+
+
+
+    #print("going to find number of rows in gold_int:" )
+    numrows = len(gold_int)    # 3 rows in your example
+    #numcols = len(gold_int[0]) # 2 columns in your example
+    print("number of rows in gold_int:" + str(numrows))
+    #print("number of columns in gold_int:" + str(numcols))
+    #print(gold_int)
+
+
+    return gold_int, pred_class
+    
+
            # print("predicted:"+pred_label+"gold:"+goldlabel)
 
 

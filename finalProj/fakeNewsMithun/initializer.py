@@ -4,14 +4,14 @@ import sys;
 import utils;
 import numpy as np
 from utils.read_data import load_training_DataSet
-from utils.classifier_functions import test_using_svm_calc_precision
+from utils.classifier_functions import test_using_svm
 from utils.classifier_functions import train_for_agree_disagree
 from utils.classifier_functions import phase2_training_tf
 from utils.classifier_functions import calculateCosSimilarity
 from utils.classifier_functions import calculate_precision
 from utils.classifier_functions import split_phase1_predicted_data__related_unrelated
 from utils.classifier_functions import split_phase1_gold_data__related_unrelated
-from utils.classifier_functions import test_using_svm_calc_precision
+from utils.classifier_functions import test_using_svm
 from utils.classifier_functions import predict_data_phase1
 
 from utils.score import report_score
@@ -36,9 +36,9 @@ if __name__ == "__main__":
     print ("going to train on data for related-unrelated splitting aka phase1")
 
     #LOAD TRAINING DATA
-
+    #
     training_data = utils.read_data.load_training_DataSet(cwd)
-    # #
+    # # #
     # # print("number of stances in d is" + str(len(training_data.stances)))
     # # print("number of bodies in d is" + str(len(training_data.articles)))
     # # print("done reading documents, going to tokenize this document")
@@ -87,24 +87,36 @@ if __name__ == "__main__":
     #this code was written before using term frequency as a feature vector. This uses cosine similarity of
     #q1d1 as a feature vector. This was first pass. got very bad precision. But leaving it here just in case the
     #2nd pass with term frequency as vector doesnt work and this will be back up option.
-    #svm_trained = train_for_agree_disagree(training_data)
+    #svm_trained_phase2 = train_for_agree_disagree(training_data)
 
     #this training has to be done on the gold training data split based on stance= related
-    svm_trained=phase2_training_tf(related_data_gold)
+    svm_trained_phase2=phase2_training_tf(related_data_gold)
 
     print ("done with training of documents for agree classes. going to read testing data.")
-    sys.exit(1)
+
     # calculate_precision(training_data)
 
-
-
-
-
-
-    testing_data = utils.read_data.load_testing_DataSet(cwd)
+    #testing_data = utils.read_data.load_testing_DataSet(cwd)
     print ("done loading testing data. going to test agree-disagree using the trained svm ")
-    accuracy = test_using_svm_calc_precision(testing_data, svm_trained)
-    print ("accuracy:"+str(accuracy))
+
+    #test accuracy on the same data of 6000 related tuples
+    list1, list2  = test_using_svm(related_data_gold, svm_trained_phase2)
+
+    print ("done classifying testing data for phase 2. going to find score ")
+    actual = [0,0,0,0,1,1,0,3,3]
+    predicted = [0,0,0,0,1,1,2,3,3]
+
+
+    LABELS = ['agree', 'disagree', 'discuss', 'unrelated']
+    LABELS_RELATED = ['unrelated','related']
+    RELATED = LABELS[0:3]
+
+    final_score=report_score([LABELS[e] for e in actual],[LABELS[e] for e in predicted])
+    print("final_score is:"+final_score)
+
+    ##print ("accuracy:"+str(accuracy))
+
+    sys.exit(1)
 
 
 
