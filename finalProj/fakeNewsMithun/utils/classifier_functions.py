@@ -119,9 +119,12 @@ def calculate_precision(d, unrelated_threshold):
 
 def predict_data_phase1(d, unrelated_threshold):
     total_pairs=0
-    TP=FP=FN=TN=0
-    goldlabel=""
-    correct_prediction=0
+
+    value2_int =2
+    value1_int =1
+    value0_int =0
+    value3_int =3
+    value4_int =4
 
     #note here we say related=0 and unrelated=1
     gold_int= []
@@ -146,20 +149,23 @@ def predict_data_phase1(d, unrelated_threshold):
         #using that body id, retrieve teh corresponding article
         actualBody=d.articles[bodyid]
         cos=cosine_sim(actualBody,headline)
+
+        #unrelated:0
+        #related=1
         if(cos < unrelated_threshold ):
             pred_label="unrelated"
-            predicted_int=predicted_int.append(1)
+            predicted_int.append(value0_int)
         else:
             pred_label="related"
-            predicted_int=predicted_int.append(0)
+            predicted_int.append(value1_int)
 
         #rename gold label if its either of agree,disagree or discuss
         if(stance=="unrelated"):
             goldlabel="unrelated"
-            gold_int= gold_int.append(1)
+            gold_int.append(value0_int)
         else:
             goldlabel="related"
-            gold_int=gold_int.append(0)
+            gold_int.append(value1_int)
 
         #gold_predicted_combined.append(gold_int)
         #gold_predicted_combined.append(predicted_int)
@@ -167,9 +173,68 @@ def predict_data_phase1(d, unrelated_threshold):
 
     return gold_int,predicted_int
 
+#this is done so that the actual_predicted matrix can be combined with the output of phase 2
+def predict_data_phase1_return_only_unrelated(d, unrelated_threshold):
+    total_pairs=0
+
+    value2_int =2
+    value1_int =1
+    value0_int =0
+    value3_int =3
+    value4_int =4
+
+    #note here we say related=0 and unrelated=1
+    gold_int= [0]
+    predicted_int= [0]
+    gold_predicted_combined=[[],[]]
+    # actual = [0,0,0,0,1,1,0,3,3]
+    # predicted = [0,0,0,0,1,1,2,3,3]
+
+    for s in d.stances:
+        total_pairs=total_pairs+1
+
+        #for each headline, get the actual headline text
+        #print(s['Headline'])
+        headline = s['Headline']
+        #headline="a little bird"
+
+        gold_predicted_this=[]
+        #get the corresponding body id for this headline
+        bodyid  = s['Body ID']
+        stance= s['Stance']
+
+        #using that body id, retrieve teh corresponding article
+        actualBody=d.articles[bodyid]
+        cos=cosine_sim(actualBody,headline)
+
+        #unrelated:0
+        #related=1
+        if(cos < unrelated_threshold ):
+            pred_label="unrelated"
+            predicted_int=predicted_int.append(value0_int)
+        else:
+            pred_label="related"
+            #predicted_int=predicted_int.append(value1_int)
+
+        #rename gold label if its either of agree,disagree or discuss
+        if(stance=="unrelated"):
+            goldlabel="unrelated"
+            gold_int= gold_int.append(value0_int)
+        else:
+            goldlabel="related"
+            #gold_int=gold_int.append(value1_int)
+
+        #gold_predicted_combined.append(gold_int)
+        #gold_predicted_combined.append(predicted_int)
+
+
+    return gold_int,predicted_int
+
+
 # def split_phase1_predicted_data__related_unrelated
-# This is a useless function. because. earlier i thought i had to train my phase2 bsed on predictions from phase 1.
-def split_phase1_predicted_data__related_unrelated(data, unrelated_threshold):
+# This will be used in test set, where the initial test set will be split into related adn unrelated group, based on teh
+# prediction - note that only related data is being returned.
+def return_related_data_only(data, unrelated_threshold):
 
     total_pairs=0
     TP=FP=FN=TN=0
@@ -390,13 +455,16 @@ def phase2_training_tf(data,vectorizer_phase2):
         entire_corpus.append(headline_body_str)
 
         stance= tuple[2]
-
+        #agree:0
+        #disagree:1
+        #discuss:2
+        #unrelated:3
         #lets call agrees as label 1 and disagrees as label 2
         if (stance == "agree"):
-            labels = np.append(labels, 1)
+            labels = np.append(labels, 0)
         else:
             if (stance == "disagree"):
-                labels = np.append(labels, 0)
+                labels = np.append(labels, 1)
             else:
                 if(stance=="discuss"):
                     labels = np.append(labels, 2)
@@ -459,15 +527,17 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
         headline_body_str=headline_body_str+actualBody
         entire_corpus.append(headline_body_str)
 
-        #based on what the gold stance is, attach either 0,1,2 to gold label list
-        #disagree=0
-        #agree=1
-        #discuss=2
+        #acccording to FNC guys, this is the mapping of classes to labels
+        #agree:0
+        #disagree:1
+        #discuss:2
+        #unrelated:3
+
         if (stance == "disagree"):
-            gold_int.append(value0_int)
+            gold_int.append(value1_int)
         else:
             if (stance == "agree"):
-                gold_int.append(value1_int)
+                gold_int.append(value0_int)
             else:
                 if(stance=="discuss"):
                     gold_int.append(value2_int)
