@@ -128,7 +128,8 @@ if __name__ == "__main__":
         print ("done with training of documents for phase1. going to start testing for phase 1")
         testing_data = utils.read_data.load_testing_DataSet(cwd)
         # calculate_precision(training_data)
-
+        print("number of lines in testing data is:"+str(len(testing_data )))
+        sys.exit(1)
         #testing_data = utils.read_data.load_testing_DataSet(cwd)
         print ("done loading testing data. going to test agree-disagree using the trained svm ")
 
