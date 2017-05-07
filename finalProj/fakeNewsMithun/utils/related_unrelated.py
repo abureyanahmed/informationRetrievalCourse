@@ -178,52 +178,65 @@ def train_for_agree_disagree(d):
     return clf
 
 def train_for_agree_disagree_with_tf_idf(data):
-    entire_corpus=['dummy']
+    entire_corpus=[]
+
     no_of_unrelated=0
     feature_vector= np.array([[]])
     feature_vector=feature_vector.reshape(-1, 1)
     labels = np.array([[]])
-    for s in data.stances:
 
-        #for each headline, get the actual headline text
-        headline = s['Headline']
-        entire_corpus.append(headline)
-        #headline="a little bird"
+    #just try creating a tf vector for one headline body combination.
 
 
-        #get the corresponding body id for this headline
-        bodyid  = s['Body ID']
-        stance= s['Stance']
+
+
+
+
+    for indivStance in data.stances:
+        headline_body_str=""
+        headline = indivStance['Headline']
+        headline_body_str=headline_body_str+headline
+        bodyid  = indivStance['Body ID']
         actualBody=data.articles[bodyid]
-        entire_corpus.append(actualBody)
+        headline_body_str=headline_body_str+actualBody
+        entire_corpus.append(headline_body_str)
 
-
-        #WE are looking for stances which are only unrelated
-        if(stance=="unrelated"):
-            no_of_unrelated = no_of_unrelated + 1
-        else:
-            #i.e this is the group which has agree,disagree or discuss
-
-            # using that body id, retrieve teh corresponding article
-            actualBody = data.articles[bodyid]
-
-            #find the cosine similarity between this body and headline
-            cos = cosine_sim(actualBody, headline)
-            feature_vector=feature_vector.reshape(-1, 1)
-            feature_vector=np.append(feature_vector,[[cos]])
-
-            #lets call agrees as label 1 and disagrees as label 2
-            if (stance == "agree"):
-                labels = np.append(labels, 1)
-            else:
-                if (stance == "disagree"):
-                    labels = np.append(labels, 0)
-                else:
-                    if(stance=="discuss"):
-                        labels = np.append(labels, 2)
-
-
-
+        # #for each headline, get the actual headline text
+        # headline = s['Headline']
+        # entire_corpus.append(headline)
+        # #headline="a little bird"
+        #
+        #
+        # #get the corresponding body id for this headline
+        # bodyid  = s['Body ID']
+        # stance= s['Stance']
+        # actualBody=data.articles[bodyid]
+        # entire_corpus.append(actualBody)
+        #
+        #
+        # #WE are looking for stances which are only unrelated
+        # if(stance=="unrelated"):
+        #     no_of_unrelated = no_of_unrelated + 1
+        # else:
+        #     #i.e this is the group which has agree,disagree or discuss
+        #
+        #     # using that body id, retrieve teh corresponding article
+        #     actualBody = data.articles[bodyid]
+        #
+        #     #find the cosine similarity between this body and headline
+        #     cos = cosine_sim(actualBody, headline)
+        #     feature_vector=feature_vector.reshape(-1, 1)
+        #     feature_vector=np.append(feature_vector,[[cos]])
+        #
+        #     #lets call agrees as label 1 and disagrees as label 2
+        #     if (stance == "agree"):
+        #         labels = np.append(labels, 1)
+        #     else:
+        #         if (stance == "disagree"):
+        #             labels = np.append(labels, 0)
+        #         else:
+        #             if(stance=="discuss"):
+        #                 labels = np.append(labels, 2)
 
 
 
@@ -231,9 +244,11 @@ def train_for_agree_disagree_with_tf_idf(data):
     print("size of entire_corpus is:" + str(len(entire_corpus)))
     vectorizer = CountVectorizer(min_df=1)
     X = tokenize(entire_corpus)
-    print("size of tokenized vector is:" + str(len(X)))
-
+    #print(X)
+    print("number of rows in entire_corpus is:" + str(X.shape))
     sys.exit(1)
+
+
     print("number of rows in feature_vector is:"+str(len(feature_vector)))
     print("number of rows in labels is:" + str(len(labels)))
     #feed the vectors to an an svm, with labels.
@@ -361,8 +376,8 @@ def test_using_svm_calc_precision(test_data, my_svm):
     print("first entry in list_gold_label is "+ str((list_gold_label[0])))
     print("first entry in pred_label is "+ str((list_pred_label[0])))
     print(classification_report(list_gold_label, list_pred_label))
-    print("accuracy:"+accuracy_score(list_gold_label, list_pred_label))
-    #report_score(list_gold_label,list_pred_label)
+    print("accuracy:"+str(accuracy_score(list_gold_label, list_pred_label)))
+    print(report_score(list_gold_label,list_pred_label))
     # print("TP:"+str(TP))
     # print("FP:"+str(FP))
     #

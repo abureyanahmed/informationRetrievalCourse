@@ -59,7 +59,7 @@ if __name__ == "__main__":
     print("done reading documents, going to train on this document")
 
     svm_trained = train_for_agree_disagree(training_data)
-    #svm_trained=train_for_agree_disagree_with_tf_idf(training_data)
+
     # unrelated_threshold=0.399
     # calculate_precision(training_data)
 
