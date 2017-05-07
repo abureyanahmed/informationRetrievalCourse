@@ -91,11 +91,13 @@ if __name__ == "__main__":
 
     #this training has to be done on the gold training data split based on stance= related
     svm_trained=phase2_training_tf(related_data_gold)
+
+    print ("done with training of documents for agree classes. going to read testing data.")
     sys.exit(1)
     # calculate_precision(training_data)
 
 
-    print ("done with training of documents for agree classes. going to read testing data.")
+
 
 
 

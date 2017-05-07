@@ -329,7 +329,7 @@ def train_for_agree_disagree(d):
 def phase2_training_tf(data):
     print("inside phase2_training_tf")
     entire_corpus=[]
-
+    labels = np.array([[]])
     #no_of_unrelated=0
     #feature_vector= np.array([[]])
     # feature_vector=feature_vector.reshape(-1, 1)
@@ -348,42 +348,19 @@ def phase2_training_tf(data):
         headline_body_str=headline_body_str+actualBody
         entire_corpus.append(headline_body_str)
 
-        # #for each headline, get the actual headline text
-        # headline = s['Headline']
-        # entire_corpus.append(headline)
-        # #headline="a little bird"
-        #
-        #
-        # #get the corresponding body id for this headline
-        # bodyid  = s['Body ID']
-        # stance= s['Stance']
-        # actualBody=data.articles[bodyid]
-        # entire_corpus.append(actualBody)
-        #
-        #
-        # #WE are looking for stances which are only unrelated
-        # if(stance=="unrelated"):
-        #     no_of_unrelated = no_of_unrelated + 1
-        # else:
-        #     #i.e this is the group which has agree,disagree or discuss
-        #
-        #     # using that body id, retrieve teh corresponding article
-        #     actualBody = data.articles[bodyid]
-        #
-        #     #find the cosine similarity between this body and headline
-        #     cos = cosine_sim(actualBody, headline)
-        #     feature_vector=feature_vector.reshape(-1, 1)
-        #     feature_vector=np.append(feature_vector,[[cos]])
-        #
-        #     #lets call agrees as label 1 and disagrees as label 2
-        #     if (stance == "agree"):
-        #         labels = np.append(labels, 1)
-        #     else:
-        #         if (stance == "disagree"):
-        #             labels = np.append(labels, 0)
-        #         else:
-        #             if(stance=="discuss"):
-        #                 labels = np.append(labels, 2)
+        stance= tuple[2]
+
+        #lets call agrees as label 1 and disagrees as label 2
+        if (stance == "agree"):
+            labels = np.append(labels, 1)
+        else:
+            if (stance == "disagree"):
+                labels = np.append(labels, 0)
+            else:
+                if(stance=="discuss"):
+                    labels = np.append(labels, 2)
+
+
 
 
 
@@ -391,19 +368,17 @@ def phase2_training_tf(data):
     print("size of entire_corpus is:" + str(len(entire_corpus)))
     print("going to vectorize teh related corpus :" )
     vectorizer = CountVectorizer(min_df=1)
-    X = tokenize(entire_corpus)
-    print(X)
-    print("number of rows in entire_corpus is:" + str(X.shape))
-
-    sys.exit(1)
+    tf_vector = tokenize(entire_corpus)
+    print(tf_vector)
+    print("number of rows in entire_corpus is:" + str(tf_vector.shape))
 
 
-    print("number of rows in feature_vector is:"+str(len(feature_vector)))
-    print("number of rows in labels is:" + str(len(labels)))
+
+
     #feed the vectors to an an svm, with labels.
     clf = svm.SVC(kernel='linear', C=1.0)
-    feature_vector=feature_vector.reshape(-1, 1)
-    clf.fit(feature_vector, labels.ravel())
+    #feature_vector=feature_vector.reshape(-1, 1)
+    clf.fit(tf_vector, labels.ravel())
     print("done training svm:" )
     return clf
 
