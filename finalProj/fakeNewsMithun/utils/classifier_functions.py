@@ -369,8 +369,9 @@ def phase2_training_tf(data):
     print("going to vectorize teh related corpus :" )
     vectorizer = CountVectorizer(min_df=1)
     tf_vector = tokenize(entire_corpus)
-    print(tf_vector)
+    #print(tf_vector)
     print("number of rows in entire_corpus is:" + str(tf_vector.shape))
+    print("going to feed this vectorized tf to a classifier:" )
 
 
 
