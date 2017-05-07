@@ -23,11 +23,11 @@
       <file leaf-file-name="classifier_functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-188">
-              <caret line="119" column="4" selection-start-line="119" selection-start-column="4" selection-end-line="119" selection-end-column="4" />
+            <state relative-caret-position="562">
+              <caret line="224" column="12" selection-start-line="224" selection-start-column="12" selection-end-line="224" selection-end-column="12" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-                <element signature="e#8809#10171#0" expanded="false" />
+                <element signature="e#8957#10319#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -36,8 +36,8 @@
       <file leaf-file-name="initializer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/initializer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+            <state relative-caret-position="222">
+              <caret line="228" column="9" selection-start-line="228" selection-start-column="9" selection-end-line="228" selection-end-column="9" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -68,8 +68,8 @@
       <file leaf-file-name="read_data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/read_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="54" column="8" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="8" />
+            <state relative-caret-position="491">
+              <caret line="88" column="9" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -88,8 +88,8 @@
       <file leaf-file-name="process_input_data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/process_input_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+            <state relative-caret-position="289">
+              <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -118,12 +118,12 @@
       <list>
         <option value="$PROJECT_DIR$/utils/pip.py" />
         <option value="$PROJECT_DIR$/utils/fileWriter.py" />
-        <option value="$PROJECT_DIR$/utils/read_data.py" />
         <option value="$PROJECT_DIR$/initalizer.py" />
         <option value="$PROJECT_DIR$/initalizer_svm_tfidf.py" />
         <option value="$PROJECT_DIR$/initializer_svm_tfidf.py" />
         <option value="$PROJECT_DIR$/utils/related_unrelated.py" />
         <option value="$PROJECT_DIR$/utils/process_input_data.py" />
+        <option value="$PROJECT_DIR$/utils/read_data.py" />
         <option value="$PROJECT_DIR$/utils/classifier_functions.py" />
         <option value="$PROJECT_DIR$/initializer.py" />
       </list>
@@ -486,47 +486,47 @@
       <breakpoints>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>105</line>
+          <line>108</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>106</line>
+          <line>109</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>112</line>
+          <line>115</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>113</line>
+          <line>116</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>424</line>
+          <line>427</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>514</line>
+          <line>517</line>
           <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>634</line>
+          <line>637</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>671</line>
+          <line>674</line>
           <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>35</line>
+          <line>38</line>
           <option name="timeStamp" value="71" />
         </line-breakpoint>
       </breakpoints>
@@ -572,7 +572,7 @@
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#8809#10171#0" expanded="false" />
+            <element signature="e#8957#10319#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -689,7 +689,7 @@
           <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#8809#10171#0" expanded="false" />
+            <element signature="e#8957#10319#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -720,7 +720,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#8809#10171#0" expanded="false" />
+            <element signature="e#8957#10319#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -774,7 +774,7 @@
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#8809#10171#0" expanded="false" />
+            <element signature="e#8957#10319#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -855,22 +855,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/process_input_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/read_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="54" column="8" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/train_stances_csc483583.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
@@ -895,21 +879,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/process_input_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/read_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="88" column="9" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-188">
-          <caret line="119" column="4" selection-start-line="119" selection-start-column="4" selection-end-line="119" selection-end-column="4" />
+        <state relative-caret-position="562">
+          <caret line="224" column="12" selection-start-line="224" selection-start-column="12" selection-end-line="224" selection-end-column="12" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#8809#10171#0" expanded="false" />
+            <element signature="e#8957#10319#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/initializer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+        <state relative-caret-position="222">
+          <caret line="228" column="9" selection-start-line="228" selection-start-column="9" selection-end-line="228" selection-end-column="9" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>

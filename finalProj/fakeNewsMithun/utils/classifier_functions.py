@@ -9,6 +9,9 @@ from sklearn.metrics import accuracy_score
 import sys
 from utils.process_input_data import tokenize
 from utils.score import report_score
+import requests, bs4, sys, webbrowser, html2text, os , PyPDF2, urllib2, smtplib, re, json
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
 
 def calculateCosSimilarity(d):
     #writeToOutputFile("\n","cosSimScore_Stance")
@@ -211,7 +214,7 @@ def predict_data_phase1_return_only_unrelated(d, unrelated_threshold):
         #related=1
         if(cos < unrelated_threshold ):
             pred_label="unrelated"
-            predicted_int=predicted_int.append(value0_int)
+            predicted_int.append(value0_int)
         else:
             pred_label="related"
             #predicted_int=predicted_int.append(value1_int)
@@ -219,7 +222,7 @@ def predict_data_phase1_return_only_unrelated(d, unrelated_threshold):
         #rename gold label if its either of agree,disagree or discuss
         if(stance=="unrelated"):
             goldlabel="unrelated"
-            gold_int= gold_int.append(value0_int)
+            gold_int.append(value0_int)
         else:
             goldlabel="related"
             #gold_int=gold_int.append(value1_int)
@@ -686,4 +689,43 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
    # accuracy=correct_prediction/total_pairs
     # print("accuracy:" + str(accuracy))
     return accuracy_score
+
+def sendEmail(nameOfRun):
+    gmailUsername="mithunpaul08@gmail.com"
+
+    gmailPwd="Alohomora456+"
+    fromaddr="mithunpaul08@gmail.com"
+    toaddr="mithunpaul08@gmail.com"
+    #toaddr="jchebet@email.arizona.edu"
+    subjectForEmail= nameOfRun+":Code finished running"
+    carbonCopy = "mithunpaul08@gmail.com"
+    #if on laptop dont switch path. This is required because cron runs as a separate process in a separate directory in chung
+    #turn this to true, if pushing to run on chung.cs.arizona.edu
+    isRunningOnServer=True;
+    firstTimeRun=False;
+
+    finalMessageToSend="hi, the code you were running is finished for"
+
+
+    msg = "\r\n".join([
+        "From: "+fromaddr,
+        "To: " + toaddr,
+        "CC: " + carbonCopy,
+        "Subject:"+subjectForEmail,
+        "",
+        finalMessageToSend
+    ])
+
+    #print("getting here at 3687")
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    server.ehlo()
+    #print("getting here at 8637")
+    server.starttls()
+    #print("getting here at 52895")
+    server.login(gmailUsername, gmailPwd)
+    #print("getting here at 5498")
+    server.sendmail(fromaddr, toaddr, msg)
+    #print("getting here at 68468")
+    server.quit()
+    print("done sending email to:"+toaddr)
 

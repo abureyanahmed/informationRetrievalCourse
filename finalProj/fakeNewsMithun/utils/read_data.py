@@ -6,23 +6,23 @@ class load_training_DataSet():
     def __init__(self, cwd):
 
         #cwd = os.getcwd()
-        print("inside DataSet, current directory is:" + cwd)
+        #print("inside DataSet, current directory is:" + cwd)
         self.path = cwd+"/data/"
-        print("inside DataSet, current path is:" + self.path)
-        print("Reading dataset")
+        #print("inside DataSet, current path is:" + self.path)
+        #print("Reading dataset")
         bodies = "train_bodies_original.csv"
         stances = "train_stances_csc483583.csv"
 
-        print("going to read stances")
+        #print("going to read stances")
 
         #read the stances into a dictionary. Note that stances are in the format: Headline,Body ID,Stance
         self.stances = self.read(stances)
-        print("done reading stances")
-        print("going to read bodies")
+        #print("done reading stances")
+       # print("going to read bodies")
         articles = self.read(bodies)
-        print("done reading bodies")
+       # print("done reading bodies")
         self.articles = dict()
-        print("done creating dict")
+        #print("done creating dict")
 
         #make the body ID an integer value
         for s in self.stances:
@@ -32,12 +32,12 @@ class load_training_DataSet():
         for article in articles:
             self.articles[int(article['Body ID'])] = article['articleBody']
 
-        print("Going to print all stances" )
-        print("Number of Total stances: " + str(len(self.stances)))
-        print("the first entry in stances is")
+       # print("Going to print all stances" )
+       # print("Number of Total stances: " + str(len(self.stances)))
+       # print("the first entry in stances is")
        # print(self.articles[0])
         #print("and the stances are : " + str(self.stances))
-        print("Total bodies: " + str(len(self.articles)))
+       # print("Total bodies: " + str(len(self.articles)))
 
 
 
@@ -55,23 +55,23 @@ class load_testing_DataSet():
     def __init__(self, cwd):
 
         #cwd = os.getcwd()
-        print("inside DataSet, current directory is:" + cwd)
+       # print("inside DataSet, current directory is:" + cwd)
         self.path = cwd+"/data/"
-        print("inside DataSet, current path is:" + self.path)
-        print("Reading dataset")
+        #print("inside DataSet, current path is:" + self.path)
+       # print("Reading dataset")
         bodies = "train_bodies_original.csv"
         stances = "test_stances_csc483583.csv"
 
-        print("going to read stances")
+        #print("going to read stances")
 
         #read the stances into a dictionary. Note that stances are in the format: Headline,Body ID,Stance
         self.stances = self.read(stances)
-        print("done reading stances")
-        print("going to read bodies")
+       # print("done reading stances")
+       # print("going to read bodies")
         articles = self.read(bodies)
-        print("done reading bodies")
+      #  print("done reading bodies")
         self.articles = dict()
-        print("done creating dict")
+      #  print("done creating dict")
 
         #make the body ID an integer value
         for s in self.stances:
@@ -81,12 +81,12 @@ class load_testing_DataSet():
         for article in articles:
             self.articles[int(article['Body ID'])] = article['articleBody']
 
-        print("Going to print all stances" )
-        print("Number of Total stances: " + str(len(self.stances)))
-        print("the first entry in stances is")
+        # print("Going to print all stances" )
+        # print("Number of Total stances: " + str(len(self.stances)))
+        # print("the first entry in stances is")
        # print(self.articles[0])
         #print("and the stances are : " + str(self.stances))
-        print("Total bodies: " + str(len(self.articles)))
+        #print("Total bodies: " + str(len(self.articles)))
 
 
 
