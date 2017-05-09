@@ -13,6 +13,7 @@ import requests, bs4, sys, webbrowser, html2text, os , PyPDF2, urllib2, smtplib,
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
+
 def calculateCosSimilarity(d):
     #writeToOutputFile("\n","cosSimScore_Stance")
     unrelated_biggest=0
@@ -280,15 +281,17 @@ def return_related_data_only(data, unrelated_threshold):
 
 
         #separate out teh 'related data' into another data set based on the predicted value
+        #this will be fed as input for the 2nd classifier
         #list of strings
         if(pred_label=="related"):
             headline_body_label=[]
             headline_body_label.append(headline)
             headline_body_label.append(actualBody)
-            headline_body_label.append(pred_label)
+            headline_body_label.append(stance)
+            related_matrix.append(headline_body_label)
 
         #append this headline_body_label guy to the big matrix
-    related_matrix.append(headline_body_label)
+
 
     return related_matrix
 
@@ -498,6 +501,7 @@ def phase2_training_tf(data,vectorizer_phase2):
 
 def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
+    print("\ninside test_phase2_using_svm" )
 
     list_gold_label=[]
     entire_corpus=[]
@@ -512,6 +516,8 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
 
     gold_predicted_combined=[[],[]]
+
+    print("total number of rows in test_data:" +str(len(test_data)))
 
 
     gold_int=[]
@@ -544,44 +550,18 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
             else:
                 if(stance=="discuss"):
                     gold_int.append(value2_int)
-        #
-        gold_predicted_combined.append(gold_int)
-        #
-        # headline_body_str=""
-        # headline_body_str=headline_body_str+headline
-        # headline_body_str=headline_body_str+actualBody
-        #
-        # print("going to vectorize headline_body_str :" )
-        # vectorizer = CountVectorizer(min_df=1)
-        # entire_corpus.append(headline_body_str)
-        # tf_vector = tokenize(entire_corpus)
-        # print(tf_vector)
-        #
-        # #give that vector to your svm for prediction.
-        # pred_class=svm_phase2.predict(tf_vector)
-        #
-        # print("predicted class is:"+ str(pred_class[0]))
-        #
-        #
-        #
-        # if (pred_class[0] == value1 ):
-        #     predicted_int.append(1)
-        # else:
-        #     if (pred_class[0] == value0 ):
-        #         predicted_int.append(0)
-        #     else:
-        #         if (pred_class[0] == value2 ):
-        #             predicted_int.append(2)
-        # gold_predicted_combined.append(predicted_int)
+                else:
+                    print("\nfound an entry without a related stance. its stance is:"+stance)
+                    sendEmail("error going to exit")
+                    sys.exit(1)
 
 
 
 
+    print("\ngoing to vectorize headline_body_str :" )
+    print("\ntotal number of rows in entire_corpus:" +str(len(entire_corpus)))
+    sys.exit(1)
 
-    print("going to vectorize headline_body_str :" )
-    #vectorizer = CountVectorizer(min_df=1)
-
-    #tf_vector = tokenize(entire_corpus)
     tf_vector =  vectorizer_phase2_trained.transform(entire_corpus)
     #print(tf_vector)
     print("number of rows in vectorized entire_corpus is:" + str(tf_vector.shape))
@@ -698,7 +678,7 @@ def sendEmail(nameOfRun):
     toaddr="mithunpaul08@gmail.com"
     #toaddr="jchebet@email.arizona.edu"
     subjectForEmail= nameOfRun+":Code finished running"
-    carbonCopy = "mithunpaul08@gmail.com"
+    carbonCopy = "mithunpaul@email.arizona.edu"
     #if on laptop dont switch path. This is required because cron runs as a separate process in a separate directory in chung
     #turn this to true, if pushing to run on chung.cs.arizona.edu
     isRunningOnServer=True;

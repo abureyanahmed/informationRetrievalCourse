@@ -26,7 +26,7 @@ from utils.score import report_score
 
 #in phase 1, we split teh data set to related- unrelated
 do_training_phase1=False;
-do_training_phase2=False;
+do_training_phase2=True;
 
 do_validation_phase1=False;
 do_validation_phase2=False;
@@ -77,6 +77,8 @@ if __name__ == "__main__":
     predicted_phase1=[]
     actual_phase2=[]
     predicted_phase2 = []
+    actual_phase1_only_unrelated= []
+    predicted_phase1_only_unrelated= []
 
     unrelated_threshold=0
 
@@ -129,7 +131,7 @@ if __name__ == "__main__":
         final_score=report_score([LABELS[e] for e in actual_phase1],[LABELS[e] for e in predicted_phase1])
         sendEmail("do_validation_phase1")
 
-        sys.exit(1)
+#        sys.exit(1)
 
 #########################This is the end of validation for Phase1. Training for phase 2 starts here###########################3
 
@@ -226,26 +228,33 @@ if __name__ == "__main__":
         #once the data is split into related-unrelated, we use the related data to split into 3
         print ("going to retreive only related data based on this threshold")
 
-        #unrelated_threshold=0.399214065331
+        unrelated_threshold=0.399214065331
+
 
         testdata_related_only=return_related_data_only(testing_data,unrelated_threshold)
 
 
         print ("total number of rows in testdata_related_only matrix is:"+str(len(testdata_related_only)))
 
-        sys.exit(1)
+
 
         #print("number of lines in testing data is:"+str(len(testing_data. )))
 
 
-        testing_data_converted=convert_data_to_headline_body_stance_format(testdata_related_only)
+        #testing_data_converted=convert_data_to_headline_body_stance_format(testdata_related_only)
+        #testing_data_converted=testdata_related_only;
 
-        print("number of rows in testing data after conversion is:"+str(len(testing_data_converted )))
-        print("number of columns in testing data after conversion is:"+str(len(testing_data_converted[0])))
+        print("number of rows in testing data after conversion is:"+str(len(testdata_related_only )))
+        print("number of columns in testing data after conversion is:"+str(len(testdata_related_only[0])))
         print ("done loading testing data. going to test agree-disagree-discuss using the trained svm ")
-        actual_phase2, predicted_phase2  = test_phase2_using_svm(testing_data_converted, svm_trained_phase2, vectorizer_phase2_trained)
+        actual_phase2, predicted_phase2  = test_phase2_using_svm(testdata_related_only, svm_trained_phase2, vectorizer_phase2_trained)
 
         print ("done classifying testing data for phase 2. going to find score ")
+
+        print("number of rows in actual_phase2  is:"+str(len(actual_phase2 )))
+        print("number of rows in predicted_phase2 is:"+str(len(predicted_phase2 )))
+        print("number of rows in actual_phase1_only_unrelated  is:"+str(len(actual_phase1_only_unrelated )))
+        print("number of rows in predicted_phase1_only_unrelated  is:"+str(len(predicted_phase1_only_unrelated )))
 
         #combining results from both phases
         actual=actual_phase1_only_unrelated+ actual_phase2
