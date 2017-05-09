@@ -511,6 +511,7 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
     value2_int =2
     value1_int =1
     value0_int =0
+    value3_int =3
 
 
 
@@ -551,16 +552,16 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
                 if(stance=="discuss"):
                     gold_int.append(value2_int)
                 else:
-                    print("\nfound an entry without a related stance. its stance is:"+stance)
-                    sendEmail("error going to exit")
-                    sys.exit(1)
+                    gold_int.append(value3_int)
+
 
 
 
 
     print("\ngoing to vectorize headline_body_str :" )
     print("\ntotal number of rows in entire_corpus:" +str(len(entire_corpus)))
-    sys.exit(1)
+
+
 
     tf_vector =  vectorizer_phase2_trained.transform(entire_corpus)
     #print(tf_vector)
@@ -675,8 +676,8 @@ def sendEmail(nameOfRun):
 
     gmailPwd="Alohomora456+"
     fromaddr="mithunpaul08@gmail.com"
-    toaddr="mithunpaul08@gmail.com"
-    #toaddr="jchebet@email.arizona.edu"
+    #toaddr="mithunpaul08@gmail.com"
+    toaddr="mithunpaul@email.arizona.edu"
     subjectForEmail= nameOfRun+":Code finished running"
     carbonCopy = "mithunpaul@email.arizona.edu"
     #if on laptop dont switch path. This is required because cron runs as a separate process in a separate directory in chung
