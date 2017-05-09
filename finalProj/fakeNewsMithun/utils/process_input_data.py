@@ -7,7 +7,9 @@ from sklearn.feature_extraction.text import CountVectorizer
 from csv import DictReader
 from sklearn.feature_extraction.text import TfidfTransformer
 
-nltk.download('punkt') # if necessary...
+
+#nltk.download('punkt')
+#nltk.download('wordnet')
 
 
 stemmer = nltk.stem.porter.PorterStemmer()
@@ -19,6 +21,7 @@ def stem_tokens(tokens):
 '''remove punctuation, lowercase, stem'''
 def normalize(text):
     return stem_tokens(nltk.word_tokenize(text.lower().translate(remove_punctuation_map)))
+
 
 vectorizer = TfidfVectorizer(tokenizer=normalize, stop_words='english')
 
@@ -41,3 +44,6 @@ def calculate_tf_idf(counts):
 
     return tfidf
 
+def createAtfidfVectorizer():
+    vectorizer2 = TfidfVectorizer(tokenizer=normalize, stop_words='english')
+    return vectorizer2

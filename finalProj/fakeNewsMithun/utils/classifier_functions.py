@@ -10,11 +10,14 @@ import sys
 from utils.process_input_data import tokenize
 from utils.score import report_score
 import requests, bs4, sys, webbrowser, html2text, os , PyPDF2, urllib2, smtplib, re, json
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
+from nltk.corpus import wordnet
+from nltk.stem import WordNetLemmatizer
+from utils.fileWriter import writeToOutputFile
+from utils.fileWriter import appendToFile
 
 
 def calculateCosSimilarity(d):
+
     #writeToOutputFile("\n","cosSimScore_Stance")
     unrelated_biggest=0
     related_smallest=1
@@ -37,11 +40,21 @@ def calculateCosSimilarity(d):
 
         #using that body id, retrieve teh corresponding article
         actualBody=d.articles[bodyid]
+
+        # actualBody_lemmatized=[]
+        #
+        # wordnet_lemmatizer = WordNetLemmatizer()
+        # for indivWord in actualBody:
+        #     lem_word=wordnet_lemmatizer.lemmatize(indivWord )
+        #     actualBody_lemmatized.append(lem_word)
+        #
+        # print(actualBody_lemmatized);
+
         cos=cosine_sim(actualBody,headline)
 
 
-        appendToFile("bodyid:"+str(bodyid)+"\tcosine similarity:"+str(round(cos,3))+"\tgold label:"+stance+"\theadline:"+headline,"cosSimScore_Stance")
-        appendToFile("\n","cosSimScore_Stance")
+        #appendToFile("bodyid:"+str(bodyid)+"\tcosine similarity:"+str(round(cos,3))+"\tgold label:"+stance+"\theadline:"+headline,"cosSimScore_Stance")
+        #appendToFile("\n","cosSimScore_Stance")
 
         if(stance=="unrelated"):
             #if its cosine sime value is bigger than the unrelated_biggest value so far, replace this value. This is to find the threshold
@@ -215,23 +228,26 @@ def predict_data_phase1_return_only_unrelated(d, unrelated_threshold):
         #related=1
         if(cos < unrelated_threshold ):
             pred_label="unrelated"
-            predicted_int.append(value0_int)
+            predicted_int.append(value3_int)
+
+            #so it predicted that a value is unrelated. We need to retrieve its gold value
+            #if its golden value, i.e stance is unrelated, attach a 3, else go find its actual label, i.e
+            #agree, disagree, or discuss, (0,1,2) and attach that.
+            if(stance=="unrelated"):
+                gold_int.append(value3_int)
+            else:
+                if (stance == "agree"):
+                    gold_int.append(value0_int)
+                else:
+                    if (stance == "disagree"):
+                        gold_int.append(value1_int)
+                    else:
+                        if(stance=="discuss"):
+                            gold_int.append(value2_int)
         else:
             pred_label="related"
-            #predicted_int=predicted_int.append(value1_int)
-
-        #rename gold label if its either of agree,disagree or discuss
-        if(stance=="unrelated"):
-            goldlabel="unrelated"
-            gold_int.append(value0_int)
-        else:
-            goldlabel="related"
-            #gold_int=gold_int.append(value1_int)
-
-        #gold_predicted_combined.append(gold_int)
-        #gold_predicted_combined.append(predicted_int)
-
-
+            #dont do anything if the predicted label is related. we dont care about this set at this point.
+            #right now we just want the results of unrelated prediction, so that we can feed it to their score calculator
     return gold_int,predicted_int
 
 
@@ -484,6 +500,9 @@ def phase2_training_tf(data,vectorizer_phase2):
     print("going to vectorize teh related corpus :" )
     #tokenize()
     tf_vector = vectorizer_phase2.fit_transform(entire_corpus)
+    #print(tf_vector .toarray())
+    #sys.exit(1)
+    #tf_vector = vectorizer_phase2.calculate_tf_idf(entire_corpus)
      #X = vectorizer.fit_transform(document)
     #print(tf_vector)
     print("number of rows in entire_corpus is:" + str(tf_vector.shape))
@@ -596,6 +615,30 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
 
 
+    #find the ones in which i made a mistake/the predicted and gold didnt match
+    dataCounter=0
+    for tuple in test_data:
+        # headline = tuple[0]
+        actualBody=tuple[1]
+        stance= tuple[2]
+
+        # predicted_int=[]
+        # entire_corpus.append(headline_body_str)
+        headline_body_str=""
+        headline = tuple[0]
+        headline_body_str=headline_body_str+headline
+        #bodyid  = tuple['Body ID']
+        actualBody=tuple[1]
+        writeToOutputFile("\n","errorAnalysis.txt")
+        if(pred_label_int[dataCounter]!=gold_int[dataCounter]):
+            #write to file.
+            appendToFile("\npred_label:"+pred_label_int[dataCounter],"errorAnalysis.txt")
+            appendToFile("\n gold_int[dataCounter] :"+gold_int[dataCounter],"errorAnalysis.txt")
+            appendToFile("\n  headline:"+headline,"errorAnalysis.txt")
+            appendToFile("\n  actualBody:"+actualBody,"errorAnalysis.txt")
+            appendToFile("\n  ***************","errorAnalysis.txt")
+
+
 
     print("total number of items in pred_label_int is:"+str(len(pred_label_int)))
 
@@ -608,76 +651,20 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
     #print("number of columns in gold_int:" + str(numcols))
     #print(gold_int)
 
+    sys.exit(1)
 
     return gold_int, pred_label_int
-    #return gold_int,gold_int
 
 
-           # print("predicted:"+pred_label+"gold:"+goldlabel)
-
-
-
-            # if(goldlabel=="agree"):
-            #     if(pred_label=="agree"):
-            #         TP = TP + 1
-            #         correct_prediction=correct_prediction+1
-            #     else:
-            #         if(pred_label=="disagree"):
-            #             FN=FN+1
-            # if(goldlabel=="disagree"):
-            #     if(pred_label=="disagree"):
-            #         TN = TN + 1
-            #         correct_prediction=correct_prediction+1
-            #     else:
-            #         if(pred_label=="agree"):
-            #             FP=FP+1
-    #
-    # if (goldlabel == pred_label):
-    #     if (pred_label == "agree"):
-    #         TP = TP + 1
-    #         correct_prediction = correct_prediction + 1
-    #     else:
-    #         if (pred_label == "disagree"):
-    #             FN = FN + 1
-    # if (goldlabel == "disagree"):
-    #     if (pred_label == "disagree"):
-    #         TN = TN + 1
-    #         correct_prediction = correct_prediction + 1
-    #     else:
-    #         if (pred_label == "agree"):
-    #             FP = FP + 1
-
-    #end of for loop only 1 tab required
-
-    print("number of lines in list_gold_label is "+ str(len(list_gold_label)))
-    print("number of lines in pred_label is "+ str(len(list_pred_label)))
-    print("first entry in list_gold_label is "+ str((list_gold_label[0])))
-    print("first entry in pred_label is "+ str((list_pred_label[0])))
-    print(classification_report(list_gold_label, list_pred_label))
-    print("accuracy:"+str(accuracy_score(list_gold_label, list_pred_label)))
-    print(report_score(list_gold_label,list_pred_label))
-    # print("TP:"+str(TP))
-    # print("FP:"+str(FP))
-    #
-    # print("TN:"+str(TN))
-    # print("FN:"+str(FN))
-    #
-    # recall=TN/(TN+FN)
-    # precision=TP/(TP+FP)
-    # print("precision:"+str(precision))
-    # print("recall:"+str(recall))
-    #
-   # accuracy=correct_prediction/total_pairs
-    # print("accuracy:" + str(accuracy))
-    return accuracy_score
-
-def sendEmail(nameOfRun):
-    gmailUsername="mithunpaul08@gmail.com"
+def sendEmail(nameOfRun,toaddr):
+    #gmailUsername="nn7607"
+    gmailUsername="mithunpaul08"
 
     gmailPwd="Alohomora456+"
+    #fromaddr="nn7607@gmail.com"
     fromaddr="mithunpaul08@gmail.com"
     #toaddr="mithunpaul08@gmail.com"
-    toaddr="mithunpaul@email.arizona.edu"
+    #toaddr="mithunpaul@email.arizona.edu"
     subjectForEmail= nameOfRun+":Code finished running"
     carbonCopy = "mithunpaul@email.arizona.edu"
     #if on laptop dont switch path. This is required because cron runs as a separate process in a separate directory in chung

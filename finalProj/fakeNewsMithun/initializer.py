@@ -1,4 +1,5 @@
 from __future__ import division
+import nltk, string
 import os
 import sys;
 import utils;
@@ -16,7 +17,8 @@ from utils.classifier_functions import predict_data_phase1
 from utils.classifier_functions import convert_data_to_headline_body_stance_format
 from utils.classifier_functions import predict_data_phase1_return_only_unrelated
 from utils.classifier_functions import sendEmail
-
+from utils.process_input_data import createAtfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 from sklearn.feature_extraction.text import CountVectorizer
@@ -49,13 +51,18 @@ RELATED = LABELS[0:3]
 #disagree:1
 #discuss:2
 #unrelated:3
-
-
+toaddr="mithunpaul@email.arizona.edu"
 #or if its just 2 classes
 #unrelated:0
 #related=1
 if __name__ == "__main__":
     try:
+        #nltk.download("wordnet", "whatever_the_absolute_path_to_myapp_is/nltk_data/")
+        print("number of arguments is"+ str(len(sys.argv)))
+
+        if(len(sys.argv)>1):
+            toaddr=sys.argv[1]
+
         ###########################-DO NOT DELETE###########################
         #--code for trainign related- unrelated class...this has to go in a if statement based on user input.
         #make sure that the current working directory is the starting level
@@ -129,7 +136,7 @@ if __name__ == "__main__":
             print ("total number of numcols in predicted matrix is:"+str(numrows_pred))
             #final_score=report_score([LABELS_RELATED[e] for e in actual_phase1],[LABELS_RELATED[e] for e in predicted_phase1])
             final_score=report_score([LABELS[e] for e in actual_phase1],[LABELS[e] for e in predicted_phase1])
-            sendEmail("do_validation_phase1")
+            #sendEmail("do_validation_phase1")
 
     #        sys.exit(1)
 
@@ -163,12 +170,23 @@ if __name__ == "__main__":
 
 
             #use the same vectorizer for training and testing.
-            vectorizer_phase2 = CountVectorizer(min_df=1)
+            #vectorizer_phase2 = CountVectorizer(min_df=1)
+            #vectorizer_phase2 = TfidfVectorizer(min_df=1)
+
+            vectorizer_phase2 = createAtfidfVectorizer()
+
+
+            #vectorizer_phase2 = createAtfidfVectorizer
+
+
             #this training has to be done on the gold training data split based on stance= related
             svm_trained_phase2,vectorizer_phase2_trained=phase2_training_tf(related_data_gold,vectorizer_phase2)
 
+            #X= vectorizer_phase2_trained.get_feature_names()
+
+
             print ("done with training of documents for agree classes. going to read testing data.")
-            sendEmail("do_training_phase2")
+            #sendEmail("do_training_phase2")
 
     #########################This is the end of training for Phase1. Validation for phase 2 starts here###########################3
         if(do_validation_phase2):
@@ -187,7 +205,7 @@ if __name__ == "__main__":
             actual_phase2, predicted_phase2  = test_phase2_using_svm(testing_data_converted, svm_trained_phase2, vectorizer_phase2_trained)
 
             print ("done classifying testing data for phase 2. going to find score ")
-            sendEmail("do_validation_phase2")
+            #sendEmail("do_validation_phase2")
 
     #########################This is the end of validation for Phase 2. Testing for Phase 1 starts here###########################3
         if(do_testing_phase1):
@@ -199,7 +217,7 @@ if __name__ == "__main__":
             cwd = os.getcwd()
 
             print ("done with training of documents for phase1. going to start testing for phase 1")
-
+            unrelated_threshold=0.1
 
             testing_data = utils.read_data.load_testing_DataSet(cwd)
 
@@ -216,7 +234,15 @@ if __name__ == "__main__":
             actual_phase1_only_unrelated, predicted_phase1_only_unrelated =predict_data_phase1_return_only_unrelated(training_data, unrelated_threshold)
 
 
-            sendEmail("do_testing_phase1")
+            print("number of rows in actual_phase1_only_unrelated  is:"+str(len(actual_phase1_only_unrelated )))
+            print("number of rows in predicted_phase1_only_unrelated  is:"+str(len(predicted_phase1_only_unrelated )))
+
+            #if(len(actual_phase1_only_unrelated )!=len(predicted_phase1_only_unrelated )):
+                #sendEmail("error occured, lengths dont match actual_phase1_only_unrelated . going to exit")
+                #sys.exit(1)
+            #else:
+                #sendEmail("do_testing_phase1")
+
 
 
 
@@ -228,7 +254,7 @@ if __name__ == "__main__":
             #once the data is split into related-unrelated, we use the related data to split into 3
 
 
-            unrelated_threshold=0.399214065331
+
             print ("going to retreive only related data based on threshold:"+str(unrelated_threshold))
 
 
@@ -264,11 +290,13 @@ if __name__ == "__main__":
             predicted=predicted_phase1_only_unrelated+ predicted_phase2
 
             final_score=report_score([LABELS[e] for e in actual],[LABELS[e] for e in predicted])
-            sendEmail("do_testing_phase2")
+            ##sendEmail("do_testing_phase2")
+            #sendEmail("entire program")
+            sendEmail("entire program",toaddr)
 
     except:
         import traceback
         print('generic exception: ' + traceback.format_exc())
-        sendEmail("inside try-catch. error occured, going to exit")
-        sys.exit(1)
+        sendEmail("inside try-catch. error occured, going to exit",toaddr)
+       # sys.exit(1)
 
