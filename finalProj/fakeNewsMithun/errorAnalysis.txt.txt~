@@ -1,0 +1,1754 @@
+#acccording to FNC guys, this is the mapping of classes to labels
+#agree:0
+#disagree:1
+#discuss:2
+#unrelated:3
+
+ errored document count:1
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Apple: Citi Sees $550 and $950 Apple Watches, Accessory Plethora
+  actualBody:A heartbroken woman in Chengdu, China did the right thing after she was dumped by her boyfriend; instead of going on a partying bender or staying in and watching Friends reruns, she staked out a spot at the local KFC and went to town on some chicken wings.
+
+Tan Shen, 26, says she stopped at a KFC near a train station on her way home from the breakup when she decided you know what, fuck this, this feels right and good and I don't need that asshole anyway. It's all about these wings. These wings right in front of me. One week's worth of wings, let's go.
+
+Via Yahoo News, she explains:
+
+'I hadn't planned on staying there long, I just wanted some chicken wings.
+
+'But once I got in there and started eating I decided I needed time to think.
+
+'I didn't want to go back to my apartment because it was full of memories of him. So I stayed.'
+
+The KFC, which is 24 hours, said at first they didn't really notice the poor mourning girl because of the shift changes. Tan Shen decided it was time to return to her parents' home after local media started showing up a week into her Kentucky fried experiment, adding that she was "getting sick of the taste of chicken."
+
+The staff at KFC said she'd be missed, so someone out there loves you, girl.
+
+[Image via Getty]
+  ***************
+ errored document count:2
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Bodies In Mexico Mass Grave Apparently Not Those Of Missing Students
+  actualBody:Homeland Security Secretary Jeh Johnson is pushing back against a claim made by Rep. Duncan Hunter that at least 10 Islamic State of Iraq and the Levant fighters were apprehended trying to come into the U.S. from Mexico.
+
+“We have no credible, specific intelligence to that effect,” Johnson said of ISIL insurgents illegally entering the country from along the southern border on CNN Wednesday evening. “And I look at the intelligence reports from overseas from our southern border from our intelligence community virtually every day, numerous times a day, to be on the lookout for something of that nature. So, what I’d say to the American public is we’re vigilant in looking out for individuals of suspicion who may be crossing our border.”
+
+The top DHS official didn’t mention Hunter, a California Republican congressman, by name. But on several occasions, Johnson said that public officials have a “responsibility” to not “unnecessarily frighten the American public.”
+
+“Let’s not unduly create fear and anxiety in the American public by passing on speculation and rumor,” the secretary told host Wolf Blitzer.
+
+Blitzer asked specifically about comments made Tuesday evening by Hunter, a member of the House Armed Services Committee. “[A]t least 10 ISIS fighters have been caught coming across the Mexican border in Texas,” the congressman said during an interview on Fox News, citing information from source from Customs and Border Protection, which is under DHS authority. Hunter also suggested that it was likely that “dozens” of others linked to the terrorist group that has recently beheaded two American journalists and two British aid workers would likely not get caught by border agents and make their way into the U.S.
+
+On Wednesday, DHS flatly said that Hunter’s claim was unfounded. “The suggestion that individuals who have ties to ISIL have been apprehended at the southwest border is categorically false, and not supported by any credible intelligence or the facts on the ground,” a DHS spokesperson said.
+
+Judicial Watch reported later Wednesday that four “Islamic terrorists” had been seized along the southern border in 36 hours.
+
+Hunter’s deputy chief of staff, Joe Kasper, told POLITICO that the congressman stands by his statement, which came from a conversation with a “high-level” source, but didn’t elaborate when asked about the individuals’ specific ties to ISIL.
+
+In September, Republican Rep. Jason Chaffetz of Utah claimed that four men linked to terrorist organizations tried to cross the border earlier that month.
+  ***************
+ errored document count:3
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Man cuts off manhood, throws it in the bin, after girlfriend leaves over small penis
+  actualBody:The video texting service Glide has verified the recording played by CNN this week of the purported shots in the Ferguson, Mo., killing of 18-year-old Michael Brown. In an e-mail to the Erik Wemple Blog, Glide head of communications Chaim Haas reports:
+
+Because Glide is the only messaging application using streaming video technology, each message is simultaneously recorded and transmitted, so the exact time can be verified to the second. In this case, the video in question was created at 12:02:14 PM CDT on Saturday, August 9th.
+
+Glide has also posted a note on its Web site. In a brief chat with the Erik Wemple Blog, Haas said, “The question we are being asked is is this authentic and the answer is absolutely.” Notification to the FBI, said Haas, “is taking place.”
+
+The news is big news for CNN, which subjected itself to some doubts about the integrity of the recording. It surfaced the tape on Monday night without having authenticated it. Haas confirms that, even though the service has verified the creation of the tape, that doesn’t mean that the sounds in the background are conclusively those of the Brown shooting.
+  ***************
+ errored document count:4
+pred_label:2
+ gold_int[dataCounter] :0
+  headline:Nicaragua Meteorite Impact Theory May Be Meteor-wrong
+  actualBody:We reported on Monday that a meteor, thought possibly to be a chunk of an Earth-passing asteroid, was the cause of a 40-foot crater outside the international airport in the Nicaraguan capital.
+
+But astronomers and NASA scientists are now casting doubt on that possibility. The biggest mystery is that no one so far has reported seeing a flash of light in the sky that would be expected to accompany such a meteor strike.
+
+"While a meteoritic origin for this crater cannot be ruled out with absolute certainty, the information available at this time suggests that some other cause is responsible for its creation," NASA's blog concludes.
+
+Space.com reports:
+
+It's a sentiment echoed by Wilfried Strauch, an adviser to Nicaragua's Institute of Territorial Studies, or Ineter, who concluded that it's "very strange that no one reported a streak of light.
+
+"We have to ask if anyone has a photo or something," he said.
+
+It also appears that a meteor landing in Nicaragua could not have come from asteroid 2014 RC, also nicknamed "Pitbull," as first thought. National Geographic writes:
+
+JPL's Asteroid Watch concurs:
+  ***************
+ errored document count:6
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Dumped woman spends a week in KFC to get over ex
+  actualBody:Islamic State has released a video showing the beheading of British hostage David Haines.
+
+It comes just hours after his family issued a public plea for his captors to contact them.
+
+The Foreign Office said it was "working urgently to verify" the video and offering Mr Haines's family support.
+
+David Cameron, the Prime Minister, said: "The murder of David Haines is an act of pure evil. My heart goes out to his family who have shown extraordinary courage and fortitude."
+
+He added: "We will do everything in our power to hunt down these murderers and ensure they face justice, however long it takes."
+
+Mr Haines, 44, was kidnapped last year as he delivered humanitarian aid in Syria.
+
+His whereabouts were only revealed this month when he was shown kneeling in the sand, wearing an orange jumpsuit, in a video produced by jihadists of the Islamic State of Iraq and the Levant (Isil) which also showed the murder of Steven Sotloff, an American journalist.
+
+A masked man, who has become known as “Jihadi John”, said Mr Haines would be next if the West did not halt operations against Isil.
+
+In the latest video, he is also wearing a orange jumpsuit and is kneeling on the sand.
+
+It begins with a clip from David Cameron. A man believed to be Mr Haines then looks into the camera and says: "My name is David Cawthorne Haines. I would like to delcare that I hold you David Cameron entirely responsible for my execution.
+
+"You entered voluntarily into a coalition with the United States against the Islamic State just as your predecessor Tony Blair did, following a trend against our British prime ministers who can't find the courage to say no to the Americans.
+
+"Unfortunately it is we the British public that in the end will pay the price for our Parliament's selfish decisions."
+
+Twitter: David Cameron - The murder of David Haines is an act of pure evil. My heart goes out to his family who have shown extraordinary courage and fortitude.
+
+Twitter: David Cameron - We will do everything in our power to hunt down these murderers and ensure they face justice, however long it takes.
+
+In a statement, the Foreign and Commonwealth said: "We are aware of the video.
+
+"We are working urgently to verify the content. If true, this is another disgusting murder. We are offering the family every support possible.
+
+"They have asked to be left alone at this time."
+
+Mr Cameron rushed back to Downing Street for crisis talks with his advisers, officials and intelligence chiefs on Saturday night. He arrived at No 10 just after midnight.
+
+He chaired a COBRA meeting on Sunday morning.
+
+In the Haines family’s short statement - which was released earlier on Saturday by the Foreign and Commonwealth Office - the British captive’s relatives said: “We are the family of David Haines.
+
+“We have sent messages to you to which we have not received a reply.We are asking those holding David to make contact with us.”
+
+No further details of their messages were released.
+
+Mr Haines had worked for aid agencies in some of the world’s worst trouble spots, including Libya and South Sudan.
+
+He was travelling in a car through northern Syria in March last year when he was abducted along with an Italian colleague, who was later released. He was working for a French aid organisation, Agency for Technical Co-operation and Development (Acted).
+
+Mr Haines is believed to have been kidnapped by a gang which later sold him on to Isil.
+
+His identity remained a closely guarded secret for 19 months in a bid to increase the chances of a negotiated release.
+
+But the situation changed dramatically with the execution first of James Foley, another American journalist, and then Mr Sotloff with the subsequent appearance of Mr Haines in the second murder video.
+
+MPs reacted with horror and anger to the reports on Saturday night.
+
+Ed Vaizey, a government minister and Conservative MP, said he was “so sad and angry” to hear reports of Mr Haines’s murder.
+
+Stella Creasy, a Labour MP and shadow minister, said she was “shocked and horrified” to see reports that Mr Haines had been killed. “Hoping mistaken but fear not,” she said.
+
+Dan Jarvis, another senior Labour MP, said he was “sickened”.
+
+Tim Farron, President of the Liberal Democrats, said: “My thoughts and prayers are with David Haines' family and friends tonight.”
+
+Ed Miliband, the Labour leader, said: “I am sickened at the disgusting, barbaric killing of David Haines.
+
+“He was somebody whose only purpose was to help innocent people, themselves victims of conflict.
+
+“That ISIL would choose to kill him says everything about their warped logic and murderous ways.
+
+“Acts like this will not weaken but strengthen the resolve of Britain and the international community to defeat ISIL and their ideology.
+
+“My deepest condolences and thoughts are with his family as they cope with this terrible crime. And the hearts of the British people will go out to them.”
+
+Lord Dannatt, the former head of the Army, said the UK should respond by playing its role in the assault against IS promised by US president Barack Obama.
+
+"What we absolutely need to do is not be cowed in any way by yet another foul murder of a hostage," he told Sky News.
+
+"But to develop the strategy into a sensible military campaign in coalition with regional players such as Saudi Arabia, Jordan and other countries in the area.
+
+"We can support them to confront, attack and defeat the Islamic State jihadi fighters ... and make sure this cancer is removed from the region before it spreads more widely."
+
+The United States also "strongly condemned" the killing.
+
+In a statement, the White House said: "Our hearts go out to the family of Mr Haines and to the people of the United Kingdom. The United States stands shoulder to shoulder tonight with our close friend and ally in grief and resolve.
+
+"We will work with the United Kingdom and a broad coalition of nations from the region and around the world to bring the perpetrators of this outrageous act to justice, and to degrade and destroy this threat to the people of our countries, the region and the world."
+  ***************
+ errored document count:7
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:ISIS KILLS 300 IRAQI SOLDIERS WITH CHLORINE GAS: SHIA MP
+  actualBody:Sorry to disappoint, fans of Led Zeppelin, but it doesn’t look like a reunion will be happening any time soon.
+
+According to a report from UK publication The Mirror, the group’s famed lead singer Robert Plant literally tore up a contract to reunite the band worth almost $800 million, saying the timing just wasn’t right for a reunion tour.
+
+Sir Richard Branson of the Virgin brand fame was apparently behind the entire thing, offering the band an obscene amount of money just to reunite for a few dozen shows. The contract was reportedly for 35 shows in three cities: London, Berlin, and an unnamed location in New Jersey. Each of the three remaining original members would have earned somewhere over $200 million each just for performing, while another $100 million in merchandising profits was to be shared between the group members.
+
+English: Robert Plant of Led Zeppelin
+Robert Plant of Led Zeppelin (Photo credit: Wikipedia)
+
+Branson was reportedly also ready to supply the group with their own private jet for the tour. The mogul was prepared to take one of his airline’s planes and rebrand it “The Starship”. The contract also had an extension option to add 45 more shows in additional venues should the band agree.
+
+The other two original members of the group apparently signed on immediately, and Jason Bonham, the son of late drummer John Bonham, was set to step in for his father. Plant apparently met with conert promoters to discuss the deal, and during the meeting actually ripped the contract in two, ending any chance of a regrouping.
+
+
+While $800 million is certainly a lot of money, it’s not like Robert Plant (or any of the other members for that matter) really need it. Led Zeppelin are one of the most successful groups of all time, having sold around 112 million records in the United States alone (that figure is three or four times that when the entire planet is counted). In fact, they are the fourth best-selling music act in American history, right behind The Beatles, Elvis Presley, and Garth Brooks.
+
+Robert Plant has also had an incredibly successful career outside of Led Zeppelin. He has released fourteen albums, selling additional millions and making his chart history that much more impressive. His collaborative album Raising Sand with bluegrass/country singer Alison Krauss may not have been his most commercially successful, but it was adored universally by critics, and won he, Alison, and producer T-Bone Burnett five Grammys back in 2009, including Record of the Year and Album of the Year.
+
+While the band’s last album of original music, Coda, was released back in 1982, the band has continued to sell well throughout the years, making millions in repackagings, reissues and live album releases. The group’s last show together was in London back in December of 2007, which was a tribute to legendary music executive Ahmet Ertegün. The concert is thought to have had the most-desired tickets of any show in history, as when it was announced, 20 million requests were submitted online for passes.
+  ***************
+ errored document count:8
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Unconfirmed reports claim Canadian-Israeli Gill Rosenberg captured by ISIS
+  actualBody:Big Bank Hank, the New York rapper who, as part of the Sugarhill Gang, released what is generally regarded as the first rap record, has died at the age of 57.
+
+The performer, real name Henry Jackson, died from kidney complications due to cancer, according to reports.
+
+Jackson formed the Sugarhill Gang with Master Gee and Wonder Mic, having a big hit in 1979 with Rapper's Delight.
+
+The record sold several million copies worldwide and helped establish rap as the genre it is today.
+
+The full version of Rapper's Delight ran nearly 16 minutes long and was recorded in a single take.
+
+The song - famous for its "hip, hip, a hop" refrain - featured 'Big Bank' introducing himself as "six foot one and tons of fun".
+
+The trio continued to perform together and spent three weeks in the UK singles chart in 1982 with The Lover In You.
+
+Jackson's death was reported by website TMZ and confirmed to Fox News by David Mallie, who manages the two remaining band members.
+
+"So sad to hear of our brother's passing," said Wonder Mike and Master Gee in a statement. "Rest in peace Big Bank."
+  ***************
+ errored document count:10
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Kayla Jean Mueller, U.S. hostage, killed in Jordan airstrike, ISIS claims
+  actualBody:Kim Jong-un: Not deposed, just having ankle surgery. Photo: AFP
+
+Tokyo: Kim Jong-un, the North Korean leader who has mysteriously been missing from the public eye for almost a month, sparking rumours ranging from a stroke to a coup d'etat, is apparently just recovering from ankle surgery.
+
+Mr Kim had fractured both of his ankles and had surgery in Pyongyang in the middle of September to treat them, the Chosun Ilbo, South Korea's largest newspaper, reported on Tuesday, citing an unnamed source.
+
+"I heard that Kim Jong-un injured his right ankle in June after pushing ahead with on-site visits and ended up fracturing both ankles because he left the injury unattended," the source said, adding that the leader had had the operation at the Bonghwa Clinic, an exclusive hospital for high-ranking party members.
+
+Such is the fascination with North Korea, the world's most impenetrable country, that rumours spread like wildfire. But they are almost always impossible to verify.
+
+Nevertheless, it is true that Mr Kim has become noticeably more rotund since he took over the leadership of North Korea from his father, Kim Jong-il, in December 2011. He was pictured limping in July during a ceremony to commemorate the 20th anniversary of the death of his grandfather, former North Korean leader Kim Il-sung, causing speculation about his health.
+
+But the gossip mill started up again last week when Mr Kim, the third-generation leader of North Korea, missed a regular session of the Supreme People's Assembly in Pyongyang. He has not been seen in public since September 3, when he attended a concert with his wife. The rumours went into overdrive when the state-run Korean Central TV said the "Great Successor" was in an "indisposed condition".
+
+"Despite some discomfort, our Marshal continues to come out and lead the people," said the narrator of a documentary called Improving the Lives of the People, showing footage of Kim limping through the Taedonggang Tile Factory last month.
+
+Outside commentators have guessed that Mr Kim has gout, which runs in the family, or has been drinking and eating too much. Diabetes and high blood pressure have also been put forward as possible causes of his absence.
+
+Weibo, China's version of Twitter, went crazy this week with reports that Jo Myong Rok, a North Korean vice-marshal who died four years ago, had overthrown Kim in a coup and sent his lieutenants to South Korea for negotiations. Talk spread so quickly that the Global Times, one of China's official papers, ran a commentary on Monday titled: "For those who make up rumours of coup in North Korea, is it so funny?"
+
+Washington Post
+  ***************
+ errored document count:11
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:BREAKING UDPATED: ISIS REPORTEDLY USE CHEMICAL WEAPONS IN KOBANE
+  actualBody:The World Health Organization is looking into reports that ISIS fighters in Iraq have been showing up at hospitals with Ebola symptoms.
+
+According to the pro-government Iraqi newspaper al Sabaah, an unknown number of ISIS militants have shown up at a hospital in the militant-controlled city of Mosul, about 250 miles north of Baghdad. The paper reported that foreign terrorists brought the disease into Mosul from “several countries” in Africa. (RELATED: ISIS Massacred Every Man And Boy Over 15 In Muslim Town)
+
+It’s not yet clear whether the ISIS extremists actually have Ebola or another disease. Ebola symptoms include fever, vomiting, diarrhea and unexplained bleeding and bruising — problems which could also be attributed to malaria or yellow fever. And doctors in Mosul might be unable to even test for Ebola.
+
+WHO spokeswoman Christy Feig said the organization is reaching out to officials in the ISIS-held area to offer help if the disease does turn out to be Ebola. However, United Nations workers are not allowed to work in ISIS-controlled areas in either Iraq or Syria, so a UN operation to help either ISIS militants or any civilians in the areas who contract Ebola is unlikely.
+
+Feig told Mashable that there’s been no official notification from the Iraqi government that the terrorists’ disease is, in fact, Ebola.
+
+ISIS is against western science and medicine as a rule, but apparently several militants have taken to hospitals with Ebola-like symptoms anyway. Since taking control of Mosul in June 2014, ISIS has taken to executing doctors that refuse to treat them.
+
+Kurdish news website Rudaw reported in Nov. 2014 that ISIS executed six doctors in Mosul for refusing to treat wounded fighters, in addition to kidnapping six merchants for failing to pay a monthly tax to ISIS. The group reportedly executed two more doctors just last week.
+
+The U.S. has been hitting ISIS with air strikes since mid-November and the Pentagon confirmed in December that the strikes have killed around 1,000 fighters, including three senior ISIS officials.
+
+An Ebola outbreak, however unlikely, probably wouldn’t help matters much.
+
+Follow Sarah on Twitter
+  ***************
+ errored document count:12
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Dogs DO go to heaven… and cats, and horses: Pope assures young boy that there is a place in paradise for animals as well
+  actualBody:Brian Williams took a moment during Monday’s edition of NBC Nightly News to address a very important issue. As the anchor said, social media, as well as a few news websites, owes meteorologist Mike Seidel an “apology” after some “wild misinformation” circulated about what he was doing during a live appearance with Lester Holt over the weekend.
+
+Williams explained that Seidel has lost communication with the NBC station and couldn’t hear Holt through his earpiece so he turned his back to the camera, took off his gloves and redialed his phone to connect for the segment.
+
+“That’s when the rumors hit the web that he was perhaps writing his name in the snow,” Williams said. “It was just Mike working to make it right, which is why we all love working with Mike Seidel.”
+
+But, of course, that explanation is far less hilarious and would likely generate almost zero clicks.
+
+Watch video below, via NBC:
+
+[Photo via screengrab]
+
+– –
+
+>> Follow Matt Wilstein (@TheMattWilstein) on Twitter
+  ***************
+ errored document count:13
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Accountant Claims Comcast Got Him Fired From His Job for Reporting a Customer Service Issue
+  actualBody:Newly released audio allegedly records the moment that Officer Darren Wilson opened fire on unarmed Michael Brown
+
+At least ten shots can be heard - in two separate volleys of gunfire
+
+Experts have said this indicated a 'moment of contemplation' for Wilson
+
+FBI has confirmed it has interviewed the man who recorded audio
+
+Is another tantalizing piece of evidence collected in the ongoing case
+
+Officer Wilson claims he felt his life was threatened on August 9
+
+Witnesses and a friend of Brown, 18, claim he had surrendered
+
+Brown was buried on Monday in a ceremony attended by thousands
+
+The FBI has been handed a potentially crucial recording that allegedly contains audio of the moment that Officer Darren Wilson opened fire and killed unarmed 18-year-old Michael Brown in Ferguson, Missouri, earlier this month.
+
+Revealed by CNN's Don Lemon on Monday, at least ten shots are heard to ring out during the background of the recording, with a brief but significant pause between the first seven shots and the last volley of four.
+
+The unidentified man who has given the unverified tape to authorities claims to have coincidentally recorded the fatal shots that killed Brown in broad daylight on August 9, and experts who have listened to the audio have said it could prove damning for Officer Wilson.
+
+Scroll Down for Audio
+
+Attorney: Lopa Blumenthal is legally representing the man who claims to have coincidentally recorded the shooting of Michael Brown by Officer Darren Wilson on August 9
+
+'There sounds like a pause in it (the audio). And when you hear that pause it brings some concern,' said retired Chief Deputy US Marshall Matthew Fog after listening on CNN.
+
+'It is very significant, because if you have a pause there it means somebody had time to think and then fire again.'
+
+In the audio, the unidentified man is heard telling someone, 'You’re so pretty' then 11 gunshots can be heard to cackle in the background — seven in one volley, followed a pause and then a final burst of four.
+
+Lopa Blumenthal, the attorney for the unidentified man who recorded the alleged gunfire nearby said that she believed the audio shows, if it is authentic, that Officer Wilson had a clear 'point of contemplation' while pulling the trigger and aiming at Brown.
+
+'He was in his apartment, talking to a friend on a video chat,' said Blumenthal.
+
+'He heard loud noises, and at the time he didn't even realize the import of what he was hearing until afterwards, and it just happened to have captured 12 seconds of what transpired outside of his building.'
+
+Lemon cautioned that 'CNN cannot independent verify the authenticity of this tape' but did say that the FBI have interviewed both Blumenthal and her client.
+
+'We had been told that at least six shots were fired at Michael Brown. In the tape that you have, which is alleged to be of the shooting—we can't independently authorize it, as CNN, because we did not shoot it, but there were more than six shots,' Lemon said.
+
+Nightly scenes of unrest have erupted in Ferguson since Officer Darren Wilson fatally shot Michael Brown, an unarmed black 18-year-old, more than two weeks ago
+
+Officer Darren Wilson (right, collecting a commendation) has claimed that a confrontation sparked by a scuffle with Michael Brown led to the Ferguson teens fatal shooting on August 9 (left, Wilson paces around the body of Brown in the aftermath of the shooting) while witnesses claim the officer continued to shoot at an unarmed man with his hands up who had surrendered
+
+Funeral: The casket containing the remains of Michael Brown awaiting the start of his funeral inside the Friendly Temple Missionary Baptist Church, St Louis, Missouri, USA, on 25 August 2014
+
+Grief: Dorian Johnson, who is one of the key witnesses in the fatal police shooting of Michael Brown, leaves Brown's funeral at the Friendly Temple Missionary Baptist Church in St. Louis, Missouri, USA, on Monday, 25, August
+
+If indeed the audio is genuine it calls into question the version of events that Officer Wilson and the Ferguson police force have claimed occurred on that Saturday afternoon.
+
+At least two autopsies performed on Michael Brown have concluded he died after being shot six times by Wilson after being pulled over by the officer, including a fatal 'kill shot' to the top of his head.
+
+Numerous witnesses, including Brown's friend Dorian Johnson, claim that Wilson opened fire after bungling opening his squad car door, causing the teen to run before turning back to face the officer with his hands raised saying 'don't shoot'.
+
+Johnson then alleges that Wilson continued to fire.
+
+Ferguson police and friends of Officer Wilson contend that Brown engaged in a scuffle with Wilson when the officer pulled him and Johnson over, tried to grab his weapon and then run towards him, leaving him no choice but to fire.
+
+Anguish: Michael Brown Sr., yells out as the casket carrying his son is lowered during the funeral service of Michael Brown in Normandy, Missouri on Monday, August 25, 2014
+
+Too much: Lesley McSpadden, Michael Brown's mother, cries during her son's funeral at the Friendly Temple Missionary Baptist Church, St Louis
+
+Overcome: Lesley McSpadden appears overwhelmed with grief during the service
+
+Laid to rest: A horse-drawn hearse carries Michael Brown to his gravesite at St. Peters Cemetery in Normandy, Missouri on Monday
+
+Indeed in recent days reports had emerged stating that Wilson, 28, was badly beaten and left with serious facial injuries following the fatal shooting in the St Louis suburb, including an eye socket fracture.
+
+On Tuesday, The Gateway Pundit reported that the officer had suffered an 'orbital blowout fracture'.
+
+But CNN reported on Thursday that although the officer was taken to a hospital with a badly swollen face following the shooting on August 9, x-rays came back negative for any serious injury.
+
+Earlier reports had claimed that the officer was almost knocked unconscious by Brown's blows, according to the source.
+
+A police source told Fox: 'The Assistant (Police) Chief took him to the hospital, his face all swollen on one side. He was beaten very severely.'
+
+Demonstrators protest the shooting death of Michael Brown in Ferguson, Missouri, last Thursday night
+
+The source continued: 'They ignored him [Wilson] and the officer started to get out of the car to tell them to move. They shoved him right back in, that’s when Michael Brown leans in and starts beating Officer Wilson in the head and the face.'
+
+A police source has confirmed to MailOnline that Wilson was taken to hospital and treated for facial injuries sustained during the Brown incident but would not elaborate on the severity or nature of those injuries.
+
+Last week, Ferguson Police Chief Thomas Jackson said Wilson had suffered swelling to the side of his face but gave few details of the injuries.
+
+Wilson, a six-year veteran of the Ferguson force with a clean record, has not been arrested or charged with any crime.
+
+He is on paid leave pending the outcome of the investigation and is under 24-hour guard after death threats were aimed at him.
+
+Wilson is 'traumatized, scared for his life and his family' along with being deeply concerned that a grand jury, which met for the first time on Wednesday, will make an example out of him, the source told Fox.
+
+Earlier reports had claimed that Officer Wilson was almost knocked unconscious by Brown's blows
+
+Missouri Governor Jay Nixon has come under fire after calling for the 'vigorous prosecution' of Wilson despite the fact that the officer has not yet been charged with any crime.
+
+His deputy, Missouri Lieutenant Governor Peter Kinder said: 'It's really heartbreaking to see a man elected to an office that high in our state government... come out with a statement like that, that does prejudge the case.'
+
+St Louis County Prosecutor Robert McCulloch said on Wednesday he estimated it would be the middle of October before the grand jury reached a decision on whether Officer Wilson will face charges over Michael Brown's death.
+
+Gov. Jay Nixon on Thursday ordered the Missouri National Guard to begin withdrawing from Ferguson.
+
+Since the guard's arrival Monday, flare-ups in the small section of town that had been the center of nightly unrest have begun to subside.
+
+About 100 people gathered Thursday evening, walking in laps near the spot where Michael Brown was shot. Some were in organized groups, such as clergy members.
+
+More signs reflected calls by protesters to remove the prosecutor from the case.
+  ***************
+ errored document count:15
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Nicaragua Meteorite Impact Theory May Be Meteor-wrong
+  actualBody:Bale, a longtime favorite for the role, is back in the mix after talks with Leonardo Dicaprio fell through
+
+Christian Bale may play Steve Jobs in Sony's Aaron Sorkin-scripted biopic after all. The actor is now in talks for the role for director Danny Boyle, an individual with knowledge of the project told TheWrap.
+
+As TheWrap was the first to report, Bale has been the top choice for the part of the late Apple founder ever since the project was announced, and David Fincher was especially keen on the actor when he was in talks to direct.
+
+Also read: Christian Bale Is David Fincher's Choice to Play Steve Jobs in Sony Movie (Exclusive)
+
+Boyle previously held talks with his “The Beach” star Leonardo Dicaprio to take the role, but that fell through and Bale is now back in the conversation, pending scheduling.
+
+Sony had no comment.
+
+See video: Christian Bale Is the Chosen One in New ‘Exodus: Gods and Kings’ Trailer
+
+Scott Rudin and Mark Gordon are producing with Film 360's Guymon Casady. Sorkin's script is based on on Walter Isaacson's book, which was authorized by Jobs himself.
+
+Bale, who won an Oscar for David O. Russell's “The Fighter,” will next be seen in Ridley Scott's “Exodus: Gods and Kings” and will voice the jaguar Bagheera in Warner Bros’ “Jungle Book: Origins.” He is represented by WME.
+  ***************
+ errored document count:21
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:'Hairgate': iPhone hit by new social media storm
+  actualBody:Boston| 
+A Catholic priest from Massachussetts was officially dead for more than 48 minutes before medics were able to miraculously re-start his heart. During that time, Father John Micheal O’neal claims he went to heaven and met God, which he describes as a warm and comforting motherly figure.
+
+The 71-year old cleric was rushed to the hospital on January 29 after a major heart attack, but was declared clinically dead soon after his arrival. With the aid of a high-tech machine called LUCAS 2, that kept the blood flowing to his brain, doctors at Massachusetts General Hospital managed to unblock vital arteries and return his heart to a normal rhythm.
+
+The doctors were afraid he would have suffered some brain damage from the incident, but he woke up less than 48 hours later and seems to have perfectly recovered.
+
+The elderly man claims that he has clear and vivid memories of what happened to him while he was dead. He describes a strange out-of-body experience, experiencing an intense feeling of unconditional love and acceptance, as well as being surrounded by an overwhelming light.
+
+He claims that at that point in his experience, he went to heaven and encountered God, which he describes as a feminine, mother-like “Being of Light”.
+
+“Her presence was both overwhelming and comforting” states the Catholic priest. “She had a soft and soothing voice and her presence was as reassuring as a mother’s embrace. The fact that God is a Holy Mother instead of a Holy Father doesn’t disturb me, she is everything I hoped she would be and even more!”
+
+The declarations of the cleric caused quite a stir in the catholic clergy of the archdiocese over the last few days, causing the Archbishop to summon a press conference to try and calm the rumors.
+Despite the disapproval of his superiors, Father O’neal says that he will continue dedicating his life to God and spread the word of the “Holy Mother”.
+
+“I wish to continue preaching” says the elderly cleric. “I would like to share my new knowledge of the Mother, the Son and the Holy Ghost with all catholics and even all Christians. God is great and almighty despite being a woman…”
+
+The Roman Catholic Archdiocese of Boston has not confirmed however, if they will allow Father O’neal to resume his preaching in his former parish in South Boston.
+
+The Archbishop of Boston, Cardinal Sean P. O’Malley, made a public statement this morning stating that Father O’neal suffered hallucinations linked to a near-death experience and that God clearly isn’t a female.
+
+This article was first published in world news daily report
+  ***************
+ errored document count:22
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Now THAT'S a Royal trip! Alan Titchmarsh finds psychedelic mushroom in the Queen's garden at Buckingham Palace
+  actualBody:Kids these days. 
+
+New York Magazine recently profiled Mohammed Islam, a 17-year-old senior at Manhattan's Stuyvesant High School who decided to start trading stocks during his lunch break and found himself all the richer for it. 
+
+$72 million richer, to be precise. 
+
+Islam, the son of Bengali immigrants from Queens, is the president of the school's Investment Club and has been profiled by Business Insider for his financial acumen. Mo, as he's known, won't disclose his full net worth but says it's in "the high eight figures." 
+
+
+
+
+Mo's got an apartment in Midtown Manhattan, though his parents won't let him move out of their house until he's 18. He bought a BMW, but he doesn't have a license to drive it – his dad drives him on inspirational tours past the home of his idol, billionaire Paul Tudor Jones, a hedge-funder and private asset manager who's ranked the 108th richest American, according to Forbes. 
+
+Islam recalls that, when he first experimented with penny stocks (at the tender age of 9), he lost some of the money he'd saved up from tutoring, which caused him to swear off trading briefly. But he was reinvigorated by Jones's story and quotes his idol: "You learn more from your losses than from your gains." 
+
+From all appearances, Islam's learned plenty.
+  ***************
+ errored document count:23
+pred_label:1
+ gold_int[dataCounter] :3
+  headline:ISIS pays tribute to its 'Cub of Baghdadi' child soldier
+  actualBody:Actual women.
+
+With ongoing outrage over the NFL's recent slew of scandals, it made perfect sense when ESPN announced it will hold a panel on domestic violence Monday night. But as the two organizations geared up this discussion about women and abuse in the world of sports, it quickly became painfully clear that women had been completely excluded from the table. 
+
+As Esquire's Ben Collins pointed out last week, the panel will consist entirely of male commentators, while female reporters will be literally sidelined in the discussion.
+
+"Up to 11 men, all between the ages of 39 and 74 will sit at the table for a domestic violence discussion on ESPN. Zero women. Victims of domestic violence in America are most likely to be women aged 20-24," Collins wrote.
+
+"When the show has updates from the field — brief reports about injuries and the upcoming game — they'll cut to female sideline reporters, Lisa Salters and, on some weeks, Suzy Kolber. These people are not allowed at the table."
+
+What an oversight. The utter failure to include a single woman in a discussion about domestic violence has already attracted a ton of criticism online:
+
+
+
+
+
+
+But that's not all. While it might be easy to dismiss an incident like this as unintentional, Collins rightly points out that ESPN's track record on holding the NFL accountable is not that great. And why should it be, given the lucrative, multibillion-dollar partnership the two organizations enjoy?
+
+"You will not hear these words because ESPN is not a company in the business of journalism. It is an entertainment outlet that sometimes reports convenient, timely information to drive interest in future programming," Collins writes. "There are 11 seats at the table at ESPN. All of them go to men. Women get their own table, but only sometimes — and ESPN has placed that table where no one can hear them."
+
+This scandal has given ESPN the chance to decide whether it wants to be an outlet for responsible sports journalism or a profit-driven hype man for the NFL. And we may already have the answer.
+  ***************
+ errored document count:24
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Tiger Woods' former luxury island goes on sale
+  actualBody:Unlucky in love Yang Hu was so fed up with not having a girlfriend that he chopped off his own penis -because he had no real use for it.
+ 
+The depressed 26-year-old believed there was no chance of ever finding a partner due to his long work hours.
+ 
+So in desperation he cut off his penis in a bid to stop himself thinking about finding love.
+
+Realising his mistake Yang CYCLED to hospital to get treatment only to be sent home by shocked doctors who told him to retrieve his severed penis so they could attempt to reattach it.
+
+However, when he returned he had lost too much blood and so surgeons were unable to save it.
+
+Yang's friends said that he had been increasingly depressed about the fact that since moving to the city he could not find a girlfriend.
+
+They said that his long hours working in a clothing factory in Jiaxing, in Zhejiang province in east China, meant he he doubted he would ever have a chance to meet a woman.
+  ***************
+ errored document count:26
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:A soldier has been shot at Canada’s war memorial just steps away from the nation’s parliament
+  actualBody:North Korea may have a woman at the helm–Kim Jong-Un’s sister Kim Yo Jong–according to a rash of rumors that have popped up recently.
+
+There’s several pieces of the news, with some indicating that the dictator Jong-Un may no longer be in control of the country.
+
+Jang Jin-sung, formerly a key member of Kim Jong-il’s propaganda machine, said recently that a powerful group of officials that once reported only to Jong-il have stopped taking orders from Jong-Un and now effectively run the country.
+
+The group is called the Organization and Guidance Department, and some of them want to keep the status quo while others want to open up the market.
+
+“On one hand, it’s people who want to maintain a regime monopoly,” Jang told VICE News through a translator.
+
+“On the other hand, it’s not like people are fighting against the regime, but in a policy sense they want to take advantage to get influence. It’s not actually consciously civil war, but there are these two incompatible forces at play.”
+
+The insight comes as Seoul-based think tank North Korea Intellectuals Solidarity says that Kim Yo Jong may be leading the country instead of her brother.
+
+In this Wednesday, July 25, 2012 photo, North Korean leader Kim Jong Un, center, accompanied by his wife Ri Sol Ju, right, waves to the crowd as they inspect the Rungna People’s Pleasure Ground in Pyongyang. (AP Photo/Korean Central News Agency via Korea News Service)
+
+The NKIS says that Jong-Un is getting medical treatment for an unspecified illness, and that the extended treatment was actually decided upon at a high-level meeting in early September that was held at Yo Jong’s suggestion.
+
+She’s now charged with handling important government decisions in his absence, according to the Diplomat, citing the report.
+
+“All the important matters related to government administration should be reported to Kim Yo-jong, so that Kim Jong-un can concentrate on getting better,” the people at the meeting decided.
+
+Yo Jong is the daughter of Jong-il, the former North Korean leader, and his wife Kim Yong-hui, and was first spotted in public in September 2010. She was officially mentioned for the first time on March 9, 2014, being identified as a “senior official” in the government.
+
+Then again, perhaps Yo Kong is not in total control, according to Kim Heung-gwang, the head of NKIS.
+
+“Some say Hwang Byong-so, director of the General Political Bureau of the Korean People’s Army, may have assumed new No. 2 status, but given what has been confirmed this time, we can say Hwang is just a shadow, and Kim Yo-jong is the second-in-command of North Korea,” he said.
+
+The possible leadership change comes amid reports of an attempted coup.
+
+MORE:
+
+North Korea Lockdown? Is Pyongyang Actually Closed Off Amid Coup Attempt?
+  ***************
+ errored document count:27
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Small meteorite strikes Nicaragua, government says
+  actualBody:McDonald’s will not stop serving overweight customers starting January 1, 2015.
+
+A fake article was published on the mostly fake news site DailyBuzzLive.com.
+
+Here’s the disclaimer: “A few stories are works of complete fiction. Those few articles are for entertainment purposes only. The articles and stories may or may not use real names, always a semi real and/or mostly, or substantially, fictitious ways.”
+
+The story about McDonald’s is fiction.
+
+As hoax-debunking site Snopes says, “in addition to the logistical impossibilities of weighing drive-thru customers, the potential lawsuits for discriminating against obese people, and the likelihood of McDonald’s losing millions of dollars in profits, the article can be debunked simply by considering its source: According to the Daily Buzz Live disclaimer page, all articles published on the site are meant for “entertainment purposes only.'”
+
+Here’s what part of the fake piece says:
+
+Obesity in America has more than doubled over the last 2 decades and has become the leading public health issue in the U.S. With more than two-thirds of the adult population overweight, McDonald’s has decided to become part of the solution – not the problem.
+
+According to reports, beginning January 1, 2015, McDonald’s will no longer serve customers with a weight capacity over 170 lbs for women and 245 lbs for men. Children’s weight restrictions will vary depending on age and height.
+
+McDonald’s is currently running campaigns to shake its “junk food” image, insisting they sell nothing but good quality food. They are are branding themselves from “A dining experience of fast food” to “Good food served fast.”
+  ***************
+ errored document count:28
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Bosnia: Seven underage girls return from five day school trip, pregnant
+  actualBody:MOGADISHU, Sept 5 (Reuters) - The alert and story on Sept. 5 headlined "Islamist rebel leader killed in U.S. strike-Somali government" is withdrawn and no substitute story will be issued.
+
+The story was sourced to a website purporting to be the Somali prime minister's Facebook page. A Somali government spokesman said the page was not official and said the government had not yet commented on whether Ahmed Godane, the head of the Somali Islamist militant group al Shabaab, had been killed in a U.S. strike on Monday. STORY_NUMBER: L5N0R62Q3 STORY_DATE: 05/09/2014 STORY_TIME: 1324 GMT (Writing by Edmund Blair; Editing by Sonya Hepinstall)
+  ***************
+ errored document count:29
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:'I aborted my baby because it was a boy': Outrage after 'feminist' blogger claims gender prompted termination
+  actualBody:On Tuesday, Apple unveiled its first wearable device, the Apple Watch. During the company's presentation, we learned a lot about what you'll be able to do with the company's new smartwatch.
+
+But what we didn't learn, however, is how long its battery would last on a single charge.
+
+That may be because Apple is still working out this detail, as a new report suggests.
+
+Attributing anonymous sources, Re/code's John Paczkowski reports that Apple isn't happy with the watch's battery life just yet. In its current form, the watch's battery life will not break any industry standards, Paczkowski says.
+
+Right now, the Apple Watch's battery life is about one day, but Paczkowski's sources say Apple is working on some modifications to make the watch last longer on a charge before its 2015 launch.
+
+This aligns with what we've heard from Apple as well, since a company representative told us the watch can be charged at night. Apple hasn't offered any further comment on the watch's battery life.
+
+Battery life has been one of the biggest obstacles facing wearable devices. That's because a lot of smartwatches run on components that are meant for smartphones and aren't properly optimized for wrist-worn gadgets, Chris Jones, vice president and principal analyst with Canalys Insight, told Business Insider in a previous interview.
+
+"We're expecting so much from these early products in the market when we don't really have dedicated components to go inside these devices," Jones said. "We're nowhere near seeing the best of what can be developed out there."
+
+SEE ALSO:  Apple Left Out Two Very Important Details About Its New Smartwatch
+  ***************
+ errored document count:30
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Someone Spraypainted A Penis On A £1.5m Bugatti Veyron And It Went Very Viral
+  actualBody:A newly surfaced audio recording allegedly captures the exact moment that unarmed teen Michael Brown was shot and killed by Ferguson police officer Darren Wilson.
+
+According to an attorney for an unidentified man who lives in an apartment building near the site of the shooting, the recording captures as many as 11 shots fired in the Aug. 9 incident.
+
+The audio, which was played on CNN Monday night, could not immediately be verified by The Washington Post. But a burst of gunfire can be heard (six shots), followed by a pause, and then several more shots (at least four).
+
+“He was in his apartment, he was talking to a friend on a video chat, he heard loud noises and at the moment — at the time he didn’t realize the import of what he was hearing until afterwards,” the man’s lawyer, Lopa Blumenthal, said in an interview with CNN’s Don Lemon. “It just happened to capture 12 seconds of what transpired outside of his building.”
+
+According to Blumenthal, FBI agents came to her office on Monday to interview the man about the recording.
+
+The 12 second-audio clip is the only using a cell-phone app that only records short excerpts of a video conversation. It captured nothing before the shots began and nothing after. The man, who would like to remain anonymous, has asked that the accompanying video not be shown, Blumenthal said in an interview with The Post.
+
+She first learned of the audio clip through the man’s roommate, who is a former client, and she urged him to share it with authorities.
+
+“He was there when the event happened,” Blumenthal said, adding that he initially assumed the noise was fireworks not gunshots. “He is a very private person and he his not seeking publicity of any kind whatsoever. He was even unaware that this tape was relevant to anyone.”
+
+Neither Ferguson nor St. Louis County police have contacted the man or Blumenthal about the video. After interviewing him on Monday, she said the FBI indicated that they planned to speak with him again on Tuesday.
+
+Autopsy reports conducted by St. Louis County and by the Brown family found that Brown had been shot at least six times, including twice in the head.
+
+[This post has been updated.]
+
+RELATED READING:
+
+CNN corrals unconfirmed Ferguson audio scoop: The backstory from Erik Wemple
+  ***************
+ errored document count:31
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:American hostage in Yemen freed in military raid-Defence Ministry
+  actualBody:A man accused of attempting to rape a girl in India has been left in a critical condition after locals cut off his genitals as punishment.
+
+The group took the law into their own hands after they found a 40-year old man pinning a young girl to the wall in the north-eastern city of Ganganagar.
+
+After a community meeting, the vigilantes dragged the man into a nearby butchery and used a meat cleaver to cut off his penis. The remains were discarded in the street beside the man, who was suffering from severe blood loss.
+
+One local said: "No one went to help the man because they could see his penis on the ground and knew this was punishment for a sex crime," the Daily Mirror reports.
+
+"We have had a lot of intolerable offences against women in this country recently, with girls being raped, hung, and molested, and it's time it stopped."
+
+
+She said it would "send out a very strong message" to possible offenders, warning them of the punishment they face.
+
+Police were quick to condemn the attack, warning locals not to take the law into their own hands and calling for those responsible to hand themselves in.
+
+"As deplorable as these crimes are, law and order has to be maintained, and not lynch justice."
+
+The young girl was treated for shock and is receiving counselling, while the man remains in a critical condition in hospital.
+
+Incidents of rape in India have gone up tenfold in the last 40 years, The Guardian reports, with a spate of recent attacks shocking the nation and the world. Last year a 23-year old woman died after being gang raped on a bus in the Indian capital. ·
+  ***************
+ errored document count:32
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:So, There Might Be a Rat Infestation at Vogue
+  actualBody:Apple took the leap into the wearable space with the announcement of its Apple Watch earlier in September this year, revealing that the device will start at $349. Now rumors suggest that the gold and stainless steel editions of the Apple Watch may set consumers back by $5,000 and $500, respectively!
+
+Apple revealed that it would release three collections - Sport Collection, Watch Collection and Edition Collection, which would be composed of aluminum, stainless steel and gold cases, respectively. It was anticipated that the company would have three basic price points, which would vary depending on the band choice and perhaps size.
+
+Now, according to French website iGen.fr, the stainless steel version of the Apple Watch will start at $500, whereas the gold variant of the wearable may start from $4000 to $5000.
+
+"Apple Watch Stainless Steel (polished or black sidereal) would be proposed at $ 500. The Edition model in yellow or pink gold would be sold between $4,000 and $ 5,000 (translated)," reveals iGen.fr.
+
+The French website cites reliable sources as the basis of its information. iGen.fr has a track record of being dependable as the publication reported the dimensions of the then impending iPhone 6 Plus and iPhone 6 smartphones from Apple correctly.
+
+Previous estimates from industry experts have pegged the top-end gold Apple Watch's pricing between $1000 and $5000. The Edition Collection will be fashioned from 18K gold and have sapphire crystal. This variant of the Apple Watch will also come with several expensive strap options. Apple, however, has not disclosed whether the chassis of this variant of the Apple Watch is solid gold or simply gold plated.
+
+
+According to iGen.fr's sources, the Apple Watch will release by Feb. 2015 on Valentine's Day. Both resellers and distributors are fervently preparing for the mid-Feb release of the Apple Watch next year per the site.
+
+Apple SVP of Retail and Online Stores Angela Ahrendts' leaked video to employees let slip that the company would release the Apple Watch in Spring next year.
+
+With the pricing of the stainless steel and gold variants of the Apple Watch veering towards the expensive, it seems the aluminum version is poised to be the low-end model. It will be interesting to see if consumers are willing to spend a bomb on a smartwatch whose performance is not known.
+  ***************
+ errored document count:33
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Shocking moment shows 'adulteress' stripped naked and beaten in busy shopping centre
+  actualBody:Yes, we've known for a while that Christian Bale might be the next actor to portray Steve Jobs, but Variety now seems mighty sure: the publication is reporting that our favorite Batman will indeed play our favorite technology pitchman in Sony's new movie.
+
+Mind you, Variety technically says that Bale is merely "in talks," but the rest of the article seems pretty certain that it's a done deal.
+
+In case you've forgotten, Sony's film is the one penned by Aaron Sorkinwho also wrote the scripts for The Social Network and Moneyball) is directed by Danny Boyle (remember Slumdog Millionaire?) and is actually based on Walter Issacson's official biography of Steve Jobs. In other words, it's shaping up to be a class act. Maybe it'll be enough to wash away memories of that other Jobs film. [Variety]
+  ***************
+ errored document count:35
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Now the Vogue Rats Are Chewing Through Couture
+  actualBody:The World Health Organization is looking into reports that ISIS fighters in Iraq have been showing up at hospitals with Ebola symptoms.
+
+According to the pro-government Iraqi newspaper al Sabaah, an unknown number of ISIS militants have shown up at a hospital in the militant-controlled city of Mosul, about 250 miles north of Baghdad. The paper reported that foreign terrorists brought the disease into Mosul from “several countries” in Africa. (RELATED: ISIS Massacred Every Man And Boy Over 15 In Muslim Town)
+
+It’s not yet clear whether the ISIS extremists actually have Ebola or another disease. Ebola symptoms include fever, vomiting, diarrhea and unexplained bleeding and bruising — problems which could also be attributed to malaria or yellow fever. And doctors in Mosul might be unable to even test for Ebola.
+
+WHO spokeswoman Christy Feig said the organization is reaching out to officials in the ISIS-held area to offer help if the disease does turn out to be Ebola. However, United Nations workers are not allowed to work in ISIS-controlled areas in either Iraq or Syria, so a UN operation to help either ISIS militants or any civilians in the areas who contract Ebola is unlikely.
+
+Feig told Mashable that there’s been no official notification from the Iraqi government that the terrorists’ disease is, in fact, Ebola.
+
+ISIS is against western science and medicine as a rule, but apparently several militants have taken to hospitals with Ebola-like symptoms anyway. Since taking control of Mosul in June 2014, ISIS has taken to executing doctors that refuse to treat them.
+
+Kurdish news website Rudaw reported in Nov. 2014 that ISIS executed six doctors in Mosul for refusing to treat wounded fighters, in addition to kidnapping six merchants for failing to pay a monthly tax to ISIS. The group reportedly executed two more doctors just last week.
+
+The U.S. has been hitting ISIS with air strikes since mid-November and the Pentagon confirmed in December that the strikes have killed around 1,000 fighters, including three senior ISIS officials.
+
+An Ebola outbreak, however unlikely, probably wouldn’t help matters much.
+
+Follow Sarah on Twitter
+  ***************
+ errored document count:36
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:No, it's not Tiger Woods selling an island in Lake Mälaren
+  actualBody:28 girls, aged 13 and 14, from a small town went on a five-day school trip to the capital, Sarajevo. A quarter of them returned pregnant.
+
+It wasn't a pregnancy pact.
+
+Seven Bosnian teenagers became pregnant on a five-day school trip, angering parents and educators, according to public health officials.
+
+The teens, from small town Banja Luka, are 13 and 14 years old, said Nenad Babici, the national coordinator for reproductive health.
+
+The school took a group of 28 girls on the trip to the capital, Sarajevo, to see museums and city sights, according to inserbia.info. A quarter of the students returned home pregnant.
+
+Parents are demanding why there wasn't better supervision on the trip, according to the Courier Mail. But Babici said parents need to teach their children about sex.
+
+The case has brought national attention to the increasing number of teen pregnancies in Bosnia and Herzegovina.
+
+Sarajevo gynecologist Senad Mehmedbasic said the growing rate is worrisome because teens face higher risks in both pregnancy and child birth.
+
+"We have to be more direct in the educational system," he said. "It must not be allowed that the street teaches children about intimate matters, and that they are later slapped by life."
+
+rblidner@nydailynews.com
+  ***************
+ errored document count:37
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Woman detained in Lebanon is not al-Baghdadi's wife, Iraq says
+  actualBody:The fashion bible’s got a decidedly unglamorous rat problem.
+The new 1 World Trade Center offices of Vogue magazine are infested with rodents and editor-in-chief Anna Wintour is not happy, according to a report.
+The 25th- and 26th-floor digs of the Condé Nast publication are overrun with vermin, and Wintour has ­issued an edict to staffers to clear her glass-walled office of the long-tailed pests before she steps a stiletto heel on the premises.
+Luckily, Wintour is not expected to take up full-time residence at America’s tallest building until after the New Year.
+A Vogue employee wrote to Gawker Friday afternoon to say that there are so many creatures scuttling around 1 WTC that the editorial department may be postponing its move from the old Times Square offices.
+“A serious concern (laughable but I guess it makes sense) is all the clothing that could get nibbled through,” the staffer said.
+Vogue tracked its downtown relocation in a special online story declaring, “Batten the hatches, lower Manhattan, because we’re coming for you.”
+The mag’s Instagram account has photos of models and singer Will.i.am hauling boxes.
+
+
+The article describes the moving scene as a “living Lego set of natty Hermès-colored Rent-a-crates” at 4 Times Square.
+Busybodies in a chatroom on the Web site SkyscraperCity.com delighted in the vermin problem that has brought a highbrow publication to a new low.
+“Security couldn’t even stop BASE jumpers from ­entering the building and leaping from the top. You think they could stop some rats?” a commenter named “4npower” wrote.
+Another commenter, “Lady­Amanita,” speculated that the scourge is overblown.
+“Rats probably wouldn’t want to live on the 25th and 26th floors of a high-rise,” she wrote, adding, “It’s possible that they have mice and freaked-out Condé Nasties are confusing their rodents.”
+  ***************
+ errored document count:38
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Weaponized Ebola? ISIS Militants Said To Contract Deadly Virus
+  actualBody:The Indian government has sacked a civil servant who went on leave in 1990 and never came back to work.
+
+Urban development minister M Venkaiah Naidu said a case of "wilful absence" had been proved against electrical engineer AK Verma.
+
+Mr Verma had been under investigation since 1992, but had refused to co-operate, the minister said.
+
+Correspondents say absenteeism is a pervasive problem in government-run offices in India.
+
+Mr Naidu said in a statement that Mr Verma joined the Central Public Works Department in 1980.
+
+He had risen to the rank of executive engineer by 1990, when he went on leave.
+
+An inquiry was set up in 1992, but formal proceedings to dismiss him were not begun until 2007.
+
+It took a further seven years for the department to reach a decision and dismiss him.
+
+It is not clear whether he was paid during his time off.
+
+Falling absenteeism
+
+India's bureaucracy has become notorious for high levels of absenteeism.
+
+A report in 2012 labelled India's government machinery the worst in Asia.
+
+Schools have also faced problems, with teachers failing to turn up for work in huge numbers.
+
+Last August, a state school in Madhya Pradesh sacked a teacher who had been absent for 23 years of her 24-year career.
+
+Prime Minister Narendra Modi promised to curb slack working practices when he took office last year.
+
+The AFP news agency reports that he makes unannounced visits to government offices, and absenteeism has since plummeted.
+  ***************
+ errored document count:39
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Insurgents killed in Nigeria despite alleged truce with Boko Haram
+  actualBody:Someone displaying symptoms of Ebola, who apparently had contact with Thomas Eric Duncan, showed up at a Care Now facility in Frisco, Texas, Wednesday afternoon, the Dallas Morning News reported. As of now, it's not a confirmed Ebola case.
+
+“The patient claims to have had contact with the Dallas ‘patient zero.’ Frisco firefighter-paramedics are in the process of transporting the patient,” a statement from Dana Baird-Hanks, a spokeswoman with the city of Frisco, said.
+
+Paramedics are reportedly transporting the patient, who has not yet been identified, to Presbyterian Hospital in Dallas, the Morning News reported. Staff and patrons of the facility are being examined for the deadly virus.
+
+A campaign to save the dog of a Spanish woman infected with the Ebola virus is heating up.   Reuters
+
+Since Duncan was diagnosed with Ebola, there have been 5,000 false alarms in the U.S., Forbes wrote Wednesday. The Centers for Disease Controls said it received more than 800 calls a day regarding the deadly disease -- a drastic jump from the 50 calls a day it received before Duncan’s infection was known.
+
+Duncan, the first person in the U.S. to become sick with virus, died Wednesday. “It is with profound sadness and heartfelt disappointment that we must inform you of the death of Thomas Eric Duncan,” said a statement from Texas Health Presbyterian Hospital, where he was being treated. “He fought courageously in this battle.”
+
+More than 3,400 people in West Africa have been killed by the latest outbreak. The virus might have been spread through handling “bushmeat,” which is the meat of African wild animals, and contact with infected bats.
+
+Follow me on Twitter @mariamzzarella
+  ***************
+ errored document count:41
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Anyone for dog meat soup? Kim Jong-Un considers opening restaurant in Scotland selling North Korean delicacies
+  actualBody:Michael Phelps may be off to rehab trying to find himself, but before his latest brush with the law, he allegedly could often be found with Taylor Lianne Chandler.
+
+
+Taylor Lianne Chandler is Michael Phelps' alleged cougar girlfriend. This was sent to THG directly from a source claiming it's from her. Decide for yourself in this gallery!
+Late last week, a tipster contacted The Hollywood Gossip to reveal that Phelps had been with Taylor Lianne Chandler the night of his DUI arrest.
+
+Are they an item? We can't say for certain, but some online sleuthing and a second anonymous email to THG reveal the above photos to be Chandler.
+
+Phelps was reportedly boozing and gambling in a casino for several hours before getting behind the wheel at around double the legal BAC last week.
+
+Our tipster in the Canton area of Batlimore, where Michael lives, claims he is involved with Chandler, a Washington, D.C. resident, on the down-low.
+
+"We saw a blonde model type leaving Michael Phelps' place," our source says, recalling a recent incident in which the two were spotted together.
+
+"She went to the bar across the street, Plug Ugly's, where she was on her phone," says our insider, noting that things weren't going too swimmingly.
+
+Calling and texting and crying at times, she was writing to "Michael" and she said she was in town from Washington for business in crisis management.
+
+She did not seem like she was there on business, however, and was later seen coming out of Michael Phelps' place crying as he put her into a car.
+
+Locals "have seen her many times going into his place in the past few months," the source added, including "the night he was arrested for DUI."
+
+The source describes Taylor as a "tall, swimsuit model type." Cougar would be another word some have used to describe her since this story broke.
+
+It's not clear if Phelps is (or was) still dating Win McMurry, a sportscaster from the Golf Channel, but the dude is clearly losing at life these days.
+
+Phelps is going to rehab, he confirms on Twitter, following his latest arrest, in hopes of focusing on himself and being a better person, et cetera.
+
+
+Have any tips that could confirm whether something is really going on with these two, or his status with McMurry? Drop us a line and let us know!
+  ***************
+ errored document count:43
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Is Kim Jong-Un Really Opening a Restaurant in Scotland?
+  actualBody:Tiger Woods' agent responded Monday to inflammatory allegations made by little-known pro Dan Olsen, who said on the Mad Dog in the Morning radio show last week that Woods is serving a suspension for a failed drug test.
+
+"These claims are absolutely, unequivocally and completely false," agent Mark Steinberg said. "They are unsourced, unverified and completely ridiculous."
+
+On Monday morning, the PGA Tour responded to the claims.
+
+"There is no truth whatsoever to these claims. We categorically deny these allegations," said Ty Votaw, executive vice president of the PGA Tour.
+
+Woods is on leave from the PGA Tour as he tries to sort out issues with his game, especially with his chipping. Woods, who said he would not return to the Tour until he can compete with the best in the game, missed the cut in the Waste Management Phoenix Open in his first tournament of the season – shooting a career-high 82 in the process – and then withdrew with a stiff back after 11 holes the following week in the Farmers Insurance Open.
+
+Woods said his back problems are not the reason for his hiatus from the game, nor are they related to the injuries that forced him to have back surgery last March 31.
+
+"I've heard that he's suspended. I heard he's on a month's suspension. And it's not, it's kind of a strong witness. It's a credible person that's telling me this," Olsen said Friday on the radio show. "Well, it's not testosterone, but it's something else."
+
+Olsen also said Woods was using untested equipment.
+  ***************
+ errored document count:46
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Sugarhill Gang rapper Big Bank Hank dead at 57
+  actualBody:(CNN) -- A company whose video chat service apparently captured audio of Michael Brown's shooting said Thursday the recording was created at the time the Missouri teenager was killed this month.
+
+The revelation from Glide appears to bolster a man's claim that he inadvertently recorded audio of gunfire at the time a police officer shot and killed the 18-year-old Brown in the St. Louis suburb of Ferguson on August 9.
+
+The video was created at 12:02:14 p.m. that day, Glide said. Brown, who was unarmed, was shot by Ferguson police officer Darren Wilson shortly after noon.
+
+"A Glide user living nearby was simply using the Glide app on their smartphone exactly as it was designed -- to instantly communicate with a friend through our real-time video texting service. Simultaneously, they also captured audio in the background of the gunshots allegedly fired at Michael Brown," the company said.
+
+The sounds could be a piece in the larger puzzle of what happened during the shooting, which spurred days of protests in the city of 21,000.
+
+Police have said Brown was trying to grab the officer's gun. Witnesses say the teen was holding his hands in the air when he was fatally shot. Investigators are determining whether to accuse the officer of wrongdoing; no charges have been filed.
+
+The FBI obtained the audio and interviewed the man who made the recording, said Lopa Blumenthal, a lawyer for that individual.
+
+The man, who asked that his identity not be revealed, lives near the site of the Brown shooting and happened to be using the application at the same time Brown was shot, Blumenthal said.
+
+In the recording, a quick series of shots can be heard, followed by a pause and then another quick succession of shots.
+
+Forensic audio expert Paul Ginsberg analyzed the recording and said he detected at least 10 gunshots -- a cluster of six, followed by four.
+
+The significance of the pause
+
+Witnesses and a friend of Wilson have given conflicting accounts of what led to Brown's death, and the pause could be key in the investigation. But it's difficult to prove from the audio why the pause took place or whose narrative it supports.
+
+Ferguson police have alleged that Brown robbed a convenience store shortly before the shooting, and that he and a friend, Dorian Johnson, were walking down a street when Wilson approached them in a police car.
+
+Police say Wilson stopped Brown not because of the theft, but because Brown and a friend were blocking traffic. Wilson tried to exit his vehicle but Brown pushed him back into the car, according to a preliminary investigation, St. Louis County Police Chief Jon Belmar said.
+
+Read the police reports
+
+Brown assaulted the officer while Wilson was in the car, and a shot was fired inside the police car during a struggle over the officer's gun, Belmar said.
+
+Johnson disputes that, saying Wilson -- while sitting in the car -- started the scuffle by grabbing Brown by the neck, and that Brown tried to pull away. Johnson also said that there was no struggle for the gun, but rather that Wilson drew the weapon and shot Brown once at the car.
+
+Johnson said Wilson shot Brown again as the teen ran away. According to Johnson, Brown was struck in the back and then turned around and put his arms up as the officer kept shooting.
+
+But a woman who identified herself as a friend of Wilson called in to a St. Louis radio show with what she said was the officer's version of events.
+
+The caller, who identified herself only as "Josie," said Brown -- after going away from the vehicle following the first shot -- turned around, taunted the officer and charged at him. Her account matches what Wilson has told investigators, a source with detailed knowledge of the investigation told CNN.
+
+An autopsy showed Brown had six gunshot wounds.
+
+Attorney Chris Chestnut told CNN this week he was surprised by the gap in shots.
+
+"It's the pause that gives most concern in a police shooting, especially with an unarmed victim, because at this point Mr. Brown is defenseless -- he has no weapon," said Chestnut, who represented the family of Jonathan Ferrell.
+
+Like Brown, Ferrell was an unarmed African-American man who was shot and killed by a white police officer. That incident occurred in North Carolina.
+
+But if the gunfire heard on the audio is from the Brown incident, the pause doesn't automatically suggest wrongful intent by the officer.
+
+"To be fair, there could be other explanations for that pause," said attorney Van Jones, co-host of CNN's "Crossfire." "Maybe the officer will say, 'Well, I fired and he kept advancing, so I fired again.' "
+
+Complete coverage
+
+CNN's Holly Yan and Catherine E. Shoichet contributed to this report.
+  ***************
+ errored document count:47
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:ISIS Releases YouTube Video Showing 10-Year-Old 'Martyr' Allegedly Killed in Battle
+  actualBody:There are conflicting claims about ISIS being at the border, but there are reasons not to trust reporting that the claim is false.
+  ***************
+ errored document count:48
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Amazon.com to open first physical store in Manhattan: DJ
+  actualBody:Unconfirmed reports are circulating on social media that the Islamic State group carried out a chemical attack while battling Kurdish forces in Kobani. Several journalists reporting from the ground on Tuesday night -- and at least one Kurdish official -- said they were aware of such reports, but that doctors lack necessary equipment to diagnose the cause of Kurdish victims' complaints. The patients said they had difficulty breathing, and many had burns on their skin, teary eyes and swollen lips. Syria (as well as Iraq) is thought to possess chemical weapons, and the U.S. and coalition forces have feared that such weapons might fall into ISIS hands.
+
+"It could have been a silent missile or a missile placed in the neighborhood beforehand,” co-chair of the Democratic Union Party (PYD) Asya Abdullah told the Kurdish Question. “Many people have lost consciousness and are struggling to breathe and see. We are investigating the situation but do not have the necessary technical equipment or expertise."
+
+Journalists reporting from the border of Kobani and Turkey reportedly spoke to doctors on the scene who confirmed the PYD’s description of victims. Al Aan TV reporter Jenan Moussa posted on Twitter that a doctor said “victims who are on their way to clinic speak of following symptoms: teary eyes, suffocation and skin burns.” Victims also had “swollen lips,” Moussa added.
+
+Kurdish affairs analyst Mutlu Civiroglu spoke to one of four remaining doctors inside Kobani, who told him all victims were civilians.
+
+“Several patients came to health center at 11:10pm with burn in the throat & as well as complaining about headache, though their situation is NOT very severe," Dr. Ahmed reportedly told Civiroglu. "We are NOT sure what the cause is yet, but we are planning to send affected patients to Suruc [neighboring city in the Turkish side of the border] in the morning for further examination.”
+
+Reports of a similar chemical attack surfaced last week in Kobani, when several Kurdish fighters’ bodies appeared to show signs of blistering.
+
+“Burns and white spots on the bodies of the dead indicated the use of chemicals, which led to death without any visible wounds or external bleeding,” Kurdish health minister Nisan Ahmed told Middle East Review of International Affairs journal.
+
+There have been rumors that ISIS militants have obtained chemical weapons. Given that Kobani is on the Syrian border with Turkey, the weapons could have come from an undisclosed Syrian stockpile that used to belong to the Damascus regime.
+
+After the Bashar Assad regime carried out a chemical attack that killed nearly a thousand people last year, it was forced to dismantle and surrender stockpiles. A year after the attack though, the U.S. State Department said that a “number of critical issues remain unresolved” about the Syrian president's chemical weapons.
+
+The substance allegedly being used in Kobani has yet to be confirmed. However, there have been several chlorine attacks in Syria since Assad was supposed to have surrendered his weapons cache. Chlorine is not banned under the Chemical Weapons Convention but when used in large concentrations it can be weaponized. Symptoms of chlorine attacks include teary eyes, a burning sensation in the throat, the sensation of suffocation and a headache.
+
+ISIS has been battling Kurdish fighters in Kobani for over a month, trying to consolidate territory from their de-facto headquarters in Raqqa to the Turkish border. Despite an increase in U.S-led coalition airstrikes and aid drops aimed at pushing insurgents back and helping Kurdish fighters, the battle for Kobani continued Tuesday night.
+  ***************
+ errored document count:49
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Unconfirmed reports saying ISIS UK Hostage David Haines Beheaded
+  actualBody:Amazon.com announced plans for its first brick-and-mortar store, Dow Jones reported. It will open on 34th Street in Manhattan across the street from the Empire State Building, just in time for this year's holiday season.
+
+The experimental pop-up store will function as a small warehouse, holding limited inventory for same-day deliveries only in New York. The store may also host tech showcases for items such as Kindle e-readers, Fire phones and Fire TVs.
+
+A customer may order an item online and then pick it up that same day in the store.
+
+Amazon stock was down 2 percent in midafternoon trading Thursday.
+
+The company risks increasing costs related to retailing such as paying leases and hiring workers. But if the store is successful, it may set a precedent for additional stores in other cities.
+
+Amazon has been researching and scouting a possible store for several years, said a person familiar with the project. Two years ago, the company went as far as scouting spots in Seattle, where it is headquartered.
+
+"Same-day delivery, ordering online and picking up in-store are ideas that are really catching on. Amazon needs to be at the center of that," Matt Nemer, a Wells Fargo analyst, told Dow Jones.
+
+Other companies such as Wal-Mart and Home Depot have already incorporated this order-online, pick-up in-store model. Clothing company Bonobos opened 10 stores in 2011 and plans to expand to 40 stores by 2016.
+
+Amazon tried brick-and-mortar experiments before, such as Kindle vending machines that sold tablets and e-readers in malls.
+  ***************
+ errored document count:51
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:CNN Posts Alleged Audio of Michael Brown Shooting
+  actualBody:A hoax story alleging the British graffiti artist Banksy has been arrested and has had his identity revealed has once again duped thousands of people online.
+
+According to the highly refutable website National Report, a 'news' website consisting entirely of fake stories, the artist was arrested by Metropolitan Police at his studio and his identity revealed as 35-year-old Paul Horner, originally from Liverpool.
+
+The article contains all the elements you would expect to see from a news story covering an arrest, including details from police and quotes from those close to Banksy.
+
+However, it only takes the bare minimum of fact-checking and research to spot that this story is a hoax.
+
+The article claims the story has been confirmed by the BBC (it hasn't) and that City of London Police Chief Lyndon Edwards held a press conference to answer questions about Banksy's arrest (he never did and Edwards doesn't even exist).
+
+US news site CNN also did not conduct an interview with Banksy's "project manager" John Hawes following his arrest (also because he doesn't exist).
+
+The 'revealed identity' of Banksy is also suspicious.
+
+Paul Horner is the name given to a Facebook spokesperson who said the site will soon be charging users $2.99 a month – another hoax story that comes around every now and again – as well as the name from a hoax story about a 15-year-old Louisiana teen who was sentenced to 25 years to life after he called a SWAT team to another teenager's house after he beat him while playing Battlefield 4.
+
+The article is also said to have been written by Dr Darius Rubics, a fake name for a writer who claims to have be a Pulitzer-prize winning reporter but who, unsurprisingly since his previous stories include 'Obama Declares November National Muslim Appreciation Month' and 'Dennis Rodman Leaves US To Talk With Leaders Of Isis', has never been awarded any prizes for excellence in journalism.
+
+One final, major clue that the story is a hoax is that the exact same thing has happened before. Last February, a fake press release that again claimed Banksy has been arrested and again claimed his name is Paul Horner did the rounds, with Jezebel being one of the more high-profile websites to publish the hoax before later taking it down.
+
+Despite this, the latest 'Banksy arrested' story has been shared more than 200,000 times on Facebook and Twitter, proving there are still people who will believe anything they read on the internet.
+
+RelatedClacton-on-Sea Scrubs 'Racist' £400,000 Banksy Mural off WallKing Robbo: Graffiti Artist and Banksy Rival DiesBanksy Condemns 'Disgusting' Exhibition Featuring His Stolen ArtworkBansky Pokes Fun at GCHQ With Cheltenham MuralAlternative Miss World 2014: Drag Queens, Robots and a PVC Octopus Compete at Shakespeare's Globe
+  ***************
+ errored document count:53
+pred_label:2
+ gold_int[dataCounter] :1
+  headline:Michelle Obama’s face blurred by Saudi state television
+  actualBody:Video clips circulated online Tuesday that purported to show that Saudi state television blurred out First Lady Michelle Obama at a meeting between President Barack Obama and the new Saudi king.
+
+However, observers of the live broadcast — including a Wall Street Journal reporter in the country — said that there was no blurring of Mrs. Obama, and that the broadcast showed her shaking hands with King Salman.
+
+
+A Youtube video purporting to show that Saudi television blurred the image of Michelle Obama. Youtube
+The Saudi embassy in Washington didn’t immediately respond to a request for comment. In a statement provided to Bloomberg View, the embassy’s information director said: “Saudi TV has been showing the total arrival ceremony at the airport and at the Palace and nowhere is anything blurred.” Various clips posted of the ceremony elsewhere show no blurring of Mrs. Obama or of her handshake with the new king.
+
+The Obamas made a stop in Riyadh, Saudi Arabia, on Tuesday on their way back from India to pay respects to the late King Abdullah and to meet with the new leader of a longtime American ally. The visit came amid continued criticism of Saudi Arabia’s policies regarding women’s rights, which served to put the interactions between the first lady and Saudi officials under a spotlight.
+
+Mrs. Obama dressed conservatively, with long pants and long sleeves. The first lady didn’t wear a headscarf in the conservative Muslim country — a standard part of Saudi Arabia’s state-mandated dress code. But covering the head isn’t required for foreigners, though only 3% of Saudis believe that a women without a headscarf is appropriately dressed in public, according to a 2014 study by the University of Michigan’s Institute for Social Research.
+
+Her appearance drew notice on Twitter. Social media users tweeted using an Arabic hashtag that translates to #MichelleObama_NotVeiled.
+
+
+ 
+
+
+ 
+
+Others wondered why she had covered her head on a previous trip, to Indonesia. The photos used were from a 2010 visit to the Istiqlal Mosque in Jakarta.
+
+ 
+
+
+Ahmed Al Omran contributed to this post.
+  ***************
+ errored document count:55
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:N Korean leader misses annual ritual; sister ‘takes over duties’
+  actualBody:The Pentagon admitted on Wednesday that ISIS did in fact get its hands on one of the 28 bundles of weapons and medical supplies that the U.S. dropped to Kurdish forces on Monday. Two of the bundles had missed their marks, but one was destroyed by the U.S. According to a Pentagon spokesman, the wind caused the parachute to go off course. The spokesman also stressed that the weapons will not give ISIS any advantage. Past reports have indicated that humanitarian and military aid has made its way into the hands of the terrorist group.
+  ***************
+ errored document count:56
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Eggnog-chugging contest leads to hospital stay
+  actualBody:The White House is attempting to verify footage released by the Islamic State (IS) purporting to show the killing of an American journalist in retaliation for ongoing US airstrikes against its forces in Iraq.
+
+The video circulated on Tuesday showed a masked Isis fighter beheading a kneeling man cloaked in an orange jumpsuit who is purported to be James Foley, a photojournalist who went missing in Syria in 2012. The White House said it was working to establish the video's authenticity, but if it was genuine, the US would be “appalled by the brutal murder”.
+
+Foley has worked in a number of conflict zones in the Middle East, including Syria, Libya and Iraq. He and another journalist were working in the northern province of Idlib in Syria when they were kidnapped in November 2012 near the village of Taftanaz.
+
+The video opened with a clip of US President Barack Obama saying he had authorised strikes in Iraq. “Obama authorises military operations against the Islamic State effectively placing America upon a slippery slope towards a new war front against Muslims,” words appear in English and Arabic on the screen. It showed black and white aerial footage of air strikes with text saying “American aggression against the Islamic State”
+
+A person identified as James Foley and wearing an orange outfit is seen kneeling in the desert as a man in black dress with a black mask stands beside him, holding a knife. “I call on my friends family and loved ones to rise up against my real killers, the US government, for what will happen to me is only a result of their complacency and criminality,” the kneeling man says.
+
+The man in the mask says: “This is James Wright Foley, an American citizen, of your country. As a government, you have been at the forefront of the aggression towards the Islamic State. Today your military air force is attacking us daily in Iraq. Your strikes have caused casualties amongst Muslims. You are no longer fighting an insurgency. We are an Islamic army, and a state that has been accepted by a large number of Muslims worldwide.”
+
+Following his statement he beheads the kneeling man.
+
+The video also shows a second man on his knees, who is named as Steven Sotloff, another American journalist, who was kidnapped in Syria in August 2013. After bringing out Sotloff, the masked executioner addresses the US President directly, saying: “The life of this American citizen, Obama, depends on your next decision.”
+
+The Islamic State had not previously executed American citizens publicly. The video was posted after the United States resumed air strikes in Iraq for the first time since the end of the US occupation in 2011. A Twitter account set up by Mr Foley’s family to help find him said early on Wednesday: “We know that many of you are looking for confirmation or answers. Please be patient until we all have more information, and keep the Foleys in your thoughts and prayers.”
+  ***************
+ errored document count:58
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Judd Nelson rebuffs Internet rumors that he died of a drug overdose.
+  actualBody:(Reuters) - The Pentagon is assessing whether an airstrike on an encampment in Somalia killed al Shabaab leader Ahmed Abdi Godane, but if confirmed the militant's death would represent a "very significant" blow to the group, the Pentagon said on Tuesday.
+
+Rear Admiral John Kirby told a Pentagon briefing that the U.S. special operations strike conducted on Monday involved manned and unmanned aircraft. Kirby said Hellfire missiles and laser-guided munitions were dropped on the camp in south-central Somalia, but he said it was too soon to say what the results of the strike had been.
+
+Since taking charge in 2008, Godane has restyled the group as a global player in the al Qaeda franchise - a transformation that was highlighted when it killed at least 67 people in an attack on a Kenyan shopping mall last September.
+
+(Reporting by Phil Stewart; Editing by Eric Beech)
+  ***************
+ errored document count:60
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Would-be rapist has penis severed by angry mob
+  actualBody:The London Metropolitan Police has denied reports that street artist Banksy has been arrested on Monday after a 24-hour Anti-Graffiti Task Force operation.
+A Met spokesperson said the force did not have any information of such arrest and even if they had, it was possible they would not publish a press release about it.
+Meanwhile, the fake press release initially published by PR Log has been taken down.
+  ***************
+ errored document count:61
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Boko Haram: Kidnapped Girls Have Been Married Off, Truce Never Happened
+  actualBody:“Star Wars: The Force Awakens” is one of the most highly anticipated movies of 2015 that is scheduled to be released during winter. The latest reports, however, claim that J.J. Abrams, the director of the seventh episode of the epic space opera, wants an early release date for his movie.
+
+“Star Wars: The Force Awakens” is currently scheduled to be released on Dec. 18, 2015. Based on YouTuber Votesaxon 07’s video, Movie Pilot reports that J.J. Abrams wants to release “Episode 7” in the summer of 2015. The report by the aforementioned entertainment news publication claims that the 48-year-old director made the announcement at the Visual Effects Society Awards 2015.
+
+The publication claims that the reason why J.J. Abrams wants to release “Star Wars: The Force Awakens” almost six months before its scheduled date is the alleged plot and images leaks from the sets and script. The moviemaker is now worried that these plot leaks will make the film “predictable and not worth watching” for the audience.
+
+According to the website, moving the release date forward would be “an extremely brave move,” putting it up against other fan-favourite releases such as “Avengers: Age of Ultron,” “Jurassic World” and “Ant-Man.” However, shifting the release date means a lot of work for the moviemakers and the studio. Meanwhile, Ikwiz reports that Disney is “seriously” considering J.J. Abrams' demand of summer release of “Star Wars: The Force Awakens.”
+
+Fans must note that these reports lack official comments from the associated parties; thus, the information must be taken with a pinch of salt. However, fans know that Disney is seriously dealing with the issue of image leak. Recently, the studio issued a subpoena over the leak of images from “Star Wars: The Force Awakens.”
+
+In additional news, J.J. Abrams finally broke his silence on the controversy over the new lightsaber that debuted in “Star Wars: The Force Awakens” trailer. Speaking to Collider at a Hollywood event, the director admitted receiving tons of emails arguing about the new lightsaber and its functionality.
+
+"It's been the funniest thing to see the arguments that have developed over this thing,” J.J Abrams said. "This was not done without a lot of conversation. It's fun to see people have the conversation that we had, but in reverse,” the director explained.
+
+“Star Wars: The Force Awakens” features John Boyega as Finn, Daisy Ridley as Rey, Oscar Isaac as Poe Dameron, Harrison For as Han Solo, Carrie Fisher as Leia, Mark Hamill as Luke Skywalker, and Domhnall Gleeson, Max von Sydow and Adam Driver, all in unspecified roles. Stay tuned for more updates.
+
+To report problems or leave feedback on this article, email: j.kaur@IBTimes.com.au.
+
+Read more about “Star Wars: The Force Awakens,” below:
+
+‘Star Wars: The Force Awakens’ Possible Plot Details On Main Cast Revealed, Luke Skywalker Guarding ‘Ancient Sith Tomb,’ Plus More Spoilers
+  ***************
+ errored document count:62
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Kim Jong-Un 'bans the name Kim Jong-un'
+  actualBody:"Eh-oh!" A 19-year-old student is claiming that she (yes, she!) was the giggly baby sun that kids saw each week on the PBS show Teletubbies. Jess Smith made the reveal during a recent game with her college friends.
+PHOTOS: Stars that got their start on TV
+Smith is currently a freshman at Canterbury Christ Church University. After surprising pals, she later confirmed her famous role on Facebook.
+PHOTOS: '90s TV stars -- then and now
+"I thought I may as well tell them as I'm going to be spending the next three years with them. My mother is really chuffed," Smith said, via The Daily Mail. She added online: "I used to hide it but after a lot of encouragement from my friends at university, I've gained the confidence to come out with it. I am the sun from Teletubbies. There has been quite a few people pretending to be 'the sun' but only I could tell you the real story."
+
+PHOTOS: '90s celebrity fashion flashback
+Indeed, she did! Smith was chosen to be featured in the series when she was just 9 months old -- and for little pay in return! Smith earned 250 pounds (roughly $390 in the U.S.) for her bit and a box of toys. She was put in a high chair to film the footage that repeated in each episode, and her father Bill would play with a teddy bear behind the camera to make her laugh.
+"No one knew how big the show was going to be so we didn't get offered royalties," Smith explained. "People told my mum that I should have gone into modeling but she thought it wasn't the right move to make as I was quite shy."
+  ***************
+ errored document count:63
+pred_label:0
+ gold_int[dataCounter] :1
+  headline:Teacher sex tape exposed as a FAKE after internet detectives trace the origin of pornographic clip
+  actualBody:Lucita Sandoval was apparently filmed having sex with a teenage pupils who films himself smiling and giving a thumbs up
+
+A teacher is facing the sack after she was secretly filmed having sex with one of her pupils - and the video ended up on a porn site.
+
+Argentinian beauty Lucita Sandoval was unwittingly recorded having sex with a 16-year-old pupil who switched camera phone on after asking the teacher to turn around.
+
+The teenager, who wear a football shirt throughout the 23 minute long video, is then seen giving the thumbs up and smiling before panning round to show his naked teacher engaging in sexual acts with him.
+
+CEN   Lucita Sandoval
+
+According to newspapers in Argentina, 26-year-old Miss Sandoval realises later on that she is being filmed, but appears to do nothing about it.
+
+It has been reported that the pupil told the teacher he had deleted the footage, but instead he shared it with his friends on WhatsApp .
+
+The graphic footage was then shared hundreds of times around the country and even ended up on a pornographic website.
+
+Miss Sandoval has allegedly faced previous disciplinary hearings at the school in Santiago del Estro over inappropriate relationships with pupils, but nothing was done due to lack of evidence.
+
+CEN   Lucita Sandoval
+
+With the emergence of the video, education authorities have now said they will be forced to act against the teacher.
+
+Miss Sandoval, who teaches English at the school, has not commented but is suspended from work.
+  ***************
+ errored document count:64
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:MACAULAY CULKIN IS THE LATEST VICTIM OF A CELEBRITY DEATH HOAX — AND THESE 9 STARS KNOW EXACTLY HOW HE FEELS!
+  actualBody:A newspaper report that Kim Jong-un has been hospitalized for ankle surgery has fuelled new theories about the North Korean leader’s long absence from the public eye.
+
+Kim has not been seen in public in almost a month and missed a session of parliament on Sept. 25 for the first time since coming to power almost three years ago. Since an event with key officials in July, he has been seen walking with a limp. In an unusual acknowledgment last Friday, North Korean state television said he was experiencing “discomfort.”
+
+Details from the Hermit Kingdom on Kim’s state of health are scarce and hard to verify, but the new details reported by the Chosun Ilbo newspaper paint a broader picture of what may have happened to him. Here is what is suspected so far.
+
+Kim has rapidly gained weight since coming to power after his father died of a heart attack in 2011, photos released by state media show. He is shown below in photos released by the Korean Central News Agency on Oct. 9, 2010, at left, and July 28, 2014, at right:
+
+Kim is believed to be between 5-foot-2 and 5-foot-9, possibly weighing 280 pounds. Chosun Ilbo cited a recent visitor to North Korea (whom it did not identify) as saying that Kim’s weight gain, combined with an intense tour schedule of factories and military bases, as factors in his ankle injury.
+
+Kim cracked bones in his ankles after neglecting an injury sustained during field supervisions in June, the source cited by Chosun Ilbo said. The source said Kim had surgery and is recovering at Bongwha Clinic, an exclusive hospital for high-ranking party members, according to the newspaper.
+
+Surgery to the ankles could be consistent with gout, Alastair Hepburn, a consultant rheumatologist and a Medical Trustee of the U.K. Gout Society. “It’s unusual but it’s possible,” Hepburn said in a telephone interview. Severe gout can damage the joints, making an operation necessary, he said.
+
+North Korea observers speculate Kim’s weight and family background may have contributed to his condition. “Based on his gait, it appears he has gout – something [due to] diet and genetic predisposition that has affected other members of the Kim family,” said Michael Madden, an expert on the North Korean leadership and contributor to the 38 North website.
+
+Gout is a form of arthritis that isn’t fatal, though it can be agonizingly painful. The condition is caused by a buildup of a waste product in the blood called uric acid, which normally is eliminated from the body through urine, according to the U.K.’s National Health Service. Uric acid can cause needle-like crystals to form, which seep into joints and cause inflammation.
+
+“Gout is a very painful and debilitating condition,” said Hepburn of the U.K. Gout Society. “It can lead to a situation when limping becomes obvious because of the pain. A person can be quite well for some time, and then there may be sudden flareups, which cause more pain.”
+
+Chosun Ilbo’s report also said that Kim was believed to be wearing shoes with Cuban heels, a style of two-inch high-heeled men’s footwear, to make him taller and give him a more authoritative appearance. Kim is shown below wearing such shoes in a 2012 appearance with his wife, Ri Sol-ju:
+  ***************
+ errored document count:65
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:CNN Plays Alleged Audiotape of Michael Brown ShootingMilitarization Of Police
+  actualBody:Islamic State militants have released a video which purportedly shows the beheading of British citizen David Haines, multiple unconfirmed reports said. The 44-year-old aid worker was kidnapped in March 2013.
+
+IS Beheads Briton David Haines, Threatens to Execute Another Briton, Alan Henning http://t.co/GOgalAc1mA
+
+— SITE Intel Group (@siteintelgroup) September 13, 2014
+
+Islamic State releases video showing beheading of British aid worker David Haines
+
+— SITE Intel Group (@siteintelgroup) September 13, 2014
+
+Stills from the purported Haines execution video were released to the Internet Saturday, al-Jazeera reported. In the footage, a masked man claims Haines was killed because the United Kingdom said it would arm Kurdish fighters to combat ISIS in Iraq.
+
+“This British man has to pay the price for your promise, Cameron, to arm the peshmerga against the Islamic State,” the masked men reportedly said, addressing U.K. Prime Minister David Cameron. The video also contains a threat to second British hostage.
+
+This time around, the message from the Islamic State is very much aimed at @David_Cameron, with a 2nd British hostage threatened.
+
+â€” Brown Moses (@Brown_Moses) September 13, 2014
+
+The UK Foreign Office is "working urgently" to verify the authenticity of the alleged Haines beheading video, Sky News reports. If verified, the execution would constitute "another disgusting murder," the government organization said.
+
+Haines’ relatives pleaded Saturday with ISIS to “make contact” and respond to their messages, NBC News reported. “We are the family of David Haines,” the relatives said in a statement. “We have sent messages to you to which we have not received a reply. We are asking those holding David to make contact with us.”
+
+The British aid worker was identified as ISIS’ next target for beheading in the video which showed the execution of American journalist Steven Sotloff. Militants vowed to kill Haines if the United States military did not end military operations against the Islamic State in Syria and Iraq.
+
+A father of two, Haines was kidnapped in Syria while working with an organization that assists refugees from the country’s civil war, the New York Daily News reported. He was taken captive near the Turkish border.
+  ***************
+ errored document count:67
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Opposition group: ISIS militants training to fly warplanes in Syria
+  actualBody:With Apple's media event just a week away and the company expected to offer final details there on the Apple Watch ahead of its April debut, The New York Times has a new report out sharing a few new tidbits on the device.
+
+Among the interesting details is the existence of an unannounced "Power Reserve" mode for the watch that will display only the time and cut off all other functions as the battery begins to run critically low, preserving the most basic functionality of the watch. The report also notes that while the Apple Watch has been widely tested by Apple employees, the company did work to conceal many of those prototypes by disguising them to resemble Samsung smartwatches.
+
+Sources have also provided more context to a Wall Street Journal article from last month that discussed how many of the originally planned health features for Apple Watch were dropped due to consistency issues. According to The New York Times' sources, the decision to drop many of those features came more than 18 months ago, refuting off-target reports in recent weeks claiming the cuts have come at the last minute.Nearly two years ago, the company experimented with advanced health monitoring sensors that tracked blood pressure and stress, among other variables. Many of those experiments were abandoned more than 18 months ago after the sensors proved unreliable and cumbersome, these people said.
+
+Apple long ago decided that for the first version of the product, it would include a heart rate sensor and a sensor for tracking movement, to market the device as a fitness-tracking companion to the iPhone. Previous reports have indicated Apple is still working on those technologies, and they could appear in future versions of the Apple Watch.
+
+Today's report reveals some additional insight into the development process, noting that the Apple Watch is coming a bit later than originally hoped due to technical challenges that were likely exacerbated by the loss of several engineers working on the project. Google's Nest Labs, headed by iPod pioneer Tony Fadell, was responsible for poaching several of the key Apple Watch employees.
+
+Apple's media event will take place at 10:00 AM Pacific Time on Monday, March 9 at the Yerba Buena Center for the Arts in San Francisco. The company will offer a live video stream of the event, and MacRumors will provide full coverage of the event.
+
+Related roundup: Apple Watch , Tag: nytimes.com
+  ***************
+ errored document count:68
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Photo gallery: Amazing £300 operation by North Walsham vet on constipated goldfish
+  actualBody:Two U.S. officials say they believe American journalist James Foley was the victim executed by Islamic State militants as shown in a grisly video released Tuesday.
+
+Separately, Foley's family confirmed his death in a statement posted on a webpage that was created to rally support for his release.
+
+In the statement, Foley's mother, Diane Foley, said the journalist, quote, "gave his life trying to expose the world to the suffering of the Syrian people."
+
+One of the U.S. officials said President Barack Obama was expected to make a statement about the killing on Wednesday.
+
+The U.S. officials spoke on condition of anonymity because they were not authorized to discuss the video by name.
+  ***************
+ errored document count:70
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:That Story About a Catholic Priest Dying, Seeing God as a Woman, and Coming Back to Life? It’s Almost Definitely Fake
+  actualBody:Share this: 	
+Seven year old superhero abilities Nick discovered his chance. After his electric shocks, second graders fork and spoon in his hands do not need to keep, metal objects stick to themselves "Magneto" of Isilkulsky District. 
+
+ - When I do not even want, everything appears. Once I even pulled glass. Pushed itself - shared boy magnet elementary school pupil Vodyaninskoy Nicholas Kruglyachenko .
+
+ At school, Nick is one of the most popular students. Classmates often asked to demonstrate superpowers. Magnetic boy ready if necessary to help.
+
+- If you see that someone needs help, will never pass by. Here's a responsible, all helps , - commented the teacher of the second class Vodyaninskoy primary school Galina Tyufyaeva . 
+
+In the world there are cases when people are not only held the spoon itself, but also irons, candlesticks. Experts still can not figure out exactly how they do it. In the meantime, scientists minds decide that this particular biofield or incredible properties of skin, Kohl training in lifting heavy objects all over. And incidentally teaches comrades attract iron. Second graders can influence others so that people at the time turned into magnets. 
+
+ - I ladle even clings to the nose - added classmate Nicholas Kruglyachenko Wick Balandin . 
+
+For classmates magnetic properties Koli no more than fun, but the boy sees its future is with supernormal. 
+
+ - Practically I think to become a superhero - shared boy magnet Nicholas Kruglyachenko . 
+
+Ideally, Kohl's going to learn darts off nailed iron. With this skill, you can not save if the world, then certainly in Hollywood blockbusters removed without attracting business professionals in special effects. However, this requires further study, study, study ...
+  ***************
+ errored document count:72
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Alleged audio of Michael Brown shooting has surfaced
+  actualBody:Spotting a spider on the floor may give you a fright, but imagine finding out one was living under your skin for three days.
+
+This is what happened to Australian man Dylan Thomas who went on vacation to Bali with a friend. His friend noticed a strange red scar going up the 21-year-old's stomach. At first, doctors told him it was an insect bite, but they later discovered a spider had burrowed itself into Thomas's abdomen, most likely through his recent appendix scar.
+
+Thomas posted this on his Facebook page: "Well after running tests and putting things inside my stomach they finally found out it was a tropical spider that's been living inside of me for the last three days, managed to get it out luckily. Haven't felt so violated in my life before! Just glad it's all over."
+
+Thomas explains not only was there a painful burning sensation under his skin, but the scar began to get bigger and bubble.
+
+Check out photos from Thomas's experience in the video above. Yikes!
+  ***************
+ errored document count:73
+pred_label:2
+ gold_int[dataCounter] :0
+  headline:Pure Evil: Islamic State Beheads American Journalist James Wright Foley
+  actualBody:In a video posted online Tuesday, ISIS beheads James Wright Foley, an American freelance journalist who was captured in Syria in 2012. The video says the killing is a warning to the U.S. to end its intervention in Iraq. The video also shows Steven Sotloff, a freelance journalist working for Time, and threatens that he will be next. Sotloff's kidnapping seems to have been kept secret until now. Foley was working as a photographer in Syria for AFP when he was taken. The year prior he had been kidnapped in Libya.
+  ***************
+ errored document count:74
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Seven girls as young as 13 become pregnant on a school trip
+  actualBody:MOGADISHU, Sept 5 (Reuters) - The alert and story on Sept. 5 headlined "Islamist rebel leader killed in U.S. strike-Somali government" is withdrawn and no substitute story will be issued.
+
+The story was sourced to a website purporting to be the Somali prime minister's Facebook page. A Somali government spokesman said the page was not official and said the government had not yet commented on whether Ahmed Godane, the head of the Somali Islamist militant group al Shabaab, had been killed in a U.S. strike on Monday. STORY_NUMBER: L5N0R62Q3 STORY_DATE: 05/09/2014 STORY_TIME: 1324 GMT (Writing by Edmund Blair; Editing by Sonya Hepinstall)
+  ***************
+ errored document count:78
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Setting the record straight on tor
+  actualBody:Amazon.com announced plans for its first brick-and-mortar store, Dow Jones reported. It will open on 34th Street in Manhattan across the street from the Empire State Building, just in time for this year's holiday season.
+
+The experimental pop-up store will function as a small warehouse, holding limited inventory for same-day deliveries only in New York. The store may also host tech showcases for items such as Kindle e-readers, Fire phones and Fire TVs.
+
+A customer may order an item online and then pick it up that same day in the store.
+
+Amazon stock was down 2 percent in midafternoon trading Thursday.
+
+The company risks increasing costs related to retailing such as paying leases and hiring workers. But if the store is successful, it may set a precedent for additional stores in other cities.
+
+Amazon has been researching and scouting a possible store for several years, said a person familiar with the project. Two years ago, the company went as far as scouting spots in Seattle, where it is headquartered.
+
+"Same-day delivery, ordering online and picking up in-store are ideas that are really catching on. Amazon needs to be at the center of that," Matt Nemer, a Wells Fargo analyst, told Dow Jones.
+
+Other companies such as Wal-Mart and Home Depot have already incorporated this order-online, pick-up in-store model. Clothing company Bonobos opened 10 stores in 2011 and plans to expand to 40 stores by 2016.
+
+Amazon tried brick-and-mortar experiments before, such as Kindle vending machines that sold tablets and e-readers in malls.
+  ***************
+ errored document count:79
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Devoted pet owner spends £300 to save his GOLDFISH after it became constipated
+  actualBody:MAIDUGURI, Nigeria — The leader of Boko Haram has denied agreeing to any cease-fire with the Nigerian government, and said he married off the more than 200 schoolgirls that the Islamic extremist group kidnapped.
+
+In a new video released late Friday night, Abubakar Shekau dashed hopes for a prisoner exchange to get the girls released.
+
+"The issue of the girls is long forgotten because I have long ago married them off," he said, laughing. "In this war, there is no going back."
+
+Nigeria's chief of defense staff, Air Chief Marshal Alex Badeh, on Oct. 17 announced that Boko Haram had agreed to an immediate cease-fire to end a 5-year-old insurgency that has killed thousands of people, and driven hundreds of thousands from their homes in northeast Nigeria.
+
+But attacks and abductions have continued, with the extremists this week seizing Mubi, a town of more than 200,000 people. Fighting also continued Friday in Vimtin, the nearby village where Badeh was born.
+
+Shekau in August announced that Boko Haram wanted to establish an Islamic caliphate, along the lines of the Islamic State group in Syria and Iraq. Fleeing residents have reported that hundreds of people are being detained for infractions of the extremists' version of strict Shariah law in several towns and villages under their control.
+
+Boko Haram's kidnapping of 276 schoolgirls taking exams at a boarding school in the remote northeastern town of Chibok in April prompted an international campaign for their release and criticism of Nigeria's government for not acting quickly to free them. Dozens of the girls escaped on their own in the first few days, but 219 remain missing. The hashtag #BringBackOurGirls has been used on social media sites, including Facebook and Twitter, in an effort to spark conversation about the kidnappings. Nobel Peace Prize laureate and international education activist Malala Yousafzai visited Nigeria in July, and urged Boko Haram to free the kidnapped girls, calling them her "sisters."
+
+Unconfirmed reports have indicated that the girls have been broken up into several groups, and that some may have been carried across borders into Cameroon and Chad.
+
+The government had said it had negotiated with two Boko Haram leaders in Chad, with talks hosted by President Idriss Deby, and that it was confident the girls would be freed soon. But Boko Haram has many factions.
+
+Shekau's announcement further discredits the government of Nigerian President Goodluck Jonathan, who on Thursday formally announced his candidacy for elections on Feb. 14, 2015, in Africa's most populous nation. Nigeria, with some 160 million people, is divided almost equally between Muslims who dominate the north and Christians in the south. The West African nation is the biggest oil producer on the continent and has its biggest economy.
+
+Jonathan's failure to curtail the insurgency and many corruption scandals are not expected to dim his chances of success. The election, though, is expected to be the most hotly contested since his People's Democratic Party took power after decades of military dictatorship ended in 1994.
+
+Dozens of ruling party legislators have defected to the coalition All Progressives Congress, losing the PDP its majority in the lower house of Parliament. But the coalition is weakened by its inability to choose a presidential candidate, and primaries in December will be contested by three powerful northerners who all are Muslim.
+
+Jonathan, a Christian from a minority southern tribe, has been criticized for ignoring an unwritten party rule to alternate power between Christian and Muslim leaders, adding a religious and ethnic dimension to the election.
+
+Additional reporting by Mashable
+
+Have something to add to this story? Share it in the comments.
+  ***************
+ errored document count:81
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Sick Kansas City man said not to have Ebola, U.S. plans new steps to fight virus
+  actualBody:Vice founder Shane Smith, with something that is not caviar.  Via twitter.com
+
+Bloomberg reported Wednesday that Vice founder Shane Smith recently balled out exceptionally hard on a dinner for a group of 12 at the Prime Steakhouse in Las Vegas, racking up a $300,000 check.
+
+A source at Vice told BuzzFeed News that Smith won a sum “well north of that bill” while gambling during his week at the CES conference in Las Vegas, and paid for the dinner on his personal credit card. (A Financial Times report says Smith won $1 million; both the FT and New York Times say there were about 30 people eating on Smith’s dime.)
+
+Smith himself hasn’t commented on the story, which is a pity, because the world needs to know the answer to a crucial question: How can you spend $300,000 on dinner?
+
+Short of a how-to guide from the man himself, or a member of his $2.5 billion digital media empire, we’re left to speculate. So in that spirit, we checked out the menu at Prime Steakhouse at the Bellagio Hotel and Casino. Here’s our best guess of how Smith and a party of 12 could have racked up a tab the value of a single-family home.
+
+Here’s your check, whenever you’re ready…
+
+Prime Steakhouse at the Bellagio 3600 Las Vegas Blvd. S, Las Vegas NV 89109  Date: Sometime during CES Time: Late. Post $100K blackjack victory. Server: BuzzFeed *Wine menu not available, prices based on comparable Vegas restaurants
+
+3 Shrimp Cocktails ($24 each) 2 Foie Gras ($32 each) 2 Ribbons of Tuna ($24 each) 2 lbs Siberian Sturgeon Caviar ($2,500 each) 4 bottles 2003 Dom Perignon ($400 each) 4 bottles 1998 Boërl & Kroff ($15,000 each) 12 shots Johnnie Walker Blue ($60 each) 12 shots single malt Glen Ord, 30 yr ($60 each) Caesar, Romaine & Parmesan ($17) Roasted Baby Beets, Apple, Ricotta Cheese & Quinoa ($16) Baby Iceberg Lettuce, Crispy Bacon & Maytag Blue Cheese Dressing ($18) Market Tomatoes, Burrata Cheese, Mussini Balsamic & Basil ($19) Steamed Shrimp Salad, Field Greens, Enoki Mushrooms & Tomato ($25) Fall Vegetables, Goat Cheese, Pumpkin Seeds & Red Wine Vinaigrette ($18) Warm Asparagus Salad, Hollandaise & Truffle Vinaigrette ($18) 6 bottles 2008 Domaine de la Romanée-Conti ($20,000 each) 6 bottles 2002 Syrah ($5,000 each) 4 28-oz. Bone-In Rib Eyes ($85 each) 6 Porterhouses ($69 each) 2 Pan-Roasted Dover Soles ($66 each) 4 Cold Water Lobster Tail With Lemon Spaetzle ($62 each) 4 bottles 2007 Montrachet, Domaine Romanée-Conti ($9,000 each) 4 Rosemary-Lime Roasted Chickens With Artichokes, Parmesan & Basil ($36 each) 2 Mashed Yukon Gold Potatoes ($12 each) 2 Ginger Sweet Potatoes ($12 each) 2 French Fries ($13 each) 2 Smashed Fingerling Potatoes With Chive Crème Fraîche ($12 each) 2 Truffle Mashed Potatoes ($18 each) 2 Chickpea Fries ($12 each) 2 Gratin Dauphinois Comté Cheese ($12 each) 2 Baked Potato ($12 each) 2 Mac & Cheese ($12 each) 2 Crispy Spaetzle With Gruyère & Chive ($12 each) 2 Onion Rings Tempura ($12 each) 2 Creamed Spinach ($12 each) 2 Glazed Green Vegetables With Goat Cheese & Almond Pesto ($12 each) 2 Glazed Carrots With Tarragon & Yuzu ($12 each) 2 Steamed Asparagus ($14 each) 2 Glazed Market Mushrooms ($16 each) 2 Tender Broccoli With Truffle Gouda Fondue ($16) Artichoke Risotto With Lemon & Parsley ($12) 12 desserts ($14 each) 3 bottles Remy Louis XIII cognac ($300 each)
+
+Subtotal: $257,009 18% Service Charge: $46,261.62 Total: $303,270.62
+
+Prime Steakhouse in the Bellagio Hotel & Casino in Las Vegas offers a wide variety of surf and turf creations from celebrity chef Jean-Georges Vongerichten.
+
+Via bellagio.com
+
+Prime’s Siberian Sturgeon Caviar with traditional accompaniments was likely a must for Smith’s group. The restaurant lists the item as market price, but Eater Las Vegas has it going for up to $2,500 per pound. A couple pounds of caviar seems reasonable.
+
+ALLEKO/ALLEKO
+
+Mercifully for Smith, Prime doesn’t put its wine list online. But just down the strip at Mario Batali’s Carnevino in the Wynn, a few bottles of Dom Perignon (2003) will run guests $400 each.
+
+Jay L. Clendenin/Los Angeles Times / MCT
+
+But what are we, farmers? Any respectable internet baron is going to spring for a couple of bottles of the best champagne in the house. At Batali’s joint, a 1.5-liter bottle of Boërl & Kroff 1998 will set you back $15,000 each.
+
+AntonMatveev/AntonMatveev
+
+Obviously white wine accompanies any good foodie’s fish course. Smith’s crew could have grabbed a couple bottles of the $9,000 Montrachet, Domaine de la Romanée-Conti from 2007. An average year, but sometimes compromise is necessary.
+
+Manakin/Manakin
+
+For the reds, perhaps a couple of vintages on the more reasonable side, like the $5,000 per bottle Sine Qua Non “Just for the Love of It” 2002 Syrah.
+
+federicofoto/federicofoto
+
+Join us next week, for the Vice Guide To Surviving Private Jet Rental!
+
+@WarrenBuffett your company @NetJets should be shut down such is the terrible level of service and lies instead of customer service.
+  ***************
+ errored document count:82
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:ISIS pays tribute to its 'Cub of Baghdadi' child soldier
+  actualBody:Two U.S. officials say they believe American journalist James Foley was the victim executed by ISIS militants as shown in a grisly video released Tuesday.
+
+Separately, Foley’s family confirmed his death in a statement posted on a webpage that was created to rally support for his release.
+
+In the statement, Foley’s mother, Diane Foley, said the journalist, quote, “gave his life trying to expose the world to the suffering of the Syrian people.”
+
+One of the U.S. officials said President Barack Obama was expected to make a statement about the killing on Wednesday.
+
+The U.S. officials spoke on condition of anonymity because they were not authorized to discuss the video by name.
+
+Foley, a 40-year-old freelance journalist from Rochester, New Hampshire, went missing nearly two years ago in northern Syria while on assignment for Agence France-Press and the Boston-based media company GlobalPost. The car he was riding in was stopped by four militants in a contested battle zone that both Sunni rebel fighters and government forces were trying to control. He had not been heard from since.
+
+Several senior U.S. officials with direct knowledge of the situation said the Islamic State very recently threatened to kill Foley to avenge the crushing airstrikes over the last two weeks against militants advancing on Mount Sinjar, the Mosul dam and the Kurdish capital of Irbil.
+
+Both areas are in northern Iraq, which has become a key front for the Islamic State as its fighters travel to and from Syria.
+
+The officials spoke on condition of anonymity because they were not authorized to discuss the hostage situation by name.
+
+Since Aug. 8, the U.S. military has struck more than 70 Islamic State targets – including security checkpoints, vehicles and weapons caches. It’s not clear how many militants have been killed in the strikes, although it’s likely that some were.
+
+The Internet video begins with scenes of President Barack Obama explaining his decision to order airstrikes in Iraq. Then it switches to a balding man in an orange jumpsuit kneeling in the desert, a black-clad Islamic State fighter by his side. Foley’s name appears in both English and Arabic graphics on screen. The video appears to have been shot in an arid area; there is no vegetation in sight and the horizon is in the distance where the sand meets the gray-blue sky.
+
+The New York-based Committee to Protect Journalists estimated Tuesday that about 20 journalists are missing in Syria, and has not released their nationalities. In its annual report last November, CPJ concluded that the missing journalists are either being held and threatened with death by extremists, or taken captive by gangs seeking ransom. The group’s report described the widespread seizure of journalists as unprecedented and largely unreported by news organizations in the hope that keeping the kidnappings out of public view may help in the captives’ release.
+
+The Islamic State militant group is so ruthless in its attacks against all people they consider heretics or infidels that it has been disowned by al-Qaida’s leaders. In seeking to impose its harsh interpretation of Islamic law in the lands it is trying to control, the extremists have killed soldiers and civilians alike in horrifying executions – including mounting the decapitated heads of some of its victims on spikes.
+
+The group is the heir apparent of the militancy known as al-Qaida in Iraq, which beheaded many of its victims, including Americans businessman Nicholas Berg in 2004.
+  ***************
+ errored document count:84
+pred_label:2
+ gold_int[dataCounter] :0
+  headline:ADVISORY-Islamist rebel leader killed in U.S. strike - Somali government
+  actualBody:WASHINGTON — The Pentagon on Friday confirmed that the leader of al-Shabab, an al-Qaeda-linked organization in Africa, was killed in a U.S. airstrike in Somalia this week.
+
+The leader, Ahmed Abdi Godane, was targeted Monday in an airstrike that hit a vehicle and compound in a militant stronghold south of the capital, Mogadishu.
+
+Al-Shabab has been linked to a number of attacks in Africa, including the bloody siege at the upscale Westgate Mall in Nairobi, Kenya, in September 2013 that killed 67 people.
+
+"Removing Godane from the battlefield is a major symbolic and operational loss to al-Shabab," Pentagon Press Secretary Rear Admiral John Kirby said in a statement.
+
+At the time of the strike, the Pentagon said it could not confirm Godane's death.
+
+Hellfire missiles and laser-guided munitions were used to strike the targets. Both manned aircraft and unmanned drones participated in the attack.
+
+The Pentagon said no U.S. ground troops were involved in the operation.
+
+"The United States works in coordination with its friends, allies and partners to counter the regional and global threats posed by violent extremist organizations," Kirby said in the statement released Friday.
+
+The United States has backed the Somali government, which has pushed the terrorist groups out of Mogadishu. Despite the government successes, the terror group has been able to operate in parts of the country that remain out of the reach of the government's influence.
+
+The White House said it would continue to pursue the organization.
+
+"Even as this is an important step forward in the fight against al-Shabab, the United States will continue to use the tools at our disposal –- financial, diplomatic, intelligence and military –- to address the threat that al-Shabaab and other terrorist groups pose to the United States and the American people," the White House said in a statement.
+  ***************
+ errored document count:86
+pred_label:0
+ gold_int[dataCounter] :2
+  headline:Paul Revere's 1795 time capsule unearthed
+  actualBody:History buffs, start your engines: CNN is reporting that a Boston crew has removed a time capsule from the cornerstone of the Massachusetts State House, believed to have been stashed there by then-Governor Samuel Adams and patriot Paul Revere.
+
+Inside the capsule are contents that will be showcased as soon as the box is removed from the cornerstone, according to Massachusetts Secretary of State William Galvin. The capsule, he explained to CNN, was documented to have been first buried in 1795, then was dug up and reburied in 1855 during repairs to the building. The full catalog of its contents are as-yet unknown.
+
+"What we know the box contains, based on the notes that we have, is a Paul Revere plate, papers, and coins from the 1600s. It may contain other stuff too, we don't know that yet," he said. The Secretary of State's office is looking into whether the box will be reinstated and whether new items from the current era will be added to the box and reburied.
+
+ABC News notes that the discovery is "the oldest unopened time capsule in the country."
+  ***************
+ errored document count:87
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Al-Shabaab co-founder confirmed killed by US air strike in Somalia
+  actualBody:With its huge, gaping mouth, it looks big enough to swallow a person whole.
+
+This giant catfish, which weighed 20 stone (127kg) was caught by twin brothers Dino and Dario Ferrari in the Po River of northern Italy.
+
+Dino Ferrari caught the 127 kg catfish in the Po delta of Italy (Sportex Italia)
+
+Believed to be one of the largest of its kind ever caught, the creature was pulled from the river on Feb 19 with a rod and line after a battle lasting 40 minutes.
+
+The nine foot-long creature, a wels catfish, has been dubbed “the monster of the Po” by the Italian media.
+
+The fish was released after the trophy photos (Sportex Italia)
+
+After catching, weighing and photographing it, the brothers released it back into the river, which flows across northern Italy to the Adriatic.
+
+“It’s a silurus glanis [the Latin name for the species],” Dino Ferrari said. “The American catfish doesn’t grow to such large dimensions – at most it can weigh 50kg.” He estimated the fish to be about 30 years old, based on its size, adding that the species can live for up to 50 years.
+
+“They don’t range over very large distances, they tend to live in the same stretch of river, moving just a few kilometres either way. They eat all types of fish.
+
+"To catch them you need a lot of patience but also physical strength. We fought for 40 minutes to reel it in. We tired it out and then lifted it out of the water.”
+
+The wels catfish, also known as the sheatfish, lives in fresh and brackish water.
+
+It is native to eastern Europe and parts of Asia but was introduced to western Europe.
+
+The fish prey on other fish, as well as worms, crustaceans, frogs and water fowl.
+
+“Who knows, maybe we will manage to catch it again in a year’s time, and it will be even more gigantic,” said Mr Ferrari.
+  ***************
+ errored document count:88
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:The Image That Everyone Is Sharing By 'Banksy' Isn't By Banksy — But It's Awesome
+  actualBody:Boston| 
+A Catholic priest from Massachussetts was officially dead for more than 48 minutes before medics were able to miraculously re-start his heart. During that time, Father John Micheal O’neal claims he went to heaven and met God, which he describes as a warm and comforting motherly figure.
+
+The 71-year old cleric was rushed to the hospital on January 29 after a major heart attack, but was declared clinically dead soon after his arrival. With the aid of a high-tech machine called LUCAS 2, that kept the blood flowing to his brain, doctors at Massachusetts General Hospital managed to unblock vital arteries and return his heart to a normal rhythm.
+
+The doctors were afraid he would have suffered some brain damage from the incident, but he woke up less than 48 hours later and seems to have perfectly recovered.
+
+The elderly man claims that he has clear and vivid memories of what happened to him while he was dead. He describes a strange out-of-body experience, experiencing an intense feeling of unconditional love and acceptance, as well as being surrounded by an overwhelming light.
+
+He claims that at that point in his experience, he went to heaven and encountered God, which he describes as a feminine, mother-like “Being of Light”.
+
+“Her presence was both overwhelming and comforting” states the Catholic priest. “She had a soft and soothing voice and her presence was as reassuring as a mother’s embrace. The fact that God is a Holy Mother instead of a Holy Father doesn’t disturb me, she is everything I hoped she would be and even more!”
+
+The declarations of the cleric caused quite a stir in the catholic clergy of the archdiocese over the last few days, causing the Archbishop to summon a press conference to try and calm the rumors.
+Despite the disapproval of his superiors, Father O’neal says that he will continue dedicating his life to God and spread the word of the “Holy Mother”.
+
+“I wish to continue preaching” says the elderly cleric. “I would like to share my new knowledge of the Mother, the Son and the Holy Ghost with all catholics and even all Christians. God is great and almighty despite being a woman…”
+
+The Roman Catholic Archdiocese of Boston has not confirmed however, if they will allow Father O’neal to resume his preaching in his former parish in South Boston.
+
+The Archbishop of Boston, Cardinal Sean P. O’Malley, made a public statement this morning stating that Father O’neal suffered hallucinations linked to a near-death experience and that God clearly isn’t a female.
+
+This article was first published in world news daily report
+  ***************
+ errored document count:89
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:McDonald’s Removing Big Mac, Apple Pies And Eliminating Large Size Options
+  actualBody:Piper Jaffray’s Gene Munster has issued a new report to investors, breaking down expected Apple Watch average selling prices. The analyst predicts that the stainless steel Apple Watch will be priced at $499, while the 18k Gold Edition will sell for $4,999, AppleInsider reports. He also said that on average, consumers will spend closer to $550 on the device, considering case and internal storage options.
+
+Apple watch versions
+
+Apple Watch will be released in three separate price tiers i.e. Apple Watch Sport, Apple Watch and Apple Watch Edition, with each series including two display sizes and a variety of strap choices. Starting with Apple Watch Sport, Munster expects an ASP (average selling price) of $450 including configuration choices like case and internal storage options. The stainless steel Apple Watch model is expected to start at $499 to $549, with an overall ASP at around $650. Regarding the Apple Watch Edition, the analyst forecasts the base model to start at $4,999, while classifying segment ASP at $7,500.
+
+Based on current pricing for Apple’s silicon iPhone 6 cases, which come in at $35, Munster sees elastomer Apple Watch straps to start in a similar $29 to $35 range, while leather bands could be priced between $49 to $59. Pricing for metal bands like the link bracelet and Milanese loop are more difficult to determine, but the analyst believes steel versions will come in at $99, while gold bands could be priced into the thousands of dollars. 
+
+“If you assume that 55 percent of bands purchased are elastomer, 35 percent leather, 10 percent steel, and about 5,000 total gold bands are sold, the average band ASP could be around $50,” Munster writes. 
+
+Lastly, Munster expects the Sport model to make up 55% of overall Watch sales, while the mid-tier Apple Watch will take 45%. As for Apple Watch Edition, Munster believes Apple might sell roughly 10,000 units this year.
+
+Based on what we know so far about the Apple Watch, which model do you plan on getting?
+  ***************
+ errored document count:90
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Schoolboy almost killed by electric shock claims he now has superpowers like Magneto
+  actualBody:Breitbart Texas has confirmed the existence of an Islamic tribunal in Texas that will make judgments in accordance with Sharia law.
+
+The website for the Islamic tribunal states: “It is with this issue that Muslims here in America are obligated to find a way to solve conflicts and disputes according to the principles of Islamic Law and its legal heritage of fairness and justice in a manner that is reasonable and cost effective.”
+
+Advertisement-content continues below
+
+The website states that Sharia’s well known criminal law, which includes things like cutting off hands of offenders, is only a portion of Sharia law. This tribunal would not do such things, but will focus on civil Sharia law rather than criminal Sharia law.
+
+Breitbart Texas interviewed one of the tribunal’s “judges,” Dr. Taher El-badawi. El-badawi said that the tribunal is done in accordance with Sharia as a form of “non-binding dispute resolution.” He also added that the tribunal is not arbitration. The four Islamic attorneys call themselves “judges” instead of “arbitrators.” He said that the tribunal will resolve civil business and family disputes, as well as workplace disputes.
+
+El-badawi was asked what would happen if there is conflict between the laws of Texas and Sharia law. He responded that the laws are in agreement most of the time, but said that Sharia would take precedence out of the two in the tribunal.
+
+There are four judges listed on the tribunal’s website: Imam Yusuf Z.Kavakci, Imam Moujahed Bakhach, Imam Zia ul Haque Sheikh, and Dr. El-badawi.
+  ***************
+ errored document count:91
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Yang Hu, worker in Zhejiang, cuts off own penis over desperation of finding love
+  actualBody:Brian Williams took a moment during Monday’s edition of NBC Nightly News to address a very important issue. As the anchor said, social media, as well as a few news websites, owes meteorologist Mike Seidel an “apology” after some “wild misinformation” circulated about what he was doing during a live appearance with Lester Holt over the weekend.
+
+Williams explained that Seidel has lost communication with the NBC station and couldn’t hear Holt through his earpiece so he turned his back to the camera, took off his gloves and redialed his phone to connect for the segment.
+
+“That’s when the rumors hit the web that he was perhaps writing his name in the snow,” Williams said. “It was just Mike working to make it right, which is why we all love working with Mike Seidel.”
+
+But, of course, that explanation is far less hilarious and would likely generate almost zero clicks.
+
+Watch video below, via NBC:
+
+[Photo via screengrab]
+
+– –
+
+>> Follow Matt Wilstein (@TheMattWilstein) on Twitter
+  ***************
+ errored document count:92
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Kim Jong-Un planning Scottish restaurant
+  actualBody:Tiger Woods' agent responded Monday to inflammatory allegations made by little-known pro Dan Olsen, who said on the Mad Dog in the Morning radio show last week that Woods is serving a suspension for a failed drug test.
+
+"These claims are absolutely, unequivocally and completely false," agent Mark Steinberg said. "They are unsourced, unverified and completely ridiculous."
+
+On Monday morning, the PGA Tour responded to the claims.
+
+"There is no truth whatsoever to these claims. We categorically deny these allegations," said Ty Votaw, executive vice president of the PGA Tour.
+
+Woods is on leave from the PGA Tour as he tries to sort out issues with his game, especially with his chipping. Woods, who said he would not return to the Tour until he can compete with the best in the game, missed the cut in the Waste Management Phoenix Open in his first tournament of the season – shooting a career-high 82 in the process – and then withdrew with a stiff back after 11 holes the following week in the Farmers Insurance Open.
+
+Woods said his back problems are not the reason for his hiatus from the game, nor are they related to the injuries that forced him to have back surgery last March 31.
+
+"I've heard that he's suspended. I heard he's on a month's suspension. And it's not, it's kind of a strong witness. It's a credible person that's telling me this," Olsen said Friday on the radio show. "Well, it's not testosterone, but it's something else."
+
+Olsen also said Woods was using untested equipment.
+  ***************
+ errored document count:93
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:'Jihadi John' named as Mohammed Emwazi from London
+  actualBody:The fashion bible’s got a decidedly unglamorous rat problem.
+The new 1 World Trade Center offices of Vogue magazine are infested with rodents and editor-in-chief Anna Wintour is not happy, according to a report.
+The 25th- and 26th-floor digs of the Condé Nast publication are overrun with vermin, and Wintour has ­issued an edict to staffers to clear her glass-walled office of the long-tailed pests before she steps a stiletto heel on the premises.
+Luckily, Wintour is not expected to take up full-time residence at America’s tallest building until after the New Year.
+A Vogue employee wrote to Gawker Friday afternoon to say that there are so many creatures scuttling around 1 WTC that the editorial department may be postponing its move from the old Times Square offices.
+“A serious concern (laughable but I guess it makes sense) is all the clothing that could get nibbled through,” the staffer said.
+Vogue tracked its downtown relocation in a special online story declaring, “Batten the hatches, lower Manhattan, because we’re coming for you.”
+The mag’s Instagram account has photos of models and singer Will.i.am hauling boxes.
+
+
+The article describes the moving scene as a “living Lego set of natty Hermès-colored Rent-a-crates” at 4 Times Square.
+Busybodies in a chatroom on the Web site SkyscraperCity.com delighted in the vermin problem that has brought a highbrow publication to a new low.
+“Security couldn’t even stop BASE jumpers from ­entering the building and leaping from the top. You think they could stop some rats?” a commenter named “4npower” wrote.
+Another commenter, “Lady­Amanita,” speculated that the scourge is overblown.
+“Rats probably wouldn’t want to live on the 25th and 26th floors of a high-rise,” she wrote, adding, “It’s possible that they have mice and freaked-out Condé Nasties are confusing their rodents.”
+  ***************
+ errored document count:94
+pred_label:2
+ gold_int[dataCounter] :1
+  headline:A Mass Grave Points to a Student Massacre in Mexico
+  actualBody:The bodies found in a mass grave were confirmed not to be the missing students.
+  ***************
+ errored document count:95
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:Michael Zehaf-Bibeau, slain Ottawa shooter, had criminal record in Quebec, B.C.
+  actualBody:Never fear, Banksy fans: the infamous street-artist has not been unmasked, despite frenzied reports on American websites.
+
+Online news sites were subject to a hoax on Friday from US ‘media troll extaordinaire’ Paul Horner.
+
+Sites Complex, Death and Taxes, and Jezebel published online stories stating that Paul Horner, 39, had been identified as the street-artist known as Banksy, and had been arrested by British police in Watford.
+
+Horner is in fact editor of the cunningly-named Super Official News website, where he makes statements such as: “Until then just remember, if it’s on the internet it must be true”, and that “Paul Horner is an American hero.”
+
+Website NationalReport said that “London Police Chief Lyndon Edwards” had held a press conference unmasking Banksy after the arrest - but according to the Met, no such officer exists. However, there is a dairy farmer called Lyndon Edwards.
+
+Other Banksy pretenders incude,‘cap man’ in New York, 2013; Robin Gunningham in Bristol, 2008; Mr Brainwash in 2010; and Rose Biggin, an 89-year-old from Camden, North London, who was touted as the elusive street-artist. The pensioner said of her “I’m Spartacus” moment: “It sure does help to pass the time.”
+
+Even a Battersea charity shop got in on the act – earlier in October someone from the Fara shop on Northcote Road not pretending to be the artist painted a Banksy-style mural and tweeted it soon after.
+  ***************
+ errored document count:96
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Low-level marijuana possession could soon land you a ticket instead of arrest in New York City
+  actualBody:Updated at 11:45 p.m. ET
+
+There was an unexpected crash landing near the international airport in the Nicaraguan capital over the weekend, but luckily no one was hurt: A small meteor, thought to have broken off from an Earth-passing asteroid, left a 40-foot-wide crater.
+
+The meteorite — which experts say may have disintegrated on impact — smashed through a wooded area outside the airport in Managua, leaving a 16-foot-deep hole.
+
+"We thought it was a bomb because we felt an expansive wave," Jorge Santamaria, a resident in the area of the impact, was quoted by The Associated Press as saying.
+
+The AP quotes Nicaraguan government spokeswoman Rosario Murillo as saying the meteorite was relatively small and "appears to have come off an asteroid that was passing close to Earth."
+
+Nicaragua will ask international experts to help local scientists in understanding what happened, the AP says.
+
+"All the evidence that we've confirmed at the site corresponds exactly with a meteorite and not with any other type of event," Ineter scientist Jose Millan was quoted by the BBC as saying. "We have the seismic register which coincides with the time of impact, and the typical characteristic that it produces a cone in the place of impact."
+
+According to the BBC:
+
+The asteroid was discovered on Aug. 31 by the Catalina Sky Survey near Tucson, Ariz., and independently detected the next night by the Pan-STARRS 1 telescope, located on the summit of Haleakala on Maui, Hawaii, according to a NASA statement issued last week.
+
+The statement said that on closest approach, the asteroid was to have been one-tenth the distance from the center of the Earth to the moon, or about 25,000 miles, away.
+  ***************
+ errored document count:97
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:ISIS Claims Female American Hostage, Kayla Mueller, Killed in Airstrike
+  actualBody:YouTuber Josh Paler Lin wanted to see what would happen if he gave $100 to a hungry homeless man. How would he spend the money?
+
+To find out, Josh approached a homeless man by a motorway in Los Angeles, and handed him $100, much to the man's surprise. He then proceeded to follow the homeless man in secret with a camera to see how he would spend it.
+
+What he ended up filming shocked him, and it may just change the way you see homelessness.
+
+
+(Source: JoshPalerLin)
+
+The homeless man Josh gave the money to, Thomas, has been very down on his luck lately. He quit his job to spend time taking care of his sick parents. Unfortunately, he lost both of his parents in the last couple of months due to cancer and kidney failure. Additionally, he lost his parents' condo and found himself jobless and homeless on the street. Although he has nothing at this point of life, he still managed to help others when he received something.
+
+Immediatly after releasing this video, Josh was overwhelemd with messages from people wanting to know how they could donate money to Thomas, so the young man set up a campaign on fundraising site IndieGoGo that has already raised over $27,000 in a day.
+
+The #letshelpthomas hashtag has also garnered plenty of momentum on social media.
+  ***************
+ errored document count:98
+pred_label:0
+ gold_int[dataCounter] :3
+  headline:ISIS Claims to Have Intercepted Supplies From U.S. Airdrop
+  actualBody:Offers have been pouring in to re-home a dog found abandoned at a train station along with a suitcase filled with his belongings.
+
+Kai’s heart-breaking story received media attention around the world after he was discovered tied to a railing outside Ayr station in Scotland.
+
+The Scottish SPCA has received hundreds of messages online after Wimbledon champion Andy Murray and Trainspotting author Irvine Welsh tweeted about Kai.
+
+A spokeswoman for the charity said it has received dozens of calls from members of the public offering Kai a new home.
+
+“The phone’s been ringing off the hook all day. We’ve had over 100 offers to take him on. It’s really unusual to get that sort of interest,” the SSPCA said.
+
+Dog abandoned at train station with suitcase full of belongings > http://t.co/fKlBh4yX6N pic.twitter.com/5EcNcRTOim— SCOTTISH SPCA (@ScottishSPCA) January 6, 2015
+
+Dog abandoned at train station with suitcase full of belongings > http://t.co/fKlBh4yX6N pic.twitter.com/5EcNcRTOim
+
+It seems a despicable act to leave a dog at a station like that, but remember that many folks are so sad, depressed and desperate right now.— Irvine Welsh (@IrvineWelsh) January 6, 2015
+
+It seems a despicable act to leave a dog at a station like that, but remember that many folks are so sad, depressed and desperate right now.
+
+@ScottishSPCA I would give Kai a loving home which he deserves!! Pls reply— Nathan Fletcher (@ziggy2505) January 6, 2015
+
+@ScottishSPCA I would give Kai a loving home which he deserves!! Pls reply
+
+@ScottishSPCA is Kai still available for adoption? located in Canada but love the breed and will pay any necessary costs to have him come.— brenda chan (@_bchan_) January 7, 2015
+
+@ScottishSPCA is Kai still available for adoption? located in Canada but love the breed and will pay any necessary costs to have him come.
+
+“Normally, when we get an abandonment, it’s usually a staffie and we don’t tend to get many offers to re-home them, but when it’s an unusual breed or a particularly cute one, then we get a lot of interest.
+
+“I’m sure Kai’s story has tugged at a lot of heartstrings.”
+
+The Scottish SPCA has asked for anyone with any information about the ‘cruel incident’ to contact them.
+
+Abandoning an animal is an offence under the Animal Health and Welfare (Scotland) Act 2006.
+  ***************
+ errored document count:99
+pred_label:2
+ gold_int[dataCounter] :3
+  headline:Who Should Play Steve Jobs Now That Christian Bale Quit?
+  actualBody:Kim Yo-jong, the younger sister of North Korean Supreme Leader Kim Jong-un, has allegedly taken over state duties while her brother receives medical treatment. Her responsibilities include handling important government decisions while her brother undergoes treatment at Bonghwa Clinic in North Korea's capital Pyongyang, according to media reports. No specific information on his alleged health troubles have been made public.
+
+"Some say Hwang Byong So, director of the General Political Bureau of the Korean People's Army, may have assumed new No. 2 status, but given what has been confirmed this time, we can say Hwang is just a shadow, and Kim Yo-jong is the second-in-command of North Korea," said Kim Heung Gwang, the head of North Korea Intellectuals Solidarity, according to the Diplomat, a magazine based in Tokyo.
+
+Kim Yo-jong is the daughter of the former North Korean leader Kim Jong-il. She was only officially mentioned for the first time on March 9 and was later identified as a senior official in the Central Committee of the Workers' Party of Korea, according to Ria Novosti, the Russian news agency.
+
+The Associated Press reported earlier this month on the supreme leader's notable absence from a Supreme People’s Assembly meeting broadcast on state television, apparently the first time he's missed the meeting since taking office in December 2011 after the sudden death of his father and predecessor. North Korean state media has acknowledged rumors of illness by saying that the 31-year-old leader was experiencing “discomfort,” without going into further detail.
+
+Media reports have speculated that he has gout, underwent ankle surgery, or is suffering from health problems after eating too much cheese.
+  ***************

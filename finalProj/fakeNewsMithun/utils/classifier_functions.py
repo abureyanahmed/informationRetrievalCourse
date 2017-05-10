@@ -614,7 +614,7 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
                     pred_label_int.append(0)
 
 
-
+    writeToOutputFile("\n","errorAnalysis.txt")
     #find the ones in which i made a mistake/the predicted and gold didnt match
     dataCounter=0
     for tuple in test_data:
@@ -629,15 +629,17 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
         headline_body_str=headline_body_str+headline
         #bodyid  = tuple['Body ID']
         actualBody=tuple[1]
-        writeToOutputFile("\n","errorAnalysis.txt")
-        if(pred_label_int[dataCounter]!=gold_int[dataCounter]):
-            #write to file.
-            appendToFile("\npred_label:"+pred_label_int[dataCounter],"errorAnalysis.txt")
-            appendToFile("\n gold_int[dataCounter] :"+gold_int[dataCounter],"errorAnalysis.txt")
-            appendToFile("\n  headline:"+headline,"errorAnalysis.txt")
-            appendToFile("\n  actualBody:"+actualBody,"errorAnalysis.txt")
-            appendToFile("\n  ***************","errorAnalysis.txt")
 
+        # if(dataCounter<100):
+        #     if(pred_label_int[dataCounter]!=gold_int[dataCounter]):
+        #         #write to file.
+        #         appendToFile("\n errored document count:"+str(dataCounter),"errorAnalysis.txt")
+        #         appendToFile("\npred_label:"+str(pred_label_int[dataCounter]),"errorAnalysis.txt")
+        #         appendToFile("\n gold_int[dataCounter] :"+str(gold_int[dataCounter]),"errorAnalysis.txt")
+        #         appendToFile("\n  headline:"+headline,"errorAnalysis.txt")
+        #         appendToFile("\n  actualBody:"+actualBody,"errorAnalysis.txt")
+        #         appendToFile("\n  ***************","errorAnalysis.txt")
+        #     dataCounter=dataCounter+1
 
 
     print("total number of items in pred_label_int is:"+str(len(pred_label_int)))

@@ -27,13 +27,13 @@ from utils.score import report_score
 
 
 #in phase 1, we split teh data set to related- unrelated
-do_training_phase1=False;
+do_training_phase1=True;
 do_training_phase2=True;
 
 do_validation_phase1=False;
 do_validation_phase2=False;
 
-do_testing_phase1=False;
+do_testing_phase1=True;
 do_testing_phase2=True;
 
 
