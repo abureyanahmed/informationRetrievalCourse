@@ -10,7 +10,7 @@ class load_training_DataSet():
         self.path = cwd+"/data/"
         #print("inside DataSet, current path is:" + self.path)
         #print("Reading dataset")
-        bodies = "train_bodies_original.csv"
+        bodies = "train_bodies.csv"
         stances = "train_stances_csc483583.csv"
 
         #print("going to read stances")
@@ -59,7 +59,7 @@ class load_testing_DataSet():
         self.path = cwd+"/data/"
         #print("inside DataSet, current path is:" + self.path)
        # print("Reading dataset")
-        bodies = "train_bodies_original.csv"
+        bodies = "train_bodies.csv"
         stances = "test_stances_csc483583.csv"
 
         #print("going to read stances")

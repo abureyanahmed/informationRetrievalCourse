@@ -6,10 +6,17 @@ from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer
 from csv import DictReader
 from sklearn.feature_extraction.text import TfidfTransformer
-
+from nltk import word_tokenize
+from nltk.stem import WordNetLemmatizer
 
 #nltk.download('punkt')
 #nltk.download('wordnet')
+
+class LemmaTokenizer(object):
+    def __init__(self):
+        self.wnl = WordNetLemmatizer()
+    def __call__(self, doc):
+        return [self.wnl.lemmatize(t) for t in word_tokenize(doc)]
 
 
 stemmer = nltk.stem.porter.PorterStemmer()
@@ -46,4 +53,12 @@ def calculate_tf_idf(counts):
 
 def createAtfidfVectorizer():
     vectorizer2 = TfidfVectorizer(tokenizer=normalize, stop_words='english')
+    #vectorizer2 = TfidfVectorizer(tokenizer=normalize,encoding=u'utf-8', decode_error=u'ignore',strip_accents='unicode',stop_words='english' )
+    #vectorizer2 = TfidfVectorizer(tokenizer=normalize,encoding=u'utf-8', decode_error=u'ignore',strip_accents='unicode',stop_words='english' )
     return vectorizer2
+
+
+def createCountVectorizer():
+    cvectorizer = CountVectorizer(min_df=1)
+    CountVectorizer(tokenizer=LemmaTokenizer())
+    return cvectorizer

@@ -1,19 +1,12 @@
 from __future__ import division
-from utils.fileWriter import appendToFile
-from utils.process_input_data import cosine_sim
+
 import numpy as np
+import smtplib
+
 from sklearn import svm
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics import classification_report
-from sklearn.metrics import accuracy_score
-import sys
-from utils.process_input_data import tokenize
-from utils.score import report_score
-import requests, bs4, sys, webbrowser, html2text, os , PyPDF2, urllib2, smtplib, re, json
-from nltk.corpus import wordnet
-from nltk.stem import WordNetLemmatizer
+
 from utils.fileWriter import writeToOutputFile
-from utils.fileWriter import appendToFile
+from utils.process_input_data import cosine_sim
 
 
 def calculateCosSimilarity(d):
@@ -470,7 +463,7 @@ def phase2_training_tf(data,vectorizer_phase2):
 
         headline_body_str=""
         headline = tuple[0]
-        headline_body_str=headline_body_str+headline
+        headline_body_str=headline_body_str+headline+"."
         #bodyid  = tuple['Body ID']
         actualBody=tuple[1]
         headline_body_str=headline_body_str+actualBody
@@ -494,18 +487,41 @@ def phase2_training_tf(data,vectorizer_phase2):
 
 
 
+    # #debug code to test printing the frist headline-body combination
+    # for indivlines in entire_corpus:
+    #     print(indivlines)
+    #     sys.exit(1)
+    #
 
 
+    #entire_corpus= ['The the the arachno centric trump and so if first document.','This is the and the of second second document.','And the third one.','Is this the first document?',]
+    #entire_corpus= ['higher, highest, automatic, automotive, automation, auto.','auto-bahn, autorickshaw']
     print("size of entire_corpus is:" + str(len(entire_corpus)))
     print("going to vectorize teh related corpus :" )
-    #tokenize()
+
     tf_vector = vectorizer_phase2.fit_transform(entire_corpus)
+    features=vectorizer_phase2.get_feature_names()
+    writeToOutputFile("\n"+str(features),"featureNames_tfidf_vectorizer")
+
+    #testing using a count vectorizer to make sure what am donig is currect
+    # objCountVectorizer =createCountVectorizer()
+    # tf_vector = objCountVectorizer.fit_transform(entire_corpus)
+    # features=objCountVectorizer.get_feature_names()
+    # writeToOutputFile("\n"+str(features),"featureNames_count_vectorizer")
+
+
+
+
+    #
+
     #print(tf_vector .toarray())
     #sys.exit(1)
     #tf_vector = vectorizer_phase2.calculate_tf_idf(entire_corpus)
      #X = vectorizer.fit_transform(document)
     #print(tf_vector)
-    print("number of rows in entire_corpus is:" + str(tf_vector.shape))
+    print("number of rows in corpus post vectorization is:" + str(tf_vector.shape))
+
+    print("number of rows in label list is is:" + str(len(labels)))
     print("going to feed this vectorized tf to a classifier:" )
 
 
@@ -515,6 +531,7 @@ def phase2_training_tf(data,vectorizer_phase2):
     #feature_vector=feature_vector.reshape(-1, 1)
     clf.fit(tf_vector, labels.ravel())
     print("done training svm:" )
+
     return clf,vectorizer_phase2
 
 
@@ -633,7 +650,7 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
         # if(dataCounter<100):
         #     if(pred_label_int[dataCounter]!=gold_int[dataCounter]):
         #         #write to file.
-        #         appendToFile("\n errored document count:"+str(dataCounter),"errorAnalysis.txt")
+                 #appendToFile("\n errored document count:"+str(dataCounter),"errorAnalysis.txt")
         #         appendToFile("\npred_label:"+str(pred_label_int[dataCounter]),"errorAnalysis.txt")
         #         appendToFile("\n gold_int[dataCounter] :"+str(gold_int[dataCounter]),"errorAnalysis.txt")
         #         appendToFile("\n  headline:"+headline,"errorAnalysis.txt")
@@ -652,8 +669,6 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
     print("number of rows in gold_int:" + str(numrows))
     #print("number of columns in gold_int:" + str(numcols))
     #print(gold_int)
-
-    sys.exit(1)
 
     return gold_int, pred_label_int
 
