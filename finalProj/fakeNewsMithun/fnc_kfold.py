@@ -1,7 +1,7 @@
 import nltk
 import numpy as np
 import sys
-from utils.feature_engineering import refuting_features, polarity_features, hand_features, gen_or_load_feats
+from utils.feature_engineering import refuting_features, polarity_features, hand_features, gen_or_load_feats,hedging_features
 from utils.feature_engineering import word_overlap_features
 from sklearn.ensemble import GradientBoostingClassifier
 
@@ -23,13 +23,15 @@ def generate_features(stances,dataset,name):
     X_refuting = gen_or_load_feats(refuting_features, h, b, "features/refuting."+name+".npy")
     X_polarity = gen_or_load_feats(polarity_features, h, b, "features/polarity."+name+".npy")
     X_hand = gen_or_load_feats(hand_features, h, b, "features/hand."+name+".npy")
+    X_hedge = gen_or_load_feats(hedging_features, h, b, "features/hedge."+name+".npy")
 
-    X = np.c_[X_hand, X_polarity, X_refuting, X_overlap]
+    X = np.c_[X_hand, X_polarity, X_refuting, X_overlap,X_hedge]
     return X,y
 
 if __name__ == "__main__":
-    #nltk.download('punkt')
-    nltk.download()
+    nltk.download('punkt')
+    #nltk.download()
+    nltk.download('wordnet')
     check_version()
     parse_params()
 
