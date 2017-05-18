@@ -1,3 +1,4 @@
+import nltk
 import numpy as np
 import sys
 from utils.feature_engineering import refuting_features, polarity_features, hand_features, gen_or_load_feats
@@ -27,6 +28,8 @@ def generate_features(stances,dataset,name):
     return X,y
 
 if __name__ == "__main__":
+    #nltk.download('punkt')
+    nltk.download()
     check_version()
     parse_params()
 
@@ -37,9 +40,9 @@ if __name__ == "__main__":
     Xs = dict()
     ys = dict()
 
-    print(str(hold_out_stances))
+    #print(str(hold_out_stances))
 
-    sys.exit(1)
+
     # Load/Precompute all features now
     X_holdout,y_holdout = generate_features(hold_out_stances,d,"holdout")
 
