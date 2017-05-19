@@ -11,7 +11,7 @@ class load_training_DataSet():
         #print("inside DataSet, current path is:" + self.path)
         #print("Reading dataset")
         bodies = "train_bodies.csv"
-        stances = "train_stances_csc483583.csv"
+        stances = "train_stances.csv"
 
         #print("going to read stances")
 

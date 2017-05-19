@@ -373,7 +373,7 @@ def convert_data_to_headline_body_stance_format(data):
 
         #separate out teh 'related data' into another data set based on the predicted value
         #list of strings
-        #print(stance)
+        print(stance)
 
         headline_body_label=[]
         headline_body_label.append(headline)
@@ -385,6 +385,49 @@ def convert_data_to_headline_body_stance_format(data):
 
 
     return related_matrix
+
+def convert_FNC_data_to_my_format(stances, data):
+    #create a datasstructure of [headline, body, label]- matrix/2d array of strings.
+    #Eg:
+    #this guy related_rows will contain a list of headline_body_label_post_phase1_rows=[]
+    #each headline_body_label_post_phase1_rows=[] will be an array of strings
+    # [headline1, body1, stance1]
+    # [headline2, body2, stance2]
+    # [headline3, body3, stance3]
+
+    related_matrix=[]
+
+    #for each line separate out the headline ,bodyid, body and stance
+    #they probably have it in the same format, but this is makes my life easier if i have it in my format.
+    for s in stances:
+        #total_pairs=total_pairs+1
+        #for each headline, get the actual headline text
+        #print(s['Headline'])
+        headline = s['Headline']
+        #headline="a little bird"
+
+        #get the corresponding body id for this headline
+        bodyid  = s['Body ID']
+        stance= s['Stance']
+        #using that body id, retrieve the corresponding article
+        actualBody=data.articles[bodyid]
+
+
+        #separate out teh 'related data' into another data set based on the predicted value
+        #list of strings
+        print(stance)
+
+        headline_body_label=[]
+        headline_body_label.append(headline)
+        headline_body_label.append(actualBody)
+        headline_body_label.append(stance)
+        #append this headline_body_label guy to the big matrix
+        related_matrix.append(headline_body_label)
+
+
+
+    return related_matrix
+
 
 # This is from your training data. Now we will train only on the "related" ones
 #  use this training data, to calculate cos similarity of each tuple and its gold label/stance
@@ -446,6 +489,24 @@ def train_for_agree_disagree(d):
     print("done training svm:" )
     return clf
 
+def generate_features(stances,dataset,name):
+    h, b, y = [],[],[]
+
+    # for stance in stances:
+    #     y.append(LABELS.index(stance['Stance']))
+    #     h.append(stance['Headline'])
+    #     b.append(dataset.articles[stance['Body ID']])
+
+    X_overlap = gen_or_load_feats(word_overlap_features, h, b, "features/overlap."+name+".npy")
+    X_refuting = gen_or_load_feats(refuting_features, h, b, "features/refuting."+name+".npy")
+    X_polarity = gen_or_load_feats(polarity_features, h, b, "features/polarity."+name+".npy")
+    X_hand = gen_or_load_feats(hand_features, h, b, "features/hand."+name+".npy")
+    X_hedge = gen_or_load_feats(hedging_features, h, b, "features/hedge."+name+".npy")
+
+    X = np.c_[X_hand, X_polarity, X_refuting, X_overlap,X_hedge]
+    return X,y
+
+
 def phase2_training_tf(data,vectorizer_phase2):
     print("inside phase2_training_tf")
     entire_corpus=[]
@@ -459,8 +520,8 @@ def phase2_training_tf(data,vectorizer_phase2):
     # [headline1, body1, stance1]
 
     for tuple in data:
-        #print(str(tuple))
-
+        print(str(tuple))
+        sys.exit(1)
         headline_body_str=""
         headline = tuple[0]
         headline_body_str=headline_body_str+headline+"."
@@ -530,6 +591,179 @@ def phase2_training_tf(data,vectorizer_phase2):
     clf = svm.SVC(kernel='linear', C=1.0)
     #feature_vector=feature_vector.reshape(-1, 1)
     clf.fit(tf_vector, labels.ravel())
+    print("done training svm:" )
+
+    return clf,vectorizer_phase2
+
+def tf_features(data,vectorizer_phase2):
+    print("inside phase2_training_tf")
+    entire_corpus=[]
+    labels = np.array([[]])
+    #no_of_unrelated=0
+    #feature_vector= np.array([[]])
+    # feature_vector=feature_vector.reshape(-1, 1)
+    # labels = np.array([[]])
+
+    #just try creating a tf vector for one headline body combination.
+    # [headline1, body1, stance1]
+
+    for tuple in data:
+        #print(str(tuple))
+
+        headline_body_str=""
+        headline = tuple[0]
+        headline_body_str=headline_body_str+headline+"."
+        #bodyid  = tuple['Body ID']
+        actualBody=tuple[1]
+        headline_body_str=headline_body_str+actualBody
+        entire_corpus.append(headline_body_str)
+
+        stance= tuple[2]
+        #agree:0
+        #disagree:1
+        #discuss:2
+        #unrelated:3
+        #lets call agrees as label 1 and disagrees as label 2
+        if (stance == "agree"):
+            labels = np.append(labels, 0)
+        else:
+            if (stance == "disagree"):
+                labels = np.append(labels, 1)
+            else:
+                if(stance=="discuss"):
+                    labels = np.append(labels, 2)
+                else:
+                    if (stance == "unrelated"):
+                        labels = np.append(labels, 3)
+
+
+
+
+    # #debug code to test printing the frist headline-body combination
+    # for indivlines in entire_corpus:
+    #     print(indivlines)
+    #     sys.exit(1)
+    #
+
+
+    #entire_corpus= ['The the the arachno centric trump and so if first document.','This is the and the of second second document.','And the third one.','Is this the first document?',]
+    #entire_corpus= ['higher, highest, automatic, automotive, automation, auto.','auto-bahn, autorickshaw']
+    print("size of entire_corpus is:" + str(len(entire_corpus)))
+    print("going to vectorize teh related corpus :" )
+
+    tf_vector = vectorizer_phase2.fit_transform(entire_corpus)
+    features=vectorizer_phase2.get_feature_names()
+    writeToOutputFile("\n"+str(features),"featureNames_tfidf_vectorizer")
+
+    #testing using a count vectorizer to make sure what am donig is currect
+    # objCountVectorizer =createCountVectorizer()
+    # tf_vector = objCountVectorizer.fit_transform(entire_corpus)
+    # features=objCountVectorizer.get_feature_names()
+    # writeToOutputFile("\n"+str(features),"featureNames_count_vectorizer")
+
+
+
+
+    #
+
+    #print(tf_vector .toarray())
+    #sys.exit(1)
+    #tf_vector = vectorizer_phase2.calculate_tf_idf(entire_corpus)
+     #X = vectorizer.fit_transform(document)
+    #print(tf_vector)
+    print("number of rows in corpus post vectorization is:" + str(tf_vector.shape))
+
+    print("number of rows in label list is is:" + str(len(labels)))
+    print("going to feed this vectorized tf to a classifier:" )
+    return tf_vector,labels
+
+
+
+
+def train_svm(my_features,labels):
+    # print("inside phase2_training_tf")
+    # entire_corpus=[]
+    # labels = np.array([[]])
+    # #no_of_unrelated=0
+    # #feature_vector= np.array([[]])
+    # # feature_vector=feature_vector.reshape(-1, 1)
+    # # labels = np.array([[]])
+    #
+    # #just try creating a tf vector for one headline body combination.
+    # # [headline1, body1, stance1]
+    #
+    # for tuple in data:
+    #     print(str(tuple))
+    #     sys.exit(1)
+    #     headline_body_str=""
+    #     headline = tuple[0]
+    #     headline_body_str=headline_body_str+headline+"."
+    #     #bodyid  = tuple['Body ID']
+    #     actualBody=tuple[1]
+    #     headline_body_str=headline_body_str+actualBody
+    #     entire_corpus.append(headline_body_str)
+    #
+    #     stance= tuple[2]
+    #     #agree:0
+    #     #disagree:1
+    #     #discuss:2
+    #     #unrelated:3
+    #     #lets call agrees as label 1 and disagrees as label 2
+    #     if (stance == "agree"):
+    #         labels = np.append(labels, 0)
+    #     else:
+    #         if (stance == "disagree"):
+    #             labels = np.append(labels, 1)
+    #         else:
+    #             if(stance=="discuss"):
+    #                 labels = np.append(labels, 2)
+    #
+    #
+    #
+    #
+    # # #debug code to test printing the frist headline-body combination
+    # # for indivlines in entire_corpus:
+    # #     print(indivlines)
+    # #     sys.exit(1)
+    # #
+    #
+    #
+    # #entire_corpus= ['The the the arachno centric trump and so if first document.','This is the and the of second second document.','And the third one.','Is this the first document?',]
+    # #entire_corpus= ['higher, highest, automatic, automotive, automation, auto.','auto-bahn, autorickshaw']
+    # print("size of entire_corpus is:" + str(len(entire_corpus)))
+    # print("going to vectorize teh related corpus :" )
+    #
+    # tf_vector = vectorizer_phase2.fit_transform(entire_corpus)
+    # features=vectorizer_phase2.get_feature_names()
+    # writeToOutputFile("\n"+str(features),"featureNames_tfidf_vectorizer")
+
+    #testing using a count vectorizer to make sure what am donig is currect
+    # objCountVectorizer =createCountVectorizer()
+    # tf_vector = objCountVectorizer.fit_transform(entire_corpus)
+    # features=objCountVectorizer.get_feature_names()
+    # writeToOutputFile("\n"+str(features),"featureNames_count_vectorizer")
+
+
+
+
+    #
+
+    #print(tf_vector .toarray())
+    #sys.exit(1)
+    #tf_vector = vectorizer_phase2.calculate_tf_idf(entire_corpus)
+     #X = vectorizer.fit_transform(document)
+    #print(tf_vector)
+    print("number of rows in corpus post vectorization is:" + str(my_features.shape))
+
+    print("number of rows in label list is is:" + str(len(labels)))
+    print("going to feed this vectorized tf to a classifier:" )
+
+
+
+    #feed the vectors to an an svm, with labels.
+    clf = svm.SVC(kernel='linear', C=1.0)
+    #feature_vector=feature_vector.reshape(-1, 1)
+    clf.fit(my_features, labels.ravel())
     print("done training svm:" )
 
     return clf,vectorizer_phase2
