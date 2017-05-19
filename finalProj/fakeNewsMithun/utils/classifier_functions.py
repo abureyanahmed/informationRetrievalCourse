@@ -506,6 +506,20 @@ def gen_or_load_feats(feat_fn, headlines, bodies, feature_file):
     return np.load(feature_file)
 
 
+def gen_feats_as_numpy_feats(feat_fn, headlines, bodies):
+    feats = feat_fn(headlines, bodies)
+    np_feats=np.asarray(feats)
+    return np_feats
+
+def gen_or_load_feats_uofa(feat_fn, headlines, bodies, feature_file):
+    if not os.path.isfile(feature_file):
+        feats = feat_fn(headlines, bodies)
+        np.save(feature_file, feats)
+
+    return np.load(feature_file)
+
+
+
 
 def generate_features_uofa(stances,dataset,name):
     h, b, y = [],[],[]
@@ -520,11 +534,12 @@ def generate_features_uofa(stances,dataset,name):
     # X_polarity = gen_or_load_feats(polarity_features, h, b, "features/polarity."+name+".npy")
     # X_hand = gen_or_load_feats(hand_features, h, b, "features/hand."+name+".npy")
     # X_hedge = gen_or_load_feats(hedging_features, h, b, "features/hedge."+name+".npy")
-    X_tf = gen_or_load_feats(tf_features, h, b, "features/tf." + name + ".npy")
+    X_tf = gen_feats_as_numpy_feats(tf_features, h, b)
+    #X_tf=tf_features(h, b)
     print("number of rows in corpus post vectorization is:" + str(X_tf.shape))
     #X = np.c_[X_hand, X_polarity, X_refuting, X_overlap,X_hedge]
-    X = np.c_[X_tf]
-    return X,y
+    #X = np.c_[X_tf]
+    return X_tf,y
 
 def clean(s):
     # Cleans a string: Lowercasing, trimming, removing non-alphanumeric
@@ -652,7 +667,8 @@ def tf_features(headlines, bodies):
     #print("going to vectorize teh related corpus :" )
 
     vectorizer_phase2 = createAtfidfVectorizer()
-    tf_vector = vectorizer_phase2.fit_transform(entire_corpus)
+    tf_vector_fit = vectorizer_phase2.fit(entire_corpus)
+    tf_vector = vectorizer_phase2.transform(entire_corpus)
     features=vectorizer_phase2.get_feature_names()
     #writeToOutputFile("\n"+str(features),"featureNames_tfidf_vectorizer")
 
