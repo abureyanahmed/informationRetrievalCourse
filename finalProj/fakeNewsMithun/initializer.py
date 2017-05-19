@@ -35,6 +35,7 @@ from utils.score import score_submission
 from utils.classifier_functions import convert_FNC_data_to_my_format
 from utils.classifier_functions import tf_features
 from utils.classifier_functions import train_svm
+from utils.classifier_functions import generate_features_uofa
 
 
 
@@ -116,8 +117,8 @@ if __name__ == "__main__":
         check_version()
         parse_params()
 
-        #d = DataSet()
-        d=training_data
+        d = DataSet()
+        #d=training_data
         folds, hold_out = kfold_split(d, n_folds=10)
         fold_stances, hold_out_stances = get_stances_for_folds(d, folds, hold_out)
 
@@ -125,8 +126,7 @@ if __name__ == "__main__":
         print("number of rows in first fold_stances  is:" + str(len(fold_stances[1])))
         print("number of rows in hold_out_stances data is:" + str(len(hold_out_stances)))
 
-        Xs = dict()
-        ys = dict()
+
 
         # print(str(hold_out_stances))
 
@@ -221,7 +221,7 @@ if __name__ == "__main__":
             #vectorizer_phase2 = CountVectorizer(min_df=1)
             #vectorizer_phase2 = TfidfVectorizer(min_df=1)
 
-            vectorizer_phase2 = createAtfidfVectorizer()
+           # vectorizer_phase2 = createAtfidfVectorizer()
 
 
             #vectorizer_phase2 = createAtfidfVectorizer
@@ -229,15 +229,23 @@ if __name__ == "__main__":
             # to train with their FNC baseline data
 
 
+
+
             my_features_combined=[]
             my_labels_combined = []
+            Xs = dict()
+            ys = dict()
+
+
             #for each of the fold, convert it into your format, and give it to your generate_features and get a tf a vector out of it.
             for fold in fold_stances:
                 #Xs[fold], ys[fold] = generate_features(fold_stances[fold], d, str(fold))
-                training_data_gold = convert_FNC_data_to_my_format(fold_stances[fold],d)
-                fold_features,fold_labels=tf_features(training_data_gold,vectorizer_phase2)
-                my_features_combined=my_features_combined+fold_features
-                my_labels_combined=my_labels_combined+fold_labels
+                Xs[fold], ys[fold] = generate_features_uofa(fold_stances[fold], d, str(fold))
+
+                #training_data_gold = convert_FNC_data_to_my_format(fold_stances[fold],d)
+                #fold_features,fold_labels=tf_features(training_data_gold,vectorizer_phase2)
+                #my_features_combined=my_features_combined+fold_features
+                #my_labels_combined=my_labels_combined+fold_labels
                 #use this data to create features, and add it to a dictionary of features?
 
             #todo: split the phase2_training_tf to generate_features and svm part

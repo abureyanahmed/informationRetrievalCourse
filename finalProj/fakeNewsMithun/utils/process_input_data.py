@@ -52,8 +52,8 @@ def calculate_tf_idf(counts):
     return tfidf
 
 def createAtfidfVectorizer():
-    vectorizer2 = TfidfVectorizer(tokenizer=normalize, stop_words='english')
-    #vectorizer2 = TfidfVectorizer(tokenizer=normalize,encoding=u'utf-8', decode_error=u'ignore',strip_accents='unicode',stop_words='english' )
+    #vectorizer2 = TfidfVectorizer(tokenizer=normalize, stop_words='english')
+    vectorizer2 = TfidfVectorizer(tokenizer=normalize,encoding=u'utf-8', decode_error=u'ignore',strip_accents='unicode',stop_words='english' )
     #vectorizer2 = TfidfVectorizer(tokenizer=normalize,encoding=u'utf-8', decode_error=u'ignore',strip_accents='unicode',stop_words='english' )
     return vectorizer2
 
