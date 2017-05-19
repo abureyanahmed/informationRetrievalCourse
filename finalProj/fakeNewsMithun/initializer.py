@@ -265,7 +265,7 @@ if __name__ == "__main__":
         print ("going to train on these featuers for each fold:")
 
         for fold in fold_stances:
-            print("inside fold number:"+fold)
+            print("inside fold number:"+str(fold))
             ids = list(range(len(folds)))
             del ids[fold]
 
