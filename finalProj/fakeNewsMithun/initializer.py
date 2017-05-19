@@ -180,7 +180,7 @@ if __name__ == "__main__":
             print(" going to start training for 2 classes agree-disagree within related")
 
             d = DataSet()
-            folds, hold_out = kfold_split(d, n_folds=10)
+            folds, hold_out = kfold_split(d, n_folds=1)
             fold_stances, hold_out_stances = get_stances_for_folds(d, folds, hold_out)
 
             Xs = dict()
@@ -190,7 +190,7 @@ if __name__ == "__main__":
 
 
             print("number of rows in folds data is:" + str(len(folds)))
-            print("number of rows in first fold_stances  is:" + str(len(fold_stances[1])))
+            print("number of rows in first fold_stances  is:" + str(len(fold_stances[0])))
             print("number of rows in hold_out_stances data is:" + str(len(hold_out_stances)))
 
             # Load/Precompute all features now
@@ -199,58 +199,82 @@ if __name__ == "__main__":
             #print("number of rows in y_holdout data is:" + str(len(y_holdout)))
 
             #for each of the fold, convert it into your format, and give it to your generate_features and get a tf a vector out of it.
-            for fold in fold_stances:
-                Xs[fold], ys[fold] = generate_features_uofa(fold_stances[fold], d, str(fold))
+            #for fold in fold_stances:
+             #   Xs[fold], ys[fold] = generate_features_uofa(fold_stances[fold], d, str(fold))
+            folder = 'features/'
+            for the_file in os.listdir(folder):
+                file_path = os.path.join(folder, the_file)
+                try:
+                    if os.path.isfile(file_path):
+                        os.unlink(file_path)
+                        # elif os.path.isdir(file_path): shutil.rmtree(file_path)
+                except Exception as e:
+                    print(e)
 
+            Xs[0], ys[0] = generate_features_uofa(fold_stances[0], d, str(0))
+            print("done getting featuer vectors of entire data. total number of rows in feature vector matrix is:" + str(len(Xs)))
+            print("going to train on these featuers for each fold:")
 
-        print ("done getting featuer vectors of entire data. total number of rows in feature vector matrix is:" + str(len(Xs)))
-        print ("going to train on these featuers for each fold:")
-
-        for fold in fold_stances:
-            print("inside fold number:"+str(fold))
-            ids = list(range(len(folds)))
-            del ids[fold]
-
-            # replace their code with our features
-            X_train = np.vstack(tuple([Xs[i] for i in ids]))
-            y_train = np.hstack(tuple([ys[i] for i in ids]))
-
-            X_test = Xs[fold]
-            y_test = ys[fold]
-
-           # clf = GradientBoostingClassifier(n_estimators=200, random_state=14128, verbose=True)
+            X_train = Xs[0]
+            y_train = ys[0]
+            print("number of rows in X_train data is:" + str(len(X_train)))
+            print("number of rows in X_train data is:" + str(len(y_train)))
 
             clf = svm.SVC(kernel='linear', C=1.0)
-            # feature_vector=feature_vector.reshape(-1, 1)
             clf.fit(X_train, y_train)
-
-            predicted = [LABELS[int(a)] for a in clf.predict(X_test)]
-            actual = [LABELS[int(a)] for a in y_test]
-
-            fold_score, _ = score_submission(actual, predicted)
-            max_fold_score, _ = score_submission(actual, actual)
-
-            score = fold_score / max_fold_score
-
-            print("Score for fold " + str(fold) + " was - " + str(score))
-            if score > best_score:
-                best_score = score
-                best_fold = clf
 
             # Run on Holdout set and report the final score on the holdout set
             predicted = [LABELS[int(a)] for a in best_fold.predict(X_holdout)]
             actual = [LABELS[int(a)] for a in y_holdout]
 
             report_score(actual, predicted)
+            sys.exit(1)
+
+            for fold in fold_stances:
+                print("inside fold number:"+str(fold))
+                ids = list(range(len(folds)))
+                del ids[fold]
+
+                # replace their code with our features
+                X_train = np.vstack(tuple([Xs[i] for i in ids]))
+                y_train = np.hstack(tuple([ys[i] for i in ids]))
+
+                X_test = Xs[fold]
+                y_test = ys[fold]
+
+               # clf = GradientBoostingClassifier(n_estimators=200, random_state=14128, verbose=True)
+
+                clf = svm.SVC(kernel='linear', C=1.0)
+                # feature_vector=feature_vector.reshape(-1, 1)
+                clf.fit(X_train, y_train)
+
+                predicted = [LABELS[int(a)] for a in clf.predict(X_test)]
+                actual = [LABELS[int(a)] for a in y_test]
+
+                fold_score, _ = score_submission(actual, predicted)
+                max_fold_score, _ = score_submission(actual, actual)
+
+                score = fold_score / max_fold_score
+
+                print("Score for fold " + str(fold) + " was - " + str(score))
+                if score > best_score:
+                    best_score = score
+                    best_fold = clf
+
+                # Run on Holdout set and report the final score on the holdout set
+                predicted = [LABELS[int(a)] for a in best_fold.predict(X_holdout)]
+                actual = [LABELS[int(a)] for a in y_holdout]
+
+                report_score(actual, predicted)
 
 
 
 
-            #X= vectorizer_phase2_trained.get_feature_names()
+                #X= vectorizer_phase2_trained.get_feature_names()
 
 
-            print ("done with training of documents for agree classes. going to read testing data.")
-            #sendEmail("do_training_phase2")
+                print ("done with training of documents for agree classes. going to read testing data.")
+                #sendEmail("do_training_phase2")
 
     #########################This is the end of training for Phase1. Validation for phase 2 starts here###########################3
         if(do_validation_phase2):
