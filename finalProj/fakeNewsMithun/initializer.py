@@ -1,4 +1,5 @@
 from __future__ import division
+from sklearn import svm
 
 import nltk
 import numpy as np
@@ -6,7 +7,7 @@ import sys
 from utils.feature_engineering import refuting_features, polarity_features, hand_features, gen_or_load_feats,hedging_features
 from utils.feature_engineering import word_overlap_features
 from sklearn.ensemble import GradientBoostingClassifier
-
+from tqdm import tqdm
 from utils.dataset import DataSet
 from utils.generate_test_splits import kfold_split, get_stances_for_folds
 from utils.score import report_score, LABELS, score_submission
@@ -235,11 +236,15 @@ if __name__ == "__main__":
             my_labels_combined = []
             Xs = dict()
             ys = dict()
+            fold_stances, hold_out_stances = get_stances_for_folds(d, folds, hold_out)
 
+
+
+            # Load/Precompute all features now
+            X_holdout, y_holdout = generate_features_uofa(hold_out_stances, d, "holdout")
 
             #for each of the fold, convert it into your format, and give it to your generate_features and get a tf a vector out of it.
             for fold in fold_stances:
-                #Xs[fold], ys[fold] = generate_features(fold_stances[fold], d, str(fold))
                 Xs[fold], ys[fold] = generate_features_uofa(fold_stances[fold], d, str(fold))
 
                 #training_data_gold = convert_FNC_data_to_my_format(fold_stances[fold],d)
@@ -250,9 +255,48 @@ if __name__ == "__main__":
 
             #todo: split the phase2_training_tf to generate_features and svm part
             #svm_trained_phase2, vectorizer_phase2_trained = phase2_training_tf(training_data_gold, vectorizer_phase2)
-            svm_trained_phase2, vectorizer_phase2_trained = train_svm(my_features_combined,my_labels_combined)
+           # svm_trained_phase2, vectorizer_phase2_trained = train_svm(my_features_combined,my_labels_combined)
 
+            #feed the X and Y labels to the svm classifier.
+            #clf = svm.SVC(kernel='linear', C=1.0)
+            # feature_vector=feature_vector.reshape(-1, 1)
+           # clf.fit(my_features, labels.ravel())
 
+            for fold in fold_stances:
+                ids = list(range(len(folds)))
+                del ids[fold]
+
+                # replace their code with our features
+                X_train = np.vstack(tuple([Xs[i] for i in ids]))
+                y_train = np.hstack(tuple([ys[i] for i in ids]))
+
+                X_test = Xs[fold]
+                y_test = ys[fold]
+
+               # clf = GradientBoostingClassifier(n_estimators=200, random_state=14128, verbose=True)
+
+                clf = svm.SVC(kernel='linear', C=1.0)
+                # feature_vector=feature_vector.reshape(-1, 1)
+                clf.fit(X_train, y_train)
+
+                predicted = [LABELS[int(a)] for a in clf.predict(X_test)]
+                actual = [LABELS[int(a)] for a in y_test]
+
+                fold_score, _ = score_submission(actual, predicted)
+                max_fold_score, _ = score_submission(actual, actual)
+
+                score = fold_score / max_fold_score
+
+                print("Score for fold " + str(fold) + " was - " + str(score))
+                if score > best_score:
+                    best_score = score
+                    best_fold = clf
+
+            # Run on Holdout set and report the final score on the holdout set
+            predicted = [LABELS[int(a)] for a in best_fold.predict(X_holdout)]
+            actual = [LABELS[int(a)] for a in y_holdout]
+
+            report_score(actual, predicted)
 
 
 

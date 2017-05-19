@@ -2,7 +2,7 @@ from __future__ import division
 
 import numpy as np
 import smtplib
-
+import sys
 from sklearn import svm
 
 from utils.fileWriter import writeToOutputFile
@@ -505,7 +505,7 @@ def generate_features_uofa(stances,dataset,name):
         h.append(stance['Headline'])
         b.append(dataset.articles[stance['Body ID']])
 
-    X_overlap = gen_or_load_feats(word_overlap_features, h, b, "features/overlap."+name+".npy")
+    #X_overlap = gen_or_load_feats(word_overlap_features, h, b, "features/overlap."+name+".npy")
     # X_refuting = gen_or_load_feats(refuting_features, h, b, "features/refuting."+name+".npy")
     # X_polarity = gen_or_load_feats(polarity_features, h, b, "features/polarity."+name+".npy")
     # X_hand = gen_or_load_feats(hand_features, h, b, "features/hand."+name+".npy")
@@ -626,7 +626,7 @@ def word_overlap_features(headlines, bodies):
 def tf_features(headlines, bodies):
 
 
-    print("tf_features")
+    #print("tf_features")
     entire_corpus=[]
 
     for i, (headline, body) in tqdm(enumerate(zip(headlines, bodies))):
@@ -638,56 +638,13 @@ def tf_features(headlines, bodies):
         headline_body_str = headline+"." + body
         entire_corpus.append(headline_body_str)
 
-
-    #
-    # for tuple in data:
-    #     #print(str(tuple))
-    #
-    #     headline_body_str=""
-    #     headline = tuple[0]
-    #     headline_body_str=headline_body_str+headline+"."
-    #     #bodyid  = tuple['Body ID']
-    #     actualBody=tuple[1]
-    #     headline_body_str=headline_body_str+actualBody
-    #     entire_corpus.append(headline_body_str)
-    #
-    #     stance= tuple[2]
-    #     #agree:0
-    #     #disagree:1
-    #     #discuss:2
-    #     #unrelated:3
-    #     #lets call agrees as label 1 and disagrees as label 2
-    #     if (stance == "agree"):
-    #         labels = np.append(labels, 0)
-    #     else:
-    #         if (stance == "disagree"):
-    #             labels = np.append(labels, 1)
-    #         else:
-    #             if(stance=="discuss"):
-    #                 labels = np.append(labels, 2)
-    #             else:
-    #                 if (stance == "unrelated"):
-    #                     labels = np.append(labels, 3)
-    #
-    #
-    #
-    #
-    # # #debug code to test printing the frist headline-body combination
-    # # for indivlines in entire_corpus:
-    # #     print(indivlines)
-    # #     sys.exit(1)
-    # #
-    #
-    #
-    # #entire_corpus= ['The the the arachno centric trump and so if first document.','This is the and the of second second document.','And the third one.','Is this the first document?',]
-    # #entire_corpus= ['higher, highest, automatic, automotive, automation, auto.','auto-bahn, autorickshaw']
-    print("size of entire_corpus is:" + str(len(entire_corpus)))
-    print("going to vectorize teh related corpus :" )
+    #print("size of entire_corpus is:" + str(len(entire_corpus)))
+    #print("going to vectorize teh related corpus :" )
 
     vectorizer_phase2 = createAtfidfVectorizer()
     tf_vector = vectorizer_phase2.fit_transform(entire_corpus)
     features=vectorizer_phase2.get_feature_names()
-    writeToOutputFile("\n"+str(features),"featureNames_tfidf_vectorizer")
+    #writeToOutputFile("\n"+str(features),"featureNames_tfidf_vectorizer")
 
     #testing using a count vectorizer to make sure what am donig is currect
     # objCountVectorizer =createCountVectorizer()
@@ -705,9 +662,7 @@ def tf_features(headlines, bodies):
     #tf_vector = vectorizer_phase2.calculate_tf_idf(entire_corpus)
      #X = vectorizer.fit_transform(document)
     #print(tf_vector)
-    print("number of rows in corpus post vectorization is:" + str(tf_vector.shape))
-
-    sys.exit(1)
+   # print("number of rows in corpus post vectorization is:" + str(tf_vector.shape))
     return tf_vector
 
 
