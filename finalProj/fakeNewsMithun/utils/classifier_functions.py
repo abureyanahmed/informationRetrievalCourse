@@ -507,6 +507,7 @@ def gen_or_load_feats(feat_fn, headlines, bodies, feature_file):
 
 
 def gen_feats_as_numpy_feats(feat_fn, headlines, bodies):
+    print("inside gen_feats_as_numpy_feats")
     feats = feat_fn(headlines, bodies)
     np_feats=np.asarray(feats)
     return np_feats
@@ -534,9 +535,9 @@ def generate_features_uofa(stances,dataset,name):
     # X_polarity = gen_or_load_feats(polarity_features, h, b, "features/polarity."+name+".npy")
     # X_hand = gen_or_load_feats(hand_features, h, b, "features/hand."+name+".npy")
     # X_hedge = gen_or_load_feats(hedging_features, h, b, "features/hedge."+name+".npy")
-    X_tf = gen_feats_as_numpy_feats(tf_features, h, b)
-    #X_tf=tf_features(h, b)
-    print("number of rows in corpus post vectorization is:" + str(X_tf.shape))
+    #X_tf = gen_feats_as_numpy_feats(tf_features, h, b)
+    X_tf=tf_features(h, b)
+    print("inside generate_features_uofa of rows in corpus post vectorization is:" + str(X_tf.shape))
     #X = np.c_[X_hand, X_polarity, X_refuting, X_overlap,X_hedge]
     #X = np.c_[X_tf]
     return X_tf,y
