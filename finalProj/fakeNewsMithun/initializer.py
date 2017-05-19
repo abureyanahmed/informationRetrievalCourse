@@ -118,33 +118,6 @@ if __name__ == "__main__":
         check_version()
         parse_params()
 
-        d = DataSet()
-        #d=training_data
-        folds, hold_out = kfold_split(d, n_folds=10)
-        fold_stances, hold_out_stances = get_stances_for_folds(d, folds, hold_out)
-
-        print("number of rows in folds data is:" + str(len(folds)))
-        print("number of rows in first fold_stances  is:" + str(len(fold_stances[1])))
-        print("number of rows in hold_out_stances data is:" + str(len(hold_out_stances)))
-
-
-
-        # print(str(hold_out_stances))
-
-
-        # get the features out of the testing data. We will comment this out until we get to testing
-        #X_holdout, y_holdout = generate_features(hold_out_stances, d, "holdout")
-        #print("number of rows in X_holdout data is:" + str(len(X_holdout)))
-
-
-        #this part will be replaced with our own feature vectors
-        # for fold in fold_stances:
-        #     Xs[fold], ys[fold] = generate_features(fold_stances[fold], d, str(fold))
-        #
-        # print("number of rows in Xs data is:" + str(len(Xs)))
-
-        best_score = 0
-        best_fold = None
 
        # sys.exit(1)
 
@@ -205,62 +178,31 @@ if __name__ == "__main__":
 
             # start training for 2 classes agree-disagree within related
             print(" going to start training for 2 classes agree-disagree within related")
-            # cwd = os.getcwd()
-            #training_data = utils.read_data.load_training_DataSet(cwd)
 
-            # print("number of stances in d is" + str(len(training_data.stances)))
-            # print("number of bodies in d is" + str(len(training_data.articles)))
-            #print("done reading documents, going to train on this document")
-
-            #this code was written before using term frequency as a feature vector. This uses cosine similarity of
-            #q1d1 as a feature vector. This was first pass. got very bad precision. But leaving it here just in case the
-            #2nd pass with term frequency as vector doesnt work and this will be back up option.
-            #svm_trained_phase2 = train_for_agree_disagree(training_data)
-
-
-            #use the same vectorizer for training and testing.
-            #vectorizer_phase2 = CountVectorizer(min_df=1)
-            #vectorizer_phase2 = TfidfVectorizer(min_df=1)
-
-           # vectorizer_phase2 = createAtfidfVectorizer()
-
-
-            #vectorizer_phase2 = createAtfidfVectorizer
-
-            # to train with their FNC baseline data
-
-
-
-
-            my_features_combined=[]
-            my_labels_combined = []
-            Xs = dict()
-            ys = dict()
+            d = DataSet()
+            folds, hold_out = kfold_split(d, n_folds=10)
             fold_stances, hold_out_stances = get_stances_for_folds(d, folds, hold_out)
 
+            Xs = dict()
+            ys = dict()
 
+            # print(str(hold_out_stances))
+
+
+            print("number of rows in folds data is:" + str(len(folds)))
+            print("number of rows in first fold_stances  is:" + str(len(fold_stances[1])))
+            print("number of rows in hold_out_stances data is:" + str(len(hold_out_stances)))
 
             # Load/Precompute all features now
             X_holdout, y_holdout = generate_features_uofa(hold_out_stances, d, "holdout")
+            print("number of rows in X_holdout data is:" + str(len(X_holdout)))
+            print("number of rows in y_holdout data is:" + str(len(y_holdout)))
 
             #for each of the fold, convert it into your format, and give it to your generate_features and get a tf a vector out of it.
             for fold in fold_stances:
                 Xs[fold], ys[fold] = generate_features_uofa(fold_stances[fold], d, str(fold))
 
-                #training_data_gold = convert_FNC_data_to_my_format(fold_stances[fold],d)
-                #fold_features,fold_labels=tf_features(training_data_gold,vectorizer_phase2)
-                #my_features_combined=my_features_combined+fold_features
-                #my_labels_combined=my_labels_combined+fold_labels
-                #use this data to create features, and add it to a dictionary of features?
 
-            #todo: split the phase2_training_tf to generate_features and svm part
-            #svm_trained_phase2, vectorizer_phase2_trained = phase2_training_tf(training_data_gold, vectorizer_phase2)
-           # svm_trained_phase2, vectorizer_phase2_trained = train_svm(my_features_combined,my_labels_combined)
-
-            #feed the X and Y labels to the svm classifier.
-            #clf = svm.SVC(kernel='linear', C=1.0)
-            # feature_vector=feature_vector.reshape(-1, 1)
-           # clf.fit(my_features, labels.ravel())
         print ("done getting featuer vectors of entire data. total number of rows in feature vector matrix is:" + str(len(Xs)))
         print ("going to train on these featuers for each fold:")
 
