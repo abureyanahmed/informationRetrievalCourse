@@ -37,6 +37,7 @@ from utils.classifier_functions import convert_FNC_data_to_my_format
 from utils.classifier_functions import tf_features
 from utils.classifier_functions import train_svm
 from utils.classifier_functions import generate_features_uofa
+from utils.classifier_functions import generate_features_testdata
 
 
 
@@ -211,15 +212,16 @@ if __name__ == "__main__":
                 except Exception as e:
                     print(e)
 
+#use the same vectorizer to fit_transform and transform
+            vectorizer_phase2 = createAtfidfVectorizer()
 
-            #Xs[0], ys[0] = generate_features_uofa(fold_stances[0], d, "1fold")
-            X_holdout, y_holdout = generate_features_uofa(hold_out_stances, d, "holdout")
-            print("number of rows in X_holdout data is:" + str(X_holdout.shape))
-            X_train, y_train = generate_features_uofa(fold_stances[0], d, "1fold")
+            X_train, y_train = generate_features_uofa(fold_stances[0], d, "1fold",vectorizer_phase2)
             print("number of rows in corpus post vectorization is:" + str(X_train.shape))
            # print("done getting featuer vectors of entire data. total number of rows in feature vector matrix is:" + str(len(Xs)))
             print("going to train on these featuers for each fold:")
 
+            # Xs[0], ys[0] = generate_features_uofa(fold_stances[0], d, "1fold")
+            X_holdout, y_holdout = generate_features_testdata(hold_out_stances, d, "holdout",vectorizer_phase2)
            # X_train = np.vstack(tuple(Xs[0]))
            # y_train = np.hstack(tuple(ys[0]))
 

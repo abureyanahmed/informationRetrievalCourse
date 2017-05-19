@@ -527,9 +527,7 @@ def gen_or_load_feats_uofa(feat_fn, headlines, bodies, feature_file):
     return np.load(feature_file)
 
 
-
-
-def generate_features_uofa(stances,dataset,name):
+def generate_features_testdata(stances,dataset,name,vectorizer_phase2):
     h, b, y = [],[],[]
 
     for stance in stances:
@@ -543,7 +541,31 @@ def generate_features_uofa(stances,dataset,name):
     # X_hand = gen_or_load_feats(hand_features, h, b, "features/hand."+name+".npy")
     # X_hedge = gen_or_load_feats(hedging_features, h, b, "features/hedge."+name+".npy")
     #X_tf = gen_feats_as_numpy_feats(tf_features, h, b)
-    X_tf=tf_features(h, b)
+    X_tf=tf_features_transform(h, b,vectorizer_phase2)
+    print("inside generate_features_testdata of rows in corpus post vectorization is:" + str(X_tf.shape))
+    #X_combined = np.c_[X_hand, X_polarity, X_refuting, X_overlap,X_hedge]
+    #X_combined = np.c_[X_tf, X_overlap]
+    #X = np.c_[X_tf]
+    return X_tf,y
+    #print("inside generate_features_uofa of rows in X_combined is:" + str(X_combined.shape))
+    #return X_combined,y
+
+
+def generate_features_uofa(stances,dataset,name,vectorizer_phase2):
+    h, b, y = [],[],[]
+
+    for stance in stances:
+        y.append(LABELS.index(stance['Stance']))
+        h.append(stance['Headline'])
+        b.append(dataset.articles[stance['Body ID']])
+
+    #X_overlap = gen_or_load_feats(word_overlap_features, h, b, "features/overlap."+name+".npy")
+    # X_refuting = gen_or_load_feats(refuting_features, h, b, "features/refuting."+name+".npy")
+    # X_polarity = gen_or_load_feats(polarity_features, h, b, "features/polarity."+name+".npy")
+    # X_hand = gen_or_load_feats(hand_features, h, b, "features/hand."+name+".npy")
+    # X_hedge = gen_or_load_feats(hedging_features, h, b, "features/hedge."+name+".npy")
+    #X_tf = gen_feats_as_numpy_feats(tf_features, h, b)
+    X_tf=tf_features(h, b,vectorizer_phase2)
     print("inside generate_features_uofa of rows in corpus post vectorization is:" + str(X_tf.shape))
     #X_combined = np.c_[X_hand, X_polarity, X_refuting, X_overlap,X_hedge]
     #X_combined = np.c_[X_tf, X_overlap]
@@ -659,7 +681,7 @@ def word_overlap_features(headlines, bodies):
     return X
 
 
-def tf_features(headlines, bodies):
+def tf_features(headlines, bodies,vectorizer_phase2):
 
 
     print("tf_features")
@@ -677,7 +699,7 @@ def tf_features(headlines, bodies):
     #print("size of entire_corpus is:" + str(len(entire_corpus)))
     #print("going to vectorize teh related corpus :" )
 
-    vectorizer_phase2 = createAtfidfVectorizer()
+
     tf_vector_fit = vectorizer_phase2.fit(entire_corpus)
     tf_vector = vectorizer_phase2.transform(entire_corpus)
     features=vectorizer_phase2.get_feature_names()
@@ -702,6 +724,48 @@ def tf_features(headlines, bodies):
    # print("number of rows in corpus post vectorization is:" + str(tf_vector.shape))
     return tf_vector
 
+def tf_features_transform(headlines, bodies,vectorizer_phase2):
+
+
+    print("tf_features")
+    entire_corpus=[]
+
+    for i, (headline, body) in tqdm(enumerate(zip(headlines, bodies))):
+        clean_headline = clean(headline)
+        clean_body = clean(body)
+        #clean_headline = get_tokenized_lemmas(clean_headline)
+        #clean_body = get_tokenized_lemmas(clean_body)
+        headline_body_str = ""
+        headline_body_str = str(clean_headline)+"." + str(clean_body)
+        entire_corpus.append(headline_body_str)
+
+    #print("size of entire_corpus is:" + str(len(entire_corpus)))
+    #print("going to vectorize teh related corpus :" )
+
+
+    #tf_vector_fit = vectorizer_phase2.fit(entire_corpus)
+    tf_vector = vectorizer_phase2.transform(entire_corpus)
+    features=vectorizer_phase2.get_feature_names()
+    #writeToOutputFile("\n"+str(features),"featureNames_tfidf_vectorizer")
+
+    #testing using a count vectorizer to make sure what am donig is currect
+    # objCountVectorizer =createCountVectorizer()
+    # tf_vector = objCountVectorizer.fit_transform(entire_corpus)
+    # features=objCountVectorizer.get_feature_names()
+    # writeToOutputFile("\n"+str(features),"featureNames_count_vectorizer")
+
+
+
+
+    #
+
+    #print(tf_vector .toarray())
+
+    #tf_vector = vectorizer_phase2.calculate_tf_idf(entire_corpus)
+     #X = vectorizer.fit_transform(document)
+    #print(tf_vector)
+   # print("number of rows in corpus post vectorization is:" + str(tf_vector.shape))
+    return tf_vector
 
 
 
