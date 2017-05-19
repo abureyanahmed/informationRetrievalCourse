@@ -521,7 +521,7 @@ def generate_features_uofa(stances,dataset,name):
     # X_hand = gen_or_load_feats(hand_features, h, b, "features/hand."+name+".npy")
     # X_hedge = gen_or_load_feats(hedging_features, h, b, "features/hedge."+name+".npy")
     X_tf = gen_or_load_feats(tf_features, h, b, "features/tf." + name + ".npy")
-
+    print("number of rows in corpus post vectorization is:" + str(X_tf.shape))
     #X = np.c_[X_hand, X_polarity, X_refuting, X_overlap,X_hedge]
     X = np.c_[X_tf]
     return X,y

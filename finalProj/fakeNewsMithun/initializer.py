@@ -211,14 +211,16 @@ if __name__ == "__main__":
                 except Exception as e:
                     print(e)
 
-            Xs[0], ys[0] = generate_features_uofa(fold_stances[0], d, str(0))
-            print("done getting featuer vectors of entire data. total number of rows in feature vector matrix is:" + str(len(Xs)))
+            Xs[0], ys[0] = generate_features_uofa(fold_stances[0], d, "1fold")
+            print("number of rows in corpus post vectorization is:" + str(Xs[0].shape))
+           # print("done getting featuer vectors of entire data. total number of rows in feature vector matrix is:" + str(len(Xs)))
             print("going to train on these featuers for each fold:")
 
-            X_train = Xs[0]
-            y_train = ys[0]
+            X_train = np.vstack(tuple(Xs[0]))
+            y_train = np.hstack(tuple(ys[0]))
+
             print("number of rows in X_train data is:" + str(len(X_train)))
-            print("number of rows in X_train data is:" + str(len(y_train)))
+            print("number of rows in y_train data is:" + str(len(y_train)))
 
             clf = svm.SVC(kernel='linear', C=1.0)
             clf.fit(X_train, y_train)
