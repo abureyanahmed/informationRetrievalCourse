@@ -261,36 +261,39 @@ if __name__ == "__main__":
             #clf = svm.SVC(kernel='linear', C=1.0)
             # feature_vector=feature_vector.reshape(-1, 1)
            # clf.fit(my_features, labels.ravel())
+        print ("done getting featuer vectors of entire data. total number of rows in feature vector matrix is:" + str(len(Xs)))
+        print ("going to train on these featuers for each fold:")
 
-            for fold in fold_stances:
-                ids = list(range(len(folds)))
-                del ids[fold]
+        for fold in fold_stances:
+            print("inside fold number:"+fold)
+            ids = list(range(len(folds)))
+            del ids[fold]
 
-                # replace their code with our features
-                X_train = np.vstack(tuple([Xs[i] for i in ids]))
-                y_train = np.hstack(tuple([ys[i] for i in ids]))
+            # replace their code with our features
+            X_train = np.vstack(tuple([Xs[i] for i in ids]))
+            y_train = np.hstack(tuple([ys[i] for i in ids]))
 
-                X_test = Xs[fold]
-                y_test = ys[fold]
+            X_test = Xs[fold]
+            y_test = ys[fold]
 
-               # clf = GradientBoostingClassifier(n_estimators=200, random_state=14128, verbose=True)
+           # clf = GradientBoostingClassifier(n_estimators=200, random_state=14128, verbose=True)
 
-                clf = svm.SVC(kernel='linear', C=1.0)
-                # feature_vector=feature_vector.reshape(-1, 1)
-                clf.fit(X_train, y_train)
+            clf = svm.SVC(kernel='linear', C=1.0)
+            # feature_vector=feature_vector.reshape(-1, 1)
+            clf.fit(X_train, y_train)
 
-                predicted = [LABELS[int(a)] for a in clf.predict(X_test)]
-                actual = [LABELS[int(a)] for a in y_test]
+            predicted = [LABELS[int(a)] for a in clf.predict(X_test)]
+            actual = [LABELS[int(a)] for a in y_test]
 
-                fold_score, _ = score_submission(actual, predicted)
-                max_fold_score, _ = score_submission(actual, actual)
+            fold_score, _ = score_submission(actual, predicted)
+            max_fold_score, _ = score_submission(actual, actual)
 
-                score = fold_score / max_fold_score
+            score = fold_score / max_fold_score
 
-                print("Score for fold " + str(fold) + " was - " + str(score))
-                if score > best_score:
-                    best_score = score
-                    best_fold = clf
+            print("Score for fold " + str(fold) + " was - " + str(score))
+            if score > best_score:
+                best_score = score
+                best_fold = clf
 
             # Run on Holdout set and report the final score on the holdout set
             predicted = [LABELS[int(a)] for a in best_fold.predict(X_holdout)]
