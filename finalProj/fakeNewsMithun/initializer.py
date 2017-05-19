@@ -37,6 +37,7 @@ from utils.classifier_functions import convert_FNC_data_to_my_format
 from utils.classifier_functions import tf_features
 from utils.classifier_functions import train_svm
 from utils.classifier_functions import generate_features_uofa
+from utils.classifier_functions import generate_features_testdata
 
 
 
@@ -195,7 +196,7 @@ if __name__ == "__main__":
 
             # Load/Precompute all features now
            # X_holdout, y_holdout = generate_features_uofa(hold_out_stances, d, "holdout")
-            #print("number of rows in X_holdout data is:" + str(len(X_holdout)))
+
             #print("number of rows in y_holdout data is:" + str(len(y_holdout)))
 
             #for each of the fold, convert it into your format, and give it to your generate_features and get a tf a vector out of it.
@@ -211,12 +212,16 @@ if __name__ == "__main__":
                 except Exception as e:
                     print(e)
 
-            #Xs[0], ys[0] = generate_features_uofa(fold_stances[0], d, "1fold")
-            X_train, y_train = generate_features_uofa(fold_stances[0], d, "1fold")
+#use the same vectorizer to fit_transform and transform
+            vectorizer_phase2 = createAtfidfVectorizer()
+
+            X_train, y_train = generate_features_uofa(fold_stances[0], d, "1fold",vectorizer_phase2)
             print("number of rows in corpus post vectorization is:" + str(X_train.shape))
            # print("done getting featuer vectors of entire data. total number of rows in feature vector matrix is:" + str(len(Xs)))
             print("going to train on these featuers for each fold:")
 
+            # Xs[0], ys[0] = generate_features_uofa(fold_stances[0], d, "1fold")
+            X_holdout, y_holdout = generate_features_testdata(hold_out_stances, d, "holdout",vectorizer_phase2)
            # X_train = np.vstack(tuple(Xs[0]))
            # y_train = np.hstack(tuple(ys[0]))
 
@@ -226,8 +231,10 @@ if __name__ == "__main__":
             clf = svm.SVC(kernel='linear', C=1.0)
             clf.fit(X_train, y_train)
 
+            print("done training. going to test:")
+            print("number of rows in X_holdout data is:" + str(X_holdout.shape))
             # Run on Holdout set and report the final score on the holdout set
-            predicted = [LABELS[int(a)] for a in best_fold.predict(X_holdout)]
+            predicted = [LABELS[int(a)] for a in clf.predict(X_holdout)]
             actual = [LABELS[int(a)] for a in y_holdout]
 
             report_score(actual, predicted)
