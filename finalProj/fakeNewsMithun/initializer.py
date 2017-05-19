@@ -214,7 +214,7 @@ if __name__ == "__main__":
 
             #Xs[0], ys[0] = generate_features_uofa(fold_stances[0], d, "1fold")
             X_holdout, y_holdout = generate_features_uofa(hold_out_stances, d, "holdout")
-            print("number of rows in X_holdout data is:" + str(len(X_holdout)))
+            print("number of rows in X_holdout data is:" + str(X_holdout.shape))
             X_train, y_train = generate_features_uofa(fold_stances[0], d, "1fold")
             print("number of rows in corpus post vectorization is:" + str(X_train.shape))
            # print("done getting featuer vectors of entire data. total number of rows in feature vector matrix is:" + str(len(Xs)))
@@ -232,7 +232,7 @@ if __name__ == "__main__":
             print("done training. going to test:")
             print("number of rows in X_holdout data is:" + str(X_holdout.shape))
             # Run on Holdout set and report the final score on the holdout set
-            predicted = [LABELS[int(a)] for a in best_fold.predict(X_holdout)]
+            predicted = [LABELS[int(a)] for a in clf.predict(X_holdout)]
             actual = [LABELS[int(a)] for a in y_holdout]
 
             report_score(actual, predicted)

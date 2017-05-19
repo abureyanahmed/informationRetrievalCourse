@@ -20,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="classifier_functions.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="classifier_functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1">
-              <caret line="661" column="4" lean-forward="false" selection-start-line="661" selection-start-column="4" selection-end-line="661" selection-end-column="4" />
+            <state relative-caret-position="286">
+              <caret line="680" column="38" lean-forward="false" selection-start-line="680" selection-start-column="38" selection-end-line="680" selection-end-column="38" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
                 <element signature="e#11344#12616#0" expanded="false" />
@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="initializer.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="initializer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/initializer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="217" column="43" lean-forward="false" selection-start-line="217" selection-start-column="43" selection-end-line="217" selection-end-column="43" />
+            <state relative-caret-position="256">
+              <caret line="237" column="32" lean-forward="true" selection-start-line="237" selection-start-column="32" selection-end-line="237" selection-end-column="32" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -81,8 +81,8 @@
       <file leaf-file-name="fnc_kfold.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fnc_kfold.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="21" column="39" lean-forward="true" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+            <state relative-caret-position="106">
+              <caret line="55" column="20" lean-forward="true" selection-start-line="55" selection-start-column="3" selection-end-line="55" selection-end-column="20" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -117,6 +117,7 @@
       <find>re</find>
       <find>svm</find>
       <find>clf.fit</find>
+      <find>best_fold</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -136,8 +137,8 @@
         <option value="$PROJECT_DIR$/utils/process_input_data.py" />
         <option value="$PROJECT_DIR$/initializer_cs583.py" />
         <option value="$PROJECT_DIR$/utils/feature_engineering.py" />
-        <option value="$PROJECT_DIR$/initializer.py" />
         <option value="$PROJECT_DIR$/utils/classifier_functions.py" />
+        <option value="$PROJECT_DIR$/initializer.py" />
       </list>
     </option>
   </component>
@@ -991,16 +992,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fnc_kfold.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="21" column="39" lean-forward="true" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/feature_engineering.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2037">
@@ -1011,24 +1002,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/initializer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="217" column="43" lean-forward="false" selection-start-line="217" selection-start-column="43" selection-end-line="217" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1">
-          <caret line="661" column="4" lean-forward="false" selection-start-line="661" selection-start-column="4" selection-end-line="661" selection-end-column="4" />
+        <state relative-caret-position="286">
+          <caret line="680" column="38" lean-forward="false" selection-start-line="680" selection-start-column="38" selection-end-line="680" selection-end-column="38" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
             <element signature="e#11344#12616#0" expanded="false" />
             <element signature="e#30378#31636#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fnc_kfold.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="55" column="20" lean-forward="true" selection-start-line="55" selection-start-column="3" selection-end-line="55" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/initializer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="237" column="32" lean-forward="true" selection-start-line="237" selection-start-column="32" selection-end-line="237" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
