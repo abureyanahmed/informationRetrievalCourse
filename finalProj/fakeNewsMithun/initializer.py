@@ -194,9 +194,9 @@ if __name__ == "__main__":
             print("number of rows in hold_out_stances data is:" + str(len(hold_out_stances)))
 
             # Load/Precompute all features now
-            X_holdout, y_holdout = generate_features_uofa(hold_out_stances, d, "holdout")
-            print("number of rows in X_holdout data is:" + str(len(X_holdout)))
-            print("number of rows in y_holdout data is:" + str(len(y_holdout)))
+           # X_holdout, y_holdout = generate_features_uofa(hold_out_stances, d, "holdout")
+            #print("number of rows in X_holdout data is:" + str(len(X_holdout)))
+            #print("number of rows in y_holdout data is:" + str(len(y_holdout)))
 
             #for each of the fold, convert it into your format, and give it to your generate_features and get a tf a vector out of it.
             for fold in fold_stances:

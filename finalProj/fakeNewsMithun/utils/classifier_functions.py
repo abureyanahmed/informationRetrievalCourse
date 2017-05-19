@@ -1,5 +1,5 @@
 from __future__ import division
-
+import os
 import numpy as np
 import smtplib
 import sys
@@ -7,7 +7,7 @@ from sklearn import svm
 
 from utils.fileWriter import writeToOutputFile
 from utils.process_input_data import cosine_sim
-from utils.feature_engineering import refuting_features, polarity_features, hand_features, gen_or_load_feats,hedging_features
+from utils.feature_engineering import refuting_features, polarity_features, hand_features,hedging_features
 from utils.feature_engineering import word_overlap_features
 from tqdm import tqdm
 
@@ -497,6 +497,16 @@ def train_for_agree_disagree(d):
     print("done training svm:" )
     return clf
 
+
+def gen_or_load_feats(feat_fn, headlines, bodies, feature_file):
+    if not os.path.isfile(feature_file):
+        feats = feat_fn(headlines, bodies)
+        np.save(feature_file, feats)
+
+    return np.load(feature_file)
+
+
+
 def generate_features_uofa(stances,dataset,name):
     h, b, y = [],[],[]
 
@@ -626,7 +636,7 @@ def word_overlap_features(headlines, bodies):
 def tf_features(headlines, bodies):
 
 
-    #print("tf_features")
+    print("tf_features")
     entire_corpus=[]
 
     for i, (headline, body) in tqdm(enumerate(zip(headlines, bodies))):
