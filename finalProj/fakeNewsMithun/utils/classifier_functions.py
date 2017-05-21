@@ -16,7 +16,7 @@ from utils.process_input_data import cosine_sim
 from utils.feature_engineering import refuting_features, polarity_features, hand_features,hedging_features
 from utils.feature_engineering import word_overlap_features
 from tqdm import tqdm
-
+from utils.datastructures import indiv_headline_body
 from utils.process_input_data import createAtfidfVectorizer
 
 LABELS = ['agree', 'disagree', 'discuss', 'unrelated']
@@ -995,6 +995,145 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
     return gold_int, pred_label_int
 
+def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase2_trained):
+
+    print("\ninside test_phase2_using_svm" )
+    list_obj_indiv_headline_body=[]
+    list_gold_label=[]
+    entire_corpus=[]
+
+
+
+    value2_int =2
+    value1_int =1
+    value0_int =0
+    value3_int =3
+
+
+
+
+    gold_predicted_combined=[[],[]]
+
+    print("total number of rows in test_data:" +str(len(test_data)))
+
+
+    gold_int=[]
+    for tuple in test_data:
+        obj_indiv_headline_body = indiv_headline_body()
+        obj_indiv_headline_body.body_id
+        # headline = tuple[0]
+        # actualBody=tuple[1]
+        stance= tuple[2]
+
+        # predicted_int=[]
+        # entire_corpus.append(headline_body_str)
+        headline_body_str=""
+        headline = tuple[0]
+        headline_body_str=headline_body_str+headline
+        #bodyid  = tuple['Body ID']
+        actualBody=tuple[1]
+        headline_body_str=headline_body_str+actualBody
+        entire_corpus.append(headline_body_str)
+
+        #acccording to FNC guys, this is the mapping of classes to labels
+        #agree:0
+        #disagree:1
+        #discuss:2
+        #unrelated:3
+
+        if (stance == "disagree"):
+            gold_int.append(value1_int)
+        else:
+            if (stance == "agree"):
+                gold_int.append(value0_int)
+            else:
+                if(stance=="discuss"):
+                    gold_int.append(value2_int)
+                else:
+                    gold_int.append(value3_int)
+
+
+
+
+
+    print("\ngoing to vectorize headline_body_str :" )
+    print("\ntotal number of rows in entire_corpus:" +str(len(entire_corpus)))
+
+
+
+    tf_vector =  vectorizer_phase2_trained.transform(entire_corpus)
+    #print(tf_vector)
+    print("number of rows in vectorized entire_corpus is:" + str(tf_vector.shape))
+    print("going to feed this vectorized tf to a classifier:" )
+
+
+
+    print("going to predict class")
+    #give that vector to your svm for prediction.
+    pred_class=svm_phase2.predict(tf_vector)
+    print("going to print pred_class")
+    print("number of rows in pred_classis:" + str(pred_class.shape))
+    #print(pred_class)
+
+
+    #convert the predicted label to a regular list from numpy matrix
+
+    pred_label_int=[]
+    value2_float =2.0
+    value1_float =1.0
+    value0_float =0.0
+    for x in np.nditer(pred_class):
+        obj_indiv_headline_body = indiv_headline_body()
+        if(x==value2_float):
+            pred_label_int.append(2)
+        else:
+            if(x==value1_float):
+                pred_label_int.append(1)
+            else:
+                if(x==value0_float):
+                    pred_label_int.append(0)
+
+
+    writeToOutputFile("\n","errorAnalysis.txt")
+    #find the ones in which i made a mistake/the predicted and gold didnt match
+    dataCounter=0
+    for tuple in test_data:
+        # headline = tuple[0]
+        actualBody=tuple[1]
+        stance= tuple[2]
+
+        # predicted_int=[]
+        # entire_corpus.append(headline_body_str)
+        headline_body_str=""
+        headline = tuple[0]
+        headline_body_str=headline_body_str+headline
+        #bodyid  = tuple['Body ID']
+        actualBody=tuple[1]
+
+        # if(dataCounter<100):
+        #     if(pred_label_int[dataCounter]!=gold_int[dataCounter]):
+        #         #write to file.
+                 #appendToFile("\n errored document count:"+str(dataCounter),"errorAnalysis.txt")
+        #         appendToFile("\npred_label:"+str(pred_label_int[dataCounter]),"errorAnalysis.txt")
+        #         appendToFile("\n gold_int[dataCounter] :"+str(gold_int[dataCounter]),"errorAnalysis.txt")
+        #         appendToFile("\n  headline:"+headline,"errorAnalysis.txt")
+        #         appendToFile("\n  actualBody:"+actualBody,"errorAnalysis.txt")
+        #         appendToFile("\n  ***************","errorAnalysis.txt")
+        #     dataCounter=dataCounter+1
+
+
+    print("total number of items in pred_label_int is:"+str(len(pred_label_int)))
+
+
+
+    #print("going to find number of rows in gold_int:" )
+    numrows = len(gold_int)    # 3 rows in your example
+    #numcols = len(gold_int[0]) # 2 columns in your example
+    print("number of rows in gold_int:" + str(numrows))
+    #print("number of columns in gold_int:" + str(numcols))
+    #print(gold_int)
+
+    return gold_int, pred_label_int
 
 def sendEmail(nameOfRun,toaddr):
     #gmailUsername="nn7607"

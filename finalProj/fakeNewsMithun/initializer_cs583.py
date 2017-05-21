@@ -13,6 +13,7 @@ from utils.classifier_functions import calculate_precision
 from utils.classifier_functions import return_related_data_only
 from utils.classifier_functions import split_phase1_gold_data__related_unrelated
 from utils.classifier_functions import test_phase2_using_svm
+from utils.classifier_functions import test_phase2_using_svm_return_details
 from utils.classifier_functions import predict_data_phase1
 from utils.classifier_functions import convert_data_to_headline_body_stance_format
 from utils.classifier_functions import predict_data_phase1_return_only_unrelated
@@ -274,7 +275,11 @@ if __name__ == "__main__":
             print("number of rows in testing data after conversion is:"+str(len(testdata_related_only )))
             print("number of columns in testing data after conversion is:"+str(len(testdata_related_only[0])))
             print ("done loading testing data. going to test agree-disagree-discuss using the trained svm ")
-            actual_phase2, predicted_phase2  = test_phase2_using_svm(testdata_related_only, svm_trained_phase2, vectorizer_phase2_trained)
+           # actual_phase2, predicted_phase2  = test_phase2_using_svm(testdata_related_only, svm_trained_phase2, vectorizer_phase2_trained)
+            actual_phase2, predicted_phase2 = test_phase2_using_svm_return_details(testdata_related_only, svm_trained_phase2,
+                                                                    vectorizer_phase2_trained)
+
+
 
             print ("done classifying testing data for phase 2. going to find score ")
 
