@@ -307,18 +307,55 @@ def return_related_data_only(data, unrelated_threshold):
         #this will be fed as input for the 2nd classifier
         #list of strings
         if(pred_label=="related"):
-            headline_body_label=[]
-            headline_body_label.append(headline)
-            headline_body_label.append(actualBody)
-            headline_body_label.append(stance)
-            related_matrix.append(headline_body_label)
+
+            # obj_indiv_headline_body = indiv_headline_body() ;
+            # obj_indiv_headline_body.body_id = bodyid 
+            # obj_indiv_headline_body.body = actualBody 
+            # obj_indiv_headline_body.gold_stance = stance 
+            # obj_indiv_headline_body.headline = headline 
+
+            #headline_body_label = []
+            # headline_body_label.append(headline)
+            # headline_body_label.append(actualBody)
+            # headline_body_label.append(stance)
+
+            related_matrix.append(obj_indiv_headline_body)
 
         #append this headline_body_label guy to the big matrix
 
 
     return related_matrix
 
-def split_phase1_gold_data__related_unrelated(data):
+def return_related_data_only_my_format(data, unrelated_threshold):
+
+    related_matrix=[]
+
+    for indivDataTuple in data.stances:
+
+        headline = obj_indiv_headline_body.headline
+        bodyid=obj_indiv_headline_body.body_id
+        actualBody=obj_indiv_headline_body.body
+
+        #calculate cosine similarity
+        cos=cosine_sim(actualBody,headline)
+        if(cos < unrelated_threshold ):
+            pred_label="unrelated"
+        else:
+            pred_label="related"
+
+
+
+        #separate out teh 'related data' into another data set based on the predicted value
+        #this will be fed as input for the 2nd classifier
+        if(pred_label=="related"):
+            related_matrix.append(indivDataTuple)
+
+
+
+    return related_matrix
+
+
+def split_phase1_gold_data_related_unrelated(data):
     #create a datasstructure of [headline, body, label]- matrix/2d array of strings.
     #Eg:
     #this guy related_rows will contain a list of headline_body_label_post_phase1_rows=[]
@@ -389,12 +426,19 @@ def convert_data_to_headline_body_stance_format(data):
         #list of strings
         print(stance)
 
-        headline_body_label=[]
-        headline_body_label.append(headline)
-        headline_body_label.append(actualBody)
-        headline_body_label.append(stance)
+        obj_indiv_headline_body= indiv_headline_body()
+        obj_indiv_headline_body.body_id=bodyid
+        obj_indiv_headline_body.headline=headline
+        obj_indiv_headline_body.gold_stance = stance
+        obj_indiv_headline_body.body = actualBody
+
+
+        # headline_body_label=[]
+        # headline_body_label.append(headline)
+        # headline_body_label.append(actualBody)
+        # headline_body_label.append(stance)
         #append this headline_body_label guy to the big matrix
-        related_matrix.append(headline_body_label)
+        related_matrix.append(obj_indiv_headline_body)
 
 
 
@@ -593,8 +637,7 @@ def phase2_training_tf(data,vectorizer_phase2):
     # [headline1, body1, stance1]
 
     for tuple in data:
-        print(str(tuple))
-        sys.exit(1)
+        #print(str(tuple))
         headline_body_str=""
         headline = tuple[0]
         headline_body_str=headline_body_str+headline+"."
@@ -1018,22 +1061,16 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
 
 
     gold_int=[]
-    for tuple in test_data:
-        obj_indiv_headline_body = indiv_headline_body()
-        obj_indiv_headline_body.body_id
-        # headline = tuple[0]
-        # actualBody=tuple[1]
-        stance= tuple[2]
+    for obj_indiv_headline_body in test_data:
 
-        # predicted_int=[]
-        # entire_corpus.append(headline_body_str)
-        headline_body_str=""
-        headline = tuple[0]
-        headline_body_str=headline_body_str+headline
-        #bodyid  = tuple['Body ID']
-        actualBody=tuple[1]
-        headline_body_str=headline_body_str+actualBody
+        gold_stance= obj_indiv_headline_body.gold_stance
+        headline=obj_indiv_headline_body.headline
+        actualBody=obj_indiv_headline_body.body
+
+        headline_body_str = ""
+        headline_body_str = headline_body_str + headline+"."+actualBody
         entire_corpus.append(headline_body_str)
+
 
         #acccording to FNC guys, this is the mapping of classes to labels
         #agree:0
@@ -1041,13 +1078,13 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
         #discuss:2
         #unrelated:3
 
-        if (stance == "disagree"):
+        if (gold_stance == "disagree"):
             gold_int.append(value1_int)
         else:
-            if (stance == "agree"):
+            if (gold_stance == "agree"):
                 gold_int.append(value0_int)
             else:
-                if(stance=="discuss"):
+                if(gold_stance=="discuss"):
                     gold_int.append(value2_int)
                 else:
                     gold_int.append(value3_int)
@@ -1082,100 +1119,90 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
     value2_float =2.0
     value1_float =1.0
     value0_float =0.0
+
+    tuple_counter=0
+
+    predicted_data=[]
     for x in np.nditer(pred_class):
-        obj_indiv_headline_body = indiv_headline_body()
+
+        tuple_counter=tuple_counter+1
+        #add the predicted label to the corresponding data structure value
+
+        obj_indiv_headline_body = test_data(tuple_counter)
+
         if(x==value2_float):
             pred_label_int.append(2)
+            obj_indiv_headline_body.predicted_stance = 2
         else:
             if(x==value1_float):
                 pred_label_int.append(1)
+                obj_indiv_headline_body.predicted_stance = 1
             else:
                 if(x==value0_float):
                     pred_label_int.append(0)
+                    obj_indiv_headline_body.predicted_stance = 0
+        predicted_data.append(obj_indiv_headline_body)
 
 
     writeToOutputFile("\n","errorAnalysis.txt")
-    #find the ones in which i made a mistake/the predicted and gold didnt match
-    dataCounter=0
-    for tuple in test_data:
-        # headline = tuple[0]
-        actualBody=tuple[1]
-        stance= tuple[2]
-
-        # predicted_int=[]
-        # entire_corpus.append(headline_body_str)
-        headline_body_str=""
-        headline = tuple[0]
-        headline_body_str=headline_body_str+headline
-        #bodyid  = tuple['Body ID']
-        actualBody=tuple[1]
-
-        # if(dataCounter<100):
-        #     if(pred_label_int[dataCounter]!=gold_int[dataCounter]):
-        #         #write to file.
-                 #appendToFile("\n errored document count:"+str(dataCounter),"errorAnalysis.txt")
-        #         appendToFile("\npred_label:"+str(pred_label_int[dataCounter]),"errorAnalysis.txt")
-        #         appendToFile("\n gold_int[dataCounter] :"+str(gold_int[dataCounter]),"errorAnalysis.txt")
-        #         appendToFile("\n  headline:"+headline,"errorAnalysis.txt")
-        #         appendToFile("\n  actualBody:"+actualBody,"errorAnalysis.txt")
-        #         appendToFile("\n  ***************","errorAnalysis.txt")
-        #     dataCounter=dataCounter+1
 
 
     print("total number of items in pred_label_int is:"+str(len(pred_label_int)))
 
 
 
-    #print("going to find number of rows in gold_int:" )
+    print("going to find number of rows in gold_int:" )
     numrows = len(gold_int)    # 3 rows in your example
-    #numcols = len(gold_int[0]) # 2 columns in your example
+    numcols = len(gold_int[0]) # 2 columns in your example
+    predicted_data
     print("number of rows in gold_int:" + str(numrows))
-    #print("number of columns in gold_int:" + str(numcols))
+    print("number of columns in gold_int:" + str(numcols))
     #print(gold_int)
+    print("number of rows in predicted_data:" + str(len(predicted_data)))
 
-    return gold_int, pred_label_int
+    return gold_int, pred_label_int,predicted_data
 
-def sendEmail(nameOfRun,toaddr):
-    #gmailUsername="nn7607"
-    gmailUsername="mithunpaul08"
-
-    gmailPwd="Alohomora456+"
-    #fromaddr="nn7607@gmail.com"
-    fromaddr="mithunpaul08@gmail.com"
-    #toaddr="mithunpaul08@gmail.com"
-    #toaddr="mithunpaul@email.arizona.edu"
-    subjectForEmail= nameOfRun+":Code finished running"
-    carbonCopy = "mithunpaul@email.arizona.edu"
-    #if on laptop dont switch path. This is required because cron runs as a separate process in a separate directory in chung
-    #turn this to true, if pushing to run on chung.cs.arizona.edu
-    isRunningOnServer=True;
-    firstTimeRun=False;
-
-    finalMessageToSend="hi, the code you were running is finished for"
-
-
-    msg = "\r\n".join([
-        "From: "+fromaddr,
-        "To: " + toaddr,
-        "CC: " + carbonCopy,
-        "Subject:"+subjectForEmail,
-        "",
-        finalMessageToSend
-    ])
-
-    #print("getting here at 3687")
-    server = smtplib.SMTP('smtp.gmail.com:587')
-    server.ehlo()
-    #print("getting here at 8637")
-    server.starttls()
-    #print("getting here at 52895")
-    server.login(gmailUsername, gmailPwd)
-    #print("getting here at 5498")
-    server.sendmail(fromaddr, toaddr, msg)
-    #print("getting here at 68468")
-    server.quit()
-    print("done sending email to:"+toaddr)
-
+# def sendEmail(nameOfRun,toaddr):
+#     #gmailUsername="nn7607"
+#     gmailUsername="mithunpaul08"
+#
+#     gmailPwd="Alohomora456+"
+#     #fromaddr="nn7607@gmail.com"
+#     fromaddr="mithunpaul08@gmail.com"
+#     #toaddr="mithunpaul08@gmail.com"
+#     #toaddr="mithunpaul@email.arizona.edu"
+#     subjectForEmail= nameOfRun+":Code finished running"
+#     carbonCopy = "mithunpaul@email.arizona.edu"
+#     #if on laptop dont switch path. This is required because cron runs as a separate process in a separate directory in chung
+#     #turn this to true, if pushing to run on chung.cs.arizona.edu
+#     isRunningOnServer=True;
+#     firstTimeRun=False;
+#
+#     finalMessageToSend="hi, the code you were running is finished for"
+#
+#
+#     msg = "\r\n".join([
+#         "From: "+fromaddr,
+#         "To: " + toaddr,
+#         "CC: " + carbonCopy,
+#         "Subject:"+subjectForEmail,
+#         "",
+#         finalMessageToSend
+#     ])
+#
+#     #print("getting here at 3687")
+#     server = smtplib.SMTP('smtp.gmail.com:587')
+#     server.ehlo()
+#     #print("getting here at 8637")
+#     server.starttls()
+#     #print("getting here at 52895")
+#     server.login(gmailUsername, gmailPwd)
+#     #print("getting here at 5498")
+#     server.sendmail(fromaddr, toaddr, msg)
+#     #print("getting here at 68468")
+#     server.quit()
+#     print("done sending email to:"+toaddr)
+#
 import os
 import re
 import nltk

@@ -26,7 +26,7 @@ from utils.classifier_functions import phase2_training_tf
 from utils.classifier_functions import predict_data_phase1
 from utils.classifier_functions import predict_data_phase1_return_only_unrelated
 from utils.classifier_functions import return_related_data_only
-from utils.classifier_functions import split_phase1_gold_data__related_unrelated
+from utils.classifier_functions import split_phase1_gold_data_related_unrelated
 from utils.classifier_functions import test_phase2_using_svm
 from utils.generate_test_splits import kfold_split, get_stances_for_folds
 from utils.process_input_data import createAtfidfVectorizer
@@ -170,7 +170,7 @@ if __name__ == "__main__":
         if(do_training_phase2):
             #split the gold data into related-unrelated class . you must train your svm2 on this new class
 
-            # related_data_gold= split_phase1_gold_data__related_unrelated(training_data)
+            # related_data_gold= split_phase1_gold_data_related_unrelated(training_data)
             # numrows = len(related_data_gold)
             # numcols = len(related_data_gold[0])
             # print ("total number of rows in related matrix is:"+str(numrows))
