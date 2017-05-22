@@ -858,6 +858,19 @@ def train_svm(my_features,labels):
     return clf,vectorizer_phase2
 
 
+def word_overlap_features(headlines, bodies):
+    X = []
+    for i, (headline, body) in tqdm(enumerate(zip(headlines, bodies))):
+        clean_headline = clean(headline)
+        clean_body = clean(body)
+        clean_headline = get_tokenized_lemmas(clean_headline)
+        clean_body = get_tokenized_lemmas(clean_body)
+        features = [
+            len(set(clean_headline).intersection(clean_body)) / float(len(set(clean_headline).union(clean_body)))]
+        X.append(features)
+    return X
+
+
 def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
     print("\ninside test_phase2_using_svm" )
@@ -881,6 +894,8 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
 
     gold_int=[]
+    word_overlap_vector=[]
+
     for tuple in test_data:
         # headline = tuple[0]
         # actualBody=tuple[1]
@@ -895,6 +910,10 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
         actualBody=tuple[1]
         headline_body_str=headline_body_str+actualBody
         entire_corpus.append(headline_body_str)
+
+        # add other feature vectors
+        word_overlap = word_overlap_features(headline,actualBody)
+        word_overlap_vector.append(word_overlap)
 
         #acccording to FNC guys, this is the mapping of classes to labels
         #agree:0
@@ -920,6 +939,7 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
     print("\ngoing to vectorize headline_body_str :" )
     print("\ntotal number of rows in entire_corpus:" +str(len(entire_corpus)))
 
+    print("\ntotal number of rows in word_overlap_vector:" + str(len(word_overlap_vector)))
 
 
     tf_vector =  vectorizer_phase2_trained.transform(entire_corpus)
@@ -927,11 +947,11 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
     print("number of rows in vectorized entire_corpus is:" + str(tf_vector.shape))
     print("going to feed this vectorized tf to a classifier:" )
 
-
+    combined_vector=tf_vector+word_overlap_vector
 
     print("going to predict class")
     #give that vector to your svm for prediction.
-    pred_class=svm_phase2.predict(tf_vector)
+    pred_class=svm_phase2.predict(combined_vector)
     print("going to print pred_class")
     print("number of rows in pred_classis:" + str(pred_class.shape))
     #print(pred_class)
