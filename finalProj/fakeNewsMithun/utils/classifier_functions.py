@@ -10,7 +10,7 @@ import nltk
 import numpy as np
 from sklearn import feature_extraction
 from tqdm import tqdm
-
+import itertools
 from utils.fileWriter import writeToOutputFile
 from utils.process_input_data import cosine_sim
 from utils.feature_engineering import refuting_features, polarity_features, hand_features,hedging_features
@@ -1125,13 +1125,13 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
 
     tuple_counter=0
 
-    predicted_data=[]
-    for x in np.nditer(pred_class):
+
+    for obj_indiv_headline_body,x in itertools.zip_longest (test_data,np.nditer(pred_class)):
 
 
         #add the predicted label to the corresponding data structure value
 
-        obj_indiv_headline_body = test_data[tuple_counter]
+        #obj_indiv_headline_body = test_data[tuple_counter]
 
         if(x==value2_float):
             pred_label_int.append(2)

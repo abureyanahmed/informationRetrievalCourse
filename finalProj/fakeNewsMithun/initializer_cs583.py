@@ -21,7 +21,7 @@ from utils.classifier_functions import predict_data_phase1_return_only_unrelated
 from utils.classifier_functions import sendEmail
 from utils.process_input_data import createAtfidfVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
-
+import itertools
 
 from sklearn.feature_extraction.text import CountVectorizer
 from utils.score import report_score
