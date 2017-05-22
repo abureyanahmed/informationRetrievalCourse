@@ -18,7 +18,7 @@ from utils.classifier_functions import test_phase2_using_svm_return_details
 from utils.classifier_functions import predict_data_phase1
 from utils.classifier_functions import convert_data_to_headline_body_stance_format
 from utils.classifier_functions import predict_data_phase1_return_only_unrelated
-#from utils.classifier_functions import sendEmail
+from utils.classifier_functions import sendEmail
 from utils.process_input_data import createAtfidfVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -126,9 +126,10 @@ if __name__ == "__main__":
             cwd = os.getcwd()
 
             print ("done with training of documents for phase1. going to start validation for phase 1")
+            #sendEmail("do_training_phase1", toaddr)
 
 
-    #########################This is the end of training for Phase1. Validation for phase 1 starts here###########################3
+            #########################This is the end of training for Phase1. Validation for phase 1 starts here###########################3
         if(do_validation_phase1):
 
             actual_phase1, predicted_phase1 =predict_data_phase1(training_data,unrelated_threshold)
@@ -218,18 +219,15 @@ if __name__ == "__main__":
             print("number of rows in actual_phase1_only_unrelated  is:"+str(len(actual_phase1_only_unrelated )))
             print("number of rows in predicted_phase1_only_unrelated  is:"+str(len(predicted_phase1_only_unrelated )))
 
-            #if(len(actual_phase1_only_unrelated )!=len(predicted_phase1_only_unrelated )):
-                #sendEmail("error occured, lengths dont match actual_phase1_only_unrelated . going to exit")
-                #sys.exit(1)
-            #else:
-                #sendEmail("do_testing_phase1")
 
-
+            #below code is used as phase 2 input
             print ("value of unrelated_threshold is:" + str(unrelated_threshold))
             testing_data_converted = convert_data_to_headline_body_stance_format(testing_data)
             print ("going to retreive only related data based on threshold:" + str(unrelated_threshold))
             #testdata_related_only = return_related_data_only(testing_data_converted, unrelated_threshold)
             testdata_related_only = return_related_data_only_my_format(testing_data_converted, unrelated_threshold)
+            sendEmail("do_testing_phase1", toaddr)
+
 
 
 
@@ -263,7 +261,7 @@ if __name__ == "__main__":
            # actual_phase2, predicted_phase2 = test_phase2_using_svm_return_details(testdata_related_only, svm_trained_phase2,
             #                                                        vectorizer_phase2_trained)
 
-            actual_phase2, predicted_phase2 = test_phase2_using_svm_return_details(testdata_related_only,
+            actual_phase2, predicted_phase2, post_prediction_data = test_phase2_using_svm_return_details(testdata_related_only,
                                                                                    svm_trained_phase2,
                                                                                    vectorizer_phase2_trained)
 
@@ -281,12 +279,18 @@ if __name__ == "__main__":
             predicted=predicted_phase1_only_unrelated+ predicted_phase2
 
             final_score=report_score([LABELS[e] for e in actual],[LABELS[e] for e in predicted])
-            ##sendEmail("do_testing_phase2")
-            #sendEmail("entire program")
-            sendEmail("entire program",toaddr)
+
+
+            writeToOutputFile("\n", "enrique_format")
+            for eachTuple in post_prediction_data:
+                appendToFile(("\n"+eachTuple.headline+",", "enrique_format"))
+                appendToFile((eachTuple.body_id+",", "enrique_format"))
+                appendToFile((eachTuple.predicted_stance+",", "enrique_format"))
+                appendToFile((eachTuple.confidence+",", "enrique_format"))
+        sendEmail("entire program", toaddr)
+
 
     except:
         import traceback
         print('generic exception: ' + traceback.format_exc())
-        #sendEmail("inside try-catch. error occured, going to exit",toaddr)
-       # sys.exit(1)
+        sendEmail("inside try-catch. error occured, going to exit",toaddr)

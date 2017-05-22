@@ -330,7 +330,9 @@ def return_related_data_only_my_format(data, unrelated_threshold):
 
     related_matrix=[]
 
-    for indivDataTuple in data.stances:
+    print ("inside return_related_data_only_my_format")
+
+    for indivDataTuple in data:
 
         headline = obj_indiv_headline_body.headline
         bodyid=obj_indiv_headline_body.body_id
@@ -1125,7 +1127,7 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
     predicted_data=[]
     for x in np.nditer(pred_class):
 
-        tuple_counter=tuple_counter+1
+
         #add the predicted label to the corresponding data structure value
 
         obj_indiv_headline_body = test_data(tuple_counter)
@@ -1141,6 +1143,8 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
                 if(x==value0_float):
                     pred_label_int.append(0)
                     obj_indiv_headline_body.predicted_stance = 0
+
+        tuple_counter = tuple_counter + 1
         predicted_data.append(obj_indiv_headline_body)
 
 
@@ -1154,7 +1158,6 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
     print("going to find number of rows in gold_int:" )
     numrows = len(gold_int)    # 3 rows in your example
     numcols = len(gold_int[0]) # 2 columns in your example
-    predicted_data
     print("number of rows in gold_int:" + str(numrows))
     print("number of columns in gold_int:" + str(numcols))
     #print(gold_int)
@@ -1162,47 +1165,47 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
 
     return gold_int, pred_label_int,predicted_data
 
-# def sendEmail(nameOfRun,toaddr):
-#     #gmailUsername="nn7607"
-#     gmailUsername="mithunpaul08"
-#
-#     gmailPwd="Alohomora456+"
-#     #fromaddr="nn7607@gmail.com"
-#     fromaddr="mithunpaul08@gmail.com"
-#     #toaddr="mithunpaul08@gmail.com"
-#     #toaddr="mithunpaul@email.arizona.edu"
-#     subjectForEmail= nameOfRun+":Code finished running"
-#     carbonCopy = "mithunpaul@email.arizona.edu"
-#     #if on laptop dont switch path. This is required because cron runs as a separate process in a separate directory in chung
-#     #turn this to true, if pushing to run on chung.cs.arizona.edu
-#     isRunningOnServer=True;
-#     firstTimeRun=False;
-#
-#     finalMessageToSend="hi, the code you were running is finished for"
-#
-#
-#     msg = "\r\n".join([
-#         "From: "+fromaddr,
-#         "To: " + toaddr,
-#         "CC: " + carbonCopy,
-#         "Subject:"+subjectForEmail,
-#         "",
-#         finalMessageToSend
-#     ])
-#
-#     #print("getting here at 3687")
-#     server = smtplib.SMTP('smtp.gmail.com:587')
-#     server.ehlo()
-#     #print("getting here at 8637")
-#     server.starttls()
-#     #print("getting here at 52895")
-#     server.login(gmailUsername, gmailPwd)
-#     #print("getting here at 5498")
-#     server.sendmail(fromaddr, toaddr, msg)
-#     #print("getting here at 68468")
-#     server.quit()
-#     print("done sending email to:"+toaddr)
-#
+def sendEmail(nameOfRun,toaddr):
+    #gmailUsername="nn7607"
+    gmailUsername="mithunpaul08"
+
+    gmailPwd="Alohomora123+"
+    #fromaddr="nn7607@gmail.com"
+    fromaddr="mithunpaul08@gmail.com"
+    #toaddr="mithunpaul08@gmail.com"
+    #toaddr="mithunpaul@email.arizona.edu"
+    subjectForEmail= nameOfRun+":Code finished running"
+    carbonCopy = "mithunpaul@email.arizona.edu"
+    #if on laptop dont switch path. This is required because cron runs as a separate process in a separate directory in chung
+    #turn this to true, if pushing to run on chung.cs.arizona.edu
+    isRunningOnServer=True;
+    firstTimeRun=False;
+
+    finalMessageToSend="hi, the code you were running is finished for"
+
+
+    msg = "\r\n".join([
+        "From: "+fromaddr,
+        "To: " + toaddr,
+        "CC: " + carbonCopy,
+        "Subject:"+subjectForEmail,
+        "",
+        finalMessageToSend
+    ])
+
+    #print("getting here at 3687")
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    server.ehlo()
+    #print("getting here at 8637")
+    server.starttls()
+    #print("getting here at 52895")
+    server.login(gmailUsername, gmailPwd)
+    #print("getting here at 5498")
+    server.sendmail(fromaddr, toaddr, msg)
+    #print("getting here at 68468")
+    server.quit()
+    print("done sending email to:"+toaddr)
+
 import os
 import re
 import nltk
