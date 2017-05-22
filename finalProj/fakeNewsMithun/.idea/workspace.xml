@@ -33,7 +33,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="datastructures.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="datastructures.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/datastructures.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
@@ -55,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="initializer_cs583.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="initializer_cs583.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/initializer_cs583.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-495">
-              <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+            <state relative-caret-position="135">
+              <caret line="228" column="93" lean-forward="false" selection-start-line="228" selection-start-column="93" selection-end-line="228" selection-end-column="93" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -145,8 +145,8 @@
       <find>return_related_data_only</find>
       <find>obj_indiv_headline_body</find>
       <find>unrelated_threshold</find>
-      <find>smtp</find>
       <find>sendEmail</find>
+      <find>smtp</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -1134,6 +1134,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/datastructures.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-90">
@@ -1147,19 +1155,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/initializer_cs583.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-495">
-          <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+        <state relative-caret-position="135">
+          <caret line="228" column="93" lean-forward="false" selection-start-line="228" selection-start-column="93" selection-end-line="228" selection-end-column="93" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/datastructures.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

@@ -226,7 +226,7 @@ if __name__ == "__main__":
 
 
             print ("value of unrelated_threshold is:" + str(unrelated_threshold))
-            testing_data_converted = convert_data_to_headline_body_stance_format(testdata_related_only)
+            testing_data_converted = convert_data_to_headline_body_stance_format(testing_data)
             print ("going to retreive only related data based on threshold:" + str(unrelated_threshold))
             #testdata_related_only = return_related_data_only(testing_data_converted, unrelated_threshold)
             testdata_related_only = return_related_data_only_my_format(testing_data_converted, unrelated_threshold)
