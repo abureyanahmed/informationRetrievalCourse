@@ -18,6 +18,8 @@ from utils.feature_engineering import word_overlap_features
 from tqdm import tqdm
 from utils.datastructures import indiv_headline_body
 from utils.process_input_data import createAtfidfVectorizer
+import itertools
+
 
 LABELS = ['agree', 'disagree', 'discuss', 'unrelated']
 LABELS_RELATED = ['unrelated','related']
