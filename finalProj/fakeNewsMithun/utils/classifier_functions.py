@@ -334,9 +334,9 @@ def return_related_data_only_my_format(data, unrelated_threshold):
 
     for indivDataTuple in data:
 
-        headline = obj_indiv_headline_body.headline
-        bodyid=obj_indiv_headline_body.body_id
-        actualBody=obj_indiv_headline_body.body
+        headline = indivDataTuple.headline
+        bodyid=indivDataTuple.body_id
+        actualBody=indivDataTuple.body
 
         #calculate cosine similarity
         cos=cosine_sim(actualBody,headline)
@@ -605,7 +605,7 @@ def generate_features_uofa(stances,dataset,name,vectorizer_phase2):
         h.append(stance['Headline'])
         b.append(dataset.articles[stance['Body ID']])
 
-    #X_overlap = gen_or_load_feats(word_overlap_features, h, b, "features/overlap."+name+".npy")
+    X_overlap = gen_or_load_feats(word_overlap_features, h, b, "features/overlap."+name+".npy")
     # X_refuting = gen_or_load_feats(refuting_features, h, b, "features/refuting."+name+".npy")
     # X_polarity = gen_or_load_feats(polarity_features, h, b, "features/polarity."+name+".npy")
     # X_hand = gen_or_load_feats(hand_features, h, b, "features/hand."+name+".npy")
@@ -1105,6 +1105,7 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
     print("number of rows in vectorized entire_corpus is:" + str(tf_vector.shape))
     print("going to feed this vectorized tf to a classifier:" )
 
+#add the word overlap features
 
 
     print("going to predict class")
