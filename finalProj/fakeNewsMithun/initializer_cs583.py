@@ -226,7 +226,7 @@ if __name__ == "__main__":
             print ("going to retreive only related data based on threshold:" + str(unrelated_threshold))
             #testdata_related_only = return_related_data_only(testing_data_converted, unrelated_threshold)
             testdata_related_only = return_related_data_only_my_format(testing_data_converted, unrelated_threshold)
-            sendEmail("do_testing_phase1", toaddr)
+            #sendEmail("do_testing_phase1", toaddr)
 
 
 
@@ -255,7 +255,7 @@ if __name__ == "__main__":
             #testing_data_converted=testdata_related_only;
 
             print("number of rows in testing data after conversion is:"+str(len(testdata_related_only )))
-            print("number of columns in testing data after conversion is:"+str(len(testdata_related_only[0])))
+            #print("number of columns in testing data after conversion is:"+str(len(testdata_related_only[0])))
             print ("done loading testing data. going to test agree-disagree-discuss using the trained svm ")
            # actual_phase2, predicted_phase2  = test_phase2_using_svm(testdata_related_only, svm_trained_phase2, vectorizer_phase2_trained)
            # actual_phase2, predicted_phase2 = test_phase2_using_svm_return_details(testdata_related_only, svm_trained_phase2,
