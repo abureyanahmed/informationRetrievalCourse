@@ -25,6 +25,8 @@ import itertools
 
 from sklearn.feature_extraction.text import CountVectorizer
 from utils.score import report_score
+from utils.fileWriter import writeToOutputFile
+from utils.fileWriter import appendToFile
 
 
 
@@ -53,7 +55,7 @@ RELATED = LABELS[0:3]
 #disagree:1
 #discuss:2
 #unrelated:3
-toaddr="mithunpaul@email.arizona.edu"
+toaddr="mithunpaul08@gmail.com"
 #or if its just 2 classes
 #unrelated:0
 #related=1
