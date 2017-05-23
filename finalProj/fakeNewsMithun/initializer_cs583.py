@@ -299,7 +299,7 @@ if __name__ == "__main__":
                         else:
                             if (eachTuple.predicted_stance == 2):
                                 pred_label = "discuss"
-                                else:
+                            else:
                                 if (eachTuple.predicted_stance == 3):
                                     pred_label = "unrelated"
 
