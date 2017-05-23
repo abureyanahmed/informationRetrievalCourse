@@ -1121,6 +1121,7 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
     #convert the predicted label to a regular list from numpy matrix
 
     pred_label_int=[]
+    predicted_data=[]
     value2_float =2.0
     value1_float =1.0
     value0_float =0.0
