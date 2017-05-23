@@ -302,11 +302,12 @@ if __name__ == "__main__":
                             else:
                                 if (eachTuple.predicted_stance == 3):
                                     pred_label = "unrelated"
+                coma=","
 
-                appendToFile("\n"+eachTuple.headline+",", "enrique_format")
-                appendToFile(eachTuple.body_id+",", "enrique_format")
-                appendToFile(pred_label+",", "enrique_format")
-                appendToFile(eachTuple.confidence+",", "enrique_format")
+                appendToFile("\n"+eachTuple.headline, "enrique_format")
+                appendToFile(eachTuple.body_id, "enrique_format")
+                appendToFile(pred_label, "enrique_format")
+                appendToFile(eachTuple.confidence, "enrique_format")
         sendEmail("entire program", toaddr)
 
 
