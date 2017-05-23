@@ -720,8 +720,8 @@ def word_overlap_features(headlines, bodies):
         clean_body = clean(body)
         clean_headline = get_tokenized_lemmas(clean_headline)
         clean_body = get_tokenized_lemmas(clean_body)
-        print("value of headline is"+str(clean_headline))
-        print("length of body is" + str(len(clean_body)))
+        print("value of headline is"+str(set(clean_headline)))
+        print("length of body is" + str(len(set(clean_body))))
         features = [
             len(set(clean_headline).intersection(clean_body)) / float(len(set(clean_headline).union(clean_body)))]
         X.append(features)
