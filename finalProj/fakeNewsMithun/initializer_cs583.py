@@ -283,12 +283,30 @@ if __name__ == "__main__":
             final_score=report_score([LABELS[e] for e in actual],[LABELS[e] for e in predicted])
 
 
+
             writeToOutputFile("\n", "enrique_format")
             for eachTuple in post_prediction_data:
-                appendToFile(("\n"+eachTuple.headline+",", "enrique_format"))
-                appendToFile((eachTuple.body_id+",", "enrique_format"))
-                appendToFile((eachTuple.predicted_stance+",", "enrique_format"))
-                appendToFile((eachTuple.confidence+",", "enrique_format"))
+                # agree, disagree, or discuss, (0,1,2) and attach that.
+                pred_label=""
+                if(eachTuple.predicted_stance==0):
+                    pred_label="agree"
+                else:
+                    if(eachTuple.predicted_stance==1):
+                        pred_label="disagree"
+                    else:
+                        if (eachTuple.predicted_stance == 1):
+                            pred_label = "disagree"
+                        else:
+                            if (eachTuple.predicted_stance == 2):
+                                pred_label = "discuss"
+                                else:
+                                if (eachTuple.predicted_stance == 3):
+                                    pred_label = "unrelated"
+
+                appendToFile("\n"+eachTuple.headline+",", "enrique_format")
+                appendToFile(eachTuple.body_id+",", "enrique_format")
+                appendToFile(pred_label+",", "enrique_format")
+                appendToFile(eachTuple.confidence+",", "enrique_format")
         sendEmail("entire program", toaddr)
 
 
