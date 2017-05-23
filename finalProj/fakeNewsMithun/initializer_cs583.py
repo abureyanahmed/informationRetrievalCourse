@@ -11,23 +11,27 @@ from utils.classifier_functions import phase2_training_tf
 from utils.classifier_functions import calculateCosSimilarity
 from utils.classifier_functions import calculate_precision
 from utils.classifier_functions import return_related_data_only
-from utils.classifier_functions import split_phase1_gold_data__related_unrelated
+from utils.classifier_functions import return_related_data_only_my_format
+from utils.classifier_functions import split_phase1_gold_data_related_unrelated
 from utils.classifier_functions import test_phase2_using_svm
+from utils.classifier_functions import test_phase2_using_svm_return_details
 from utils.classifier_functions import predict_data_phase1
 from utils.classifier_functions import convert_data_to_headline_body_stance_format
 from utils.classifier_functions import predict_data_phase1_return_only_unrelated
 from utils.classifier_functions import sendEmail
 from utils.process_input_data import createAtfidfVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
-
+import itertools
 
 from sklearn.feature_extraction.text import CountVectorizer
 from utils.score import report_score
+from utils.fileWriter import writeToOutputFile
+from utils.fileWriter import appendToFile
 
 
 
 #in phase 1, we split teh data set to related- unrelated
-do_training_phase1=True;
+do_training_phase1=False;
 do_training_phase2=True;
 
 do_validation_phase1=False;
@@ -51,7 +55,7 @@ RELATED = LABELS[0:3]
 #disagree:1
 #discuss:2
 #unrelated:3
-toaddr="mithunpaul@email.arizona.edu"
+toaddr="mithunpaul08@gmail.com"
 #or if its just 2 classes
 #unrelated:0
 #related=1
@@ -59,6 +63,9 @@ if __name__ == "__main__":
     try:
         #nltk.download("wordnet", "whatever_the_absolute_path_to_myapp_is/nltk_data/")
         print("number of arguments is"+ str(len(sys.argv)))
+
+
+
 
         if(len(sys.argv)>1):
             toaddr=sys.argv[1]
@@ -124,9 +131,10 @@ if __name__ == "__main__":
             cwd = os.getcwd()
 
             print ("done with training of documents for phase1. going to start validation for phase 1")
+            #sendEmail("do_training_phase1", toaddr)
 
 
-    #########################This is the end of training for Phase1. Validation for phase 1 starts here###########################3
+            #########################This is the end of training for Phase1. Validation for phase 1 starts here###########################3
         if(do_validation_phase1):
 
             actual_phase1, predicted_phase1 =predict_data_phase1(training_data,unrelated_threshold)
@@ -143,9 +151,10 @@ if __name__ == "__main__":
     #########################This is the end of validation for Phase1. Training for phase 2 starts here###########################3
 
         if(do_training_phase2):
+            print("starting do_training_phase2")
             #split the gold data into related-unrelated class . you must train your svm2 on this new class
 
-            related_data_gold= split_phase1_gold_data__related_unrelated(training_data)
+            related_data_gold= split_phase1_gold_data_related_unrelated(training_data)
             numrows = len(related_data_gold)
             numcols = len(related_data_gold[0])
             print ("total number of rows in related matrix is:"+str(numrows))
@@ -156,33 +165,13 @@ if __name__ == "__main__":
 
             # start training for 2 classes agree-disagree within related
             print(" going to start training for 2 classes agree-disagree within related")
-            # cwd = os.getcwd()
-            #training_data = utils.read_data.load_training_DataSet(cwd)
-
-            # print("number of stances in d is" + str(len(training_data.stances)))
-            # print("number of bodies in d is" + str(len(training_data.articles)))
-            #print("done reading documents, going to train on this document")
-
-            #this code was written before using term frequency as a feature vector. This uses cosine similarity of
-            #q1d1 as a feature vector. This was first pass. got very bad precision. But leaving it here just in case the
-            #2nd pass with term frequency as vector doesnt work and this will be back up option.
-            #svm_trained_phase2 = train_for_agree_disagree(training_data)
-
-
-            #use the same vectorizer for training and testing.
-            #vectorizer_phase2 = CountVectorizer(min_df=1)
-            #vectorizer_phase2 = TfidfVectorizer(min_df=1)
 
             vectorizer_phase2 = createAtfidfVectorizer()
 
 
-            #vectorizer_phase2 = createAtfidfVectorizer
-
 
             #this training has to be done on the gold training data split based on stance= related
             svm_trained_phase2,vectorizer_phase2_trained=phase2_training_tf(related_data_gold,vectorizer_phase2)
-
-            #X= vectorizer_phase2_trained.get_feature_names()
 
 
             print ("done with training of documents for agree classes. going to read testing data.")
@@ -224,8 +213,6 @@ if __name__ == "__main__":
             # Then wesplit the test data based on the classifier trained on phase 1
             print ("total number of rows in testing_data matrix is:"+str(len(testing_data.stances)))
 
-            print ("value of unrelated_threshold is:"+str(unrelated_threshold))
-
 
 
             #we are also keeping teh gold_predicted data so that we can combine it for the final score calculation-after removing class "related" from
@@ -237,16 +224,20 @@ if __name__ == "__main__":
             print("number of rows in actual_phase1_only_unrelated  is:"+str(len(actual_phase1_only_unrelated )))
             print("number of rows in predicted_phase1_only_unrelated  is:"+str(len(predicted_phase1_only_unrelated )))
 
-            #if(len(actual_phase1_only_unrelated )!=len(predicted_phase1_only_unrelated )):
-                #sendEmail("error occured, lengths dont match actual_phase1_only_unrelated . going to exit")
-                #sys.exit(1)
-            #else:
-                #sendEmail("do_testing_phase1")
+
+            #below code is used as phase 2 input
+            print ("value of unrelated_threshold is:" + str(unrelated_threshold))
+            testing_data_converted = convert_data_to_headline_body_stance_format(testing_data)
+            print ("going to retreive only related data based on threshold:" + str(unrelated_threshold))
+            #testdata_related_only = return_related_data_only(testing_data_converted, unrelated_threshold)
+            testdata_related_only = return_related_data_only_my_format(testing_data_converted, unrelated_threshold)
+            #sendEmail("do_testing_phase1", toaddr)
 
 
 
 
-    ######################### Testing for Phase 2 starts here###########################3
+
+            ######################### Testing for Phase 2 starts here###########################3
 
         if(do_testing_phase2):
 
@@ -255,10 +246,7 @@ if __name__ == "__main__":
 
 
 
-            print ("going to retreive only related data based on threshold:"+str(unrelated_threshold))
 
-
-            testdata_related_only=return_related_data_only(testing_data,unrelated_threshold)
 
 
             print ("total number of rows in testdata_related_only matrix is:"+str(len(testdata_related_only)))
@@ -268,13 +256,19 @@ if __name__ == "__main__":
             #print("number of lines in testing data is:"+str(len(testing_data. )))
 
 
-            #testing_data_converted=convert_data_to_headline_body_stance_format(testdata_related_only)
+
             #testing_data_converted=testdata_related_only;
 
             print("number of rows in testing data after conversion is:"+str(len(testdata_related_only )))
-            print("number of columns in testing data after conversion is:"+str(len(testdata_related_only[0])))
+            #print("number of columns in testing data after conversion is:"+str(len(testdata_related_only[0])))
             print ("done loading testing data. going to test agree-disagree-discuss using the trained svm ")
-            actual_phase2, predicted_phase2  = test_phase2_using_svm(testdata_related_only, svm_trained_phase2, vectorizer_phase2_trained)
+           # actual_phase2, predicted_phase2  = test_phase2_using_svm(testdata_related_only, svm_trained_phase2, vectorizer_phase2_trained)
+           # actual_phase2, predicted_phase2 = test_phase2_using_svm_return_details(testdata_related_only, svm_trained_phase2,
+            #                                                        vectorizer_phase2_trained)
+
+            actual_phase2, predicted_phase2, post_prediction_data = test_phase2_using_svm_return_details(testdata_related_only,
+                                                                                   svm_trained_phase2,
+                                                                                   vectorizer_phase2_trained)
 
             print ("done classifying testing data for phase 2. going to find score ")
 
@@ -290,12 +284,39 @@ if __name__ == "__main__":
             predicted=predicted_phase1_only_unrelated+ predicted_phase2
 
             final_score=report_score([LABELS[e] for e in actual],[LABELS[e] for e in predicted])
-            ##sendEmail("do_testing_phase2")
-            #sendEmail("entire program")
-            sendEmail("entire program",toaddr)
+
+
+
+            writeToOutputFile("\n", "enrique_format")
+            for eachTuple in post_prediction_data:
+                # agree, disagree, or discuss, (0,1,2) and attach that.
+                pred_label=""
+                if(eachTuple.predicted_stance==0):
+                    pred_label="agree"
+                else:
+                    if(eachTuple.predicted_stance==1):
+                        pred_label="disagree"
+                    else:
+                        if (eachTuple.predicted_stance == 1):
+                            pred_label = "disagree"
+                        else:
+                            if (eachTuple.predicted_stance == 2):
+                                pred_label = "discuss"
+                            else:
+                                if (eachTuple.predicted_stance == 3):
+                                    pred_label = "unrelated"
+                coma=","
+
+                appendToFile("\n"+str(eachTuple.headline) + coma, "enrique_format")
+                appendToFile(str(eachTuple.body_id) + coma, "enrique_format")
+                appendToFile(str(pred_label)+ coma, "enrique_format")
+                appendToFile(str(eachTuple.confidence), "enrique_format")
+
+
+        sendEmail("entire program", toaddr)
+
 
     except:
         import traceback
         print('generic exception: ' + traceback.format_exc())
         sendEmail("inside try-catch. error occured, going to exit",toaddr)
-       # sys.exit(1)
