@@ -1161,9 +1161,9 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
 
     print("going to find number of rows in gold_int:" )
     numrows = len(gold_int)    # 3 rows in your example
-    numcols = len(gold_int[0]) # 2 columns in your example
+    #numcols = len(gold_int[0]) # 2 columns in your example
     print("number of rows in gold_int:" + str(numrows))
-    print("number of columns in gold_int:" + str(numcols))
+    #print("number of columns in gold_int:" + str(numcols))
     #print(gold_int)
     print("number of rows in predicted_data:" + str(len(predicted_data)))
 
