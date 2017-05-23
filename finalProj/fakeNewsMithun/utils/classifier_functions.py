@@ -20,6 +20,16 @@ from utils.datastructures import indiv_headline_body
 from utils.process_input_data import createAtfidfVectorizer
 import itertools
 
+import os
+import re
+import nltk
+import numpy as np
+from sklearn import feature_extraction
+from tqdm import tqdm
+
+
+_wnl = nltk.WordNetLemmatizer()
+
 
 LABELS = ['agree', 'disagree', 'discuss', 'unrelated']
 LABELS_RELATED = ['unrelated','related']
@@ -710,6 +720,8 @@ def word_overlap_features(headlines, bodies):
         clean_body = clean(body)
         clean_headline = get_tokenized_lemmas(clean_headline)
         clean_body = get_tokenized_lemmas(clean_body)
+        print("value of headline is"+clean_headline)
+        print("length of body is" + len(clean_body))
         features = [
             len(set(clean_headline).intersection(clean_body)) / float(len(set(clean_headline).union(clean_body)))]
         X.append(features)
@@ -891,19 +903,6 @@ def train_svm(my_features,labels):
     print("done training svm:" )
 
     return clf,vectorizer_phase2
-
-
-def word_overlap_features(headlines, bodies):
-    X = []
-    for i, (headline, body) in tqdm(enumerate(zip(headlines, bodies))):
-        clean_headline = clean(headline)
-        clean_body = clean(body)
-        clean_headline = get_tokenized_lemmas(clean_headline)
-        clean_body = get_tokenized_lemmas(clean_body)
-        features = [
-            len(set(clean_headline).intersection(clean_body)) / float(len(set(clean_headline).union(clean_body)))]
-        X.append(features)
-    return X
 
 
 def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
@@ -1221,16 +1220,6 @@ def sendEmail(nameOfRun,toaddr):
     server.quit()
     print("done sending email to:"+toaddr)
 
-import os
-import re
-import nltk
-import numpy as np
-from sklearn import feature_extraction
-from tqdm import tqdm
-
-
-_wnl = nltk.WordNetLemmatizer()
-
 
 def normalize_word(w):
     return _wnl.lemmatize(w).lower()
@@ -1258,20 +1247,6 @@ def gen_or_load_feats(feat_fn, headlines, bodies, feature_file):
 
     return np.load(feature_file)
 
-
-
-
-def word_overlap_features(headlines, bodies):
-    X = []
-    for i, (headline, body) in tqdm(enumerate(zip(headlines, bodies))):
-        clean_headline = clean(headline)
-        clean_body = clean(body)
-        clean_headline = get_tokenized_lemmas(clean_headline)
-        clean_body = get_tokenized_lemmas(clean_body)
-        features = [
-            len(set(clean_headline).intersection(clean_body)) / float(len(set(clean_headline).union(clean_body)))]
-        X.append(features)
-    return X
 
 
 def hedging_features(headlines, bodies):
