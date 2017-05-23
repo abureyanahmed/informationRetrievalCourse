@@ -10,14 +10,16 @@ import nltk
 import numpy as np
 from sklearn import feature_extraction
 from tqdm import tqdm
-
+import itertools
 from utils.fileWriter import writeToOutputFile
 from utils.process_input_data import cosine_sim
 from utils.feature_engineering import refuting_features, polarity_features, hand_features,hedging_features
 from utils.feature_engineering import word_overlap_features
 from tqdm import tqdm
-
+from utils.datastructures import indiv_headline_body
 from utils.process_input_data import createAtfidfVectorizer
+import itertools
+
 
 LABELS = ['agree', 'disagree', 'discuss', 'unrelated']
 LABELS_RELATED = ['unrelated','related']
@@ -307,18 +309,57 @@ def return_related_data_only(data, unrelated_threshold):
         #this will be fed as input for the 2nd classifier
         #list of strings
         if(pred_label=="related"):
-            headline_body_label=[]
-            headline_body_label.append(headline)
-            headline_body_label.append(actualBody)
-            headline_body_label.append(stance)
-            related_matrix.append(headline_body_label)
+
+            # obj_indiv_headline_body = indiv_headline_body() ;
+            # obj_indiv_headline_body.body_id = bodyid 
+            # obj_indiv_headline_body.body = actualBody 
+            # obj_indiv_headline_body.gold_stance = stance 
+            # obj_indiv_headline_body.headline = headline 
+
+            #headline_body_label = []
+            # headline_body_label.append(headline)
+            # headline_body_label.append(actualBody)
+            # headline_body_label.append(stance)
+
+            related_matrix.append(obj_indiv_headline_body)
 
         #append this headline_body_label guy to the big matrix
 
 
     return related_matrix
 
-def split_phase1_gold_data__related_unrelated(data):
+def return_related_data_only_my_format(data, unrelated_threshold):
+
+    related_matrix=[]
+
+    print ("inside return_related_data_only_my_format")
+
+    for indivDataTuple in data:
+
+        headline = indivDataTuple.headline
+        bodyid=indivDataTuple.body_id
+        actualBody=indivDataTuple.body
+
+        #calculate cosine similarity
+        cos=cosine_sim(actualBody,headline)
+        if(cos < unrelated_threshold ):
+            pred_label="unrelated"
+        else:
+            pred_label="related"
+
+
+
+        #separate out teh 'related data' into another data set based on the predicted value
+        #this will be fed as input for the 2nd classifier
+        if(pred_label=="related"):
+            related_matrix.append(indivDataTuple)
+
+
+
+    return related_matrix
+
+
+def split_phase1_gold_data_related_unrelated(data):
     #create a datasstructure of [headline, body, label]- matrix/2d array of strings.
     #Eg:
     #this guy related_rows will contain a list of headline_body_label_post_phase1_rows=[]
@@ -389,12 +430,19 @@ def convert_data_to_headline_body_stance_format(data):
         #list of strings
         print(stance)
 
-        headline_body_label=[]
-        headline_body_label.append(headline)
-        headline_body_label.append(actualBody)
-        headline_body_label.append(stance)
+        obj_indiv_headline_body= indiv_headline_body()
+        obj_indiv_headline_body.body_id=bodyid
+        obj_indiv_headline_body.headline=headline
+        obj_indiv_headline_body.gold_stance = stance
+        obj_indiv_headline_body.body = actualBody
+
+
+        # headline_body_label=[]
+        # headline_body_label.append(headline)
+        # headline_body_label.append(actualBody)
+        # headline_body_label.append(stance)
         #append this headline_body_label guy to the big matrix
-        related_matrix.append(headline_body_label)
+        related_matrix.append(obj_indiv_headline_body)
 
 
 
@@ -559,7 +607,7 @@ def generate_features_uofa(stances,dataset,name,vectorizer_phase2):
         h.append(stance['Headline'])
         b.append(dataset.articles[stance['Body ID']])
 
-    #X_overlap = gen_or_load_feats(word_overlap_features, h, b, "features/overlap."+name+".npy")
+    X_overlap = gen_or_load_feats(word_overlap_features, h, b, "features/overlap."+name+".npy")
     # X_refuting = gen_or_load_feats(refuting_features, h, b, "features/refuting."+name+".npy")
     # X_polarity = gen_or_load_feats(polarity_features, h, b, "features/polarity."+name+".npy")
     # X_hand = gen_or_load_feats(hand_features, h, b, "features/hand."+name+".npy")
@@ -593,8 +641,7 @@ def phase2_training_tf(data,vectorizer_phase2):
     # [headline1, body1, stance1]
 
     for tuple in data:
-        print(str(tuple))
-        sys.exit(1)
+        #print(str(tuple))
         headline_body_str=""
         headline = tuple[0]
         headline_body_str=headline_body_str+headline+"."
@@ -1015,12 +1062,138 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
     return gold_int, pred_label_int
 
+def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase2_trained):
+
+    print("\ninside test_phase2_using_svm" )
+    list_obj_indiv_headline_body=[]
+    list_gold_label=[]
+    entire_corpus=[]
+
+
+
+    value2_int =2
+    value1_int =1
+    value0_int =0
+    value3_int =3
+
+
+
+
+    gold_predicted_combined=[[],[]]
+
+    print("total number of rows in test_data:" +str(len(test_data)))
+
+
+    gold_int=[]
+    for obj_indiv_headline_body in test_data:
+
+        gold_stance= obj_indiv_headline_body.gold_stance
+        headline=obj_indiv_headline_body.headline
+        actualBody=obj_indiv_headline_body.body
+
+        headline_body_str = ""
+        headline_body_str = headline_body_str + headline+"."+actualBody
+        entire_corpus.append(headline_body_str)
+
+
+        #acccording to FNC guys, this is the mapping of classes to labels
+        #agree:0
+        #disagree:1
+        #discuss:2
+        #unrelated:3
+
+        if (gold_stance == "disagree"):
+            gold_int.append(value1_int)
+        else:
+            if (gold_stance == "agree"):
+                gold_int.append(value0_int)
+            else:
+                if(gold_stance=="discuss"):
+                    gold_int.append(value2_int)
+                else:
+                    gold_int.append(value3_int)
+
+
+
+
+
+    print("\ngoing to vectorize headline_body_str :" )
+    print("\ntotal number of rows in entire_corpus:" +str(len(entire_corpus)))
+
+
+
+    tf_vector =  vectorizer_phase2_trained.transform(entire_corpus)
+    #print(tf_vector)
+    print("number of rows in vectorized entire_corpus is:" + str(tf_vector.shape))
+    print("going to feed this vectorized tf to a classifier:" )
+
+#add the word overlap features
+
+
+    print("going to predict class")
+    #give that vector to your svm for prediction.
+    pred_class=svm_phase2.predict(tf_vector)
+    print("going to print pred_class")
+    print("number of rows in pred_classis:" + str(pred_class.shape))
+    #print(pred_class)
+
+
+    #convert the predicted label to a regular list from numpy matrix
+
+    pred_label_int=[]
+    predicted_data=[]
+    value2_float =2.0
+    value1_float =1.0
+    value0_float =0.0
+
+    tuple_counter=0
+
+
+    for obj_indiv_headline_body,x in itertools.zip_longest (test_data,np.nditer(pred_class)):
+
+
+        #add the predicted label to the corresponding data structure value
+
+        #obj_indiv_headline_body = test_data[tuple_counter]
+
+        if(x==value2_float):
+            pred_label_int.append(2)
+            obj_indiv_headline_body.predicted_stance = 2
+        else:
+            if(x==value1_float):
+                pred_label_int.append(1)
+                obj_indiv_headline_body.predicted_stance = 1
+            else:
+                if(x==value0_float):
+                    pred_label_int.append(0)
+                    obj_indiv_headline_body.predicted_stance = 0
+
+        tuple_counter = tuple_counter + 1
+        predicted_data.append(obj_indiv_headline_body)
+
+
+    writeToOutputFile("\n","errorAnalysis.txt")
+
+
+    print("total number of items in pred_label_int is:"+str(len(pred_label_int)))
+
+
+
+    print("going to find number of rows in gold_int:" )
+    numrows = len(gold_int)    # 3 rows in your example
+    #numcols = len(gold_int[0]) # 2 columns in your example
+    print("number of rows in gold_int:" + str(numrows))
+    #print("number of columns in gold_int:" + str(numcols))
+    #print(gold_int)
+    print("number of rows in predicted_data:" + str(len(predicted_data)))
+
+    return gold_int, pred_label_int,predicted_data
 
 def sendEmail(nameOfRun,toaddr):
     #gmailUsername="nn7607"
     gmailUsername="mithunpaul08"
 
-    gmailPwd="Alohomora456+"
+    gmailPwd="Alohomora123+"
     #fromaddr="nn7607@gmail.com"
     fromaddr="mithunpaul08@gmail.com"
     #toaddr="mithunpaul08@gmail.com"
