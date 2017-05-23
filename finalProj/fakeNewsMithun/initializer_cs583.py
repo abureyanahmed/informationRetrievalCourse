@@ -64,6 +64,9 @@ if __name__ == "__main__":
         #nltk.download("wordnet", "whatever_the_absolute_path_to_myapp_is/nltk_data/")
         print("number of arguments is"+ str(len(sys.argv)))
 
+
+
+
         if(len(sys.argv)>1):
             toaddr=sys.argv[1]
 
@@ -304,10 +307,12 @@ if __name__ == "__main__":
                                     pred_label = "unrelated"
                 coma=","
 
-                appendToFile("\n"+eachTuple.headline, "enrique_format")
-                appendToFile(eachTuple.body_id, "enrique_format")
-                appendToFile(pred_label, "enrique_format")
+                appendToFile("\n"+eachTuple.headline + coma, "enrique_format")
+                appendToFile(eachTuple.body_id + coma, "enrique_format")
+                appendToFile(pred_label + coma, "enrique_format")
                 appendToFile(eachTuple.confidence, "enrique_format")
+
+
         sendEmail("entire program", toaddr)
 
 
