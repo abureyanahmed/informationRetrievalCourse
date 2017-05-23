@@ -307,10 +307,10 @@ if __name__ == "__main__":
                                     pred_label = "unrelated"
                 coma=","
 
-                appendToFile("\n"+eachTuple.headline + coma, "enrique_format")
-                appendToFile(eachTuple.body_id + coma, "enrique_format")
-                appendToFile(pred_label + coma, "enrique_format")
-                appendToFile(eachTuple.confidence, "enrique_format")
+                appendToFile("\n"+str(eachTuple.headline) + coma, "enrique_format")
+                appendToFile(str(eachTuple.body_id) + coma, "enrique_format")
+                appendToFile(str(pred_label)+ coma, "enrique_format")
+                appendToFile(str(eachTuple.confidence), "enrique_format")
 
 
         sendEmail("entire program", toaddr)
