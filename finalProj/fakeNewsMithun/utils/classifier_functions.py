@@ -679,6 +679,7 @@ def phase2_training_tf(data,vectorizer_phase2):
 
 
         stance= tuple[2]
+       # print(stance)
         #agree:0
         #disagree:1
         #discuss:2
@@ -723,7 +724,9 @@ def phase2_training_tf(data,vectorizer_phase2):
     #combined_vector = np.concatenate([tf_vector_np, word_overlap_vector], axis=1)
 
 
-    #print(str(combined_vector))
+    print(str(labels))
+    print("shape of labels is:" + str(labels.shape))
+
 
     #feed the vectors to an an svm, with labels.
     clf = svm.SVC(kernel='linear', C=1.0)
@@ -1078,7 +1081,8 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
     value0_int =0
     value3_int =3
 
-    word_overlap_vector = []
+    #word_overlap_vector = []
+    word_overlap_vector = np.empty((0, 1), float)
 
     gold_predicted_combined=[[],[]]
 
@@ -1098,7 +1102,10 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
 
         # add other feature vectors
         word_overlap = word_overlap_features_mithun(headline, actualBody)
-        word_overlap_vector.append(word_overlap)
+        word_overlap_array = np.array([word_overlap])
+        word_overlap_vector = np.vstack([word_overlap_vector, word_overlap_array])
+
+        #word_overlap_vector.append(word_overlap)
 
         #acccording to FNC guys, this is the mapping of classes to labels
         #agree:0
@@ -1134,7 +1141,11 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
 #add the word overlap features
     #combined_vector = tf_vector + word_overlap_vector
 
-    combined_vector=np.concatenate(tf_vector,word_overlap_vector)
+    #combined_vector=np.concatenate(tf_vector,word_overlap_vector)
+    print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
+    combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector])
+    print("shape of combined_vector is:" + str(combined_vector.shape))
+
     print("going to predict class")
     #give that vector to your svm for prediction.
     pred_class=svm_phase2.predict(combined_vector)

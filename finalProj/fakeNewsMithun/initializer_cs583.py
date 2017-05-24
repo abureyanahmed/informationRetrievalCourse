@@ -116,8 +116,6 @@ if __name__ == "__main__":
 
        # training_data = utils.read_data.load_training_DataSet_cs583(cwd)
 
-        # load their huge testing data set
-        testing_data = utils.read_data.load_testing_DataSet(cwd,"train_bodies_small.csv","train_stances_csc483583_small.csv")
 
         # load the dataset which has only 2 entries
 
@@ -229,7 +227,10 @@ if __name__ == "__main__":
             print ("done with training of documents for phase1. going to start testing for phase 1")
             unrelated_threshold=0.1
 
-            testing_data = utils.read_data.load_testing_DataSet(cwd)
+            #testing_data = utils.read_data.load_testing_DataSet(cwd)
+            # load their huge testing data set
+            testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv",
+                                                                "train_stances_csc483583_small.csv")
 
             # Then wesplit the test data based on the classifier trained on phase 1
             print ("total number of rows in testing_data matrix is:"+str(len(testing_data.stances)))
