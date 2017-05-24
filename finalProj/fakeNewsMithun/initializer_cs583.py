@@ -329,4 +329,4 @@ if __name__ == "__main__":
     except:
         import traceback
         print('generic exception: ' + traceback.format_exc())
-        #sendEmail("inside try-catch. error occured, going to exit",toaddr)
+        sendEmail("inside try-catch. error occured, going to exit",toaddr)
