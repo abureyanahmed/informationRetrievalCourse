@@ -112,12 +112,10 @@ if __name__ == "__main__":
         #training_data = utils.read_data.load_training_DataSet(cwd)
 
         #load the dataset which has only 2 entries
-        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies_small.csv","train_stances_csc483583_small.csv")
+        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
+        testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv",
+                                                            "test_stances_csc483583.csv")
 
-       # training_data = utils.read_data.load_training_DataSet_cs583(cwd)
-
-
-        # load the dataset which has only 2 entries
 
         #in validation phase, we test against the training data itself.
         #cwd = os.getcwd()
@@ -229,8 +227,6 @@ if __name__ == "__main__":
 
             #testing_data = utils.read_data.load_testing_DataSet(cwd)
             # load their huge testing data set
-            testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv",
-                                                                "train_stances_csc483583_small.csv")
 
             # Then wesplit the test data based on the classifier trained on phase 1
             print ("total number of rows in testing_data matrix is:"+str(len(testing_data.stances)))
@@ -249,12 +245,26 @@ if __name__ == "__main__":
 
             #below code is used as phase 2 input
             print ("value of unrelated_threshold is:" + str(unrelated_threshold))
+            print("total number of rows in testing_data matrix is:" + str(len(testing_data.stances)))
+
             testing_data_converted = convert_data_to_headline_body_stance_format(testing_data)
+
+            print("total number of rows in testing_data_converted matrix is:" + str(len(testing_data_converted)))
+
+
             print ("going to retreive only related data based on threshold:" + str(unrelated_threshold))
             #testdata_related_only = return_related_data_only(testing_data_converted, unrelated_threshold)
+
+            print ("total number of rows in testing_data_converted matrix is:"+str(len(testing_data_converted)))
+
+           # print(testing_data_converted)
+
+
             testdata_related_only = return_related_data_only_my_format(testing_data_converted, unrelated_threshold)
             #sendEmail("do_testing_phase1", toaddr)
 
+
+            print("total number of rows in testdata_related_only matrix is:" + str(len(testdata_related_only)))
 
 
 
@@ -263,7 +273,7 @@ if __name__ == "__main__":
 
         if(do_testing_phase2):
 
-            print("starting do_testing_phase2")
+            print("\nstarting do_testing_phase2")
             #once the data is split into related-unrelated, we use the related data to split into 3
 
 

@@ -353,6 +353,7 @@ def return_related_data_only_my_format(data, unrelated_threshold):
 
         #calculate cosine similarity
         cos=cosine_sim(actualBody,headline)
+        print(cos)
         if(cos < unrelated_threshold ):
             pred_label="unrelated"
         else:
@@ -1069,7 +1070,7 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
 def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase2_trained):
 
-    print("\ninside test_phase2_using_svm" )
+    print("\ninside test_phase2_using_svm_return_details" )
     list_obj_indiv_headline_body=[]
     list_gold_label=[]
     entire_corpus=[]
@@ -1087,7 +1088,6 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
     gold_predicted_combined=[[],[]]
 
     print("total number of rows in test_data:" +str(len(test_data)))
-
 
     gold_int=[]
     for obj_indiv_headline_body in test_data:
