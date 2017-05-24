@@ -10,7 +10,7 @@ from nltk import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 
-
+import numpy as np
 nltk.download("stopwords")
 
 #nltk.download('punkt')
@@ -73,7 +73,7 @@ def calculate_tf_idf(counts):
 
 def createAtfidfVectorizer():
     #vectorizer2 = TfidfVectorizer(tokenizer=normalize, stop_words='english')
-    vectorizer2 = TfidfVectorizer(tokenizer=normalize,encoding=u'utf-8', decode_error=u'ignore',strip_accents='unicode',stop_words='english' )
+    vectorizer2 = TfidfVectorizer(tokenizer=normalize,encoding=u'utf-8', decode_error=u'ignore',strip_accents='unicode',stop_words='english')
     #vectorizer2 = TfidfVectorizer(tokenizer=normalize,encoding=u'utf-8', decode_error=u'ignore',strip_accents='unicode',stop_words='english' )
     return vectorizer2
 

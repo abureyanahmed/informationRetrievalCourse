@@ -3,6 +3,7 @@ import os
 import numpy as np
 import smtplib
 import sys
+import scipy
 from sklearn import svm
 import os
 import re
@@ -647,7 +648,8 @@ def phase2_training_tf(data,vectorizer_phase2):
     # feature_vector=feature_vector.reshape(-1, 1)
     # labels = np.array([[]])
 
-    word_overlap_vector = []
+    #word_overlap_vector = np.array([])
+    word_overlap_vector = np.empty((0, 1), float)
 
     for tuple in data:
         #print(str(tuple))
@@ -662,7 +664,18 @@ def phase2_training_tf(data,vectorizer_phase2):
 
 
         word_overlap = word_overlap_features_mithun(headline, actualBody)
-        word_overlap_vector.append(word_overlap)
+        #print("value of word_overlap is:"+str(word_overlap))
+        #print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
+        word_overlap_array = np.array([word_overlap])
+        #print("shape of  word_overlap_array is:" + str(word_overlap_array.shape))
+        #word_overlap_vector = np.append(word_overlap_vector, np.array([[word_overlap]]), axis=0)
+        #word_overlap_vector = np.append(word_overlap_vector, word_overlap_array, axis=0)
+
+        word_overlap_vector = np.vstack([word_overlap_vector, word_overlap_array])
+       # print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
+       # sys.exit(1)
+
+
 
 
         stance= tuple[2]
@@ -682,16 +695,6 @@ def phase2_training_tf(data,vectorizer_phase2):
 
 
 
-
-    # #debug code to test printing the frist headline-body combination
-    # for indivlines in entire_corpus:
-    #     print(indivlines)
-    #     sys.exit(1)
-    #
-
-
-    #entire_corpus= ['The the the arachno centric trump and so if first document.','This is the and the of second second document.','And the third one.','Is this the first document?',]
-    #entire_corpus= ['higher, highest, automatic, automotive, automation, auto.','auto-bahn, autorickshaw']
     print("size of entire_corpus is:" + str(len(entire_corpus)))
     print("going to vectorize teh related corpus :" )
 
@@ -699,17 +702,29 @@ def phase2_training_tf(data,vectorizer_phase2):
     features=vectorizer_phase2.get_feature_names()
     writeToOutputFile("\n"+str(features),"featureNames_tfidf_vectorizer")
 
-    print("number of rows in corpus post vectorization is:" + str(tf_vector.shape))
     print("number of rows in label list is is:" + str(len(labels)))
     print("going to feed this vectorized tf to a classifier:" )
 
-    print("number of rows in word_overlap_vector is:" + str(len(word_overlap_vector)))
+    print("shape of corpus post vectorization is:" + str(tf_vector.shape))
+    #print(tf_vector)
+    #tf_vector_np=np.asarray(tf_vector)
+    #print("shape of corpus post vectorization is:" + str(tf_vector_np.shape))
+    #print(tf_vector_np)
+    #sys.exit(1)
+    #print("number of rows in word_overlap_vector is:" + str(len(word_overlap_vector)))
+    print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
 
-    combined_vector = np.concatenate(tf_vector,word_overlap_vector)
+
+    #combined_vector = np.hstack([tf_vector,word_overlap_vector])
+    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector])
+    print("shape of combined_vector is:" + str(combined_vector.shape))
+
+    #combined_vector = np.concatenate(([tf_vector, word_overlap_vector]),axis=1)
+    #combined_vector = np.concatenate([tf_vector_np, word_overlap_vector], axis=1)
 
 
-    print("number of rows in combined_vector is:" + str(combined_vector.shape))
-    sys.exit(1)
+    #print(str(combined_vector))
+
     #feed the vectors to an an svm, with labels.
     clf = svm.SVC(kernel='linear', C=1.0)
     #feature_vector=feature_vector.reshape(-1, 1)

@@ -108,9 +108,18 @@ if __name__ == "__main__":
 
         unrelated_threshold=0
 
-        #keep both trainign and testing data in memory
-        training_data = utils.read_data.load_training_DataSet(cwd)
-        testing_data = utils.read_data.load_testing_DataSet(cwd)
+        #load their huge training data set
+        #training_data = utils.read_data.load_training_DataSet(cwd)
+
+        #load the dataset which has only 2 entries
+        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies_small.csv","train_stances_csc483583_small.csv")
+
+       # training_data = utils.read_data.load_training_DataSet_cs583(cwd)
+
+        # load their huge testing data set
+        testing_data = utils.read_data.load_testing_DataSet(cwd,"train_bodies_small.csv","train_stances_csc483583_small.csv")
+
+        # load the dataset which has only 2 entries
 
         #in validation phase, we test against the training data itself.
         #cwd = os.getcwd()
@@ -331,4 +340,4 @@ if __name__ == "__main__":
     except:
         import traceback
         print('generic exception: ' + traceback.format_exc())
-        sendEmail("inside try-catch. error occured, going to exit",toaddr)
+        #sendEmail("inside try-catch. error occured, going to exit",toaddr)
