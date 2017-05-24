@@ -703,7 +703,7 @@ def phase2_training_tf(data,vectorizer_phase2):
     print("number of rows in label list is is:" + str(len(labels)))
     print("going to feed this vectorized tf to a classifier:" )
 
-    print("number of rows in word_overlap_vector is:" + str(len(word_overlap_vector.shape)))
+    print("number of rows in word_overlap_vector is:" + str(len(word_overlap_vector)))
 
     combined_vector = np.concatenate(tf_vector,word_overlap_vector)
 
