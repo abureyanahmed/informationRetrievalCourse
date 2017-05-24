@@ -50,7 +50,7 @@ do_validation_phase1=False;
 do_validation_phase2=False;
 
 do_testing_phase1=False;
-do_testing_phase2=False;
+do_testing_phase2=True;
 
 
 
@@ -238,7 +238,7 @@ if __name__ == "__main__":
             actual = [LABELS[int(a)] for a in y_holdout]
 
             report_score(actual, predicted)
-            sys.exit(1)
+
 
             for fold in fold_stances:
                 print("inside fold number:"+str(fold))

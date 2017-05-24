@@ -658,6 +658,7 @@ def phase2_training_tf(data,vectorizer_phase2):
         actualBody=tuple[1]
         headline_body_str=headline_body_str+actualBody
         entire_corpus.append(headline_body_str)
+        print(headline)
 
 
         word_overlap = word_overlap_features_mithun(headline, actualBody)
@@ -702,9 +703,10 @@ def phase2_training_tf(data,vectorizer_phase2):
     print("number of rows in label list is is:" + str(len(labels)))
     print("going to feed this vectorized tf to a classifier:" )
 
-    print("number of rows in word_overlap_vector is:" + str(word_overlap_vector.shape))
+    print("number of rows in word_overlap_vector is:" + str(len(word_overlap_vector.shape)))
 
-    combined_vector = tf_vector + word_overlap_vector
+    combined_vector = np.concatenate(tf_vector,word_overlap_vector)
+
 
     print("number of rows in combined_vector is:" + str(combined_vector.shape))
     sys.exit(1)
@@ -1115,9 +1117,9 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
     print("going to feed this vectorized tf to a classifier:" )
 
 #add the word overlap features
-    combined_vector = tf_vector + word_overlap_vector
+    #combined_vector = tf_vector + word_overlap_vector
 
-
+    combined_vector=np.concatenate(tf_vector,word_overlap_vector)
     print("going to predict class")
     #give that vector to your svm for prediction.
     pred_class=svm_phase2.predict(combined_vector)

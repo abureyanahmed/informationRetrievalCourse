@@ -56,7 +56,9 @@ RELATED = LABELS[0:3]
 #disagree:1
 #discuss:2
 #unrelated:3
-toaddr="mithunpaul08@gmail.com"
+#toaddr="mithunpaul08@gmail.com"
+toaddr="mithunpaul@email.arizona.edu"
+
 #or if its just 2 classes
 #unrelated:0
 #related=1
