@@ -19,7 +19,7 @@ from tqdm import tqdm
 from utils.datastructures import indiv_headline_body
 from utils.process_input_data import createAtfidfVectorizer
 import itertools
-
+from utils.process_input_data import doAllWordProcessing
 import os
 import re
 import nltk
@@ -593,7 +593,7 @@ def generate_features_testdata(stances,dataset,name,vectorizer_phase2):
         h.append(stance['Headline'])
         b.append(dataset.articles[stance['Body ID']])
 
-    #X_overlap = gen_or_load_feats(word_overlap_features, h, b, "features/overlap."+name+".npy")
+    #X_overlap = gen_or_load_feats(word_overlap_features_mithun, h, b, "features/overlap."+name+".npy")
     # X_refuting = gen_or_load_feats(refuting_features, h, b, "features/refuting."+name+".npy")
     # X_polarity = gen_or_load_feats(polarity_features, h, b, "features/polarity."+name+".npy")
     # X_hand = gen_or_load_feats(hand_features, h, b, "features/hand."+name+".npy")
@@ -617,7 +617,7 @@ def generate_features_uofa(stances,dataset,name,vectorizer_phase2):
         h.append(stance['Headline'])
         b.append(dataset.articles[stance['Body ID']])
 
-    X_overlap = gen_or_load_feats(word_overlap_features, h, b, "features/overlap."+name+".npy")
+    X_overlap = gen_or_load_feats(word_overlap_features_mithun, h, b, "features/overlap." + name + ".npy")
     # X_refuting = gen_or_load_feats(refuting_features, h, b, "features/refuting."+name+".npy")
     # X_polarity = gen_or_load_feats(polarity_features, h, b, "features/polarity."+name+".npy")
     # X_hand = gen_or_load_feats(hand_features, h, b, "features/hand."+name+".npy")
@@ -660,7 +660,7 @@ def phase2_training_tf(data,vectorizer_phase2):
         entire_corpus.append(headline_body_str)
 
 
-        word_overlap = word_overlap_features(headline, actualBody)
+        word_overlap = word_overlap_features_mithun(headline, actualBody)
         word_overlap_vector.append(word_overlap)
 
 
@@ -699,12 +699,15 @@ def phase2_training_tf(data,vectorizer_phase2):
     writeToOutputFile("\n"+str(features),"featureNames_tfidf_vectorizer")
 
     print("number of rows in corpus post vectorization is:" + str(tf_vector.shape))
-
     print("number of rows in label list is is:" + str(len(labels)))
     print("going to feed this vectorized tf to a classifier:" )
 
+    print("number of rows in word_overlap_vector is:" + str(word_overlap_vector.shape))
+
     combined_vector = tf_vector + word_overlap_vector
 
+    print("number of rows in combined_vector is:" + str(combined_vector.shape))
+    sys.exit(1)
     #feed the vectors to an an svm, with labels.
     clf = svm.SVC(kernel='linear', C=1.0)
     #feature_vector=feature_vector.reshape(-1, 1)
@@ -713,19 +716,14 @@ def phase2_training_tf(data,vectorizer_phase2):
 
     return clf,vectorizer_phase2
 
-def word_overlap_features(headlines, bodies):
-    X = []
-    for i, (headline, body) in tqdm(enumerate(zip(headlines, bodies))):
-        clean_headline = clean(headline)
-        clean_body = clean(body)
-        clean_headline = get_tokenized_lemmas(clean_headline)
-        clean_body = get_tokenized_lemmas(clean_body)
-        print("value of headline is"+str(set(clean_headline)))
-        print("length of body is" + str(len(set(clean_body))))
-        features = [
-            len(set(clean_headline).intersection(clean_body)) / float(len(set(clean_headline).union(clean_body)))]
-        X.append(features)
-    return X
+def word_overlap_features_mithun(headline, body):
+
+    clean_headline=doAllWordProcessing(headline)
+    clean_body = doAllWordProcessing(body)
+    features = [
+        len(set(clean_headline).intersection(clean_body)) / float(len(set(clean_headline).union(clean_body)))]
+
+    return features
 
 
 def tf_features(headlines, bodies,vectorizer_phase2):
@@ -946,7 +944,7 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
         entire_corpus.append(headline_body_str)
 
         # add other feature vectors
-        word_overlap = word_overlap_features(headline,actualBody)
+        word_overlap = word_overlap_features_mithun(headline, actualBody)
         word_overlap_vector.append(word_overlap)
 
         #acccording to FNC guys, this is the mapping of classes to labels
@@ -1082,7 +1080,7 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
         entire_corpus.append(headline_body_str)
 
         # add other feature vectors
-        word_overlap = word_overlap_features(headline, actualBody)
+        word_overlap = word_overlap_features_mithun(headline, actualBody)
         word_overlap_vector.append(word_overlap)
 
         #acccording to FNC guys, this is the mapping of classes to labels

@@ -20,14 +20,15 @@ from utils.classifier_functions import convert_data_to_headline_body_stance_form
 from utils.classifier_functions import predict_data_phase1_return_only_unrelated
 from utils.classifier_functions import sendEmail
 from utils.process_input_data import createAtfidfVectorizer
+from utils.process_input_data import normalize
 from sklearn.feature_extraction.text import TfidfVectorizer
 import itertools
-
+from utils.process_input_data import doAllWordProcessing
 from sklearn.feature_extraction.text import CountVectorizer
 from utils.score import report_score
 from utils.fileWriter import writeToOutputFile
 from utils.fileWriter import appendToFile
-
+from utils.process_input_data import my_lemmatize
 
 
 #in phase 1, we split teh data set to related- unrelated
@@ -61,6 +62,15 @@ toaddr="mithunpaul08@gmail.com"
 #related=1
 if __name__ == "__main__":
     try:
+        #mystring="god is and was the the the of of goddess automotive auto what is thissss world higher or lower coming together"
+        #mystring_lemma=my_lemmatize(mystring)
+        #mystring_lemma=doAllWordProcessing(mystring)
+        #print(str(mystring_lemma))
+        #sys.exit(1)
+
+        #mystring_norm=normalize(mystring)
+        #print(str(mystring_norm))
+
         #nltk.download("wordnet", "whatever_the_absolute_path_to_myapp_is/nltk_data/")
         print("number of arguments is"+ str(len(sys.argv)))
 
@@ -319,4 +329,4 @@ if __name__ == "__main__":
     except:
         import traceback
         print('generic exception: ' + traceback.format_exc())
-        sendEmail("inside try-catch. error occured, going to exit",toaddr)
+        #sendEmail("inside try-catch. error occured, going to exit",toaddr)
