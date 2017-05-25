@@ -651,6 +651,7 @@ def phase2_training_tf(data,vectorizer_phase2):
 
     #word_overlap_vector = np.array([])
     word_overlap_vector = np.empty((0, 1), float)
+    hedging_words_vector = np.empty((0, 30), int)
 
     for tuple in data:
         #print(str(tuple))
@@ -665,18 +666,13 @@ def phase2_training_tf(data,vectorizer_phase2):
 
 
         word_overlap = word_overlap_features_mithun(headline, actualBody)
-        #print("value of word_overlap is:"+str(word_overlap))
-        #print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
         word_overlap_array = np.array([word_overlap])
-        #print("shape of  word_overlap_array is:" + str(word_overlap_array.shape))
-        #word_overlap_vector = np.append(word_overlap_vector, np.array([[word_overlap]]), axis=0)
-        #word_overlap_vector = np.append(word_overlap_vector, word_overlap_array, axis=0)
-
         word_overlap_vector = np.vstack([word_overlap_vector, word_overlap_array])
-       # print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
-       # sys.exit(1)
 
 
+        hedge_value = hedging_features_mithun(headline, actualBody)
+        hedge_value_array = np.array([hedge_value])
+        hedging_words_vector = np.vstack([hedging_words_vector, hedge_value_array])
 
 
         stance= tuple[2]
@@ -712,17 +708,14 @@ def phase2_training_tf(data,vectorizer_phase2):
     #tf_vector_np=np.asarray(tf_vector)
     #print("shape of corpus post vectorization is:" + str(tf_vector_np.shape))
     #print(tf_vector_np)
-    #sys.exit(1)
+
     #print("number of rows in word_overlap_vector is:" + str(len(word_overlap_vector)))
     print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
 
+    print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
 
-    #combined_vector = np.hstack([tf_vector,word_overlap_vector])
-    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector])
+    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector])
     print("shape of combined_vector is:" + str(combined_vector.shape))
-
-    #combined_vector = np.concatenate(([tf_vector, word_overlap_vector]),axis=1)
-    #combined_vector = np.concatenate([tf_vector_np, word_overlap_vector], axis=1)
 
 
     print(str(labels))
@@ -745,6 +738,64 @@ def word_overlap_features_mithun(headline, body):
         len(set(clean_headline).intersection(clean_body)) / float(len(set(clean_headline).union(clean_body)))]
 
     return features
+
+def hedging_features_mithun(headline, body):
+
+
+
+    hedging_words = [
+        'allegedly',
+        'reportedli',
+      'argue',
+      'argument',
+      'believe',
+      'belief',
+      'conjecture',
+      'consider',
+      'hint',
+      'hypothesis',
+      'hypotheses',
+      'hypothesize',
+      'implication',
+      'imply',
+      'indicate',
+      'predict',
+      'prediction',
+      'previous',
+      'previously',
+      'proposal',
+      'propose',
+      'question',
+      'speculate',
+      'speculation',
+      'suggest',
+      'suspect',
+      'theorize',
+      'theory',
+      'think',
+      'whether'
+    ]
+
+    length_hedge=len(hedging_words)
+    print(length_hedge)
+    hedging_body_vector = [0] * length_hedge
+
+
+    #print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
+    #print(hedging_body_vector)
+
+    clean_headline = doAllWordProcessing(headline)
+    clean_body = doAllWordProcessing(body)
+
+    for word in clean_body:
+        if word in hedging_words:
+            index=hedging_words.index(word)
+            print(index)
+            hedging_body_vector[index]=1
+
+    #print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
+    #print(hedging_body_vector)
+    return hedging_body_vector
 
 
 def tf_features(headlines, bodies,vectorizer_phase2):
@@ -1275,44 +1326,7 @@ def gen_or_load_feats(feat_fn, headlines, bodies, feature_file):
 
 
 
-def hedging_features(headlines, bodies):
-    _hedging_words = [
-      'argue',
-      'argument',
-      'believe',
-      'belief',
-      'conjecture',
-      'consider',
-      'hint',
-      'hypothesis',
-      'hypotheses',
-      'hypothesize',
-      'implication',
-      'imply',
-      'indicate',
-      'predict',
-      'prediction',
-      'previous',
-      'previously',
-      'proposal',
-      'propose',
-      'question',
-      'speculate',
-      'speculation',
-      'suggest',
-      'suspect',
-      'theorize',
-      'theory',
-      'think',
-      'whether'
-    ]
-    X = []
-    for i, (headline, body) in tqdm(enumerate(zip(headlines, bodies))):
-        clean_headline = clean(headline)
-        clean_headline = get_tokenized_lemmas(clean_headline)
-        features = [1 if word in clean_headline else 0 for word in _hedging_words]
-        X.append(features)
-    return X
+
 
 def refuting_features(headlines, bodies):
     _refuting_words = [
