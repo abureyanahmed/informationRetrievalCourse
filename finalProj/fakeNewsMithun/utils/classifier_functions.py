@@ -1135,6 +1135,7 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
 
     #word_overlap_vector = []
     word_overlap_vector = np.empty((0, 1), float)
+    hedging_words_vector = np.empty((0, 30), int)
 
     gold_predicted_combined=[[],[]]
 
@@ -1156,7 +1157,9 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
         word_overlap_array = np.array([word_overlap])
         word_overlap_vector = np.vstack([word_overlap_vector, word_overlap_array])
 
-        #word_overlap_vector.append(word_overlap)
+        hedge_value = hedging_features_mithun(headline, actualBody)
+        hedge_value_array = np.array([hedge_value])
+        hedging_words_vector = np.vstack([hedging_words_vector, hedge_value_array])
 
         #acccording to FNC guys, this is the mapping of classes to labels
         #agree:0
@@ -1194,7 +1197,7 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
 
     #combined_vector=np.concatenate(tf_vector,word_overlap_vector)
     print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
-    combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector])
+    combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector])
     print("shape of combined_vector is:" + str(combined_vector.shape))
 
     print("going to predict class")
