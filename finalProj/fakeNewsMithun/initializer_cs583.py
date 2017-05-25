@@ -113,7 +113,7 @@ if __name__ == "__main__":
 
         #load the dataset which has only 2 entries
         training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances.csv")
-        testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv","test_stances.csv")
+        testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv","test_stances_csc483583.csv")
 
         #training_data = utils.read_data.load_training_DataSet(cwd, "train_bodies_small.csv", "train_stances_csc483583_small.csv")
         #testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv","test_stances_csc483583_small.csv")

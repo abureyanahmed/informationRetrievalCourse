@@ -92,7 +92,7 @@ class load_training_DataSet():
 
     def read(self,filename):
         rows = []
-        with open(self.path + "/" + filename, "rt") as table:
+        with open(self.path  + filename, "rt") as table:
             #DictReader reads a csv into a dictionary format
             r = DictReader(table)
             for line in r:
@@ -143,7 +143,7 @@ class load_testing_DataSet():
     def read(self,filename):
         rows = []
         #ifile = open('sample.csv', "rt", encoding= < theencodingofthefile >)
-        with open(self.path + "/" + filename, "rt") as table:
+        with open(self.path  + filename, "rt") as table:
             #DictReader reads a csv into a dictionary format
             r = DictReader(table)
             for line in r:
