@@ -446,15 +446,20 @@ def split_phase1_gold_data_related_unrelated(data):
     return related_matrix
 
 def convert_data_to_headline_body_stance_format(data,lstm_output):
-
+    print("inside convert_data_to_headline_body_stance_format:")
+    print(" of rows in testing_data matrix is:" + str((data.stances)))
     tuple_counter=0
     data_my_format=[]
 
-    for stance,lstm_row  in itertools.zip_longest( data.stances, lstm_output):
-    #for stance in data.stances:
+    for stance, lstm_row in zip(data.stances, lstm_output):
+
+#uncomment this line below if you want to run for the longer list
+#        for stance,lstm_row  in itertools.zip_longest( data.stances, lstm_output):
+
 
 
         headline = stance['Headline']
+        print(headline)
 
         #get the corresponding body id for this headline
         bodyid  = stance['Body ID']
@@ -748,6 +753,8 @@ def phase2_training_tf(data,vectorizer_phase2):
                     labels = np.append(labels, 2)
 
     print("shape of  lstm_features_matrix is:" + str(lstm_features_matrix.shape))
+    #print("shape of  lstm_features_matrix is:" + str(lstm_features_matrix))
+
     #sys.exit(1)
 
     print("size of entire_corpus is:" + str(len(entire_corpus)))
@@ -1198,9 +1205,9 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
     return gold_int, pred_label_int
 
-def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase2_trained):
+def test_phase2(test_data, svm_phase2, vectorizer_phase2_trained):
 
-    print("\ninside test_phase2_using_svm_return_details" )
+    print("\ninside test_phase2" )
     list_obj_indiv_headline_body=[]
     list_gold_label=[]
     entire_corpus=[]
@@ -1248,6 +1255,8 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
 
 
 
+
+
         #acccording to FNC guys, this is the mapping of classes to labels
         #agree:0
         #disagree:1
@@ -1274,19 +1283,32 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
 
 
 
+
+
     tf_vector =  vectorizer_phase2_trained.transform(entire_corpus)
     #print(tf_vector)
     print("number of rows in vectorized entire_corpus is:" + str(tf_vector.shape))
     print("going to feed this vectorized tf to a classifier:" )
 
-#add the word overlap features
+    #add the word overlap features
     #combined_vector = tf_vector + word_overlap_vector
 
     #combined_vector=np.concatenate(tf_vector,word_overlap_vector)
     print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
-    combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,lstm_features_matrix])
-    print("shape of combined_vector is:" + str(combined_vector.shape))
+    print("shape of  lstm_features_matrix is:" + str(lstm_features_matrix.shape))
+    print("actual  lstm_features_matrix is:" + str(lstm_features_matrix))
+    print("lstm_features_matrix.dtype=" + str(lstm_features_matrix.dtype))
 
+    flstm_features_matrix=lstm_features_matrix.astype(float)
+    combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, flstm_features_matrix])
+   # sparse.hstack(X, A.astype(float))
+
+    # print("shape of combined_vector is:" + str(combined_vector.shape))
+    # print("shape of  lstm_features_matrix is:" + str(flstm_features_matrix.shape))
+    # print("actual  lstm_features_matrix is:" + str(flstm_features_matrix))
+    # print("lstm_features_matrix.dtype=" + str(flstm_features_matrix.dtype))
+
+    #sys.exit(1)
     print("going to predict class")
     #give that vector to your svm for prediction.
     pred_class=svm_phase2.predict(combined_vector)

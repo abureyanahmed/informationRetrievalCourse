@@ -7,8 +7,8 @@ class indiv_headline_body(object):
         self.gold_stance = 0
         self.confidence = 1
         self.unique_tuple_id=0
-        self.agree_lstm=0.0000000001
-        self.disagree_lstm = 0.0000000001
-        self.discuss_lstm = 0.0000000001
-        self.unrelated_lstm = 0.0000000001
+        self.agree_lstm=0.0
+        self.disagree_lstm = 0.0
+        self.discuss_lstm = 0.0
+        self.unrelated_lstm = 0.0
 

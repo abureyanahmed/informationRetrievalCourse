@@ -14,7 +14,7 @@ from utils.classifier_functions import return_related_data_only
 from utils.classifier_functions import split_cos_sim
 from utils.classifier_functions import split_phase1_gold_data_related_unrelated
 from utils.classifier_functions import test_phase2_using_svm
-from utils.classifier_functions import test_phase2_using_svm_return_details
+from utils.classifier_functions import test_phase2
 from utils.classifier_functions import predict_data_phase1
 from utils.classifier_functions import convert_data_to_headline_body_stance_format
 from utils.classifier_functions import predict_data_phase1_return_only_unrelated
@@ -112,13 +112,14 @@ if __name__ == "__main__":
         #training_data = utils.read_data.load_training_DataSet(cwd)
 
         #load the dataset which has only 2 entries
-        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
-        testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv","test_stances_csc483583.csv")
+       # training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
+        #testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv","test_stances_csc483583.csv")
+
         lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
 
 
-        #training_data = utils.read_data.load_training_DataSet(cwd, "train_bodies_small.csv", "train_stances_csc483583_small.csv")
-        #testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv","test_stances_csc483583_small.csv")
+        training_data = utils.read_data.load_training_DataSet(cwd, "train_bodies_small.csv", "train_stances_csc483583_small.csv")
+        testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv","test_stances_csc483583_small.csv")
 
         #in validation phase, we test against the training data itself.
         #cwd = os.getcwd()
@@ -182,16 +183,16 @@ if __name__ == "__main__":
 
 
             #print("first .body  of testing_data_converted"+str(related_data_gold_converted[0].body ))
-            print("first .headline  of testing_data_converted:" + str(related_data_gold_converted[2865].headline))
-            print("first .body_id  of testing_data_converted:" + str(related_data_gold_converted[2865].body_id))
-            print("first .predicted_stance  of testing_data_converted:" + str(related_data_gold_converted[2865].predicted_stance))
-            print("first .gold_stance  of testing_data_converted:" + str(related_data_gold_converted[2865].gold_stance))
-            print("first .unique_tuple_id  of testing_data_converted:" + str(related_data_gold_converted[2865].unique_tuple_id))
-            print("first .confidence  of testing_data_converted:" + str(related_data_gold_converted[2865].confidence))
-            print("first .agree_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].agree_lstm))
-            print("first .disagree_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].disagree_lstm))
-            print("first .discuss_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].discuss_lstm))
-            print("first .unrelated_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].unrelated_lstm))
+            # print("first .headline  of testing_data_converted:" + str(related_data_gold_converted[2865].headline))
+            # print("first .body_id  of testing_data_converted:" + str(related_data_gold_converted[2865].body_id))
+            # print("first .predicted_stance  of testing_data_converted:" + str(related_data_gold_converted[2865].predicted_stance))
+            # print("first .gold_stance  of testing_data_converted:" + str(related_data_gold_converted[2865].gold_stance))
+            # print("first .unique_tuple_id  of testing_data_converted:" + str(related_data_gold_converted[2865].unique_tuple_id))
+            # print("first .confidence  of testing_data_converted:" + str(related_data_gold_converted[2865].confidence))
+            # print("first .agree_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].agree_lstm))
+            # print("first .disagree_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].disagree_lstm))
+            # print("first .discuss_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].discuss_lstm))
+            # print("first .unrelated_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].unrelated_lstm))
 
 
             # start training for 2 classes agree-disagree within related
@@ -237,13 +238,13 @@ if __name__ == "__main__":
             cwd = os.getcwd()
 
             print ("done with training of documents for phase1. going to start testing for phase 1")
-            unrelated_threshold=0.1
+            unrelated_threshold=0.000001
 
             #testing_data = utils.read_data.load_testing_DataSet(cwd)
             # load their huge testing data set
 
             # Then wesplit the test data based on the classifier trained on phase 1
-            print ("total number of rows in testing_data matrix is:"+str(len(testing_data.stances)))
+            #print ("total number of rows in testing_data matrix is:"+str(len(testing_data.stances)))
 
 
 
@@ -254,6 +255,7 @@ if __name__ == "__main__":
             #below code is used as phase 2 input
             print ("value of unrelated_threshold is:" + str(unrelated_threshold))
             print("total number of rows in testing_data matrix is:" + str(len(testing_data.stances)))
+            print("total number of rows in testing_data matrix is:" + str((testing_data.stances)))
 
             lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
             testing_data_converted = convert_data_to_headline_body_stance_format(testing_data,lstm_output)
@@ -336,12 +338,12 @@ if __name__ == "__main__":
             #print("number of columns in testing data after conversion is:"+str(len(testdata_related_only[0])))
             print ("done loading testing data. going to test agree-disagree-discuss using the trained svm ")
            # actual_phase2, predicted_phase2  = test_phase2_using_svm(testdata_related_only, svm_trained_phase2, vectorizer_phase2_trained)
-           # actual_phase2, predicted_phase2 = test_phase2_using_svm_return_details(testdata_related_only, svm_trained_phase2,
+           # actual_phase2, predicted_phase2 = test_phase2(testdata_related_only, svm_trained_phase2,
             #                                                        vectorizer_phase2_trained)
 
-            actual_phase2, predicted_phase2, post_prediction_data = test_phase2_using_svm_return_details(testdata_related_only,
-                                                                                   svm_trained_phase2,
-                                                                                   vectorizer_phase2_trained)
+            actual_phase2, predicted_phase2, post_prediction_data = test_phase2(testdata_related_only,
+                                                                                svm_trained_phase2,
+                                                                                vectorizer_phase2_trained)
 
             print ("done classifying testing data for phase 2. going to find score ")
 
