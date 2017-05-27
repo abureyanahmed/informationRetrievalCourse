@@ -354,14 +354,17 @@ def split_cos_sim(data, unrelated_threshold):
 
         #calculate cosine similarity
         cos=cosine_sim(actualBody,headline)
-        print(cos)
+        #print(cos)
+        pred_int=3
         if(cos < unrelated_threshold ):
             pred_label="unrelated"
+            pred_int = 3
         else:
             pred_label="related"
+            pred_int=4
 
 
-        indivDataTuple.predicted_stance=pred_label
+        indivDataTuple.predicted_stance=pred_int
         #separate out teh 'related data' into another data set based on the predicted value
         #this will be fed as input for the 2nd classifier
         if(pred_label=="related"):
@@ -416,49 +419,59 @@ def split_phase1_gold_data_related_unrelated(data):
 
     return related_matrix
 
-def convert_data_to_headline_body_stance_format(data):
+def convert_data_to_headline_body_stance_format(data,lstm_output):
     tuple_counter=0
 
-    related_matrix=[]
+    data_my_format=[]
 
-    for s in data.stances:
-        #total_pairs=total_pairs+1
-        #for each headline, get the actual headline text
-        #print(s['Headline'])
-        headline = s['Headline']
-        #headline="a little bird"
+    for stance,lstm_row  in itertools.zip_longest( data.stances, lstm_output):
+    #for stance in data.stances:
+
+
+        headline = stance['Headline']
 
         #get the corresponding body id for this headline
-        bodyid  = s['Body ID']
-        stance= s['Stance']
+        bodyid  = stance['Body ID']
+        stance= stance['Stance']
+
+        gold_stance_int = 0
+        if (stance == "agree"):
+            gold_stance_int = 0
+        else:
+            if (stance == "disagree"):
+                gold_stance_int = 1
+            else:
+                if (stance == "discuss"):
+                    gold_stance_int = 2
+                else:
+                    if (stance == "unrelated"):
+                        gold_stance_int = 3
+
+
+
         #using that body id, retrieve the corresponding article
         actualBody=data.articles[bodyid]
-
-
-        #separate out teh 'related data' into another data set based on the predicted value
-        #list of strings
-        print(stance)
 
         obj_indiv_headline_body= indiv_headline_body()
         obj_indiv_headline_body.body_id=bodyid
         obj_indiv_headline_body.headline=headline
-        obj_indiv_headline_body.gold_stance = stance
+        obj_indiv_headline_body.gold_stance = gold_stance_int
         obj_indiv_headline_body.body = actualBody
         obj_indiv_headline_body.unique_tuple_id=tuple_counter
+        obj_indiv_headline_body.agree_lstm = lstm_row[0]
+        obj_indiv_headline_body.disagree_lstm = lstm_row[1]
+        obj_indiv_headline_body.discuss_lstm = lstm_row[2]
+        obj_indiv_headline_body.unrelated_lstm = lstm_row[3]
 
         tuple_counter=tuple_counter+1
 
 
-        # headline_body_label=[]
-        # headline_body_label.append(headline)
-        # headline_body_label.append(actualBody)
-        # headline_body_label.append(stance)
-        #append this headline_body_label guy to the big matrix
-        related_matrix.append(obj_indiv_headline_body)
+
+        data_my_format.append(obj_indiv_headline_body)
 
 
 
-    return related_matrix
+    return data_my_format
 
 def convert_FNC_data_to_my_format(stances, data):
     #create a datasstructure of [headline, body, label]- matrix/2d array of strings.

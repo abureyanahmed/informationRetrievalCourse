@@ -32,7 +32,7 @@ from utils.process_input_data import my_lemmatize
 from utils.read_data import read_lstm_data
 #in phase 1, we split teh data set to related- unrelated
 do_training_phase1=False;
-do_training_phase2=True;
+do_training_phase2=False;
 
 do_validation_phase1=False;
 do_validation_phase2=False;
@@ -99,7 +99,7 @@ if __name__ == "__main__":
         predicted_phase1=[]
         actual_phase2=[]
         predicted_phase2 = []
-        actual_phase1_only_unrelated= []
+        gold_phase1_only_unrelated= []
         predicted_phase1_only_unrelated= []
 
         unrelated_threshold=0
@@ -233,25 +233,42 @@ if __name__ == "__main__":
 
             #we are also keeping teh gold_predicted data so that we can combine it for the final score calculation-after removing class "related" from
             #"both actual and predicted data"
-            print ("going to predict data based on this new test set")
-            actual_phase1_only_unrelated, predicted_phase1_only_unrelated =predict_data_phase1_return_only_unrelated(training_data, unrelated_threshold)
-
-
-            print("number of rows in actual_phase1_only_unrelated  is:"+str(len(actual_phase1_only_unrelated )))
-            print("number of rows in predicted_phase1_only_unrelated  is:"+str(len(predicted_phase1_only_unrelated )))
 
 
             #below code is used as phase 2 input
             print ("value of unrelated_threshold is:" + str(unrelated_threshold))
             print("total number of rows in testing_data matrix is:" + str(len(testing_data.stances)))
 
-            testing_data_converted = convert_data_to_headline_body_stance_format(testing_data)
+            lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
+            testing_data_converted = convert_data_to_headline_body_stance_format(testing_data,lstm_output)
 
-            print("total number of rows in testing_data_converted matrix is:" + str(len(testing_data_converted)))
+
+           # print("total number of rows in testing_data_converted matrix is:" + str(len(testing_data_converted)))
+
+
+
+            print("length of lstm_output is:" + str(len(lstm_output)))
+            #print("first .body  of testing_data_converted"+str(testing_data_converted[0].body ))
+            # print("first .headline  of testing_data_converted" + str(testing_data_converted[0].headline))
+            # print("first .body_id  of testing_data_converted" + str(testing_data_converted[0].body_id))
+            # print("first .predicted_stance  of testing_data_converted" + str(testing_data_converted[0].predicted_stance))
+            # print("first .gold_stance  of testing_data_converted:" + str(testing_data_converted[3845].gold_stance))
+            # print("first .unique_tuple_id  of testing_data_converted" + str(testing_data_converted[3345].unique_tuple_id))
+            # print("first .confidence  of testing_data_converted" + str(testing_data_converted[0].confidence))
+            # print("first .agree_lstm  of testing_data_converted" + str(testing_data_converted[0].agree_lstm))
+            # print("first .disagree_lstm  of testing_data_converted" + str(testing_data_converted[0].disagree_lstm))
+            # print("first .discuss_lstm  of testing_data_converted" + str(testing_data_converted[0].discuss_lstm))
+            # print("first .unrelated_lstm  of testing_data_converted" + str(testing_data_converted[0].unrelated_lstm))
+            # print("first .headline  of testing_data_converted" + str(testing_data_converted[0].headline))
+            # sys.exit(1)
+
+
+            print("going to predict data based on this new test set")
+            # actual_phase1_only_unrelated, predicted_phase1_only_unrelated = predict_data_phase1_return_only_unrelated(
+            #     training_data, unrelated_threshold)
 
 
             print ("going to retreive only related data based on threshold:" + str(unrelated_threshold))
-            #testdata_related_only = return_related_data_only(testing_data_converted, unrelated_threshold)
 
             print ("total number of rows in testing_data_converted matrix is:"+str(len(testing_data_converted)))
 
@@ -262,19 +279,21 @@ if __name__ == "__main__":
             testdata_related_only,un_related_matrix = split_cos_sim(testing_data_converted, unrelated_threshold)
             #sendEmail("do_testing_phase1", toaddr)
 
-            lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
-            print(lstm_output[0])
-
-            print("length of un_related_matrix is:"+str(len(un_related_matrix)))
-            print("length of lstm_output is:" + str(len(lstm_output)))
-
-            sys.exit(1)
+            gold_phase1_only_unrelated=[]
+            predicted_phase1_only_unrelated=[]
 
             for unr in un_related_matrix:
-                appendToFile("\n" + str(unr.headline) + coma, "enrique_format")
-                appendToFile(str(unr.body_id) + coma, "enrique_format")
-                appendToFile(str(unr.pred_label) + coma, "enrique_format")
-                appendToFile(str(unr.confidence), "enrique_format")
+                gold_phase1_only_unrelated.append(unr.gold_stance)
+                predicted_phase1_only_unrelated.append(unr.predicted_stance)
+
+
+
+
+
+            print("number of rows in actual_phase1_only_unrelated  is:" + str(len(gold_phase1_only_unrelated)))
+            print("number of rows in predicted_phase1_only_unrelated  is:" + str(len(predicted_phase1_only_unrelated)))
+            print("actual value of actual_phase1_only_unrelated  is:" + str((gold_phase1_only_unrelated[666])))
+            print("actual value of in predicted_phase1_only_unrelated  is:" + str((predicted_phase1_only_unrelated[666])))
 
             #overwrite the file with an empty line if the file already exists
             # writeToOutputFile("\n", "enrique_format")
@@ -287,7 +306,7 @@ if __name__ == "__main__":
             print("total number of rows in testdata_related_only matrix is:" + str(len(testdata_related_only)))
 
 
-
+            sys.exit(1)
 
             ######################### Testing for Phase 2 starts here###########################3
 
@@ -326,13 +345,13 @@ if __name__ == "__main__":
 
             print("number of rows in actual_phase2  is:"+str(len(actual_phase2 )))
             print("number of rows in predicted_phase2 is:"+str(len(predicted_phase2 )))
-            print("number of rows in actual_phase1_only_unrelated  is:"+str(len(actual_phase1_only_unrelated )))
+            print("number of rows in actual_phase1_only_unrelated  is:" + str(len(gold_phase1_only_unrelated)))
             print("number of rows in predicted_phase1_only_unrelated  is:"+str(len(predicted_phase1_only_unrelated )))
 
 
 
             #combining results from both phases
-            actual=actual_phase1_only_unrelated+ actual_phase2
+            actual= gold_phase1_only_unrelated + actual_phase2
             predicted=predicted_phase1_only_unrelated+ predicted_phase2
 
             final_score=report_score([LABELS[e] for e in actual],[LABELS[e] for e in predicted])
@@ -371,4 +390,4 @@ if __name__ == "__main__":
     except:
         import traceback
         print('generic exception: ' + traceback.format_exc())
-        #sendEmail("inside try-catch. error occured, going to exit",toaddr)
+        sendEmail("inside try-catch. error occured, going to exit",toaddr)
