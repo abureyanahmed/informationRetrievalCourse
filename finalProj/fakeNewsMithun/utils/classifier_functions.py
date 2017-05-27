@@ -727,8 +727,8 @@ def phase2_training_tf(data,vectorizer_phase2):
         lstm_features_array = np.array([obj_indiv_headline_body.agree_lstm, obj_indiv_headline_body.disagree_lstm,
                                         obj_indiv_headline_body.discuss_lstm, obj_indiv_headline_body.unrelated_lstm])
         lstm_features_matrix = np.vstack([lstm_features_matrix, lstm_features_array])
-        print("gold_stance:"+str(gold_stance))
-        print(str(lstm_features_array))
+        #print("gold_stance:"+str(gold_stance))
+       # print(str(lstm_features_array))
 
 
         #stance= tuple[2]
