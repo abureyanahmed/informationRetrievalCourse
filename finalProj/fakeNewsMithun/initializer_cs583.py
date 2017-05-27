@@ -11,7 +11,7 @@ from utils.classifier_functions import phase2_training_tf
 from utils.classifier_functions import calculateCosSimilarity
 from utils.classifier_functions import calculate_precision
 from utils.classifier_functions import return_related_data_only
-from utils.classifier_functions import return_related_data_only_my_format
+from utils.classifier_functions import split_cos_sim
 from utils.classifier_functions import split_phase1_gold_data_related_unrelated
 from utils.classifier_functions import test_phase2_using_svm
 from utils.classifier_functions import test_phase2_using_svm_return_details
@@ -29,8 +29,7 @@ from utils.score import report_score
 from utils.fileWriter import writeToOutputFile
 from utils.fileWriter import appendToFile
 from utils.process_input_data import my_lemmatize
-
-
+from utils.read_data import read_lstm_data
 #in phase 1, we split teh data set to related- unrelated
 do_training_phase1=False;
 do_training_phase2=True;
@@ -59,19 +58,14 @@ RELATED = LABELS[0:3]
 #toaddr="mithunpaul08@gmail.com"
 toaddr="mithunpaul@email.arizona.edu"
 
+
 #or if its just 2 classes
 #unrelated:0
 #related=1
 if __name__ == "__main__":
     try:
-        #mystring="god is and was the the the of of goddess automotive auto what is thissss world higher or lower coming together"
-        #mystring_lemma=my_lemmatize(mystring)
-        #mystring_lemma=doAllWordProcessing(mystring)
-        #print(str(mystring_lemma))
-        #sys.exit(1)
 
-        #mystring_norm=normalize(mystring)
-        #print(str(mystring_norm))
+        #sys.exit(1)
 
         #nltk.download("wordnet", "whatever_the_absolute_path_to_myapp_is/nltk_data/")
         print("number of arguments is"+ str(len(sys.argv)))
@@ -86,16 +80,18 @@ if __name__ == "__main__":
         #--code for trainign related- unrelated class...this has to go in a if statement based on user input.
         #make sure that the current working directory is the starting level
 
+
         cwd = os.getcwd()
-        #print("current directory is:" + cwd)
+            # #print("current directory is:" + cwd)
         base_dir_name = os.path.dirname(os.path.abspath(sys.argv[0]))
         #print("base directory is:" + base_dir_name)
         if(base_dir_name != cwd):
             os.chdir(base_dir_name)
 
 
+
         # #Do training for 2 classes related-unrelated
-        # cwd = os.getcwd()
+
         print ("going to train on data for related-unrelated splitting aka phase1")
 
         #LOAD TRAINING DATA
@@ -112,8 +108,9 @@ if __name__ == "__main__":
         #training_data = utils.read_data.load_training_DataSet(cwd)
 
         #load the dataset which has only 2 entries
-        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances.csv")
+        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
         testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv","test_stances_csc483583.csv")
+
 
         #training_data = utils.read_data.load_training_DataSet(cwd, "train_bodies_small.csv", "train_stances_csc483583_small.csv")
         #testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv","test_stances_csc483583_small.csv")
@@ -121,7 +118,7 @@ if __name__ == "__main__":
         #in validation phase, we test against the training data itself.
         #cwd = os.getcwd()
 
-
+        coma = ","
 
 
 
@@ -261,9 +258,31 @@ if __name__ == "__main__":
            # print(testing_data_converted)
 
 
-            testdata_related_only = return_related_data_only_my_format(testing_data_converted, unrelated_threshold)
+
+            testdata_related_only,un_related_matrix = split_cos_sim(testing_data_converted, unrelated_threshold)
             #sendEmail("do_testing_phase1", toaddr)
 
+            lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
+            print(lstm_output[0])
+
+            print("length of un_related_matrix is:"+str(len(un_related_matrix)))
+            print("length of lstm_output is:" + str(len(lstm_output)))
+
+            sys.exit(1)
+
+            for unr in un_related_matrix:
+                appendToFile("\n" + str(unr.headline) + coma, "enrique_format")
+                appendToFile(str(unr.body_id) + coma, "enrique_format")
+                appendToFile(str(unr.pred_label) + coma, "enrique_format")
+                appendToFile(str(unr.confidence), "enrique_format")
+
+            #overwrite the file with an empty line if the file already exists
+            # writeToOutputFile("\n", "enrique_format")
+            # for unr in un_related_matrix:
+            #     appendToFile("\n" + str(unr.headline) + coma, "enrique_format")
+            #     appendToFile(str(unr.body_id) + coma, "enrique_format")
+            #     appendToFile(str(unr.pred_label) + coma, "enrique_format")
+            #     appendToFile(str(unr.confidence), "enrique_format")
 
             print("total number of rows in testdata_related_only matrix is:" + str(len(testdata_related_only)))
 
@@ -320,7 +339,7 @@ if __name__ == "__main__":
 
 
 
-            writeToOutputFile("\n", "enrique_format")
+
             for eachTuple in post_prediction_data:
                 # agree, disagree, or discuss, (0,1,2) and attach that.
                 pred_label=""
@@ -338,7 +357,7 @@ if __name__ == "__main__":
                             else:
                                 if (eachTuple.predicted_stance == 3):
                                     pred_label = "unrelated"
-                coma=","
+
 
                 appendToFile("\n"+str(eachTuple.headline) + coma, "enrique_format")
                 appendToFile(str(eachTuple.body_id) + coma, "enrique_format")

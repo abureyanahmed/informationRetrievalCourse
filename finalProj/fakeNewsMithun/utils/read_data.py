@@ -1,6 +1,7 @@
 from csv import DictReader
 import os
 import sys
+import csv
 
 
 class load_training_DataSet_cs583():
@@ -100,7 +101,6 @@ class load_training_DataSet():
         return rows
 
 
-
 class load_testing_DataSet():
     def __init__(self, cwd,bodies, stances):
 
@@ -148,5 +148,18 @@ class load_testing_DataSet():
             r = DictReader(table)
             for line in r:
                 rows.append(line)
+
+
         return rows
+
+
+
+def read_lstm_data(path,filename):
+    lstm_rows=[]
+    with open(path+'lstm_output.txt', 'r') as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+        for row in spamreader:
+           # print("agree:"+row[0])
+            lstm_rows.append(row)
+    return lstm_rows
 

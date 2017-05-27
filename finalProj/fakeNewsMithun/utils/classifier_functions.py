@@ -339,11 +339,12 @@ def return_related_data_only(data, unrelated_threshold):
 
     return related_matrix
 
-def return_related_data_only_my_format(data, unrelated_threshold):
+def split_cos_sim(data, unrelated_threshold):
 
     related_matrix=[]
+    un_related_matrix = []
 
-    print ("inside return_related_data_only_my_format")
+    print ("inside split_cos_sim")
 
     for indivDataTuple in data:
 
@@ -360,15 +361,17 @@ def return_related_data_only_my_format(data, unrelated_threshold):
             pred_label="related"
 
 
-
+        indivDataTuple.predicted_stance=pred_label
         #separate out teh 'related data' into another data set based on the predicted value
         #this will be fed as input for the 2nd classifier
         if(pred_label=="related"):
             related_matrix.append(indivDataTuple)
+        else:
+            un_related_matrix.append(indivDataTuple)
 
 
 
-    return related_matrix
+    return related_matrix,un_related_matrix
 
 
 def split_phase1_gold_data_related_unrelated(data):
@@ -414,13 +417,7 @@ def split_phase1_gold_data_related_unrelated(data):
     return related_matrix
 
 def convert_data_to_headline_body_stance_format(data):
-    #create a datasstructure of [headline, body, label]- matrix/2d array of strings.
-    #Eg:
-    #this guy related_rows will contain a list of headline_body_label_post_phase1_rows=[]
-    #each headline_body_label_post_phase1_rows=[] will be an array of strings
-    # [headline1, body1, stance1]
-    # [headline2, body2, stance2]
-    # [headline3, body3, stance3]
+    tuple_counter=0
 
     related_matrix=[]
 
@@ -447,6 +444,9 @@ def convert_data_to_headline_body_stance_format(data):
         obj_indiv_headline_body.headline=headline
         obj_indiv_headline_body.gold_stance = stance
         obj_indiv_headline_body.body = actualBody
+        obj_indiv_headline_body.unique_tuple_id=tuple_counter
+
+        tuple_counter=tuple_counter+1
 
 
         # headline_body_label=[]
@@ -662,7 +662,7 @@ def phase2_training_tf(data,vectorizer_phase2):
         actualBody=tuple[1]
         headline_body_str=headline_body_str+actualBody
         entire_corpus.append(headline_body_str)
-        print(headline)
+        #print(headline)
 
 
         word_overlap = word_overlap_features_mithun(headline, actualBody)
@@ -777,7 +777,7 @@ def hedging_features_mithun(headline, body):
     ]
 
     length_hedge=len(hedging_words)
-    print(length_hedge)
+    #print(length_hedge)
     hedging_body_vector = [0] * length_hedge
 
 
@@ -790,7 +790,7 @@ def hedging_features_mithun(headline, body):
     for word in clean_body:
         if word in hedging_words:
             index=hedging_words.index(word)
-            print(index)
+            #print(index)
             hedging_body_vector[index]=1
 
     #print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
