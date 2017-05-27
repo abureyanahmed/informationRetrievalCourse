@@ -378,50 +378,76 @@ def split_cos_sim(data, unrelated_threshold):
 
 
 def split_phase1_gold_data_related_unrelated(data):
-    #create a datasstructure of [headline, body, label]- matrix/2d array of strings.
-    #Eg:
-    #this guy related_rows will contain a list of headline_body_label_post_phase1_rows=[]
-    #each headline_body_label_post_phase1_rows=[] will be an array of strings
-    # [headline1, body1, stance1]
-    # [headline2, body2, stance2]
-    # [headline3, body3, stance3]
 
     related_matrix=[]
+    tuple_counter = 0
 
-    for s in data.stances:
-        #total_pairs=total_pairs+1
-        #for each headline, get the actual headline text
-        #print(s['Headline'])
-        headline = s['Headline']
-        #headline="a little bird"
+    #for stance, lstm_row in itertools.zip_longest(data.stances, ):
+    for stance in data.stances:
+
+        headline = stance['Headline']
 
         #get the corresponding body id for this headline
-        bodyid  = s['Body ID']
-        stance= s['Stance']
+        bodyid  = stance['Body ID']
+        stance= stance['Stance']
+
         #using that body id, retrieve the corresponding article
         actualBody=data.articles[bodyid]
 
+        obj_indiv_headline_body = indiv_headline_body()
+        obj_indiv_headline_body.body_id = bodyid
+        obj_indiv_headline_body.headline = headline
 
-        #separate out teh 'related data' into another data set based on the predicted value
-        #list of strings
-        #print(stance)
+        obj_indiv_headline_body.body = actualBody
+        obj_indiv_headline_body.unique_tuple_id = tuple_counter
+
+        #separate out teh 'related data' into another data set based on the golden value
+
+    #initiate all lstm values to 0. this will turn to 1 based on its gold stance
+        obj_indiv_headline_body.agree_lstm = 0
+        obj_indiv_headline_body.disagree_lstm = 0
+        obj_indiv_headline_body.discuss_lstm = 0
+        obj_indiv_headline_body.unrelated_lstm =0
+
         if(stance =="unrelated"):
             val=1
         else:
-            headline_body_label=[]
-            headline_body_label.append(headline)
-            headline_body_label.append(actualBody)
-            headline_body_label.append(stance)
-            #append this headline_body_label guy to the big matrix
-            related_matrix.append(headline_body_label)
+            gold_stance_int = 0
+            if (stance == "agree"):
+                gold_stance_int = 0
+                obj_indiv_headline_body.agree_lstm = 1
+            else:
+                if (stance == "disagree"):
+                    gold_stance_int = 1
+                    obj_indiv_headline_body.disagree_lstm = 1
+                else:
+                    if (stance == "discuss"):
+                        gold_stance_int = 2
+                        obj_indiv_headline_body.discuss_lstm = 1
+                    else:
+                        #technically code should never reach here
+                        if (stance == "unrelated"):
+                            gold_stance_int = 3
+                            obj_indiv_headline_body.unrelated_lstm = 1
+
+            obj_indiv_headline_body.gold_stance = gold_stance_int
+            related_matrix.append(obj_indiv_headline_body)
+            tuple_counter = tuple_counter + 1
+
+            # headline_body_label=[]
+            # headline_body_label.append(headline)
+            # headline_body_label.append(actualBody)
+            # headline_body_label.append(stance)
+            # #append this headline_body_label guy to the big matrix
+            # related_matrix.append(headline_body_label)
 
 
 
     return related_matrix
 
 def convert_data_to_headline_body_stance_format(data,lstm_output):
-    tuple_counter=0
 
+    tuple_counter=0
     data_my_format=[]
 
     for stance,lstm_row  in itertools.zip_longest( data.stances, lstm_output):
@@ -665,16 +691,27 @@ def phase2_training_tf(data,vectorizer_phase2):
     #word_overlap_vector = np.array([])
     word_overlap_vector = np.empty((0, 1), float)
     hedging_words_vector = np.empty((0, 30), int)
+    lstm_features_matrix = np.empty((0, 4), float)
 
-    for tuple in data:
-        #print(str(tuple))
-        headline_body_str=""
-        headline = tuple[0]
-        headline_body_str=headline_body_str+headline+"."
-        #bodyid  = tuple['Body ID']
-        actualBody=tuple[1]
-        headline_body_str=headline_body_str+actualBody
+    for obj_indiv_headline_body in data:
+
+        gold_stance = obj_indiv_headline_body.gold_stance
+        headline = obj_indiv_headline_body.headline
+        actualBody = obj_indiv_headline_body.body
+
+        headline_body_str = ""
+        headline_body_str = headline_body_str + headline + "." + actualBody
         entire_corpus.append(headline_body_str)
+
+
+        #print(str(tuple))
+        # headline_body_str=""
+        # headline = tuple[0]
+        # headline_body_str=headline_body_str+headline+"."
+        # #bodyid  = tuple['Body ID']
+        # actualBody=tuple[1]
+        # headline_body_str=headline_body_str+actualBody
+        # entire_corpus.append(headline_body_str)
         #print(headline)
 
 
@@ -687,24 +724,31 @@ def phase2_training_tf(data,vectorizer_phase2):
         hedge_value_array = np.array([hedge_value])
         hedging_words_vector = np.vstack([hedging_words_vector, hedge_value_array])
 
+        lstm_features_array = np.array([obj_indiv_headline_body.agree_lstm, obj_indiv_headline_body.disagree_lstm,
+                                        obj_indiv_headline_body.discuss_lstm, obj_indiv_headline_body.unrelated_lstm])
+        lstm_features_matrix = np.vstack([lstm_features_matrix, lstm_features_array])
+        print("gold_stance:"+str(gold_stance))
+        print(str(lstm_features_array))
 
-        stance= tuple[2]
+
+        #stance= tuple[2]
        # print(stance)
         #agree:0
         #disagree:1
         #discuss:2
         #unrelated:3
         #lets call agrees as label 1 and disagrees as label 2
-        if (stance == "agree"):
+        if (gold_stance == 0):
             labels = np.append(labels, 0)
         else:
-            if (stance == "disagree"):
+            if (gold_stance == 1):
                 labels = np.append(labels, 1)
             else:
-                if(stance=="discuss"):
+                if(gold_stance==2):
                     labels = np.append(labels, 2)
 
-
+    print("shape of  lstm_features_matrix is:" + str(lstm_features_matrix.shape))
+    #sys.exit(1)
 
     print("size of entire_corpus is:" + str(len(entire_corpus)))
     print("going to vectorize teh related corpus :" )
@@ -727,9 +771,9 @@ def phase2_training_tf(data,vectorizer_phase2):
 
     print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
 
-    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector])
+    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,lstm_features_matrix])
     print("shape of combined_vector is:" + str(combined_vector.shape))
-
+    #sys.exit(1)
 
     print(str(labels))
     print("shape of labels is:" + str(labels.shape))
@@ -810,6 +854,28 @@ def hedging_features_mithun(headline, body):
     #print(hedging_body_vector)
     return hedging_body_vector
 
+def lstm_features(obj_data):
+
+    length_hedge=len(hedging_words)
+    #print(length_hedge)
+    hedging_body_vector = [0] * length_hedge
+
+
+    #print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
+    #print(hedging_body_vector)
+
+    clean_headline = doAllWordProcessing(headline)
+    clean_body = doAllWordProcessing(body)
+
+    for word in clean_body:
+        if word in hedging_words:
+            index=hedging_words.index(word)
+            #print(index)
+            hedging_body_vector[index]=1
+
+    #print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
+    #print(hedging_body_vector)
+    return hedging_body_vector
 
 def tf_features(headlines, bodies,vectorizer_phase2):
 
@@ -1147,8 +1213,10 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
     value3_int =3
 
     #word_overlap_vector = []
+    #zero rows 1 column
     word_overlap_vector = np.empty((0, 1), float)
     hedging_words_vector = np.empty((0, 30), int)
+    lstm_features_matrix=np.empty((0, 4), float)
 
     gold_predicted_combined=[[],[]]
 
@@ -1173,6 +1241,12 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
         hedge_value = hedging_features_mithun(headline, actualBody)
         hedge_value_array = np.array([hedge_value])
         hedging_words_vector = np.vstack([hedging_words_vector, hedge_value_array])
+
+        lstm_features_array= np.array([obj_indiv_headline_body.agree_lstm,obj_indiv_headline_body.disagree_lstm,obj_indiv_headline_body.discuss_lstm,obj_indiv_headline_body.unrelated_lstm])
+        lstm_features_matrix = np.vstack([lstm_features_matrix, lstm_features_array])
+        print(str(lstm_features_array))
+
+
 
         #acccording to FNC guys, this is the mapping of classes to labels
         #agree:0
@@ -1210,7 +1284,7 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
 
     #combined_vector=np.concatenate(tf_vector,word_overlap_vector)
     print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
-    combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector])
+    combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,lstm_features_matrix])
     print("shape of combined_vector is:" + str(combined_vector.shape))
 
     print("going to predict class")
