@@ -15,11 +15,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="initializer_cs583.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="initializer_cs583.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/initializer_cs583.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="260" column="61" lean-forward="true" selection-start-line="260" selection-start-column="61" selection-end-line="260" selection-end-column="61" />
+            <state relative-caret-position="240">
+              <caret line="121" column="9" lean-forward="false" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -40,7 +40,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="classifier_functions.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="classifier_functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="236">
@@ -117,8 +117,8 @@
       <find>refu</find>
       <find>2399</find>
       <find>sys.exit(1)</find>
-      <find>refute</find>
       <find>gold_phase1_only_unrelated</find>
+      <find>refute</find>
     </findStrings>
     <replaceStrings>
       <replace>7435</replace>
@@ -136,9 +136,9 @@
         <option value="$PROJECT_DIR$/data/train_bodies_small.csv" />
         <option value="$PROJECT_DIR$/data/train_stances_csc483583_small.csv" />
         <option value="$PROJECT_DIR$/data/test_stances_csc483583_small.csv" />
-        <option value="$PROJECT_DIR$/initializer_cs583.py" />
         <option value="$PROJECT_DIR$/utils/classifier_functions.py" />
         <option value="$PROJECT_DIR$/utils/datastructures.py" />
+        <option value="$PROJECT_DIR$/initializer_cs583.py" />
       </list>
     </option>
   </component>
@@ -661,16 +661,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/initializer_cs583.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="260" column="61" lean-forward="true" selection-start-line="260" selection-start-column="61" selection-end-line="260" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
@@ -680,6 +670,16 @@
             <element signature="e#27035#28231#0" expanded="false" />
             <marker date="1495995208000" expanded="true" signature="42385:42664" ph="..." />
             <marker date="1495995208000" expanded="true" signature="42494:42664" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/initializer_cs583.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="121" column="9" lean-forward="false" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
