@@ -238,7 +238,7 @@ if __name__ == "__main__":
             cwd = os.getcwd()
 
             print ("done with training of documents for phase1. going to start testing for phase 1")
-            unrelated_threshold=0.000001
+            unrelated_threshold=0.1
 
             #testing_data = utils.read_data.load_testing_DataSet(cwd)
             # load their huge testing data set

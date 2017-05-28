@@ -18,7 +18,7 @@
       <file leaf-file-name="initializer_cs583.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/initializer_cs583.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="330">
               <caret line="121" column="9" lean-forward="false" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
@@ -55,11 +55,11 @@
       <file leaf-file-name="classifier_functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="1297" column="43" lean-forward="true" selection-start-line="1297" selection-start-column="43" selection-end-line="1297" selection-end-column="43" />
+            <state relative-caret-position="196">
+              <caret line="1348" column="52" lean-forward="false" selection-start-line="1348" selection-start-column="52" selection-end-line="1348" selection-end-column="52" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-                <element signature="e#27103#28299#0" expanded="false" />
+                <element signature="e#27051#28247#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -124,7 +124,9 @@
       <find>743</find>
       <find>lstm_features_array</find>
       <find>lstm_features_matrix</find>
+      <find>refu</find>
       <find>sys.exit(1)</find>
+      <find>refute</find>
     </findStrings>
     <replaceStrings>
       <replace>7435</replace>
@@ -138,11 +140,11 @@
         <option value="$PROJECT_DIR$/data/test_stances_csc483583_small.csv" />
         <option value="$PROJECT_DIR$/utils/process_input_data.py" />
         <option value="$PROJECT_DIR$/data/train_stances_csc483583_small.csv" />
-        <option value="$PROJECT_DIR$/data/train_bodies_small.csv" />
         <option value="$PROJECT_DIR$/utils/dataset.py" />
         <option value="$PROJECT_DIR$/utils/read_data.py" />
         <option value="$PROJECT_DIR$/data/lstm_output.txt" />
         <option value="$PROJECT_DIR$/utils/datastructures.py" />
+        <option value="$PROJECT_DIR$/data/train_bodies_small.csv" />
         <option value="$PROJECT_DIR$/utils/classifier_functions.py" />
         <option value="$PROJECT_DIR$/initializer_cs583.py" />
       </list>
@@ -465,7 +467,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#27103#28299#0" expanded="false" />
+            <element signature="e#27051#28247#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -534,31 +536,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/train_stances_csc483583_small.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="165" column="0" lean-forward="true" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/train_bodies.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="28962" column="0" lean-forward="false" selection-start-line="28919" selection-start-column="0" selection-end-line="28962" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/test_stances_csc483583_small.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/train_bodies_small.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -625,20 +606,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/test_stances_csc483583_small.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/train_stances_csc483583_small.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="165" column="0" lean-forward="true" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/train_bodies_small.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="65" column="40" lean-forward="false" selection-start-line="65" selection-start-column="40" selection-end-line="65" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="1297" column="43" lean-forward="true" selection-start-line="1297" selection-start-column="43" selection-end-line="1297" selection-end-column="43" />
+        <state relative-caret-position="196">
+          <caret line="1348" column="52" lean-forward="false" selection-start-line="1348" selection-start-column="52" selection-end-line="1348" selection-end-column="52" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#27103#28299#0" expanded="false" />
+            <element signature="e#27051#28247#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/initializer_cs583.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="330">
           <caret line="121" column="9" lean-forward="false" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />

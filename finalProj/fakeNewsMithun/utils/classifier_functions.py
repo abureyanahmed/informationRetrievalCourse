@@ -697,6 +697,7 @@ def phase2_training_tf(data,vectorizer_phase2):
     word_overlap_vector = np.empty((0, 1), float)
     hedging_words_vector = np.empty((0, 30), int)
     lstm_features_matrix = np.empty((0, 4), float)
+    refuting_value_matrix= np.empty((0, 16), int)
 
     for obj_indiv_headline_body in data:
 
@@ -709,15 +710,6 @@ def phase2_training_tf(data,vectorizer_phase2):
         entire_corpus.append(headline_body_str)
 
 
-        #print(str(tuple))
-        # headline_body_str=""
-        # headline = tuple[0]
-        # headline_body_str=headline_body_str+headline+"."
-        # #bodyid  = tuple['Body ID']
-        # actualBody=tuple[1]
-        # headline_body_str=headline_body_str+actualBody
-        # entire_corpus.append(headline_body_str)
-        #print(headline)
 
 
         word_overlap = word_overlap_features_mithun(headline, actualBody)
@@ -732,6 +724,13 @@ def phase2_training_tf(data,vectorizer_phase2):
         lstm_features_array = np.array([obj_indiv_headline_body.agree_lstm, obj_indiv_headline_body.disagree_lstm,
                                         obj_indiv_headline_body.discuss_lstm, obj_indiv_headline_body.unrelated_lstm])
         lstm_features_matrix = np.vstack([lstm_features_matrix, lstm_features_array])
+
+        refuting_value = refuting_features_mithun(headline, actualBody)
+        refuting_value_array = np.array([refuting_value])
+        refuting_value_matrix = np.vstack([refuting_value_matrix, refuting_value_array])
+
+
+
         #print("gold_stance:"+str(gold_stance))
        # print(str(lstm_features_array))
 
@@ -778,7 +777,7 @@ def phase2_training_tf(data,vectorizer_phase2):
 
     print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
 
-    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,lstm_features_matrix])
+    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,lstm_features_matrix,refuting_value_matrix])
     print("shape of combined_vector is:" + str(combined_vector.shape))
     #sys.exit(1)
 
@@ -860,6 +859,43 @@ def hedging_features_mithun(headline, body):
     #print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
     #print(hedging_body_vector)
     return hedging_body_vector
+
+def refuting_features_mithun(headline, body):
+
+    refuting_words = [
+        'fake',
+        'fraud',
+        'hoax',
+        'false',
+        'deny',
+        'denies',
+        'refute',
+        'not',
+        'despite',
+        'nope',
+        'doubt',
+        'doubts',
+        'bogus',
+        'debunk',
+        'pranks',
+        'retract'
+    ]
+
+    length_hedge=len(refuting_words)
+    refuting_body_vector = [0] * length_hedge
+
+    clean_headline = doAllWordProcessing(headline)
+    clean_body = doAllWordProcessing(body)
+
+    for word in clean_body:
+        if word in refuting_words:
+            index=refuting_words.index(word)
+            #print(index)
+            refuting_body_vector[index]=1
+
+
+    return refuting_body_vector
+
 
 def lstm_features(obj_data):
 
@@ -1224,6 +1260,7 @@ def test_phase2(test_data, svm_phase2, vectorizer_phase2_trained):
     word_overlap_vector = np.empty((0, 1), float)
     hedging_words_vector = np.empty((0, 30), int)
     lstm_features_matrix=np.empty((0, 4), float)
+    refuting_value_matrix = np.empty((0, 16), int)
 
     gold_predicted_combined=[[],[]]
 
@@ -1253,9 +1290,9 @@ def test_phase2(test_data, svm_phase2, vectorizer_phase2_trained):
         lstm_features_matrix = np.vstack([lstm_features_matrix, lstm_features_array])
         print(str(lstm_features_array))
 
-
-
-
+        refuting_value = refuting_features_mithun(headline, actualBody)
+        refuting_value_array = np.array([refuting_value])
+        refuting_value_matrix = np.vstack([refuting_value_matrix, refuting_value_array])
 
         #acccording to FNC guys, this is the mapping of classes to labels
         #agree:0
@@ -1299,9 +1336,19 @@ def test_phase2(test_data, svm_phase2, vectorizer_phase2_trained):
     print("actual  lstm_features_matrix is:" + str(lstm_features_matrix))
     print("lstm_features_matrix.dtype=" + str(lstm_features_matrix.dtype))
 
+    print("refuting_value_matrix.dtype=" + str(refuting_value_matrix.dtype))
+
+    print("refuting_value_matrix is =" + str(refuting_value_matrix))
+
+
     flstm_features_matrix=lstm_features_matrix.astype(float)
-    combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, flstm_features_matrix])
-   # sparse.hstack(X, A.astype(float))
+    #int_refuting_value_matrix = refuting_value_matrix.astype(float)
+    #combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, flstm_features_matrix])
+
+
+    combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, flstm_features_matrix, refuting_value_matrix])
+
+# sparse.hstack(X, A.astype(float))
 
     # print("shape of combined_vector is:" + str(combined_vector.shape))
     # print("shape of  lstm_features_matrix is:" + str(flstm_features_matrix.shape))

@@ -5935,3 +5935,5 @@ Conde Nast's rat problem at One World Trade Centre: From red carpets to rodent d
 God Is A Woman – Resurrected Father Narated,1227,agree,1
 CPWD official sacked for absence from duty for 25 years,1318,disagree,1
 Apple: Citi Sees $550 and $950 Apple Watches, Accessory Plethora,2414,disagree,1
+CPWD official sacked for absence from duty for 25 years,1318,discuss,1
+Apple: Citi Sees $550 and $950 Apple Watches, Accessory Plethora,2414,disagree,1
