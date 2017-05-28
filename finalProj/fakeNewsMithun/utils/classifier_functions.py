@@ -779,7 +779,7 @@ def phase2_training_tf(data,vectorizer_phase2):
 
     combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,lstm_features_matrix,refuting_value_matrix])
     print("shape of combined_vector is:" + str(combined_vector.shape))
-    #sys.exit(1)
+
 
     print(str(labels))
     print("shape of labels is:" + str(labels.shape))
@@ -1300,16 +1300,17 @@ def test_phase2(test_data, svm_phase2, vectorizer_phase2_trained):
         #discuss:2
         #unrelated:3
 
-        if (gold_stance == "disagree"):
-            gold_int.append(value1_int)
-        else:
-            if (gold_stance == "agree"):
-                gold_int.append(value0_int)
-            else:
-                if(gold_stance=="discuss"):
-                    gold_int.append(value2_int)
-                else:
-                    gold_int.append(value3_int)
+        gold_int.append(gold_stance)
+        # if (gold_stance == 0):
+        #     gold_int.append(value1_int)
+        # else:
+        #     if (gold_stance == "agree"):
+        #         gold_int.append(value0_int)
+        #     else:
+        #         if(gold_stance=="discuss"):
+        #             gold_int.append(value2_int)
+        #         else:
+        #             gold_int.append(value3_int)
 
 
 
@@ -1350,12 +1351,12 @@ def test_phase2(test_data, svm_phase2, vectorizer_phase2_trained):
 
 # sparse.hstack(X, A.astype(float))
 
-    # print("shape of combined_vector is:" + str(combined_vector.shape))
+    print("shape of combined_vector is:" + str(combined_vector.shape))
     # print("shape of  lstm_features_matrix is:" + str(flstm_features_matrix.shape))
     # print("actual  lstm_features_matrix is:" + str(flstm_features_matrix))
     # print("lstm_features_matrix.dtype=" + str(flstm_features_matrix.dtype))
 
-    #sys.exit(1)
+
     print("going to predict class")
     #give that vector to your svm for prediction.
     pred_class=svm_phase2.predict(combined_vector)

@@ -112,14 +112,14 @@ if __name__ == "__main__":
         #training_data = utils.read_data.load_training_DataSet(cwd)
 
         #load the dataset which has only 2 entries
-        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
-        testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv","test_stances_csc483583.csv")
+        #training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
+        #testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv","test_stances_csc483583.csv")
 
         lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
 
 
-        #training_data = utils.read_data.load_training_DataSet(cwd, "train_bodies_small.csv", "train_stances_csc483583_small.csv")
-        #testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv","test_stances_csc483583_small.csv")
+        training_data = utils.read_data.load_training_DataSet(cwd, "train_bodies_small.csv", "train_stances_csc483583_small.csv")
+        testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv","test_stances_csc483583_small.csv")
 
         #in validation phase, we test against the training data itself.
         #cwd = os.getcwd()
@@ -348,11 +348,16 @@ if __name__ == "__main__":
             print ("done classifying testing data for phase 2. going to find score ")
 
             print("number of rows in actual_phase2  is:"+str(len(actual_phase2 )))
+            print(str(actual_phase2))
+
             print("number of rows in predicted_phase2 is:"+str(len(predicted_phase2 )))
+            print(" of rows in predicted_phase2 is:" + str((predicted_phase2)))
+
             print("number of rows in actual_phase1_only_unrelated  is:" + str(len(gold_phase1_only_unrelated)))
+            print("rows in actual_phase1_only_unrelated  is:" + str((gold_phase1_only_unrelated)))
+
             print("number of rows in predicted_phase1_only_unrelated  is:"+str(len(predicted_phase1_only_unrelated )))
-
-
+            print("number of rows in predicted_phase1_only_unrelated  is:" + str((predicted_phase1_only_unrelated)))
 
             #combining results from both phases
             actual= gold_phase1_only_unrelated + actual_phase2
@@ -388,9 +393,10 @@ if __name__ == "__main__":
                 appendToFile(str(eachTuple.confidence), "enrique_format")
 
 
-        sendEmail("entire program", toaddr)
+
         elapsed_time = time.time() - start_time
         print("time taken:" + str(elapsed_time))
+        sendEmail("entire program", toaddr)
 
 
     except:
