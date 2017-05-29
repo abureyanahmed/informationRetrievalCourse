@@ -18,11 +18,9 @@
       <file leaf-file-name="initializer_cs583.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/initializer_cs583.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="121" column="9" lean-forward="false" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="199">
+              <caret line="15" column="52" lean-forward="true" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -43,13 +41,15 @@
       <file leaf-file-name="classifier_functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="358" column="25" lean-forward="true" selection-start-line="358" selection-start-column="25" selection-end-line="358" selection-end-column="25" />
+            <state relative-caret-position="58">
+              <caret line="874" column="95" lean-forward="false" selection-start-line="874" selection-start-column="95" selection-end-line="874" selection-end-column="95" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-                <element signature="e#27035#28231#0" expanded="false" />
-                <marker date="1495995208000" expanded="true" signature="42385:42664" ph="..." />
-                <marker date="1495995208000" expanded="true" signature="42494:42664" ph="..." />
+                <element signature="e#11514#13926#0" expanded="false" />
+                <element signature="e#14065#16465#0" expanded="false" />
+                <element signature="e#16539#18310#0" expanded="false" />
+                <element signature="e#29731#33735#0" expanded="false" />
+                <element signature="e#34083#35279#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -113,12 +113,13 @@
       <find>word_overlap_features_mithun</find>
       <find>743</find>
       <find>lstm_features_array</find>
-      <find>lstm_features_matrix</find>
       <find>refu</find>
       <find>2399</find>
       <find>sys.exit(1)</find>
       <find>gold_phase1_only_unrelated</find>
       <find>refute</find>
+      <find>lstm_output</find>
+      <find>lstm_features_matrix</find>
     </findStrings>
     <replaceStrings>
       <replace>7435</replace>
@@ -136,8 +137,8 @@
         <option value="$PROJECT_DIR$/data/train_bodies_small.csv" />
         <option value="$PROJECT_DIR$/data/train_stances_csc483583_small.csv" />
         <option value="$PROJECT_DIR$/data/test_stances_csc483583_small.csv" />
-        <option value="$PROJECT_DIR$/utils/classifier_functions.py" />
         <option value="$PROJECT_DIR$/utils/datastructures.py" />
+        <option value="$PROJECT_DIR$/utils/classifier_functions.py" />
         <option value="$PROJECT_DIR$/initializer_cs583.py" />
       </list>
     </option>
@@ -401,11 +402,11 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32802126" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4309064" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4309064" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39970282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39970282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -422,11 +423,11 @@
       <breakpoints>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>1312</line>
+          <line>1517</line>
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>1303</line>
+          <line>1508</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
@@ -436,17 +437,17 @@
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>468</line>
+          <line>538</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>478</line>
+          <line>548</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>475</line>
+          <line>545</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
@@ -462,9 +463,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2865">
           <caret line="191" column="64" lean-forward="false" selection-start-line="191" selection-start-column="64" selection-end-line="191" selection-end-column="64" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -495,9 +494,11 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#27035#28231#0" expanded="false" />
-            <marker date="1495995208000" expanded="true" signature="42385:42664" ph="..." />
-            <marker date="1495995208000" expanded="true" signature="42494:42664" ph="..." />
+            <element signature="e#11514#13926#0" expanded="false" />
+            <element signature="e#14065#16465#0" expanded="false" />
+            <element signature="e#16539#18310#0" expanded="false" />
+            <element signature="e#29731#33735#0" expanded="false" />
+            <element signature="e#34083#35279#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -524,9 +525,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -663,24 +662,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="358" column="25" lean-forward="true" selection-start-line="358" selection-start-column="25" selection-end-line="358" selection-end-column="25" />
+        <state relative-caret-position="58">
+          <caret line="874" column="95" lean-forward="false" selection-start-line="874" selection-start-column="95" selection-end-line="874" selection-end-column="95" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#27035#28231#0" expanded="false" />
-            <marker date="1495995208000" expanded="true" signature="42385:42664" ph="..." />
-            <marker date="1495995208000" expanded="true" signature="42494:42664" ph="..." />
+            <element signature="e#11514#13926#0" expanded="false" />
+            <element signature="e#14065#16465#0" expanded="false" />
+            <element signature="e#16539#18310#0" expanded="false" />
+            <element signature="e#29731#33735#0" expanded="false" />
+            <element signature="e#34083#35279#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/initializer_cs583.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="121" column="9" lean-forward="false" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="199">
+          <caret line="15" column="52" lean-forward="true" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>

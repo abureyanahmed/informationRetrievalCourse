@@ -7,7 +7,7 @@ import numpy as np
 from utils.read_data import load_training_DataSet
 from utils.classifier_functions import test_phase2_using_svm
 from utils.classifier_functions import train_for_agree_disagree
-from utils.classifier_functions import phase2_training_tf
+from utils.classifier_functions import phase2_training
 from utils.classifier_functions import calculateCosSimilarity
 from utils.classifier_functions import calculate_precision
 from utils.classifier_functions import return_related_data_only
@@ -112,14 +112,14 @@ if __name__ == "__main__":
         #training_data = utils.read_data.load_training_DataSet(cwd)
 
         #load the dataset which has only 2 entries
-        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
-        testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv","test_stances_csc483583.csv")
+        #training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
+        #testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv","test_stances_csc483583.csv")
 
-        lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
+        #lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
 
 
-        #training_data = utils.read_data.load_training_DataSet(cwd, "train_bodies_small.csv", "train_stances_csc483583_small.csv")
-        #testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv","test_stances_csc483583_small.csv")
+        training_data = utils.read_data.load_training_DataSet(cwd, "train_bodies_small.csv", "train_stances_csc483583_small.csv")
+        testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv","test_stances_csc483583_small.csv")
 
         #in validation phase, we test against the training data itself.
         #cwd = os.getcwd()
@@ -177,7 +177,9 @@ if __name__ == "__main__":
 
 
 
-            related_data_gold_converted= split_phase1_gold_data_related_unrelated(training_data)
+            #the string parameter lstm is just a dummy to separate two overloaded functions
+            #related_data_gold_converted= split_phase1_gold_data_related_unrelated(training_data,"lstm")
+            related_data_gold_converted = split_phase1_gold_data_related_unrelated(training_data)
 
             #related_data_gold_converted = convert_data_to_headline_body_stance_format(related_data_gold, lstm_output)
 
@@ -203,7 +205,11 @@ if __name__ == "__main__":
 
 
             #this training has to be done on the gold training data split based on stance= related
-            svm_trained_phase2,vectorizer_phase2_trained=phase2_training_tf(related_data_gold_converted,vectorizer_phase2)
+           # svm_trained_phase2,vectorizer_phase2_trained=phase2_training_with_lstm(related_data_gold_converted,vectorizer_phase2)
+            svm_trained_phase2, vectorizer_phase2_trained = phase2_training(related_data_gold_converted,
+                                                                                      vectorizer_phase2)
+
+
             #sys.exit(1)
 
             print ("done with training of documents for agree classes. going to read testing data.")
@@ -257,8 +263,8 @@ if __name__ == "__main__":
             print("total number of rows in testing_data matrix is:" + str(len(testing_data.stances)))
             print("total number of rows in testing_data matrix is:" + str((testing_data.stances)))
 
-            lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
-            testing_data_converted = convert_data_to_headline_body_stance_format(testing_data,lstm_output)
+           # lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
+            testing_data_converted = convert_data_to_headline_body_stance_format(testing_data)
 
 
            # print("total number of rows in testing_data_converted matrix is:" + str(len(testing_data_converted)))
