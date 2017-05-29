@@ -913,6 +913,8 @@ def phase2_training_hollywood(data,vectorizer_phase2):
     refuting_value_matrix= np.empty((0, 16), int)
     hollywood_value_matrix = np.empty((0, 39), int)
     terrorism_value_matrix = np.empty((0, 81), int)
+    health_value_matrix = np.empty((0, 38), int)
+
 
     for obj_indiv_headline_body in data:
 
@@ -947,6 +949,10 @@ def phase2_training_hollywood(data,vectorizer_phase2):
         terrorism_value_value_array = np.array([terrorism_value])
         terrorism_value_matrix = np.vstack([terrorism_value_matrix, terrorism_value_value_array])
 
+        health_value = Health_features(headline, actualBody)
+        health_value_value_array = np.array([health_value])
+        health_value_matrix = np.vstack([health_value_matrix, health_value_value_array])
+
 
         if (gold_stance == 0):
             labels = np.append(labels, 0)
@@ -979,7 +985,7 @@ def phase2_training_hollywood(data,vectorizer_phase2):
     print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
 
     combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,refuting_value_matrix,
-                                            hollywood_value_matrix,terrorism_value_matrix])
+                                            hollywood_value_matrix,terrorism_value_matrix,health_value_matrix])
     print("shape of combined_vector is:" + str(combined_vector.shape))
 
 
@@ -1576,6 +1582,7 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
     refuting_value_matrix = np.empty((0, 16), int)
     hollywood_value_matrix = np.empty((0, 39), int)
     terrorism_value_matrix = np.empty((0, 81), int)
+    health_value_matrix = np.empty((0, 38), int)
 
     gold_predicted_combined=[[],[]]
 
@@ -1613,11 +1620,10 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
         terrorism_value_value_array = np.array([terrorism_value])
         terrorism_value_matrix = np.vstack([terrorism_value_matrix, terrorism_value_value_array])
 
-        #acccording to FNC guys, this is the mapping of classes to labels
-        #agree:0
-        #disagree:1
-        #discuss:2
-        #unrelated:3
+        health_value = Health_features(headline, actualBody)
+        health_value_value_array = np.array([health_value])
+        health_value_matrix = np.vstack([health_value_matrix, health_value_value_array])
+
 
         gold_int.append(gold_stance)
         # if (gold_stance == 0):
@@ -1668,7 +1674,7 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
 
    # combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix])
     combined_vector = scipy.sparse.hstack(
-        [tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix, hollywood_value_matrix,terrorism_value_matrix])
+        [tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix, hollywood_value_matrix,terrorism_value_matrix,health_value_matrix])
 
     # sparse.hstack(X, A.astype(float))
 
@@ -2065,7 +2071,7 @@ def Hollywood_features(headline, body):    ## Hollywood includes words related t
 ##################################################################################################
 ##################################################################################################
 
-def Health_features(headlines, bodies):    ## Health includes health, epedemics, and other health related news..
+def Health_features(headline, body):    ## Health includes health, epedemics, and other health related news..
     Relative_words1 = [
         'doctors','cancer','kidney','Ebola','Health','infection','vomiting', 'diarrhoea', 'bleeding','illnesses','malaria',
         'Fever', 'fractured','operation','disease','misdiagnosed','diagnosed','Ministry','DNA', 'tests','drugs','Medical',
@@ -2074,6 +2080,7 @@ def Health_features(headlines, bodies):    ## Health includes health, epedemics,
     ]
     Relative_words = [normalize_word(w1) for w1 in Relative_words1]
     length_Health = len(Relative_words)
+
     Health_body_vector = [0] * length_Health
 
     clean_headline = doAllWordProcessing(headline)
