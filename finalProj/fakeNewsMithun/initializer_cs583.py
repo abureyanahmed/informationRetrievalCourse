@@ -8,13 +8,14 @@ from utils.read_data import load_training_DataSet
 from utils.classifier_functions import test_phase2_using_svm
 from utils.classifier_functions import train_for_agree_disagree
 from utils.classifier_functions import phase2_training
+from utils.classifier_functions import phase2_training_hollywood
 from utils.classifier_functions import calculateCosSimilarity
 from utils.classifier_functions import calculate_precision
 from utils.classifier_functions import return_related_data_only
 from utils.classifier_functions import split_cos_sim
 from utils.classifier_functions import split_phase1_gold_data_related_unrelated
 from utils.classifier_functions import test_phase2_using_svm
-from utils.classifier_functions import test_phase2
+from utils.classifier_functions import test_phase2_tf_hollywood
 from utils.classifier_functions import predict_data_phase1
 from utils.classifier_functions import convert_data_to_headline_body_stance_format
 from utils.classifier_functions import predict_data_phase1_return_only_unrelated
@@ -30,6 +31,7 @@ from utils.fileWriter import writeToOutputFile
 from utils.fileWriter import appendToFile
 from utils.process_input_data import my_lemmatize
 from utils.read_data import read_lstm_data
+
 import time
 
 
@@ -206,8 +208,13 @@ if __name__ == "__main__":
 
             #this training has to be done on the gold training data split based on stance= related
            # svm_trained_phase2,vectorizer_phase2_trained=phase2_training_with_lstm(related_data_gold_converted,vectorizer_phase2)
-            svm_trained_phase2, vectorizer_phase2_trained = phase2_training(related_data_gold_converted,
-                                                                                      vectorizer_phase2)
+           #  svm_trained_phase2, vectorizer_phase2_trained = phase2_training(related_data_gold_converted,
+           #                                                                            vectorizer_phase2)
+
+            svm_trained_phase2, vectorizer_phase2_trained = phase2_training_hollywood(related_data_gold_converted,
+                                                                            vectorizer_phase2)
+
+
 
 
             #sys.exit(1)
@@ -344,12 +351,12 @@ if __name__ == "__main__":
             #print("number of columns in testing data after conversion is:"+str(len(testdata_related_only[0])))
             print ("done loading testing data. going to test agree-disagree-discuss using the trained svm ")
            # actual_phase2, predicted_phase2  = test_phase2_using_svm(testdata_related_only, svm_trained_phase2, vectorizer_phase2_trained)
-           # actual_phase2, predicted_phase2 = test_phase2(testdata_related_only, svm_trained_phase2,
+           # actual_phase2, predicted_phase2 = test_phase2_tf_hollywood(testdata_related_only, svm_trained_phase2,
             #                                                        vectorizer_phase2_trained)
 
-            actual_phase2, predicted_phase2, post_prediction_data = test_phase2(testdata_related_only,
-                                                                                svm_trained_phase2,
-                                                                                vectorizer_phase2_trained)
+            actual_phase2, predicted_phase2, post_prediction_data = test_phase2_tf_hollywood(testdata_related_only,
+                                                                                             svm_trained_phase2,
+                                                                                             vectorizer_phase2_trained)
 
             print ("done classifying testing data for phase 2. going to find score ")
 
