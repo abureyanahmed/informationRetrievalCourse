@@ -7,27 +7,30 @@ import numpy as np
 from utils.read_data import load_training_DataSet
 from utils.classifier_functions import test_phase2_using_svm
 from utils.classifier_functions import train_for_agree_disagree
-from utils.classifier_functions import phase2_training_tf
+from utils.classifier_functions import phase2_training
 from utils.classifier_functions import calculateCosSimilarity
 from utils.classifier_functions import calculate_precision
 from utils.classifier_functions import return_related_data_only
-from utils.classifier_functions import return_related_data_only_my_format
+from utils.classifier_functions import split_cos_sim
 from utils.classifier_functions import split_phase1_gold_data_related_unrelated
 from utils.classifier_functions import test_phase2_using_svm
-from utils.classifier_functions import test_phase2_using_svm_return_details
+from utils.classifier_functions import test_phase2
 from utils.classifier_functions import predict_data_phase1
 from utils.classifier_functions import convert_data_to_headline_body_stance_format
 from utils.classifier_functions import predict_data_phase1_return_only_unrelated
 from utils.classifier_functions import sendEmail
 from utils.process_input_data import createAtfidfVectorizer
+from utils.process_input_data import normalize
 from sklearn.feature_extraction.text import TfidfVectorizer
 import itertools
-
+from utils.process_input_data import doAllWordProcessing
 from sklearn.feature_extraction.text import CountVectorizer
 from utils.score import report_score
 from utils.fileWriter import writeToOutputFile
 from utils.fileWriter import appendToFile
-
+from utils.process_input_data import my_lemmatize
+from utils.read_data import read_lstm_data
+import time
 
 
 #in phase 1, we split teh data set to related- unrelated
@@ -56,11 +59,18 @@ RELATED = LABELS[0:3]
 #discuss:2
 #unrelated:3
 toaddr="mithunpaul08@gmail.com"
+#toaddr="mithunpaul@email.arizona.edu"
+
+start_time = time.time()
+
 #or if its just 2 classes
 #unrelated:0
 #related=1
 if __name__ == "__main__":
     try:
+
+        #sys.exit(1)
+
         #nltk.download("wordnet", "whatever_the_absolute_path_to_myapp_is/nltk_data/")
         print("number of arguments is"+ str(len(sys.argv)))
 
@@ -74,16 +84,18 @@ if __name__ == "__main__":
         #--code for trainign related- unrelated class...this has to go in a if statement based on user input.
         #make sure that the current working directory is the starting level
 
+
         cwd = os.getcwd()
-        #print("current directory is:" + cwd)
+            # #print("current directory is:" + cwd)
         base_dir_name = os.path.dirname(os.path.abspath(sys.argv[0]))
         #print("base directory is:" + base_dir_name)
         if(base_dir_name != cwd):
             os.chdir(base_dir_name)
 
 
+
         # #Do training for 2 classes related-unrelated
-        # cwd = os.getcwd()
+
         print ("going to train on data for related-unrelated splitting aka phase1")
 
         #LOAD TRAINING DATA
@@ -91,19 +103,28 @@ if __name__ == "__main__":
         predicted_phase1=[]
         actual_phase2=[]
         predicted_phase2 = []
-        actual_phase1_only_unrelated= []
+        gold_phase1_only_unrelated= []
         predicted_phase1_only_unrelated= []
 
         unrelated_threshold=0
 
-        #keep both trainign and testing data in memory
-        training_data = utils.read_data.load_training_DataSet(cwd)
-        testing_data = utils.read_data.load_testing_DataSet(cwd)
+        #load their huge training data set
+        #training_data = utils.read_data.load_training_DataSet(cwd)
+
+        #load the dataset which has only 2 entries
+        #training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
+        #testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv","test_stances_csc483583.csv")
+
+        #lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
+
+
+        training_data = utils.read_data.load_training_DataSet(cwd, "train_bodies_small.csv", "train_stances_csc483583_small.csv")
+        testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv","test_stances_csc483583_small.csv")
 
         #in validation phase, we test against the training data itself.
         #cwd = os.getcwd()
 
-
+        coma = ","
 
 
 
@@ -154,13 +175,26 @@ if __name__ == "__main__":
             print("starting do_training_phase2")
             #split the gold data into related-unrelated class . you must train your svm2 on this new class
 
-            related_data_gold= split_phase1_gold_data_related_unrelated(training_data)
-            numrows = len(related_data_gold)
-            numcols = len(related_data_gold[0])
-            print ("total number of rows in related matrix is:"+str(numrows))
-            print ("total number of numcols in related matrix is:"+str(numcols))
 
 
+            #the string parameter lstm is just a dummy to separate two overloaded functions
+            #related_data_gold_converted= split_phase1_gold_data_related_unrelated(training_data,"lstm")
+            related_data_gold_converted = split_phase1_gold_data_related_unrelated(training_data)
+
+            #related_data_gold_converted = convert_data_to_headline_body_stance_format(related_data_gold, lstm_output)
+
+
+            #print("first .body  of testing_data_converted"+str(related_data_gold_converted[0].body ))
+            # print("first .headline  of testing_data_converted:" + str(related_data_gold_converted[2865].headline))
+            # print("first .body_id  of testing_data_converted:" + str(related_data_gold_converted[2865].body_id))
+            # print("first .predicted_stance  of testing_data_converted:" + str(related_data_gold_converted[2865].predicted_stance))
+            # print("first .gold_stance  of testing_data_converted:" + str(related_data_gold_converted[2865].gold_stance))
+            # print("first .unique_tuple_id  of testing_data_converted:" + str(related_data_gold_converted[2865].unique_tuple_id))
+            # print("first .confidence  of testing_data_converted:" + str(related_data_gold_converted[2865].confidence))
+            # print("first .agree_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].agree_lstm))
+            # print("first .disagree_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].disagree_lstm))
+            # print("first .discuss_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].discuss_lstm))
+            # print("first .unrelated_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].unrelated_lstm))
 
 
             # start training for 2 classes agree-disagree within related
@@ -171,8 +205,12 @@ if __name__ == "__main__":
 
 
             #this training has to be done on the gold training data split based on stance= related
-            svm_trained_phase2,vectorizer_phase2_trained=phase2_training_tf(related_data_gold,vectorizer_phase2)
+           # svm_trained_phase2,vectorizer_phase2_trained=phase2_training_with_lstm(related_data_gold_converted,vectorizer_phase2)
+            svm_trained_phase2, vectorizer_phase2_trained = phase2_training(related_data_gold_converted,
+                                                                                      vectorizer_phase2)
 
+
+            #sys.exit(1)
 
             print ("done with training of documents for agree classes. going to read testing data.")
             #sendEmail("do_training_phase2")
@@ -208,40 +246,83 @@ if __name__ == "__main__":
             print ("done with training of documents for phase1. going to start testing for phase 1")
             unrelated_threshold=0.1
 
-            testing_data = utils.read_data.load_testing_DataSet(cwd)
+            #testing_data = utils.read_data.load_testing_DataSet(cwd)
+            # load their huge testing data set
 
             # Then wesplit the test data based on the classifier trained on phase 1
-            print ("total number of rows in testing_data matrix is:"+str(len(testing_data.stances)))
+            #print ("total number of rows in testing_data matrix is:"+str(len(testing_data.stances)))
 
 
 
             #we are also keeping teh gold_predicted data so that we can combine it for the final score calculation-after removing class "related" from
             #"both actual and predicted data"
-            print ("going to predict data based on this new test set")
-            actual_phase1_only_unrelated, predicted_phase1_only_unrelated =predict_data_phase1_return_only_unrelated(training_data, unrelated_threshold)
-
-
-            print("number of rows in actual_phase1_only_unrelated  is:"+str(len(actual_phase1_only_unrelated )))
-            print("number of rows in predicted_phase1_only_unrelated  is:"+str(len(predicted_phase1_only_unrelated )))
 
 
             #below code is used as phase 2 input
             print ("value of unrelated_threshold is:" + str(unrelated_threshold))
+            print("total number of rows in testing_data matrix is:" + str(len(testing_data.stances)))
+            print("total number of rows in testing_data matrix is:" + str((testing_data.stances)))
+
+           # lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
             testing_data_converted = convert_data_to_headline_body_stance_format(testing_data)
+
+
+           # print("total number of rows in testing_data_converted matrix is:" + str(len(testing_data_converted)))
+
+
+
+
+
+            print("going to predict data based on this new test set")
+            # actual_phase1_only_unrelated, predicted_phase1_only_unrelated = predict_data_phase1_return_only_unrelated(
+            #     training_data, unrelated_threshold)
+
+
             print ("going to retreive only related data based on threshold:" + str(unrelated_threshold))
-            #testdata_related_only = return_related_data_only(testing_data_converted, unrelated_threshold)
-            testdata_related_only = return_related_data_only_my_format(testing_data_converted, unrelated_threshold)
+
+            print ("total number of rows in testing_data_converted matrix is:"+str(len(testing_data_converted)))
+
+           # print(testing_data_converted)
+
+
+
+            testdata_related_only,un_related_matrix = split_cos_sim(testing_data_converted, unrelated_threshold)
             #sendEmail("do_testing_phase1", toaddr)
 
+            gold_phase1_only_unrelated=[]
+            predicted_phase1_only_unrelated=[]
+
+            for unr in un_related_matrix:
+                gold_phase1_only_unrelated.append(unr.gold_stance)
+                predicted_phase1_only_unrelated.append(unr.predicted_stance)
 
 
 
+
+
+            # print("number of rows in actual_phase1_only_unrelated  is:" + str(len(gold_phase1_only_unrelated)))
+            # print("number of rows in predicted_phase1_only_unrelated  is:" + str(len(predicted_phase1_only_unrelated)))
+            # print("actual value of actual_phase1_only_unrelated  is:" + str((gold_phase1_only_unrelated[666])))
+            # print("actual value of in predicted_phase1_only_unrelated  is:" + str((predicted_phase1_only_unrelated[666])))
+
+            #overwrite the file with an empty line if the file already exists
+            # writeToOutputFile("\n", "enrique_format")
+            # for unr in un_related_matrix:
+            #     appendToFile("\n" + str(unr.headline) + coma, "enrique_format")
+            #     appendToFile(str(unr.body_id) + coma, "enrique_format")
+            #     appendToFile(str(unr.pred_label) + coma, "enrique_format")
+            #     appendToFile(str(unr.confidence), "enrique_format")
+
+            print("total number of rows in testdata_related_only matrix is:" + str(len(testdata_related_only)))
+
+
+            #sys.exit(1)
 
             ######################### Testing for Phase 2 starts here###########################3
 
         if(do_testing_phase2):
 
-            print("starting do_testing_phase2")
+            print("\nstarting do_testing_phase2")
             #once the data is split into related-unrelated, we use the related data to split into 3
 
 
@@ -263,31 +344,36 @@ if __name__ == "__main__":
             #print("number of columns in testing data after conversion is:"+str(len(testdata_related_only[0])))
             print ("done loading testing data. going to test agree-disagree-discuss using the trained svm ")
            # actual_phase2, predicted_phase2  = test_phase2_using_svm(testdata_related_only, svm_trained_phase2, vectorizer_phase2_trained)
-           # actual_phase2, predicted_phase2 = test_phase2_using_svm_return_details(testdata_related_only, svm_trained_phase2,
+           # actual_phase2, predicted_phase2 = test_phase2(testdata_related_only, svm_trained_phase2,
             #                                                        vectorizer_phase2_trained)
 
-            actual_phase2, predicted_phase2, post_prediction_data = test_phase2_using_svm_return_details(testdata_related_only,
-                                                                                   svm_trained_phase2,
-                                                                                   vectorizer_phase2_trained)
+            actual_phase2, predicted_phase2, post_prediction_data = test_phase2(testdata_related_only,
+                                                                                svm_trained_phase2,
+                                                                                vectorizer_phase2_trained)
 
             print ("done classifying testing data for phase 2. going to find score ")
 
             print("number of rows in actual_phase2  is:"+str(len(actual_phase2 )))
+            print(str(actual_phase2))
+
             print("number of rows in predicted_phase2 is:"+str(len(predicted_phase2 )))
-            print("number of rows in actual_phase1_only_unrelated  is:"+str(len(actual_phase1_only_unrelated )))
+            print(" of rows in predicted_phase2 is:" + str((predicted_phase2)))
+
+            print("number of rows in actual_phase1_only_unrelated  is:" + str(len(gold_phase1_only_unrelated)))
+            print("rows in actual_phase1_only_unrelated  is:" + str((gold_phase1_only_unrelated)))
+
             print("number of rows in predicted_phase1_only_unrelated  is:"+str(len(predicted_phase1_only_unrelated )))
-
-
+            print("number of rows in predicted_phase1_only_unrelated  is:" + str((predicted_phase1_only_unrelated)))
 
             #combining results from both phases
-            actual=actual_phase1_only_unrelated+ actual_phase2
+            actual= gold_phase1_only_unrelated + actual_phase2
             predicted=predicted_phase1_only_unrelated+ predicted_phase2
 
             final_score=report_score([LABELS[e] for e in actual],[LABELS[e] for e in predicted])
 
 
 
-            writeToOutputFile("\n", "enrique_format")
+
             for eachTuple in post_prediction_data:
                 # agree, disagree, or discuss, (0,1,2) and attach that.
                 pred_label=""
@@ -305,7 +391,7 @@ if __name__ == "__main__":
                             else:
                                 if (eachTuple.predicted_stance == 3):
                                     pred_label = "unrelated"
-                coma=","
+
 
                 appendToFile("\n"+str(eachTuple.headline) + coma, "enrique_format")
                 appendToFile(str(eachTuple.body_id) + coma, "enrique_format")
@@ -313,10 +399,16 @@ if __name__ == "__main__":
                 appendToFile(str(eachTuple.confidence), "enrique_format")
 
 
+
+        elapsed_time = time.time() - start_time
+        print("time taken:" + str(elapsed_time))
         sendEmail("entire program", toaddr)
 
 
     except:
         import traceback
         print('generic exception: ' + traceback.format_exc())
+        # your code
+        elapsed_time = time.time() - start_time
+        print("time taken:"+str(elapsed_time))
         sendEmail("inside try-catch. error occured, going to exit",toaddr)

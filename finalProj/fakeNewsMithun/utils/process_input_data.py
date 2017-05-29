@@ -8,6 +8,10 @@ from csv import DictReader
 from sklearn.feature_extraction.text import TfidfTransformer
 from nltk import word_tokenize
 from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
+
+import numpy as np
+nltk.download("stopwords")
 
 #nltk.download('punkt')
 #nltk.download('wordnet')
@@ -18,6 +22,22 @@ class LemmaTokenizer(object):
     def __call__(self, doc):
         return [self.wnl.lemmatize(t) for t in word_tokenize(doc)]
 
+def my_lemmatize(doc):
+    my_wnl = WordNetLemmatizer()
+    lemmatized_version=[]
+
+
+def doAllWordProcessing(doc):
+    lemmatized_version=[]
+    for t in word_tokenize(doc):
+        if t not in stopwords.words('english'):
+            t_lower=t.lower().translate(remove_punctuation_map)
+            my_wnl = WordNetLemmatizer()
+            lmv=my_wnl.lemmatize(t_lower)
+            stemmed=stemmer.stem(lmv)
+            #print(lmv)
+            lemmatized_version.append(stemmed)
+    return lemmatized_version
 
 stemmer = nltk.stem.porter.PorterStemmer()
 remove_punctuation_map = dict((ord(char), None) for char in string.punctuation)
@@ -53,7 +73,7 @@ def calculate_tf_idf(counts):
 
 def createAtfidfVectorizer():
     #vectorizer2 = TfidfVectorizer(tokenizer=normalize, stop_words='english')
-    vectorizer2 = TfidfVectorizer(tokenizer=normalize,encoding=u'utf-8', decode_error=u'ignore',strip_accents='unicode',stop_words='english' )
+    vectorizer2 = TfidfVectorizer(tokenizer=normalize,encoding=u'utf-8', decode_error=u'ignore',strip_accents='unicode',stop_words='english')
     #vectorizer2 = TfidfVectorizer(tokenizer=normalize,encoding=u'utf-8', decode_error=u'ignore',strip_accents='unicode',stop_words='english' )
     return vectorizer2
 

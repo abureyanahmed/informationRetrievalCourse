@@ -3,6 +3,7 @@ import os
 import numpy as np
 import smtplib
 import sys
+import scipy
 from sklearn import svm
 import os
 import re
@@ -19,6 +20,16 @@ from tqdm import tqdm
 from utils.datastructures import indiv_headline_body
 from utils.process_input_data import createAtfidfVectorizer
 import itertools
+from utils.process_input_data import doAllWordProcessing
+import os
+import re
+import nltk
+import numpy as np
+from sklearn import feature_extraction
+from tqdm import tqdm
+
+
+_wnl = nltk.WordNetLemmatizer()
 
 
 LABELS = ['agree', 'disagree', 'discuss', 'unrelated']
@@ -328,11 +339,12 @@ def return_related_data_only(data, unrelated_threshold):
 
     return related_matrix
 
-def return_related_data_only_my_format(data, unrelated_threshold):
+def split_cos_sim(data, unrelated_threshold):
 
     related_matrix=[]
+    un_related_matrix = []
 
-    print ("inside return_related_data_only_my_format")
+    print ("inside split_cos_sim")
 
     for indivDataTuple in data:
 
@@ -342,111 +354,278 @@ def return_related_data_only_my_format(data, unrelated_threshold):
 
         #calculate cosine similarity
         cos=cosine_sim(actualBody,headline)
+        #print(cos)
+        pred_int=3
         if(cos < unrelated_threshold ):
             pred_label="unrelated"
+            pred_int = 3
         else:
             pred_label="related"
+            pred_int=4
 
 
-
+        indivDataTuple.predicted_stance=pred_int
         #separate out teh 'related data' into another data set based on the predicted value
         #this will be fed as input for the 2nd classifier
         if(pred_label=="related"):
             related_matrix.append(indivDataTuple)
+        else:
+            un_related_matrix.append(indivDataTuple)
 
 
 
-    return related_matrix
+    return related_matrix,un_related_matrix
 
 
 def split_phase1_gold_data_related_unrelated(data):
-    #create a datasstructure of [headline, body, label]- matrix/2d array of strings.
-    #Eg:
-    #this guy related_rows will contain a list of headline_body_label_post_phase1_rows=[]
-    #each headline_body_label_post_phase1_rows=[] will be an array of strings
-    # [headline1, body1, stance1]
-    # [headline2, body2, stance2]
-    # [headline3, body3, stance3]
 
     related_matrix=[]
+    tuple_counter = 0
 
-    for s in data.stances:
-        #total_pairs=total_pairs+1
-        #for each headline, get the actual headline text
-        #print(s['Headline'])
-        headline = s['Headline']
-        #headline="a little bird"
+    #for stance, lstm_row in itertools.zip_longest(data.stances, ):
+    for stance in data.stances:
+
+        headline = stance['Headline']
 
         #get the corresponding body id for this headline
-        bodyid  = s['Body ID']
-        stance= s['Stance']
+        bodyid  = stance['Body ID']
+        stance= stance['Stance']
+
         #using that body id, retrieve the corresponding article
         actualBody=data.articles[bodyid]
 
+        obj_indiv_headline_body = indiv_headline_body()
+        obj_indiv_headline_body.body_id = bodyid
+        obj_indiv_headline_body.headline = headline
 
-        #separate out teh 'related data' into another data set based on the predicted value
-        #list of strings
-        #print(stance)
+        obj_indiv_headline_body.body = actualBody
+        obj_indiv_headline_body.unique_tuple_id = tuple_counter
+
+        #separate out teh 'related data' into another data set based on the golden value
+
+    #initiate all lstm values to 0. this will turn to 1 based on its gold stance
+        # obj_indiv_headline_body.agree_lstm = 0
+        # obj_indiv_headline_body.disagree_lstm = 0
+        # obj_indiv_headline_body.discuss_lstm = 0
+        # obj_indiv_headline_body.unrelated_lstm =0
+
         if(stance =="unrelated"):
             val=1
         else:
-            headline_body_label=[]
-            headline_body_label.append(headline)
-            headline_body_label.append(actualBody)
-            headline_body_label.append(stance)
-            #append this headline_body_label guy to the big matrix
-            related_matrix.append(headline_body_label)
+            gold_stance_int = 0
+            if (stance == "agree"):
+                gold_stance_int = 0
+               # obj_indiv_headline_body.agree_lstm = 1
+            else:
+                if (stance == "disagree"):
+                    gold_stance_int = 1
+                   # obj_indiv_headline_body.disagree_lstm = 1
+                else:
+                    if (stance == "discuss"):
+                        gold_stance_int = 2
+                       # obj_indiv_headline_body.discuss_lstm = 1
+                    else:
+                        #technically code should never reach here
+                        if (stance == "unrelated"):
+                            gold_stance_int = 3
+                          #  obj_indiv_headline_body.unrelated_lstm = 1
+
+            obj_indiv_headline_body.gold_stance = gold_stance_int
+            related_matrix.append(obj_indiv_headline_body)
+            tuple_counter = tuple_counter + 1
+
+            # headline_body_label=[]
+            # headline_body_label.append(headline)
+            # headline_body_label.append(actualBody)
+            # headline_body_label.append(stance)
+            # #append this headline_body_label guy to the big matrix
+            # related_matrix.append(headline_body_label)
 
 
 
     return related_matrix
 
-def convert_data_to_headline_body_stance_format(data):
-    #create a datasstructure of [headline, body, label]- matrix/2d array of strings.
-    #Eg:
-    #this guy related_rows will contain a list of headline_body_label_post_phase1_rows=[]
-    #each headline_body_label_post_phase1_rows=[] will be an array of strings
-    # [headline1, body1, stance1]
-    # [headline2, body2, stance2]
-    # [headline3, body3, stance3]
+#overloaded version which has lstm related feature vector generation.
+def split_phase1_gold_data_related_unrelated_lstm(data,lstm):
 
     related_matrix=[]
+    tuple_counter = 0
 
-    for s in data.stances:
-        #total_pairs=total_pairs+1
-        #for each headline, get the actual headline text
-        #print(s['Headline'])
-        headline = s['Headline']
-        #headline="a little bird"
+    #for stance, lstm_row in itertools.zip_longest(data.stances, ):
+    for stance in data.stances:
+
+        headline = stance['Headline']
 
         #get the corresponding body id for this headline
-        bodyid  = s['Body ID']
-        stance= s['Stance']
+        bodyid  = stance['Body ID']
+        stance= stance['Stance']
+
         #using that body id, retrieve the corresponding article
         actualBody=data.articles[bodyid]
 
+        obj_indiv_headline_body = indiv_headline_body()
+        obj_indiv_headline_body.body_id = bodyid
+        obj_indiv_headline_body.headline = headline
 
-        #separate out teh 'related data' into another data set based on the predicted value
-        #list of strings
-        print(stance)
+        obj_indiv_headline_body.body = actualBody
+        obj_indiv_headline_body.unique_tuple_id = tuple_counter
+
+        #separate out teh 'related data' into another data set based on the golden value
+
+    #initiate all lstm values to 0. this will turn to 1 based on its gold stance
+        obj_indiv_headline_body.agree_lstm = 0
+        obj_indiv_headline_body.disagree_lstm = 0
+        obj_indiv_headline_body.discuss_lstm = 0
+        obj_indiv_headline_body.unrelated_lstm =0
+
+        if(stance =="unrelated"):
+            val=1
+        else:
+            gold_stance_int = 0
+            if (stance == "agree"):
+                gold_stance_int = 0
+                obj_indiv_headline_body.agree_lstm = 1
+            else:
+                if (stance == "disagree"):
+                    gold_stance_int = 1
+                    obj_indiv_headline_body.disagree_lstm = 1
+                else:
+                    if (stance == "discuss"):
+                        gold_stance_int = 2
+                        obj_indiv_headline_body.discuss_lstm = 1
+                    else:
+                        #technically code should never reach here
+                        if (stance == "unrelated"):
+                            gold_stance_int = 3
+                            obj_indiv_headline_body.unrelated_lstm = 1
+
+            obj_indiv_headline_body.gold_stance = gold_stance_int
+            related_matrix.append(obj_indiv_headline_body)
+            tuple_counter = tuple_counter + 1
+
+            # headline_body_label=[]
+            # headline_body_label.append(headline)
+            # headline_body_label.append(actualBody)
+            # headline_body_label.append(stance)
+            # #append this headline_body_label guy to the big matrix
+            # related_matrix.append(headline_body_label)
+
+
+
+    return related_matrix
+
+
+def convert_data_to_headline_body_stance_format(data,lstm_output):
+    print("inside convert_data_to_headline_body_stance_format:")
+    print(" of rows in testing_data matrix is:" + str((data.stances)))
+    tuple_counter=0
+    data_my_format=[]
+
+    for stance, lstm_row in zip(data.stances, lstm_output):
+
+#uncomment this line below if you want to run for the longer list
+#        for stance,lstm_row  in itertools.zip_longest( data.stances, lstm_output):
+
+
+
+        headline = stance['Headline']
+        print(headline)
+
+        #get the corresponding body id for this headline
+        bodyid  = stance['Body ID']
+        stance= stance['Stance']
+
+        gold_stance_int = 0
+        if (stance == "agree"):
+            gold_stance_int = 0
+        else:
+            if (stance == "disagree"):
+                gold_stance_int = 1
+            else:
+                if (stance == "discuss"):
+                    gold_stance_int = 2
+                else:
+                    if (stance == "unrelated"):
+                        gold_stance_int = 3
+
+
+
+        #using that body id, retrieve the corresponding article
+        actualBody=data.articles[bodyid]
 
         obj_indiv_headline_body= indiv_headline_body()
         obj_indiv_headline_body.body_id=bodyid
         obj_indiv_headline_body.headline=headline
-        obj_indiv_headline_body.gold_stance = stance
+        obj_indiv_headline_body.gold_stance = gold_stance_int
         obj_indiv_headline_body.body = actualBody
+        obj_indiv_headline_body.unique_tuple_id=tuple_counter
+        obj_indiv_headline_body.agree_lstm = lstm_row[0]
+        obj_indiv_headline_body.disagree_lstm = lstm_row[1]
+        obj_indiv_headline_body.discuss_lstm = lstm_row[2]
+        obj_indiv_headline_body.unrelated_lstm = lstm_row[3]
+
+        tuple_counter=tuple_counter+1
 
 
-        # headline_body_label=[]
-        # headline_body_label.append(headline)
-        # headline_body_label.append(actualBody)
-        # headline_body_label.append(stance)
-        #append this headline_body_label guy to the big matrix
-        related_matrix.append(obj_indiv_headline_body)
+
+        data_my_format.append(obj_indiv_headline_body)
 
 
 
-    return related_matrix
+    return data_my_format
+
+#overloaded version which doesnt have lstm input
+def convert_data_to_headline_body_stance_format(data):
+    print("inside convert_data_to_headline_body_stance_format:")
+    print(" of rows in testing_data matrix is:" + str((data.stances)))
+    tuple_counter=0
+    data_my_format=[]
+
+    for stance in data.stances:
+
+        headline = stance['Headline']
+        print(headline)
+
+        #get the corresponding body id for this headline
+        bodyid  = stance['Body ID']
+        stance= stance['Stance']
+
+        gold_stance_int = 0
+        if (stance == "agree"):
+            gold_stance_int = 0
+        else:
+            if (stance == "disagree"):
+                gold_stance_int = 1
+            else:
+                if (stance == "discuss"):
+                    gold_stance_int = 2
+                else:
+                    if (stance == "unrelated"):
+                        gold_stance_int = 3
+
+
+
+        #using that body id, retrieve the corresponding article
+        actualBody=data.articles[bodyid]
+
+        obj_indiv_headline_body= indiv_headline_body()
+        obj_indiv_headline_body.body_id=bodyid
+        obj_indiv_headline_body.headline=headline
+        obj_indiv_headline_body.gold_stance = gold_stance_int
+        obj_indiv_headline_body.body = actualBody
+        obj_indiv_headline_body.unique_tuple_id=tuple_counter
+
+
+        tuple_counter=tuple_counter+1
+
+
+
+        data_my_format.append(obj_indiv_headline_body)
+
+
+
+    return data_my_format
+
 
 def convert_FNC_data_to_my_format(stances, data):
     #create a datasstructure of [headline, body, label]- matrix/2d array of strings.
@@ -583,7 +762,7 @@ def generate_features_testdata(stances,dataset,name,vectorizer_phase2):
         h.append(stance['Headline'])
         b.append(dataset.articles[stance['Body ID']])
 
-    #X_overlap = gen_or_load_feats(word_overlap_features, h, b, "features/overlap."+name+".npy")
+    #X_overlap = gen_or_load_feats(word_overlap_features_mithun, h, b, "features/overlap."+name+".npy")
     # X_refuting = gen_or_load_feats(refuting_features, h, b, "features/refuting."+name+".npy")
     # X_polarity = gen_or_load_feats(polarity_features, h, b, "features/polarity."+name+".npy")
     # X_hand = gen_or_load_feats(hand_features, h, b, "features/hand."+name+".npy")
@@ -607,7 +786,7 @@ def generate_features_uofa(stances,dataset,name,vectorizer_phase2):
         h.append(stance['Headline'])
         b.append(dataset.articles[stance['Body ID']])
 
-    X_overlap = gen_or_load_feats(word_overlap_features, h, b, "features/overlap."+name+".npy")
+    X_overlap = gen_or_load_feats(word_overlap_features_mithun, h, b, "features/overlap." + name + ".npy")
     # X_refuting = gen_or_load_feats(refuting_features, h, b, "features/refuting."+name+".npy")
     # X_polarity = gen_or_load_feats(polarity_features, h, b, "features/polarity."+name+".npy")
     # X_hand = gen_or_load_feats(hand_features, h, b, "features/hand."+name+".npy")
@@ -628,7 +807,88 @@ def clean(s):
     return " ".join(re.findall(r'\w+', s, flags=re.UNICODE)).lower()
 
 
-def phase2_training_tf(data,vectorizer_phase2):
+def phase2_training(data,vectorizer_phase2):
+    print("inside phase2_training_tf")
+    entire_corpus=[]
+    labels = np.array([[]])
+
+    word_overlap_vector = np.empty((0, 1), float)
+    hedging_words_vector = np.empty((0, 30), int)
+    refuting_value_matrix= np.empty((0, 16), int)
+
+    for obj_indiv_headline_body in data:
+
+        gold_stance = obj_indiv_headline_body.gold_stance
+        headline = obj_indiv_headline_body.headline
+        actualBody = obj_indiv_headline_body.body
+
+        headline_body_str = ""
+        headline_body_str = headline_body_str + headline + "." + actualBody
+        entire_corpus.append(headline_body_str)
+
+
+        word_overlap = word_overlap_features_mithun(headline, actualBody)
+        word_overlap_array = np.array([word_overlap])
+        word_overlap_vector = np.vstack([word_overlap_vector, word_overlap_array])
+
+
+        hedge_value = hedging_features_mithun(headline, actualBody)
+        hedge_value_array = np.array([hedge_value])
+        hedging_words_vector = np.vstack([hedging_words_vector, hedge_value_array])
+
+
+        refuting_value = refuting_features_mithun(headline, actualBody)
+        refuting_value_array = np.array([refuting_value])
+        refuting_value_matrix = np.vstack([refuting_value_matrix, refuting_value_array])
+
+
+        if (gold_stance == 0):
+            labels = np.append(labels, 0)
+        else:
+            if (gold_stance == 1):
+                labels = np.append(labels, 1)
+            else:
+                if(gold_stance==2):
+                    labels = np.append(labels, 2)
+
+    print("size of entire_corpus is:" + str(len(entire_corpus)))
+    print("going to vectorize teh related corpus :" )
+
+    tf_vector = vectorizer_phase2.fit_transform(entire_corpus)
+    features=vectorizer_phase2.get_feature_names()
+    writeToOutputFile("\n"+str(features),"featureNames_tfidf_vectorizer")
+
+    print("number of rows in label list is is:" + str(len(labels)))
+    print("going to feed this vectorized tf to a classifier:" )
+
+    print("shape of corpus post vectorization is:" + str(tf_vector.shape))
+    #print(tf_vector)
+    #tf_vector_np=np.asarray(tf_vector)
+    #print("shape of corpus post vectorization is:" + str(tf_vector_np.shape))
+    #print(tf_vector_np)
+
+    #print("number of rows in word_overlap_vector is:" + str(len(word_overlap_vector)))
+    print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
+
+    print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
+
+    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,refuting_value_matrix])
+    print("shape of combined_vector is:" + str(combined_vector.shape))
+
+
+    print(str(labels))
+    print("shape of labels is:" + str(labels.shape))
+
+
+    #feed the vectors to an an svm, with labels.
+    clf = svm.SVC(kernel='linear', C=1.0)
+    #feature_vector=feature_vector.reshape(-1, 1)
+    clf.fit(combined_vector, labels.ravel())
+    print("done training svm:" )
+
+    return clf,vectorizer_phase2
+
+def phase2_training_with_lstm(data,vectorizer_phase2):
     print("inside phase2_training_tf")
     entire_corpus=[]
     labels = np.array([[]])
@@ -637,46 +897,69 @@ def phase2_training_tf(data,vectorizer_phase2):
     # feature_vector=feature_vector.reshape(-1, 1)
     # labels = np.array([[]])
 
-    #just try creating a tf vector for one headline body combination.
-    # [headline1, body1, stance1]
+    #word_overlap_vector = np.array([])
+    word_overlap_vector = np.empty((0, 1), float)
+    hedging_words_vector = np.empty((0, 30), int)
+    #lstm_features_matrix = np.empty((0, 4), float)
+    refuting_value_matrix= np.empty((0, 16), int)
 
-    for tuple in data:
-        #print(str(tuple))
-        headline_body_str=""
-        headline = tuple[0]
-        headline_body_str=headline_body_str+headline+"."
-        #bodyid  = tuple['Body ID']
-        actualBody=tuple[1]
-        headline_body_str=headline_body_str+actualBody
+    for obj_indiv_headline_body in data:
+
+        gold_stance = obj_indiv_headline_body.gold_stance
+        headline = obj_indiv_headline_body.headline
+        actualBody = obj_indiv_headline_body.body
+
+        headline_body_str = ""
+        headline_body_str = headline_body_str + headline + "." + actualBody
         entire_corpus.append(headline_body_str)
 
-        stance= tuple[2]
+
+
+
+        word_overlap = word_overlap_features_mithun(headline, actualBody)
+        word_overlap_array = np.array([word_overlap])
+        word_overlap_vector = np.vstack([word_overlap_vector, word_overlap_array])
+
+
+        hedge_value = hedging_features_mithun(headline, actualBody)
+        hedge_value_array = np.array([hedge_value])
+        hedging_words_vector = np.vstack([hedging_words_vector, hedge_value_array])
+
+        #lstm_features_array = np.array([obj_indiv_headline_body.agree_lstm, obj_indiv_headline_body.disagree_lstm,
+         #                               obj_indiv_headline_body.discuss_lstm, obj_indiv_headline_body.unrelated_lstm])
+        #lstm_features_matrix = np.vstack([lstm_features_matrix, lstm_features_array])
+
+        refuting_value = refuting_features_mithun(headline, actualBody)
+        refuting_value_array = np.array([refuting_value])
+        refuting_value_matrix = np.vstack([refuting_value_matrix, refuting_value_array])
+
+
+
+        #print("gold_stance:"+str(gold_stance))
+       # print(str(lstm_features_array))
+
+
+        #stance= tuple[2]
+       # print(stance)
         #agree:0
         #disagree:1
         #discuss:2
         #unrelated:3
         #lets call agrees as label 1 and disagrees as label 2
-        if (stance == "agree"):
+        if (gold_stance == 0):
             labels = np.append(labels, 0)
         else:
-            if (stance == "disagree"):
+            if (gold_stance == 1):
                 labels = np.append(labels, 1)
             else:
-                if(stance=="discuss"):
+                if(gold_stance==2):
                     labels = np.append(labels, 2)
 
+    print("shape of  lstm_features_matrix is:" + str(lstm_features_matrix.shape))
+    #print("shape of  lstm_features_matrix is:" + str(lstm_features_matrix))
 
+    #sys.exit(1)
 
-
-    # #debug code to test printing the frist headline-body combination
-    # for indivlines in entire_corpus:
-    #     print(indivlines)
-    #     sys.exit(1)
-    #
-
-
-    #entire_corpus= ['The the the arachno centric trump and so if first document.','This is the and the of second second document.','And the third one.','Is this the first document?',]
-    #entire_corpus= ['higher, highest, automatic, automotive, automation, auto.','auto-bahn, autorickshaw']
     print("size of entire_corpus is:" + str(len(entire_corpus)))
     print("going to vectorize teh related corpus :" )
 
@@ -684,49 +967,163 @@ def phase2_training_tf(data,vectorizer_phase2):
     features=vectorizer_phase2.get_feature_names()
     writeToOutputFile("\n"+str(features),"featureNames_tfidf_vectorizer")
 
-    #testing using a count vectorizer to make sure what am donig is currect
-    # objCountVectorizer =createCountVectorizer()
-    # tf_vector = objCountVectorizer.fit_transform(entire_corpus)
-    # features=objCountVectorizer.get_feature_names()
-    # writeToOutputFile("\n"+str(features),"featureNames_count_vectorizer")
-
-
-
-
-    #
-
-    #print(tf_vector .toarray())
-    #sys.exit(1)
-    #tf_vector = vectorizer_phase2.calculate_tf_idf(entire_corpus)
-     #X = vectorizer.fit_transform(document)
-    #print(tf_vector)
-    print("number of rows in corpus post vectorization is:" + str(tf_vector.shape))
-
     print("number of rows in label list is is:" + str(len(labels)))
     print("going to feed this vectorized tf to a classifier:" )
 
+    print("shape of corpus post vectorization is:" + str(tf_vector.shape))
+    #print(tf_vector)
+    #tf_vector_np=np.asarray(tf_vector)
+    #print("shape of corpus post vectorization is:" + str(tf_vector_np.shape))
+    #print(tf_vector_np)
+
+    #print("number of rows in word_overlap_vector is:" + str(len(word_overlap_vector)))
+    print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
+
+    print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
+
+    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,lstm_features_matrix,refuting_value_matrix])
+    print("shape of combined_vector is:" + str(combined_vector.shape))
+
+
+    print(str(labels))
+    print("shape of labels is:" + str(labels.shape))
 
 
     #feed the vectors to an an svm, with labels.
     clf = svm.SVC(kernel='linear', C=1.0)
     #feature_vector=feature_vector.reshape(-1, 1)
-    clf.fit(tf_vector, labels.ravel())
+    clf.fit(combined_vector, labels.ravel())
     print("done training svm:" )
 
     return clf,vectorizer_phase2
 
-def word_overlap_features(headlines, bodies):
-    X = []
-    for i, (headline, body) in tqdm(enumerate(zip(headlines, bodies))):
-        clean_headline = clean(headline)
-        clean_body = clean(body)
-        clean_headline = get_tokenized_lemmas(clean_headline)
-        clean_body = get_tokenized_lemmas(clean_body)
-        features = [
-            len(set(clean_headline).intersection(clean_body)) / float(len(set(clean_headline).union(clean_body)))]
-        X.append(features)
-    return X
 
+def word_overlap_features_mithun(headline, body):
+
+    clean_headline=doAllWordProcessing(headline)
+    clean_body = doAllWordProcessing(body)
+    features = [
+        len(set(clean_headline).intersection(clean_body)) / float(len(set(clean_headline).union(clean_body)))]
+
+    return features
+
+def hedging_features_mithun(headline, body):
+
+
+
+    hedging_words = [
+        'allegedly',
+        'reportedli',
+      'argue',
+      'argument',
+      'believe',
+      'belief',
+      'conjecture',
+      'consider',
+      'hint',
+      'hypothesis',
+      'hypotheses',
+      'hypothesize',
+      'implication',
+      'imply',
+      'indicate',
+      'predict',
+      'prediction',
+      'previous',
+      'previously',
+      'proposal',
+      'propose',
+      'question',
+      'speculate',
+      'speculation',
+      'suggest',
+      'suspect',
+      'theorize',
+      'theory',
+      'think',
+      'whether'
+    ]
+
+    length_hedge=len(hedging_words)
+    #print(length_hedge)
+    hedging_body_vector = [0] * length_hedge
+
+
+    #print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
+    #print(hedging_body_vector)
+
+    clean_headline = doAllWordProcessing(headline)
+    clean_body = doAllWordProcessing(body)
+
+    for word in clean_body:
+        if word in hedging_words:
+            index=hedging_words.index(word)
+            #print(index)
+            hedging_body_vector[index]=1
+
+    #print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
+    #print(hedging_body_vector)
+    return hedging_body_vector
+
+def refuting_features_mithun(headline, body):
+
+    refuting_words = [
+        'fake',
+        'fraud',
+        'hoax',
+        'false',
+        'deny',
+        'denies',
+        'refute',
+        'not',
+        'despite',
+        'nope',
+        'doubt',
+        'doubts',
+        'bogus',
+        'debunk',
+        'pranks',
+        'retract'
+    ]
+
+    length_hedge=len(refuting_words)
+    refuting_body_vector = [0] * length_hedge
+
+    clean_headline = doAllWordProcessing(headline)
+    clean_body = doAllWordProcessing(body)
+
+    for word in clean_body:
+        if word in refuting_words:
+            index=refuting_words.index(word)
+            #print(index)
+            refuting_body_vector[index]=1
+
+
+    return refuting_body_vector
+
+
+def lstm_features(obj_data):
+
+    length_hedge=len(hedging_words)
+    #print(length_hedge)
+    hedging_body_vector = [0] * length_hedge
+
+
+    #print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
+    #print(hedging_body_vector)
+
+    clean_headline = doAllWordProcessing(headline)
+    clean_body = doAllWordProcessing(body)
+
+    for word in clean_body:
+        if word in hedging_words:
+            index=hedging_words.index(word)
+            #print(index)
+            hedging_body_vector[index]=1
+
+    #print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
+    #print(hedging_body_vector)
+    return hedging_body_vector
 
 def tf_features(headlines, bodies,vectorizer_phase2):
 
@@ -905,19 +1302,6 @@ def train_svm(my_features,labels):
     return clf,vectorizer_phase2
 
 
-def word_overlap_features(headlines, bodies):
-    X = []
-    for i, (headline, body) in tqdm(enumerate(zip(headlines, bodies))):
-        clean_headline = clean(headline)
-        clean_body = clean(body)
-        clean_headline = get_tokenized_lemmas(clean_headline)
-        clean_body = get_tokenized_lemmas(clean_body)
-        features = [
-            len(set(clean_headline).intersection(clean_body)) / float(len(set(clean_headline).union(clean_body)))]
-        X.append(features)
-    return X
-
-
 def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
     print("\ninside test_phase2_using_svm" )
@@ -959,7 +1343,7 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
         entire_corpus.append(headline_body_str)
 
         # add other feature vectors
-        word_overlap = word_overlap_features(headline,actualBody)
+        word_overlap = word_overlap_features_mithun(headline, actualBody)
         word_overlap_vector.append(word_overlap)
 
         #acccording to FNC guys, this is the mapping of classes to labels
@@ -1062,9 +1446,9 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
     return gold_int, pred_label_int
 
-def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase2_trained):
+def test_phase2(test_data, svm_phase2, vectorizer_phase2_trained):
 
-    print("\ninside test_phase2_using_svm" )
+    print("\ninside test_phase2" )
     list_obj_indiv_headline_body=[]
     list_gold_label=[]
     entire_corpus=[]
@@ -1076,13 +1460,16 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
     value0_int =0
     value3_int =3
 
-
-
+    #word_overlap_vector = []
+    #zero rows 1 column
+    word_overlap_vector = np.empty((0, 1), float)
+    hedging_words_vector = np.empty((0, 30), int)
+    lstm_features_matrix=np.empty((0, 4), float)
+    refuting_value_matrix = np.empty((0, 16), int)
 
     gold_predicted_combined=[[],[]]
 
     print("total number of rows in test_data:" +str(len(test_data)))
-
 
     gold_int=[]
     for obj_indiv_headline_body in test_data:
@@ -1095,6 +1482,22 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
         headline_body_str = headline_body_str + headline+"."+actualBody
         entire_corpus.append(headline_body_str)
 
+        # add other feature vectors
+        word_overlap = word_overlap_features_mithun(headline, actualBody)
+        word_overlap_array = np.array([word_overlap])
+        word_overlap_vector = np.vstack([word_overlap_vector, word_overlap_array])
+
+        hedge_value = hedging_features_mithun(headline, actualBody)
+        hedge_value_array = np.array([hedge_value])
+        hedging_words_vector = np.vstack([hedging_words_vector, hedge_value_array])
+
+        #lstm_features_array= np.array([obj_indiv_headline_body.agree_lstm,obj_indiv_headline_body.disagree_lstm,obj_indiv_headline_body.discuss_lstm,obj_indiv_headline_body.unrelated_lstm])
+        #lstm_features_matrix = np.vstack([lstm_features_matrix, lstm_features_array])
+        #print(str(lstm_features_array))
+
+        refuting_value = refuting_features_mithun(headline, actualBody)
+        refuting_value_array = np.array([refuting_value])
+        refuting_value_matrix = np.vstack([refuting_value_matrix, refuting_value_array])
 
         #acccording to FNC guys, this is the mapping of classes to labels
         #agree:0
@@ -1102,16 +1505,17 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
         #discuss:2
         #unrelated:3
 
-        if (gold_stance == "disagree"):
-            gold_int.append(value1_int)
-        else:
-            if (gold_stance == "agree"):
-                gold_int.append(value0_int)
-            else:
-                if(gold_stance=="discuss"):
-                    gold_int.append(value2_int)
-                else:
-                    gold_int.append(value3_int)
+        gold_int.append(gold_stance)
+        # if (gold_stance == 0):
+        #     gold_int.append(value1_int)
+        # else:
+        #     if (gold_stance == "agree"):
+        #         gold_int.append(value0_int)
+        #     else:
+        #         if(gold_stance=="discuss"):
+        #             gold_int.append(value2_int)
+        #         else:
+        #             gold_int.append(value3_int)
 
 
 
@@ -1122,17 +1526,45 @@ def test_phase2_using_svm_return_details(test_data, svm_phase2, vectorizer_phase
 
 
 
+
+
     tf_vector =  vectorizer_phase2_trained.transform(entire_corpus)
     #print(tf_vector)
     print("number of rows in vectorized entire_corpus is:" + str(tf_vector.shape))
     print("going to feed this vectorized tf to a classifier:" )
 
-#add the word overlap features
+    #add the word overlap features
+    #combined_vector = tf_vector + word_overlap_vector
+
+    #combined_vector=np.concatenate(tf_vector,word_overlap_vector)
+    print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
+    print("shape of  lstm_features_matrix is:" + str(lstm_features_matrix.shape))
+    print("actual  lstm_features_matrix is:" + str(lstm_features_matrix))
+    print("lstm_features_matrix.dtype=" + str(lstm_features_matrix.dtype))
+
+    print("refuting_value_matrix.dtype=" + str(refuting_value_matrix.dtype))
+
+    print("refuting_value_matrix is =" + str(refuting_value_matrix))
+
+
+    flstm_features_matrix=lstm_features_matrix.astype(float)
+    #int_refuting_value_matrix = refuting_value_matrix.astype(float)
+    #combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, flstm_features_matrix])
+
+
+    combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix])
+
+# sparse.hstack(X, A.astype(float))
+
+    print("shape of combined_vector is:" + str(combined_vector.shape))
+    # print("shape of  lstm_features_matrix is:" + str(flstm_features_matrix.shape))
+    # print("actual  lstm_features_matrix is:" + str(flstm_features_matrix))
+    # print("lstm_features_matrix.dtype=" + str(flstm_features_matrix.dtype))
 
 
     print("going to predict class")
     #give that vector to your svm for prediction.
-    pred_class=svm_phase2.predict(tf_vector)
+    pred_class=svm_phase2.predict(combined_vector)
     print("going to print pred_class")
     print("number of rows in pred_classis:" + str(pred_class.shape))
     #print(pred_class)
@@ -1230,16 +1662,6 @@ def sendEmail(nameOfRun,toaddr):
     server.quit()
     print("done sending email to:"+toaddr)
 
-import os
-import re
-import nltk
-import numpy as np
-from sklearn import feature_extraction
-from tqdm import tqdm
-
-
-_wnl = nltk.WordNetLemmatizer()
-
 
 def normalize_word(w):
     return _wnl.lemmatize(w).lower()
@@ -1270,57 +1692,6 @@ def gen_or_load_feats(feat_fn, headlines, bodies, feature_file):
 
 
 
-def word_overlap_features(headlines, bodies):
-    X = []
-    for i, (headline, body) in tqdm(enumerate(zip(headlines, bodies))):
-        clean_headline = clean(headline)
-        clean_body = clean(body)
-        clean_headline = get_tokenized_lemmas(clean_headline)
-        clean_body = get_tokenized_lemmas(clean_body)
-        features = [
-            len(set(clean_headline).intersection(clean_body)) / float(len(set(clean_headline).union(clean_body)))]
-        X.append(features)
-    return X
-
-
-def hedging_features(headlines, bodies):
-    _hedging_words = [
-      'argue',
-      'argument',
-      'believe',
-      'belief',
-      'conjecture',
-      'consider',
-      'hint',
-      'hypothesis',
-      'hypotheses',
-      'hypothesize',
-      'implication',
-      'imply',
-      'indicate',
-      'predict',
-      'prediction',
-      'previous',
-      'previously',
-      'proposal',
-      'propose',
-      'question',
-      'speculate',
-      'speculation',
-      'suggest',
-      'suspect',
-      'theorize',
-      'theory',
-      'think',
-      'whether'
-    ]
-    X = []
-    for i, (headline, body) in tqdm(enumerate(zip(headlines, bodies))):
-        clean_headline = clean(headline)
-        clean_headline = get_tokenized_lemmas(clean_headline)
-        features = [1 if word in clean_headline else 0 for word in _hedging_words]
-        X.append(features)
-    return X
 
 def refuting_features(headlines, bodies):
     _refuting_words = [
