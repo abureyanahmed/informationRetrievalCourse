@@ -5961,3 +5961,7 @@ Rumor Fatigue Sets In at False Alarms of Castro’s Death,2399,discuss,1
 #RIPFidel fuels false rumors of Cuban leader's death after another Fidel Castro dies,2399,discuss,1
 Confusion as Cuba’s Castro mourned instead of Kenya’s Fidel,2399,discuss,1
 Fidel Castro Dead? Yes, He Is… But The Cuban Leader Is Alive, Death Rumors Proven False,2399,discuss,1
+Rumor Fatigue Sets In at False Alarms of Castro’s Death,2399,discuss,1
+#RIPFidel fuels false rumors of Cuban leader's death after another Fidel Castro dies,2399,discuss,1
+Confusion as Cuba’s Castro mourned instead of Kenya’s Fidel,2399,discuss,1
+Fidel Castro Dead? Yes, He Is… But The Cuban Leader Is Alive, Death Rumors Proven False,2399,discuss,1

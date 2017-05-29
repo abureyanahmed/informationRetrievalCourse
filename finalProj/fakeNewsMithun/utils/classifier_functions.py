@@ -1668,7 +1668,7 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
 
    # combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix])
     combined_vector = scipy.sparse.hstack(
-        [tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix, hollywood_value_matrix])
+        [tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix, hollywood_value_matrix,terrorism_value_matrix])
 
     # sparse.hstack(X, A.astype(float))
 
