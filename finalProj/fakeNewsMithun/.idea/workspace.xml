@@ -15,11 +15,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="initializer_cs583.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="initializer_cs583.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/initializer_cs583.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="356" column="82" lean-forward="true" selection-start-line="356" selection-start-column="82" selection-end-line="356" selection-end-column="82" />
+            <state relative-caret-position="150">
+              <caret line="117" column="8" lean-forward="false" selection-start-line="117" selection-start-column="8" selection-end-line="117" selection-end-column="8" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -40,7 +40,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="classifier_functions.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="classifier_functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="139">
@@ -129,8 +129,8 @@
       <find>phase2_training</find>
       <find>WL</find>
       <find>Hollywood_features</find>
-      <find>vikas</find>
       <find>0.1</find>
+      <find>vikas</find>
     </findStrings>
     <replaceStrings>
       <replace>7435</replace>
@@ -150,8 +150,8 @@
         <option value="$PROJECT_DIR$/data/test_stances_csc483583_small.csv" />
         <option value="$PROJECT_DIR$/utils/datastructures.py" />
         <option value="$PROJECT_DIR$/utils/vikas_features.py" />
-        <option value="$PROJECT_DIR$/initializer_cs583.py" />
         <option value="$PROJECT_DIR$/utils/classifier_functions.py" />
+        <option value="$PROJECT_DIR$/initializer_cs583.py" />
       </list>
     </option>
   </component>
@@ -685,16 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/initializer_cs583.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="356" column="82" lean-forward="true" selection-start-line="356" selection-start-column="82" selection-end-line="356" selection-end-column="82" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="139">
@@ -707,6 +697,16 @@
             <element signature="e#27054#30022#0" expanded="false" />
             <element signature="e#34693#38697#0" expanded="false" />
             <element signature="e#39045#40241#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/initializer_cs583.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="117" column="8" lean-forward="false" selection-start-line="117" selection-start-column="8" selection-end-line="117" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
