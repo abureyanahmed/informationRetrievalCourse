@@ -912,6 +912,7 @@ def phase2_training_hollywood(data,vectorizer_phase2):
     hedging_words_vector = np.empty((0, 30), int)
     refuting_value_matrix= np.empty((0, 16), int)
     hollywood_value_matrix = np.empty((0, 39), int)
+    terrorism_value_matrix = np.empty((0, 81), int)
 
     for obj_indiv_headline_body in data:
 
@@ -941,6 +942,10 @@ def phase2_training_hollywood(data,vectorizer_phase2):
         hollywood_value = Hollywood_features(headline, actualBody)
         hollywood_value_value_array = np.array([hollywood_value])
         hollywood_value_matrix = np.vstack([hollywood_value_matrix, hollywood_value_value_array])
+
+        terrorism_value = Terrorism_features(headline, actualBody)
+        terrorism_value_value_array = np.array([terrorism_value])
+        terrorism_value_matrix = np.vstack([terrorism_value_matrix, terrorism_value_value_array])
 
 
         if (gold_stance == 0):
@@ -973,7 +978,8 @@ def phase2_training_hollywood(data,vectorizer_phase2):
 
     print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
 
-    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,refuting_value_matrix,hollywood_value_matrix])
+    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,refuting_value_matrix,
+                                            hollywood_value_matrix,terrorism_value_matrix])
     print("shape of combined_vector is:" + str(combined_vector.shape))
 
 
@@ -1569,6 +1575,7 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
     lstm_features_matrix=np.empty((0, 4), float)
     refuting_value_matrix = np.empty((0, 16), int)
     hollywood_value_matrix = np.empty((0, 39), int)
+    terrorism_value_matrix = np.empty((0, 81), int)
 
     gold_predicted_combined=[[],[]]
 
@@ -1601,6 +1608,10 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
         refuting_value = refuting_features_mithun(headline, actualBody)
         refuting_value_array = np.array([refuting_value])
         refuting_value_matrix = np.vstack([refuting_value_matrix, refuting_value_array])
+
+        terrorism_value = Terrorism_features(headline, actualBody)
+        terrorism_value_value_array = np.array([terrorism_value])
+        terrorism_value_matrix = np.vstack([terrorism_value_matrix, terrorism_value_value_array])
 
         #acccording to FNC guys, this is the mapping of classes to labels
         #agree:0
@@ -1990,7 +2001,7 @@ def gen_or_load_feats(feat_fn, headlines, bodies, feature_file):
 ################################################################################################
 ################################################################################################
 ###################### 8 CLASSES FOR DIFFERENT TYPES OF NEWSES
-def Terrorism_features(headlines, bodies):    ## Terrorism includes local crimes and gang crimes also.
+def Terrorism_features(headline, body):    ## Terrorism includes local crimes and gang crimes also.
     Relative_words1 = [
         'government','ISIS','president','election','terrorists','CBI','armed','bomb','bombed','leader','al-Qaeda','Islamic','War',
         'attack', 'gun','shots','police','authorities','reported','officials','militants', 'kidnapped','insurgents','Iraq', 'strikes',
@@ -2110,7 +2121,7 @@ def Religion_features(headlines, bodies):    ## Religion includes religion, cult
 
 ##################################################################################################
 ##################################################################################################
-def Politics_features(headlines, bodies):    ## Hollywood includes words related to movie, theater and sports
+def Politics_features(headline, body):    ## Hollywood includes words related to movie, theater and sports
     Relative_words1 = [
         'role','play','leader','countries','political','economic','spokesman','justice','Foreign', 'Secretary','alliance', 'presidency',
         'Duties','House','violence','spokesman','officials','Ministry','State','Defense','Council','member', 'Congress','Department',
