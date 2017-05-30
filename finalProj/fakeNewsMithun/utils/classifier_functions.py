@@ -12,7 +12,7 @@ import numpy as np
 from sklearn import feature_extraction
 from tqdm import tqdm
 import itertools
-from utils.fileWriter import writeToOutputFile
+from utils.file_functions import writeToOutputFile
 from utils.process_input_data import cosine_sim
 from utils.feature_engineering import refuting_features, polarity_features, hand_features,hedging_features
 from utils.feature_engineering import word_overlap_features
@@ -27,7 +27,21 @@ import nltk
 import numpy as np
 from sklearn import feature_extraction
 from tqdm import tqdm
+import os
+import re
+import nltk
+import numpy as np
+from sklearn import feature_extraction
+from tqdm import tqdm
 
+# from keras.layers.embeddings import Embedding
+# from keras.layers.recurrent import LSTM
+# from keras.layers.wrappers import Bidirectional
+#
+# ############# Using sentence similarity
+# from Sent_similarity import similarity
+
+#############
 
 _wnl = nltk.WordNetLemmatizer()
 
@@ -888,6 +902,115 @@ def phase2_training(data,vectorizer_phase2):
 
     return clf,vectorizer_phase2
 
+
+def phase2_training_hollywood(data,vectorizer_phase2):
+    print("inside phase2_training_tf")
+    entire_corpus=[]
+    labels = np.array([[]])
+
+    word_overlap_vector = np.empty((0, 1), float)
+    hedging_words_vector = np.empty((0, 30), int)
+    refuting_value_matrix= np.empty((0, 16), int)
+    hollywood_value_matrix = np.empty((0, 39), int)
+    terrorism_value_matrix = np.empty((0, 81), int)
+    health_value_matrix = np.empty((0, 38), int)
+    religion_value_matrix = np.empty((0, 14), int)
+    politics_value_matrix = np.empty((0, 36), int)
+
+    for obj_indiv_headline_body in data:
+
+        gold_stance = obj_indiv_headline_body.gold_stance
+        headline = obj_indiv_headline_body.headline
+        actualBody = obj_indiv_headline_body.body
+
+        headline_body_str = ""
+        headline_body_str = headline_body_str + headline + "." + actualBody
+        entire_corpus.append(headline_body_str)
+
+
+        word_overlap = word_overlap_features_mithun(headline, actualBody)
+        word_overlap_array = np.array([word_overlap])
+        word_overlap_vector = np.vstack([word_overlap_vector, word_overlap_array])
+
+
+        hedge_value = hedging_features_mithun(headline, actualBody)
+        hedge_value_array = np.array([hedge_value])
+        hedging_words_vector = np.vstack([hedging_words_vector, hedge_value_array])
+
+
+        refuting_value = refuting_features_mithun(headline, actualBody)
+        refuting_value_array = np.array([refuting_value])
+        refuting_value_matrix = np.vstack([refuting_value_matrix, refuting_value_array])
+
+        hollywood_value = Hollywood_features(headline, actualBody)
+        hollywood_value_value_array = np.array([hollywood_value])
+        hollywood_value_matrix = np.vstack([hollywood_value_matrix, hollywood_value_value_array])
+
+        terrorism_value = Terrorism_features(headline, actualBody)
+        terrorism_value_value_array = np.array([terrorism_value])
+        terrorism_value_matrix = np.vstack([terrorism_value_matrix, terrorism_value_value_array])
+
+        health_value = Health_features(headline, actualBody)
+        health_value_value_array = np.array([health_value])
+        health_value_matrix = np.vstack([health_value_matrix, health_value_value_array])
+
+        religion_value = Religion_features(headline, actualBody)
+        religion_value_value_array = np.array([religion_value])
+        religion_value_matrix = np.vstack([religion_value_matrix, religion_value_value_array])
+
+        politics_value = Politics_features(headline, actualBody)
+        politics_value_value_array = np.array([politics_value])
+        politics_value_matrix = np.vstack([politics_value_matrix, politics_value_value_array])
+
+        if (gold_stance == 0):
+            labels = np.append(labels, 0)
+        else:
+            if (gold_stance == 1):
+                labels = np.append(labels, 1)
+            else:
+                if(gold_stance==2):
+                    labels = np.append(labels, 2)
+
+    print("size of entire_corpus is:" + str(len(entire_corpus)))
+    print("going to vectorize teh related corpus :" )
+
+    tf_vector = vectorizer_phase2.fit_transform(entire_corpus)
+    features=vectorizer_phase2.get_feature_names()
+    writeToOutputFile("\n"+str(features),"featureNames_tfidf_vectorizer")
+
+    print("number of rows in label list is is:" + str(len(labels)))
+    print("going to feed this vectorized tf to a classifier:" )
+
+    print("shape of corpus post vectorization is:" + str(tf_vector.shape))
+    #print(tf_vector)
+    #tf_vector_np=np.asarray(tf_vector)
+    #print("shape of corpus post vectorization is:" + str(tf_vector_np.shape))
+    #print(tf_vector_np)
+
+    #print("number of rows in word_overlap_vector is:" + str(len(word_overlap_vector)))
+    print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
+
+    print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
+
+    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,refuting_value_matrix,
+                                            hollywood_value_matrix,terrorism_value_matrix,health_value_matrix,
+                                            religion_value_matrix,politics_value_matrix])
+    print("shape of combined_vector is:" + str(combined_vector.shape))
+
+
+    print(str(labels))
+    print("shape of labels is:" + str(labels.shape))
+
+
+    #feed the vectors to an an svm, with labels.
+    clf = svm.SVC(kernel='linear', C=1.0)
+    #feature_vector=feature_vector.reshape(-1, 1)
+    clf.fit(combined_vector, labels.ravel())
+    print("done training svm:" )
+
+    return clf,vectorizer_phase2
+
+
 def phase2_training_with_lstm(data,vectorizer_phase2):
     print("inside phase2_training_tf")
     entire_corpus=[]
@@ -1446,9 +1569,9 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
     return gold_int, pred_label_int
 
-def test_phase2(test_data, svm_phase2, vectorizer_phase2_trained):
+def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
 
-    print("\ninside test_phase2" )
+    print("\ninside test_phase2_tf_hollywood" )
     list_obj_indiv_headline_body=[]
     list_gold_label=[]
     entire_corpus=[]
@@ -1466,6 +1589,11 @@ def test_phase2(test_data, svm_phase2, vectorizer_phase2_trained):
     hedging_words_vector = np.empty((0, 30), int)
     lstm_features_matrix=np.empty((0, 4), float)
     refuting_value_matrix = np.empty((0, 16), int)
+    hollywood_value_matrix = np.empty((0, 39), int)
+    terrorism_value_matrix = np.empty((0, 81), int)
+    health_value_matrix = np.empty((0, 38), int)
+    religion_value_matrix = np.empty((0, 14), int)
+    politics_value_matrix = np.empty((0, 36), int)
 
     gold_predicted_combined=[[],[]]
 
@@ -1491,19 +1619,29 @@ def test_phase2(test_data, svm_phase2, vectorizer_phase2_trained):
         hedge_value_array = np.array([hedge_value])
         hedging_words_vector = np.vstack([hedging_words_vector, hedge_value_array])
 
-        #lstm_features_array= np.array([obj_indiv_headline_body.agree_lstm,obj_indiv_headline_body.disagree_lstm,obj_indiv_headline_body.discuss_lstm,obj_indiv_headline_body.unrelated_lstm])
-        #lstm_features_matrix = np.vstack([lstm_features_matrix, lstm_features_array])
-        #print(str(lstm_features_array))
+        hollywood_value = Hollywood_features(headline, actualBody)
+        hollywood_value_value_array = np.array([hollywood_value])
+        hollywood_value_matrix = np.vstack([hollywood_value_matrix, hollywood_value_value_array])
 
         refuting_value = refuting_features_mithun(headline, actualBody)
         refuting_value_array = np.array([refuting_value])
         refuting_value_matrix = np.vstack([refuting_value_matrix, refuting_value_array])
 
-        #acccording to FNC guys, this is the mapping of classes to labels
-        #agree:0
-        #disagree:1
-        #discuss:2
-        #unrelated:3
+        terrorism_value = Terrorism_features(headline, actualBody)
+        terrorism_value_value_array = np.array([terrorism_value])
+        terrorism_value_matrix = np.vstack([terrorism_value_matrix, terrorism_value_value_array])
+
+        health_value = Health_features(headline, actualBody)
+        health_value_value_array = np.array([health_value])
+        health_value_matrix = np.vstack([health_value_matrix, health_value_value_array])
+
+        religion_value = Religion_features(headline, actualBody)
+        religion_value_value_array = np.array([religion_value])
+        religion_value_matrix = np.vstack([religion_value_matrix, religion_value_value_array])
+
+        politics_value = Politics_features(headline, actualBody)
+        politics_value_value_array = np.array([politics_value])
+        politics_value_matrix = np.vstack([politics_value_matrix, politics_value_value_array])
 
         gold_int.append(gold_stance)
         # if (gold_stance == 0):
@@ -1552,9 +1690,12 @@ def test_phase2(test_data, svm_phase2, vectorizer_phase2_trained):
     #combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, flstm_features_matrix])
 
 
-    combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix])
+   # combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix])
+    combined_vector = scipy.sparse.hstack(
+        [tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix,
+         hollywood_value_matrix,terrorism_value_matrix,health_value_matrix,religion_value_matrix,politics_value_matrix])
 
-# sparse.hstack(X, A.astype(float))
+    # sparse.hstack(X, A.astype(float))
 
     print("shape of combined_vector is:" + str(combined_vector.shape))
     # print("shape of  lstm_features_matrix is:" + str(flstm_features_matrix.shape))
@@ -1849,3 +1990,189 @@ def hand_features(headlines, bodies):
 
 
     return X
+
+
+
+def normalize_word(w):
+    return _wnl.lemmatize(w).lower()
+    # return w
+
+
+def get_tokenized_lemmas(s):
+    return [normalize_word(t) for t in nltk.word_tokenize(s)]
+    # return s
+
+
+def clean(s):
+    # Cleans a string: Lowercasing, trimming, removing non-alphanumeric
+
+    return " ".join(re.findall(r'\w+', s, flags=re.UNICODE)).lower()
+
+
+def remove_stopwords(l):
+    # Removes stopwords from a list of tokens
+    return [w for w in l if w not in feature_extraction.text.ENGLISH_STOP_WORDS]
+    # return l
+
+
+def gen_or_load_feats(feat_fn, headlines, bodies, feature_file):
+    if not os.path.isfile(feature_file):
+        feats = feat_fn(headlines, bodies)
+        np.save(feature_file, feats)
+
+    return np.load(feature_file)
+
+
+################################################################################################
+################################################################################################
+###################### 8 CLASSES FOR DIFFERENT TYPES OF NEWSES
+def Terrorism_features(headline, body):    ## Terrorism includes local crimes and gang crimes also.
+    Relative_words1 = [
+        'government','ISIS','president','election','terrorists','CBI','armed','bomb','bombed','leader','al-Qaeda','Islamic','War',
+        'attack', 'gun','shots','police','authorities','reported','officials','militants', 'kidnapped','insurgents','Iraq', 'strikes',
+        'soldiers','civilians','fighting','ceasefire','army','officer','killed','rebel','battles','forces','military','FBI','Syria',
+        'killing', 'airstrikes','abducting','clashes','beheading','civil','bloodshed','rescue','mission','crime','security','protest',
+        'brutal','dead','shot','security','troops','graves','suspects','victims','patrol','jihadists','fighters','intelligence',
+        'prisoners','criminal','bloody','explosion','blast','muslim','Syria','violence','victims','territory','bombardment',
+        'Border', 'Protection','Marine','strategy','Prison','weapons','shootouts','gunmen'
+    ]
+    Relative_words = [normalize_word(w1) for w1 in Relative_words1]
+    length_Terror = len(Relative_words)
+    Terror_body_vector = [0] * length_Terror
+
+    clean_headline = doAllWordProcessing(headline)
+    clean_body = doAllWordProcessing(body)
+    for word in clean_body:
+        if word in Relative_words:
+            index=Relative_words.index(word)
+            #print(index)
+            Terror_body_vector[index]+=1
+    for word in clean_headline:
+        if word in Relative_words:
+           index = Relative_words.index(word)
+           Terror_body_vector[index] += 1
+    #print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
+    #print(hedging_body_vector)
+    return Terror_body_vector
+
+##################################################################################################
+##################################################################################################
+
+def Hollywood_features(headline, body):    ## Hollywood includes words related to movie, theater and sports
+    Relative_words1 = [
+        'movie','star','actor','actoress','director','film','role','play','performance','TV','Celebrity','Post','fans','theater',
+        'social', 'media','screenplay', 'production','starred', 'show','Oscar','awards','Filming','dated','music','camera','playing',
+        'episodes','television','playing','role','cast','acting','followers','Entertainment','upcoming','casting','biopic','Trailer'
+
+
+    ]
+    Relative_words = [normalize_word(w1) for w1 in Relative_words1]
+    length_Holly = len(Relative_words)
+
+    Holly_body_vector = [0] * length_Holly
+
+    clean_headline = doAllWordProcessing(headline)
+    clean_body = doAllWordProcessing(body)
+    for word in clean_body:
+        if word in Relative_words:
+            index = Relative_words.index(word)
+            # print(index)
+            Holly_body_vector[index] += 1
+    for word in clean_headline:
+        if word in Relative_words:
+            index = Relative_words.index(word)
+            Holly_body_vector[index] += 1
+    # print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
+    # print(hedging_body_vector)
+    return Holly_body_vector
+
+
+##################################################################################################
+##################################################################################################
+
+def Health_features(headline, body):    ## Health includes health, epedemics, and other health related news..
+    Relative_words1 = [
+        'doctors','cancer','kidney','Ebola','Health','infection','vomiting', 'diarrhoea', 'bleeding','illnesses','malaria',
+        'Fever', 'fractured','operation','disease','misdiagnosed','diagnosed','Ministry','DNA', 'tests','drugs','Medical',
+        'treatment','treated','epidemic', 'disease', 'Medics','suffering','Clinic','Hospital','surgery','sick','symptoms',
+        'patient','virus','cure','spread','spreading'
+    ]
+    Relative_words = [normalize_word(w1) for w1 in Relative_words1]
+    length_Health = len(Relative_words)
+
+    Health_body_vector = [0] * length_Health
+
+    clean_headline = doAllWordProcessing(headline)
+    clean_body = doAllWordProcessing(body)
+    for word in clean_body:
+        if word in Relative_words:
+            index = Relative_words.index(word)
+            # print(index)
+            Health_body_vector[index] += 1
+    for word in clean_headline:
+        if word in Relative_words:
+            index = Relative_words.index(word)
+            Health_body_vector[index] += 1
+    # print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
+    # print(hedging_body_vector)
+    return Health_body_vector
+
+##################################################################################################
+##################################################################################################
+
+def Religion_features(headline, body):    ## Religion includes religion, culture. ## This also includes other remianing news.
+    Relative_words1 = [
+        'Christians','catholic','Church','Game','company','product','Olympic','Medal','sport','revenue','earnings','product',
+        'launch','match'
+    ]
+    Relative_words = [normalize_word(w1) for w1 in Relative_words1]
+    length_Religion = len(Relative_words)
+    Religion_body_vector = [0] * length_Religion
+
+    clean_headline = doAllWordProcessing(headline)
+    clean_body = doAllWordProcessing(body)
+    for word in clean_body:
+        if word in Relative_words:
+            index = Relative_words.index(word)
+            # print(index)
+            Religion_body_vector[index] += 1
+    for word in clean_headline:
+        if word in Relative_words:
+            index = Relative_words.index(word)
+            Religion_body_vector[index] += 1
+    # print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
+    # print(hedging_body_vector)
+    return Religion_body_vector
+
+
+##################################################################################################
+##################################################################################################
+def Politics_features(headline, body):    ## Hollywood includes words related to movie, theater and sports
+    Relative_words1 = [
+        'role','play','leader','countries','political','economic','spokesman','justice','Foreign', 'Secretary','alliance', 'presidency',
+        'Duties','House','violence','spokesman','officials','Ministry','State','Defense','Council','member', 'Congress','Department',
+        'plan','international','journalist','Republican', 'lawmakers','policies','Development','Minister','Public','deputy','legislators',
+        'politician'
+
+    ]
+    Relative_words = [normalize_word(w1) for w1 in Relative_words1]
+    length_Politics = len(Relative_words)
+    Politics_body_vector = [0] * length_Politics
+
+    clean_headline = doAllWordProcessing(headline)
+    clean_body = doAllWordProcessing(body)
+    for word in clean_body:
+        if word in Relative_words:
+            index = Relative_words.index(word)
+            # print(index)
+            Politics_body_vector[index] += 1
+    for word in clean_headline:
+        if word in Relative_words:
+            index = Relative_words.index(word)
+            Politics_body_vector[index] += 1
+    # print("shape of hedging_body_vector is" + str(len(hedging_body_vector)))
+    # print(hedging_body_vector)
+    return Politics_body_vector
+
+##################################################################################################
+##################################################################################################
