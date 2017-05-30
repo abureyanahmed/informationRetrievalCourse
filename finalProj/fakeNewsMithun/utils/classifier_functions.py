@@ -12,7 +12,7 @@ import numpy as np
 from sklearn import feature_extraction
 from tqdm import tqdm
 import itertools
-from utils.fileWriter import writeToOutputFile
+from utils.file_functions import writeToOutputFile
 from utils.process_input_data import cosine_sim
 from utils.feature_engineering import refuting_features, polarity_features, hand_features,hedging_features
 from utils.feature_engineering import word_overlap_features

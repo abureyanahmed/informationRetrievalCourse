@@ -3,6 +3,7 @@ import nltk, string
 import os
 import sys;
 import utils;
+import csv;
 import numpy as np
 from utils.read_data import load_training_DataSet
 from utils.classifier_functions import test_phase2_using_svm
@@ -27,8 +28,8 @@ import itertools
 from utils.process_input_data import doAllWordProcessing
 from sklearn.feature_extraction.text import CountVectorizer
 from utils.score import report_score
-from utils.fileWriter import writeToOutputFile
-from utils.fileWriter import appendToFile
+from utils.file_functions import writeToOutputFile
+from utils.file_functions import appendToFile
 from utils.process_input_data import my_lemmatize
 from utils.read_data import read_lstm_data
 
@@ -64,6 +65,7 @@ toaddr="mithunpaul08@gmail.com"
 #toaddr="mithunpaul@email.arizona.edu"
 
 start_time = time.time()
+writeToOutputFile("start time:"+str(start_time), "logfile")
 
 #or if its just 2 classes
 #unrelated:0
@@ -114,19 +116,19 @@ if __name__ == "__main__":
         #training_data = utils.read_data.load_training_DataSet(cwd)
 
         #load the dataset which has only 2 entries
-        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
-        testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv","test_stances_csc483583.csv")
+        #training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
+        #testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv","test_stances_csc483583.csv")
 
         #lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
 
 
-        #training_data = utils.read_data.load_training_DataSet(cwd, "train_bodies_small.csv", "train_stances_csc483583_small.csv")
-        #testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv","test_stances_csc483583_small.csv")
+        training_data = utils.read_data.load_training_DataSet(cwd, "train_bodies_small.csv", "train_stances_csc483583_small.csv")
+        testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv","test_stances_csc483583_small.csv")
 
         #in validation phase, we test against the training data itself.
         #cwd = os.getcwd()
 
-        coma = ","
+        #coma = ","
 
 
 
@@ -376,7 +378,14 @@ if __name__ == "__main__":
             actual= gold_phase1_only_unrelated + actual_phase2
             predicted=predicted_phase1_only_unrelated+ predicted_phase2
 
+            appendToFile(str("\nGold Labels:"), "logfile")
+            appendToFile(str(actual), "logfile")
+            appendToFile(str("\nPredicted Labels:"), "logfile")
+            appendToFile(str(predicted), "logfile")
+
             final_score=report_score([LABELS[e] for e in actual],[LABELS[e] for e in predicted])
+
+            appendToFile(str(final_score), "logfile")
 
 
 
@@ -400,15 +409,24 @@ if __name__ == "__main__":
                                     pred_label = "unrelated"
 
 
-                appendToFile("\n"+str(eachTuple.headline) + coma, "enrique_format")
-                appendToFile(str(eachTuple.body_id) + coma, "enrique_format")
-                appendToFile(str(pred_label)+ coma, "enrique_format")
-                appendToFile(str(eachTuple.confidence), "enrique_format")
+
+                #appendToFile("\n"+str(eachTuple.headline) + coma, "enrique_format")
+                field_names = ['Headline', 'Body ID', 'Stance']
+                rows = [eachTuple.headline, eachTuple.body_id, pred_label, eachTuple.confidence]
+                with open('my_output.csv', 'a+', encoding='utf8') as f:
+                    writer = csv.DictWriter(f, fieldnames=field_names)
+                    writer.writeheader()
+                    writer.writerows(rows)
+
+                # appendToFile(str(eachTuple.body_id) + coma, "enrique_format")
+                # appendToFile(str(pred_label)+ coma, "enrique_format")
+                # appendToFile(str(eachTuple.confidence), "enrique_format")
 
 
 
         elapsed_time = time.time() - start_time
-        print("time taken:" + str(elapsed_time))
+        #print("time taken:" + str(elapsed_time))
+        appendToFile("time taken:" + str(elapsed_time), "logfile")
         sendEmail("entire program", toaddr)
 
 
