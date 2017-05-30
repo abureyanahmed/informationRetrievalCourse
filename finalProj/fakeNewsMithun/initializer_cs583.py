@@ -4,6 +4,7 @@ import os
 import sys;
 import utils;
 import csv;
+import collections
 import numpy as np
 from utils.read_data import load_training_DataSet
 from utils.classifier_functions import test_phase2_using_svm
@@ -128,7 +129,7 @@ if __name__ == "__main__":
         #in validation phase, we test against the training data itself.
         #cwd = os.getcwd()
 
-        #coma = ","
+        coma = ","
 
 
 
@@ -315,12 +316,17 @@ if __name__ == "__main__":
             # print("actual value of in predicted_phase1_only_unrelated  is:" + str((predicted_phase1_only_unrelated[666])))
 
             #overwrite the file with an empty line if the file already exists
-            # writeToOutputFile("\n", "enrique_format")
-            # for unr in un_related_matrix:
-            #     appendToFile("\n" + str(unr.headline) + coma, "enrique_format")
-            #     appendToFile(str(unr.body_id) + coma, "enrique_format")
-            #     appendToFile(str(unr.pred_label) + coma, "enrique_format")
-            #     appendToFile(str(unr.confidence), "enrique_format")
+            #writeToOutputFile("\n", "enrique_format")
+
+            #field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
+            writeToOutputFile("\n"+"Headline,Body ID,Stance,Confidence", "enrique_format")
+
+
+            for unr in un_related_matrix:
+                appendToFile("\n" + str(unr.headline) + coma, "enrique_format")
+                appendToFile(str(unr.body_id) + coma, "enrique_format")
+                appendToFile(str(unr.predicted_stance) + coma, "enrique_format")
+                appendToFile(str(unr.confidence), "enrique_format")
 
             print("total number of rows in testdata_related_only matrix is:" + str(len(testdata_related_only)))
 
@@ -407,22 +413,47 @@ if __name__ == "__main__":
                             else:
                                 if (eachTuple.predicted_stance == 3):
                                     pred_label = "unrelated"
-
-
-
-                #appendToFile("\n"+str(eachTuple.headline) + coma, "enrique_format")
-                field_names = ['Headline', 'Body ID', 'Stance']
-                rows = [eachTuple.headline, eachTuple.body_id, pred_label, eachTuple.confidence]
+                mydict = collections.OrderedDict()
+                mydict['Headline'] = eachTuple.headline
+                mydict['Body ID'] = eachTuple.body_id
+                mydict['Stance'] = pred_label
+                mydict['Confidence'] = eachTuple.confidence
                 with open('my_output.csv', 'a+', encoding='utf8') as f:
-                    writer = csv.DictWriter(f, fieldnames=field_names)
-                    writer.writeheader()
-                    writer.writerows(rows)
-
-                # appendToFile(str(eachTuple.body_id) + coma, "enrique_format")
-                # appendToFile(str(pred_label)+ coma, "enrique_format")
-                # appendToFile(str(eachTuple.confidence), "enrique_format")
+                    field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
+                    writer = csv.DictWriter(f,field_names)
+                    for key,value in mydict.items():
+                       # writer.writerow(value)
+                        writer.writerow([key, value])
 
 
+                # appendToFile("\n" + str(unr.headline) + ",", "enrique_format")
+                # appendToFile(str(unr.body_id) + ",", "enrique_format")
+                # appendToFile(str(pred_label) + ",", "enrique_format")
+                # appendToFile(str(unr.confidence), "enrique_format")
+
+                # d['b'] = 'B'
+                # d['c'] = 'C'
+                # d['d'] = 'D'
+                # d['e'] = 'E'
+                #
+                # mydict = {'Headline':unr.headline , 'Body ID': unr.body_id, 'Stance': pred_label, 'Confidence': unr.confidence}
+
+            # with open('enrique_format.txt', encoding='utf8') as f:
+            #     reader = csv.DictReader(f)
+            #     rows = [r for r in reader]
+            #
+            # print(rows[0])
+            # #print(rows)
+            # sys.exit(1)
+            #     print(mydict)
+            #     sys.exit(1)
+            #     with open('my_output.csv', 'a+', encoding='utf8') as f:
+            #         field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
+            #         writer = csv.DictWriter(f,field_names)
+            #         for value in mydict.items():
+            #             writer.writerow(value)
+                    # writer.writeheader()
+                    # writer.writerows(rows)
 
         elapsed_time = time.time() - start_time
         #print("time taken:" + str(elapsed_time))
