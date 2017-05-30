@@ -33,6 +33,7 @@ from utils.file_functions import writeToOutputFile
 from utils.file_functions import appendToFile
 from utils.process_input_data import my_lemmatize
 from utils.read_data import read_lstm_data
+from utils.read_data import load_testing_DataSet
 
 import time
 
@@ -116,15 +117,16 @@ if __name__ == "__main__":
         #load their huge training data set
         #training_data = utils.read_data.load_training_DataSet(cwd)
 
-        #load the dataset which has only 2 entries
-        #training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
+
+        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
+        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","test_stances_csc483583.csv")
         #testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv","test_stances_csc483583.csv")
 
         #lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
 
-
-        training_data = utils.read_data.load_training_DataSet(cwd, "train_bodies_small.csv", "train_stances_csc483583_small.csv")
-        testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv","test_stances_csc483583_small.csv")
+        #load the smaller dataset which has only 2 entries
+        #training_data = utils.read_data.load_training_DataSet(cwd, "train_bodies_small.csv", "train_stances_csc483583_small.csv")
+        #testing_data = load_testing_DataSet(cwd, "train_bodies_small.csv","test_stances_csc483583_small.csv")
 
         #in validation phase, we test against the training data itself.
         #cwd = os.getcwd()
@@ -394,6 +396,10 @@ if __name__ == "__main__":
             appendToFile(str(final_score), "logfile")
 
 
+            with open('my_output.csv', 'w', encoding='utf8') as f:
+                field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
+                spamwriter = csv.writer(f, delimiter=',')
+                spamwriter.writerow(field_names)
 
 
             for eachTuple in post_prediction_data:
@@ -418,42 +424,13 @@ if __name__ == "__main__":
                 mydict['Body ID'] = eachTuple.body_id
                 mydict['Stance'] = pred_label
                 mydict['Confidence'] = eachTuple.confidence
+
                 with open('my_output.csv', 'a+', encoding='utf8') as f:
                     field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
-                    writer = csv.DictWriter(f,field_names)
-                    for key,value in mydict.items():
-                       # writer.writerow(value)
-                        writer.writerow([key, value])
+                    field_values=[eachTuple.headline,eachTuple.body_id,pred_label,eachTuple.confidence]
+                    spamwriter = csv.writer(f, delimiter=',')
+                    spamwriter.writerow(field_values)
 
-
-                # appendToFile("\n" + str(unr.headline) + ",", "enrique_format")
-                # appendToFile(str(unr.body_id) + ",", "enrique_format")
-                # appendToFile(str(pred_label) + ",", "enrique_format")
-                # appendToFile(str(unr.confidence), "enrique_format")
-
-                # d['b'] = 'B'
-                # d['c'] = 'C'
-                # d['d'] = 'D'
-                # d['e'] = 'E'
-                #
-                # mydict = {'Headline':unr.headline , 'Body ID': unr.body_id, 'Stance': pred_label, 'Confidence': unr.confidence}
-
-            # with open('enrique_format.txt', encoding='utf8') as f:
-            #     reader = csv.DictReader(f)
-            #     rows = [r for r in reader]
-            #
-            # print(rows[0])
-            # #print(rows)
-            # sys.exit(1)
-            #     print(mydict)
-            #     sys.exit(1)
-            #     with open('my_output.csv', 'a+', encoding='utf8') as f:
-            #         field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
-            #         writer = csv.DictWriter(f,field_names)
-            #         for value in mydict.items():
-            #             writer.writerow(value)
-                    # writer.writeheader()
-                    # writer.writerows(rows)
 
         elapsed_time = time.time() - start_time
         #print("time taken:" + str(elapsed_time))
