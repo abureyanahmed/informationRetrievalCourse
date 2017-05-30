@@ -3,18 +3,21 @@ import nltk, string
 import os
 import sys;
 import utils;
+import csv;
+import collections
 import numpy as np
 from utils.read_data import load_training_DataSet
 from utils.classifier_functions import test_phase2_using_svm
 from utils.classifier_functions import train_for_agree_disagree
 from utils.classifier_functions import phase2_training
+from utils.classifier_functions import phase2_training_hollywood
 from utils.classifier_functions import calculateCosSimilarity
 from utils.classifier_functions import calculate_precision
 from utils.classifier_functions import return_related_data_only
 from utils.classifier_functions import split_cos_sim
 from utils.classifier_functions import split_phase1_gold_data_related_unrelated
 from utils.classifier_functions import test_phase2_using_svm
-from utils.classifier_functions import test_phase2
+from utils.classifier_functions import test_phase2_tf_hollywood
 from utils.classifier_functions import predict_data_phase1
 from utils.classifier_functions import convert_data_to_headline_body_stance_format
 from utils.classifier_functions import predict_data_phase1_return_only_unrelated
@@ -26,10 +29,12 @@ import itertools
 from utils.process_input_data import doAllWordProcessing
 from sklearn.feature_extraction.text import CountVectorizer
 from utils.score import report_score
-from utils.fileWriter import writeToOutputFile
-from utils.fileWriter import appendToFile
+from utils.file_functions import writeToOutputFile
+from utils.file_functions import appendToFile
 from utils.process_input_data import my_lemmatize
 from utils.read_data import read_lstm_data
+from utils.read_data import load_testing_DataSet
+
 import time
 
 
@@ -62,6 +67,7 @@ toaddr="mithunpaul08@gmail.com"
 #toaddr="mithunpaul@email.arizona.edu"
 
 start_time = time.time()
+writeToOutputFile("start time:"+str(start_time), "logfile")
 
 #or if its just 2 classes
 #unrelated:0
@@ -111,15 +117,16 @@ if __name__ == "__main__":
         #load their huge training data set
         #training_data = utils.read_data.load_training_DataSet(cwd)
 
-        #load the dataset which has only 2 entries
-        #training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
-        #testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies.csv","test_stances_csc483583.csv")
+
+        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
+        testing_data = utils.read_data.load_testing_DataSet(cwd,"train_bodies.csv","test_stances_csc483583.csv")
+
 
         #lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
 
-
-        training_data = utils.read_data.load_training_DataSet(cwd, "train_bodies_small.csv", "train_stances_csc483583_small.csv")
-        testing_data = utils.read_data.load_testing_DataSet(cwd, "train_bodies_small.csv","test_stances_csc483583_small.csv")
+        #load the smaller dataset which has only 2 entries
+        # training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583_small.csv")
+        # testing_data = utils.read_data.load_testing_DataSet(cwd,"train_bodies.csv","test_stances_csc483583_small.csv")
 
         #in validation phase, we test against the training data itself.
         #cwd = os.getcwd()
@@ -206,8 +213,13 @@ if __name__ == "__main__":
 
             #this training has to be done on the gold training data split based on stance= related
            # svm_trained_phase2,vectorizer_phase2_trained=phase2_training_with_lstm(related_data_gold_converted,vectorizer_phase2)
-            svm_trained_phase2, vectorizer_phase2_trained = phase2_training(related_data_gold_converted,
-                                                                                      vectorizer_phase2)
+           #  svm_trained_phase2, vectorizer_phase2_trained = phase2_training(related_data_gold_converted,
+           #                                                                            vectorizer_phase2)
+
+            svm_trained_phase2, vectorizer_phase2_trained = phase2_training_hollywood(related_data_gold_converted,
+                                                                            vectorizer_phase2)
+
+
 
 
             #sys.exit(1)
@@ -306,12 +318,17 @@ if __name__ == "__main__":
             # print("actual value of in predicted_phase1_only_unrelated  is:" + str((predicted_phase1_only_unrelated[666])))
 
             #overwrite the file with an empty line if the file already exists
-            # writeToOutputFile("\n", "enrique_format")
-            # for unr in un_related_matrix:
-            #     appendToFile("\n" + str(unr.headline) + coma, "enrique_format")
-            #     appendToFile(str(unr.body_id) + coma, "enrique_format")
-            #     appendToFile(str(unr.pred_label) + coma, "enrique_format")
-            #     appendToFile(str(unr.confidence), "enrique_format")
+            #writeToOutputFile("\n", "enrique_format")
+
+            #field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
+            writeToOutputFile("\n"+"Headline,Body ID,Stance,Confidence", "enrique_format")
+
+
+            for unr in un_related_matrix:
+                appendToFile("\n" + str(unr.headline) + coma, "enrique_format")
+                appendToFile(str(unr.body_id) + coma, "enrique_format")
+                appendToFile(str(unr.predicted_stance) + coma, "enrique_format")
+                appendToFile(str(unr.confidence), "enrique_format")
 
             print("total number of rows in testdata_related_only matrix is:" + str(len(testdata_related_only)))
 
@@ -344,12 +361,12 @@ if __name__ == "__main__":
             #print("number of columns in testing data after conversion is:"+str(len(testdata_related_only[0])))
             print ("done loading testing data. going to test agree-disagree-discuss using the trained svm ")
            # actual_phase2, predicted_phase2  = test_phase2_using_svm(testdata_related_only, svm_trained_phase2, vectorizer_phase2_trained)
-           # actual_phase2, predicted_phase2 = test_phase2(testdata_related_only, svm_trained_phase2,
+           # actual_phase2, predicted_phase2 = test_phase2_tf_hollywood(testdata_related_only, svm_trained_phase2,
             #                                                        vectorizer_phase2_trained)
 
-            actual_phase2, predicted_phase2, post_prediction_data = test_phase2(testdata_related_only,
-                                                                                svm_trained_phase2,
-                                                                                vectorizer_phase2_trained)
+            actual_phase2, predicted_phase2, post_prediction_data = test_phase2_tf_hollywood(testdata_related_only,
+                                                                                             svm_trained_phase2,
+                                                                                             vectorizer_phase2_trained)
 
             print ("done classifying testing data for phase 2. going to find score ")
 
@@ -369,9 +386,20 @@ if __name__ == "__main__":
             actual= gold_phase1_only_unrelated + actual_phase2
             predicted=predicted_phase1_only_unrelated+ predicted_phase2
 
+            appendToFile(str("\nGold Labels:"), "logfile")
+            appendToFile(str(actual), "logfile")
+            appendToFile(str("\nPredicted Labels:"), "logfile")
+            appendToFile(str(predicted), "logfile")
+
             final_score=report_score([LABELS[e] for e in actual],[LABELS[e] for e in predicted])
 
+            appendToFile(str(final_score), "logfile")
 
+
+            with open('my_output.csv', 'w', encoding='utf8') as f:
+                field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
+                spamwriter = csv.writer(f, delimiter=',')
+                spamwriter.writerow(field_names)
 
 
             for eachTuple in post_prediction_data:
@@ -391,17 +419,22 @@ if __name__ == "__main__":
                             else:
                                 if (eachTuple.predicted_stance == 3):
                                     pred_label = "unrelated"
+                mydict = collections.OrderedDict()
+                mydict['Headline'] = eachTuple.headline
+                mydict['Body ID'] = eachTuple.body_id
+                mydict['Stance'] = pred_label
+                mydict['Confidence'] = eachTuple.confidence
 
-
-                appendToFile("\n"+str(eachTuple.headline) + coma, "enrique_format")
-                appendToFile(str(eachTuple.body_id) + coma, "enrique_format")
-                appendToFile(str(pred_label)+ coma, "enrique_format")
-                appendToFile(str(eachTuple.confidence), "enrique_format")
-
+                with open('my_output.csv', 'a+', encoding='utf8') as f:
+                    field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
+                    field_values=[eachTuple.headline,eachTuple.body_id,pred_label,eachTuple.confidence]
+                    spamwriter = csv.writer(f, delimiter=',')
+                    spamwriter.writerow(field_values)
 
 
         elapsed_time = time.time() - start_time
-        print("time taken:" + str(elapsed_time))
+        #print("time taken:" + str(elapsed_time))
+        appendToFile("time taken:" + str(elapsed_time), "logfile")
         sendEmail("entire program", toaddr)
 
 
