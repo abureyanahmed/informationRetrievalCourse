@@ -1,0 +1,267 @@
+sssdfjumber of arguments is1
+going to train on data for related-unrelated splitting aka phase1
+starting do_training_phase2
+total number of rows in related matrix is:13427
+total number of numcols in related matrix is:3
+ going to start training for 2 classes agree-disagree within related
+inside phase2_training_tf
+size of entire_corpus is:13427
+going to vectorize teh related corpus :
+number of rows in corpus post vectorization is:(13427, 24610)
+number of rows in label list is is:13427
+going to feed this vectorized tf to a classifier:
+done training svm:
+done with training of documents for agree classes. going to read testing data.
+starting do_testing_phase1
+done with training of documents for phase1. going to start testing for phase 1
+total number of rows in testing_data matrix is:16955
+going to predict data based on this new test set
+number of rows in actual_phase1_only_unrelated  is:37533
+number of rows in predicted_phase1_only_unrelated  is:37533
+value of unrelated_threshold is:0.1
+agree
+unrelated
+unrelated
+unrelated
+agree
+discuss
+unrelated
+unrelated
+unrelated
+agree
+unrelated
+unrelated
+unrelated
+unrelated
+agree
+unrelated
+agree
+agree
+agree
+discuss
+discuss
+unrelated
+unrelated
+unrelated
+unrelated
+discuss
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+discuss
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+discuss
+unrelated
+agree
+unrelated
+agree
+discuss
+unrelated
+unrelated
+unrelated
+unrelated
+discuss
+unrelated
+discuss
+disagree
+agree
+unrelated
+unrelated
+discuss
+unrelated
+discuss
+unrelated
+unrelated
+unrelated
+disagree
+unrelated
+unrelated
+discuss
+unrelated
+unrelated
+agree
+unrelated
+discuss
+unrelated
+agree
+unrelated
+discuss
+agree
+agree
+unrelated
+unrelated
+discuss
+unrelated
+unrelated
+agree
+agree
+discuss
+discuss
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+disagree
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+discuss
+discuss
+unrelated
+unrelated
+unrelated
+agree
+agree
+unrelated
+agree
+discuss
+unrelated
+unrelated
+unrelated
+discuss
+discuss
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+discuss
+discuss
+unrelated
+unrelated
+unrelated
+unrelated
+agree
+discuss
+agree
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+discuss
+unrelated
+unrelated
+unrelated
+unrelated
+discuss
+discuss
+unrelated
+unrelated
+unrelated
+discuss
+unrelated
+unrelated
+agree
+discuss
+agree
+disagree
+discuss
+unrelated
+unrelated
+unrelated
+unrelated
+discuss
+unrelated
+unrelated
+unrelated
+discuss
+agree
+agree
+unrelated
+discuss
+unrelated
+unrelated
+unrelated
+unrelated
+discuss
+unrelated
+unrelated
+discuss
+discuss
+unrelated
+unrelated
+unrelated
+unrelated
+discuss
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+disagree
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+discuss
+agree
+unrelated
+unrelated
+discuss
+agree
+unrelated
+discuss
+unrelated
+unrelated
+agree
+unrelated
+disagree
+unrelated
+unrelated
+unrelated
+unrelated
+discuss
+unrelated
+unrelated
+discuss
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+unrelated
+number of arguments is1
+going to train on data for related-unrelated splitting aka phase1
+starting do_training_phase2
+total number of rows in related matrix is:13427
+total number of numcols in related matrix is:3
+ going to start training for 2 classes agree-disagree within related
+inside phase2_training_tf
+generic exception: Traceback (most recent call last):
+  File "initializer_cs583.py", line 174, in <module>
+    svm_trained_phase2,vectorizer_phase2_trained=phase2_training_tf(related_data_gold,vectorizer_phase2)
+  File "/net/kate/storage/work/mithunpaul/fnc/finalProj/fakeNewsMithun/utils/classifier_functions.py", line 653, in phase2_training_tf
+    word_overlap = word_overlap_features(headline, actualBody)
+  File "/net/kate/storage/work/mithunpaul/fnc/finalProj/fakeNewsMithun/utils/classifier_functions.py", line 1272, in word_overlap_features
+    len(set(clean_headline).intersection(clean_body)) / float(len(set(clean_headline).union(clean_body)))]
+ZeroDivisionError: float division by zero
+
+done sending email to:mithunpaul08@gmail.com
+
