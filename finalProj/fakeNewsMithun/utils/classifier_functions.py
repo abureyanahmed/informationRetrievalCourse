@@ -912,11 +912,12 @@ def phase2_training_hollywood(data,vectorizer_phase2):
     word_overlap_vector = np.empty((0, 1), float)
     hedging_words_vector = np.empty((0, 30), int)
     refuting_value_matrix= np.empty((0, 16), int)
-    hollywood_value_matrix = np.empty((0, 39), int)
-    terrorism_value_matrix = np.empty((0, 81), int)
-    health_value_matrix = np.empty((0, 38), int)
-    religion_value_matrix = np.empty((0, 14), int)
-    politics_value_matrix = np.empty((0, 36), int)
+
+    # hollywood_value_matrix = np.empty((0, 39), int)
+    # terrorism_value_matrix = np.empty((0, 81), int)
+    # health_value_matrix = np.empty((0, 38), int)
+    # religion_value_matrix = np.empty((0, 14), int)
+    # politics_value_matrix = np.empty((0, 36), int)
 
     for obj_indiv_headline_body in data:
 
@@ -943,25 +944,6 @@ def phase2_training_hollywood(data,vectorizer_phase2):
         refuting_value_array = np.array([refuting_value])
         refuting_value_matrix = np.vstack([refuting_value_matrix, refuting_value_array])
 
-        hollywood_value = Hollywood_features(headline, actualBody)
-        hollywood_value_value_array = np.array([hollywood_value])
-        hollywood_value_matrix = np.vstack([hollywood_value_matrix, hollywood_value_value_array])
-
-        terrorism_value = Terrorism_features(headline, actualBody)
-        terrorism_value_value_array = np.array([terrorism_value])
-        terrorism_value_matrix = np.vstack([terrorism_value_matrix, terrorism_value_value_array])
-
-        health_value = Health_features(headline, actualBody)
-        health_value_value_array = np.array([health_value])
-        health_value_matrix = np.vstack([health_value_matrix, health_value_value_array])
-
-        religion_value = Religion_features(headline, actualBody)
-        religion_value_value_array = np.array([religion_value])
-        religion_value_matrix = np.vstack([religion_value_matrix, religion_value_value_array])
-
-        politics_value = Politics_features(headline, actualBody)
-        politics_value_value_array = np.array([politics_value])
-        politics_value_matrix = np.vstack([politics_value_matrix, politics_value_value_array])
 
         if (gold_stance == 0):
             labels = np.append(labels, 0)
@@ -993,9 +975,7 @@ def phase2_training_hollywood(data,vectorizer_phase2):
 
     print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
 
-    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,refuting_value_matrix,
-                                            hollywood_value_matrix,terrorism_value_matrix,health_value_matrix,
-                                            religion_value_matrix,politics_value_matrix])
+    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,refuting_value_matrix])
     print("shape of combined_vector is:" + str(combined_vector.shape))
 
 
@@ -1590,11 +1570,12 @@ def test_phase2_tf_hollywood(test_data_related_only, svm_phase2, vectorizer_phas
     hedging_words_vector = np.empty((0, 30), int)
     lstm_features_matrix=np.empty((0, 4), float)
     refuting_value_matrix = np.empty((0, 16), int)
-    hollywood_value_matrix = np.empty((0, 39), int)
-    terrorism_value_matrix = np.empty((0, 81), int)
-    health_value_matrix = np.empty((0, 38), int)
-    religion_value_matrix = np.empty((0, 14), int)
-    politics_value_matrix = np.empty((0, 36), int)
+
+    # hollywood_value_matrix = np.empty((0, 39), int)
+    # terrorism_value_matrix = np.empty((0, 81), int)
+    # health_value_matrix = np.empty((0, 38), int)
+    # religion_value_matrix = np.empty((0, 14), int)
+    # politics_value_matrix = np.empty((0, 36), int)
 
     gold_predicted_combined=[[],[]]
 
@@ -1620,29 +1601,31 @@ def test_phase2_tf_hollywood(test_data_related_only, svm_phase2, vectorizer_phas
         hedge_value_array = np.array([hedge_value])
         hedging_words_vector = np.vstack([hedging_words_vector, hedge_value_array])
 
-        hollywood_value = Hollywood_features(headline, actualBody)
-        hollywood_value_value_array = np.array([hollywood_value])
-        hollywood_value_matrix = np.vstack([hollywood_value_matrix, hollywood_value_value_array])
-
         refuting_value = refuting_features_mithun(headline, actualBody)
         refuting_value_array = np.array([refuting_value])
         refuting_value_matrix = np.vstack([refuting_value_matrix, refuting_value_array])
 
-        terrorism_value = Terrorism_features(headline, actualBody)
-        terrorism_value_value_array = np.array([terrorism_value])
-        terrorism_value_matrix = np.vstack([terrorism_value_matrix, terrorism_value_value_array])
+        # hollywood_value = Hollywood_features(headline, actualBody)
+        # hollywood_value_value_array = np.array([hollywood_value])
+        # hollywood_value_matrix = np.vstack([hollywood_value_matrix, hollywood_value_value_array])
+        #
 
-        health_value = Health_features(headline, actualBody)
-        health_value_value_array = np.array([health_value])
-        health_value_matrix = np.vstack([health_value_matrix, health_value_value_array])
-
-        religion_value = Religion_features(headline, actualBody)
-        religion_value_value_array = np.array([religion_value])
-        religion_value_matrix = np.vstack([religion_value_matrix, religion_value_value_array])
-
-        politics_value = Politics_features(headline, actualBody)
-        politics_value_value_array = np.array([politics_value])
-        politics_value_matrix = np.vstack([politics_value_matrix, politics_value_value_array])
+        #
+        # terrorism_value = Terrorism_features(headline, actualBody)
+        # terrorism_value_value_array = np.array([terrorism_value])
+        # terrorism_value_matrix = np.vstack([terrorism_value_matrix, terrorism_value_value_array])
+        #
+        # health_value = Health_features(headline, actualBody)
+        # health_value_value_array = np.array([health_value])
+        # health_value_matrix = np.vstack([health_value_matrix, health_value_value_array])
+        #
+        # religion_value = Religion_features(headline, actualBody)
+        # religion_value_value_array = np.array([religion_value])
+        # religion_value_matrix = np.vstack([religion_value_matrix, religion_value_value_array])
+        #
+        # politics_value = Politics_features(headline, actualBody)
+        # politics_value_value_array = np.array([politics_value])
+        # politics_value_matrix = np.vstack([politics_value_matrix, politics_value_value_array])
 
         gold_int.append(gold_stance)
         # if (gold_stance == 0):
@@ -1692,9 +1675,7 @@ def test_phase2_tf_hollywood(test_data_related_only, svm_phase2, vectorizer_phas
 
 
    # combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix])
-    combined_vector = scipy.sparse.hstack(
-        [tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix,
-         hollywood_value_matrix,terrorism_value_matrix,health_value_matrix,religion_value_matrix,politics_value_matrix])
+    combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix])
 
     # sparse.hstack(X, A.astype(float))
 

@@ -1,3 +1,3 @@
-start time:1496192897.033445
+start time:1496253031.5667856
 Gold Labels:[0, 3, 2, 2, 2, 2]
-Predicted Labels:[3, 3, 2, 2, 2, 2]80.95238095238095
+Predicted Labels:[3, 3, 2, 2, 2, 2]80.95238095238095time taken:21.024894952774048

@@ -118,15 +118,15 @@ if __name__ == "__main__":
         #training_data = utils.read_data.load_training_DataSet(cwd)
 
 
-        #training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
-        #testing_data = utils.read_data.load_testing_DataSet(cwd,"train_bodies.csv","test_stances_csc483583.csv")
+        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
+        testing_data = utils.read_data.load_testing_DataSet(cwd,"train_bodies.csv","test_stances_csc483583.csv")
 
 
         #lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
 
         #load the smaller dataset which has only 2 entries
-        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583_small.csv")
-        testing_data = utils.read_data.load_testing_DataSet(cwd,"train_bodies.csv","test_stances_csc483583_small.csv")
+       # training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583_small.csv")
+       # testing_data = utils.read_data.load_testing_DataSet(cwd,"train_bodies.csv","test_stances_csc483583_small.csv")
 
         #in validation phase, we test against the training data itself.
         #cwd = os.getcwd()
@@ -313,31 +313,31 @@ if __name__ == "__main__":
                 gold_phase1_only_unrelated.append(unr.gold_stance)
                 predicted_phase1_only_unrelated.append(unr.predicted_stance)
 
-            with open('my_output.csv', 'w', encoding='utf8') as f:
-                field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
-                spamwriter = csv.writer(f, delimiter=',')
-                spamwriter.writerow(field_names)
-
-            for eachTuple in un_related_matrix:
-                if(eachTuple.predicted_stance==0):
-                    pred_label="agree"
-                else:
-                    if(eachTuple.predicted_stance==1):
-                        pred_label="disagree"
-                    else:
-                        if (eachTuple.predicted_stance == 1):
-                            pred_label = "disagree"
-                        else:
-                            if (eachTuple.predicted_stance == 2):
-                                pred_label = "discuss"
-                            else:
-                                if (eachTuple.predicted_stance == 3):
-                                    pred_label = "unrelated"
-
-                with open('my_output.csv', 'a+', encoding='utf8') as f:
-                    field_values=[eachTuple.headline,eachTuple.body_id,pred_label,eachTuple.confidence]
-                    spamwriter = csv.writer(f, delimiter=',')
-                    spamwriter.writerow(field_values)
+            # with open('my_output.csv', 'w', encoding='utf8') as f:
+            #     field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
+            #     spamwriter = csv.writer(f, delimiter=',')
+            #     spamwriter.writerow(field_names)
+            #
+            # for eachTuple in un_related_matrix:
+            #     if(eachTuple.predicted_stance==0):
+            #         pred_label="agree"
+            #     else:
+            #         if(eachTuple.predicted_stance==1):
+            #             pred_label="disagree"
+            #         else:
+            #             if (eachTuple.predicted_stance == 1):
+            #                 pred_label = "disagree"
+            #             else:
+            #                 if (eachTuple.predicted_stance == 2):
+            #                     pred_label = "discuss"
+            #                 else:
+            #                     if (eachTuple.predicted_stance == 3):
+            #                         pred_label = "unrelated"
+            #
+            #     with open('my_output.csv', 'a+', encoding='utf8') as f:
+            #         field_values=[eachTuple.headline,eachTuple.body_id,pred_label,eachTuple.confidence]
+            #         spamwriter = csv.writer(f, delimiter=',')
+            #         spamwriter.writerow(field_values)
 
 
 
@@ -430,47 +430,41 @@ if __name__ == "__main__":
 
             print("number of rows in entire_testing_data_converted  is:"+str(len(entire_testing_data_converted )))
 
-            with open('for_vikas.csv', 'w', encoding='utf8') as f:
-                spamwriter = csv.writer(f, delimiter=',')
-                spamwriter.writerow("\n")
-
-            for vikas_tuple in entire_testing_data_converted:
-                with open('for_vikas.csv', 'a+', encoding='utf8') as vikasfile:
-                    field_values_vikas=[vikas_tuple.predicted_stance]
-                    spamwriter = csv.writer(vikasfile, delimiter=',')
-                    spamwriter.writerow(field_values_vikas)
-
-
-            sys.exit(1)
-
-
-            for eachTuple in post_prediction_data_phase2:
-                # agree, disagree, or discuss, (0,1,2) and attach that.
-                pred_label=""
-                if(eachTuple.predicted_stance==0):
-                    pred_label="agree"
-                else:
-                    if(eachTuple.predicted_stance==1):
-                        pred_label="disagree"
-                    else:
-                        if (eachTuple.predicted_stance == 1):
-                            pred_label = "disagree"
-                        else:
-                            if (eachTuple.predicted_stance == 2):
-                                pred_label = "discuss"
-                            else:
-                                if (eachTuple.predicted_stance == 3):
-                                    pred_label = "unrelated"
-                mydict = collections.OrderedDict()
-                mydict['Headline'] = eachTuple.headline
-                mydict['Body ID'] = eachTuple.body_id
-                mydict['Stance'] = pred_label
-                mydict['Confidence'] = eachTuple.confidence
-
-                with open('my_output.csv', 'a+', encoding='utf8') as f:
-                    field_values=[eachTuple.headline,eachTuple.body_id,pred_label,eachTuple.confidence]
-                    spamwriter = csv.writer(f, delimiter=',')
-                    spamwriter.writerow(field_values)
+            # #just logging code below
+            #
+            # with open('for_vikas.csv', 'w', encoding='utf8') as f:
+            #     spamwriter = csv.writer(f, delimiter=',')
+            #     spamwriter.writerow("\n")
+            #
+            # for vikas_tuple in entire_testing_data_converted:
+            #     with open('for_vikas.csv', 'a+', encoding='utf8') as vikasfile:
+            #         field_values_vikas=[vikas_tuple.predicted_stance]
+            #         spamwriter = csv.writer(vikasfile, delimiter=',')
+            #         spamwriter.writerow(field_values_vikas)
+            #
+            #
+            # for eachTuple in post_prediction_data_phase2:
+            #     # agree, disagree, or discuss, (0,1,2) and attach that.
+            #     pred_label=""
+            #     if(eachTuple.predicted_stance==0):
+            #         pred_label="agree"
+            #     else:
+            #         if(eachTuple.predicted_stance==1):
+            #             pred_label="disagree"
+            #         else:
+            #             if (eachTuple.predicted_stance == 1):
+            #                 pred_label = "disagree"
+            #             else:
+            #                 if (eachTuple.predicted_stance == 2):
+            #                     pred_label = "discuss"
+            #                 else:
+            #                     if (eachTuple.predicted_stance == 3):
+            #                         pred_label = "unrelated"
+            #
+            #     with open('my_output.csv', 'a+', encoding='utf8') as f:
+            #         field_values=[eachTuple.headline,eachTuple.body_id,pred_label,eachTuple.confidence]
+            #         spamwriter = csv.writer(f, delimiter=',')
+            #         spamwriter.writerow(field_values)
 
 
 
