@@ -366,8 +366,8 @@ if __name__ == "__main__":
             #print("number of lines in testing data is:"+str(len(testing_data. )))
 
 
-            #testing_data_converted=convert_data_to_headline_body_stance_format(testdata_related_only)
-            #testing_data_converted=testdata_related_only;
+            #entire_testing_data_converted=convert_data_to_headline_body_stance_format(testdata_related_only)
+            #entire_testing_data_converted=testdata_related_only;
 
             print("number of rows in testing data after conversion is:"+str(len(testdata_related_only )))
             print("number of columns in testing data after conversion is:"+str(len(testdata_related_only[0])))

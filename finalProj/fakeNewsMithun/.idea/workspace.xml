@@ -18,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="initializer_cs583.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="initializer_cs583.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/initializer_cs583.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="128" column="9" selection-start-line="128" selection-start-column="9" selection-end-line="128" selection-end-column="9" />
+            <state relative-caret-position="363">
+              <caret line="397" column="109" selection-start-line="397" selection-start-column="109" selection-end-line="397" selection-end-column="109" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -30,19 +30,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="classifier_functions.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="train_stances_csc483583_small.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/train_stances_csc483583_small.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="830">
+              <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="classifier_functions.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="1571" column="0" selection-start-line="1571" selection-start-column="0" selection-end-line="1571" selection-end-column="0" />
+            <state relative-caret-position="1937">
+              <caret line="1767" column="80" selection-start-line="1767" selection-start-column="51" selection-end-line="1767" selection-end-column="80" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-                <element signature="e#11870#14282#0" expanded="false" />
-                <element signature="e#14421#16821#0" expanded="false" />
-                <element signature="e#16895#18666#0" expanded="false" />
-                <element signature="e#27058#30026#0" expanded="false" />
-                <element signature="e#34697#38701#0" expanded="false" />
-                <element signature="e#39049#40245#0" expanded="false" />
+                <element signature="e#12025#14437#0" expanded="false" />
+                <element signature="e#14576#16976#0" expanded="false" />
+                <element signature="e#17050#18821#0" expanded="false" />
+                <element signature="e#27213#30181#0" expanded="false" />
+                <element signature="e#39204#40400#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -75,8 +84,8 @@
       <file leaf-file-name="datastructures.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/datastructures.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+            <state relative-caret-position="85">
+              <caret line="5" column="29" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -162,10 +171,10 @@
         <option value="$PROJECT_DIR$/data/train_stances_csc483583_small.csv" />
         <option value="$PROJECT_DIR$/utils/datastructures.py" />
         <option value="$PROJECT_DIR$/utils/vikas_features.py" />
-        <option value="$PROJECT_DIR$/utils/classifier_functions.py" />
         <option value="$PROJECT_DIR$/utils/file_functions.py" />
         <option value="$PROJECT_DIR$/data/test_stances_csc483583_small.csv" />
         <option value="$PROJECT_DIR$/utils/read_data.py" />
+        <option value="$PROJECT_DIR$/utils/classifier_functions.py" />
         <option value="$PROJECT_DIR$/initializer_cs583.py" />
       </list>
     </option>
@@ -455,6 +464,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24984913" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32684427" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -466,7 +476,6 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38512617" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3268945" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39970282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -489,11 +498,11 @@
       <breakpoints>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>1655</line>
+          <line>1656</line>
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>1646</line>
+          <line>1647</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
@@ -503,17 +512,17 @@
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>552</line>
+          <line>553</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>562</line>
+          <line>563</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils/classifier_functions.py</url>
-          <line>559</line>
+          <line>560</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -622,12 +631,11 @@
           <caret line="1724" column="8" selection-start-line="1724" selection-start-column="8" selection-end-line="1724" selection-end-column="8" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#11870#14282#0" expanded="false" />
-            <element signature="e#14421#16821#0" expanded="false" />
-            <element signature="e#16895#18666#0" expanded="false" />
-            <element signature="e#27058#30026#0" expanded="false" />
-            <element signature="e#34697#38701#0" expanded="false" />
-            <element signature="e#39049#40245#0" expanded="false" />
+            <element signature="e#12025#14437#0" expanded="false" />
+            <element signature="e#14576#16976#0" expanded="false" />
+            <element signature="e#17050#18821#0" expanded="false" />
+            <element signature="e#27213#30181#0" expanded="false" />
+            <element signature="e#39204#40400#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -693,12 +701,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#11870#14282#0" expanded="false" />
-            <element signature="e#14421#16821#0" expanded="false" />
-            <element signature="e#16895#18666#0" expanded="false" />
-            <element signature="e#27058#30026#0" expanded="false" />
-            <element signature="e#34697#38701#0" expanded="false" />
-            <element signature="e#39049#40245#0" expanded="false" />
+            <element signature="e#12025#14437#0" expanded="false" />
+            <element signature="e#14576#16976#0" expanded="false" />
+            <element signature="e#17050#18821#0" expanded="false" />
+            <element signature="e#27213#30181#0" expanded="false" />
+            <element signature="e#39204#40400#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -807,13 +814,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/train_stances_csc483583_small.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/test_stances_csc483583.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="109">
@@ -822,29 +822,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/vikas_features.py" />
-    <entry file="file://$PROJECT_DIR$/utils/file_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/datastructures.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/test_stances_csc483583_small.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/read_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="918">
@@ -857,28 +834,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
+    <entry file="file://$PROJECT_DIR$/utils/file_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="1571" column="0" selection-start-line="1571" selection-start-column="0" selection-end-line="1571" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#11870#14282#0" expanded="false" />
-            <element signature="e#14421#16821#0" expanded="false" />
-            <element signature="e#16895#18666#0" expanded="false" />
-            <element signature="e#27058#30026#0" expanded="false" />
-            <element signature="e#34697#38701#0" expanded="false" />
-            <element signature="e#39049#40245#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="170">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/train_stances_csc483583_small.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="830">
+          <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/test_stances_csc483583_small.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/datastructures.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/initializer_cs583.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="128" column="9" selection-start-line="128" selection-start-column="9" selection-end-line="128" selection-end-column="9" />
+        <state relative-caret-position="363">
+          <caret line="397" column="109" selection-start-line="397" selection-start-column="109" selection-end-line="397" selection-end-column="109" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/classifier_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1937">
+          <caret line="1767" column="80" selection-start-line="1767" selection-start-column="51" selection-end-line="1767" selection-end-column="80" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#12025#14437#0" expanded="false" />
+            <element signature="e#14576#16976#0" expanded="false" />
+            <element signature="e#17050#18821#0" expanded="false" />
+            <element signature="e#27213#30181#0" expanded="false" />
+            <element signature="e#39204#40400#0" expanded="false" />
           </folding>
         </state>
       </provider>
