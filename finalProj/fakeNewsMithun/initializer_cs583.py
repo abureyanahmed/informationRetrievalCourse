@@ -118,15 +118,15 @@ if __name__ == "__main__":
         #training_data = utils.read_data.load_training_DataSet(cwd)
 
 
-        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
-        testing_data = utils.read_data.load_testing_DataSet(cwd,"train_bodies.csv","test_stances_csc483583.csv")
+        #training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583.csv")
+        #testing_data = utils.read_data.load_testing_DataSet(cwd,"train_bodies.csv","test_stances_csc483583.csv")
 
 
         #lstm_output = read_lstm_data(base_dir_name + '/data/', 'lstm_output.txt')
 
         #load the smaller dataset which has only 2 entries
-        # training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583_small.csv")
-        # testing_data = utils.read_data.load_testing_DataSet(cwd,"train_bodies.csv","test_stances_csc483583_small.csv")
+        training_data = utils.read_data.load_training_DataSet(cwd,"train_bodies.csv","train_stances_csc483583_small.csv")
+        testing_data = utils.read_data.load_testing_DataSet(cwd,"train_bodies.csv","test_stances_csc483583_small.csv")
 
         #in validation phase, we test against the training data itself.
         #cwd = os.getcwd()
@@ -308,6 +308,31 @@ if __name__ == "__main__":
                 gold_phase1_only_unrelated.append(unr.gold_stance)
                 predicted_phase1_only_unrelated.append(unr.predicted_stance)
 
+            with open('my_output.csv', 'w', encoding='utf8') as f:
+                field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
+                spamwriter = csv.writer(f, delimiter=',')
+                spamwriter.writerow(field_names)
+
+            for eachTuple in un_related_matrix:
+                if(eachTuple.predicted_stance==0):
+                    pred_label="agree"
+                else:
+                    if(eachTuple.predicted_stance==1):
+                        pred_label="disagree"
+                    else:
+                        if (eachTuple.predicted_stance == 1):
+                            pred_label = "disagree"
+                        else:
+                            if (eachTuple.predicted_stance == 2):
+                                pred_label = "discuss"
+                            else:
+                                if (eachTuple.predicted_stance == 3):
+                                    pred_label = "unrelated"
+
+                with open('my_output.csv', 'a+', encoding='utf8') as f:
+                    field_values=[eachTuple.headline,eachTuple.body_id,pred_label,eachTuple.confidence]
+                    spamwriter = csv.writer(f, delimiter=',')
+                    spamwriter.writerow(field_values)
 
 
 
@@ -321,14 +346,16 @@ if __name__ == "__main__":
             #writeToOutputFile("\n", "enrique_format")
 
             #field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
-            writeToOutputFile("\n"+"Headline,Body ID,Stance,Confidence", "enrique_format")
+            #writeToOutputFile("\n"+"Headline,Body ID,Stance,Confidence", "enrique_format")
 
 
-            for unr in un_related_matrix:
-                appendToFile("\n" + str(unr.headline) + coma, "enrique_format")
-                appendToFile(str(unr.body_id) + coma, "enrique_format")
-                appendToFile(str(unr.predicted_stance) + coma, "enrique_format")
-                appendToFile(str(unr.confidence), "enrique_format")
+
+
+                #
+                # appendToFile("\n" + str(unr.headline) + coma, "enrique_format")
+                # appendToFile(str(unr.body_id) + coma, "enrique_format")
+                # appendToFile(str(unr.predicted_stance) + coma, "enrique_format")
+                # appendToFile(str(unr.confidence), "enrique_format")
 
             print("total number of rows in testdata_related_only matrix is:" + str(len(testdata_related_only)))
 
@@ -364,9 +391,9 @@ if __name__ == "__main__":
            # actual_phase2, predicted_phase2 = test_phase2_tf_hollywood(testdata_related_only, svm_trained_phase2,
             #                                                        vectorizer_phase2_trained)
 
-            actual_phase2, predicted_phase2, post_prediction_data = test_phase2_tf_hollywood(testdata_related_only,
-                                                                                             svm_trained_phase2,
-                                                                                             vectorizer_phase2_trained)
+            actual_phase2, predicted_phase2, post_prediction_data_phase2 = test_phase2_tf_hollywood(testdata_related_only,
+                                                                                                    svm_trained_phase2,
+                                                                                                    vectorizer_phase2_trained)
 
             print ("done classifying testing data for phase 2. going to find score ")
 
@@ -396,13 +423,10 @@ if __name__ == "__main__":
             appendToFile(str(final_score), "logfile")
 
 
-            with open('my_output.csv', 'w', encoding='utf8') as f:
-                field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
-                spamwriter = csv.writer(f, delimiter=',')
-                spamwriter.writerow(field_names)
 
 
-            for eachTuple in post_prediction_data:
+
+            for eachTuple in post_prediction_data_phase2:
                 # agree, disagree, or discuss, (0,1,2) and attach that.
                 pred_label=""
                 if(eachTuple.predicted_stance==0):
@@ -426,7 +450,6 @@ if __name__ == "__main__":
                 mydict['Confidence'] = eachTuple.confidence
 
                 with open('my_output.csv', 'a+', encoding='utf8') as f:
-                    field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
                     field_values=[eachTuple.headline,eachTuple.body_id,pred_label,eachTuple.confidence]
                     spamwriter = csv.writer(f, delimiter=',')
                     spamwriter.writerow(field_values)
