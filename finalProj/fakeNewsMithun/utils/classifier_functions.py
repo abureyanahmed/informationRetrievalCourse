@@ -103,8 +103,8 @@ def calculateCosSimilarity(d):
             if(cos < related_smallest):
                 related_smallest=cos
 
-    print ("unrelated_biggest:"+str(unrelated_biggest))
-    print ("related_smallest:"+str(related_smallest))
+    #print ("unrelated_biggest:"+str(unrelated_biggest))
+    #print ("related_smallest:"+str(related_smallest))
     return unrelated_biggest
 
 def calculate_precision(d, unrelated_threshold):
@@ -543,7 +543,7 @@ def convert_data_to_headline_body_stance_format(data,lstm_output):
 
 
         headline = stance['Headline']
-        print(headline)
+        #print(headline)
 
         #get the corresponding body id for this headline
         bodyid  = stance['Body ID']
@@ -598,7 +598,7 @@ def convert_data_to_headline_body_stance_format(data):
     for stance in data.stances:
 
         headline = stance['Headline']
-        print(headline)
+        #print(headline)
 
         #get the corresponding body id for this headline
         bodyid  = stance['Body ID']
@@ -670,7 +670,7 @@ def convert_FNC_data_to_my_format(stances, data):
 
         #separate out teh 'related data' into another data set based on the predicted value
         #list of strings
-        print(stance)
+        #print(stance)
 
         headline_body_label=[]
         headline_body_label.append(headline)
@@ -882,29 +882,29 @@ def phase2_training(data,vectorizer_phase2):
     #print(tf_vector_np)
 
     #print("number of rows in word_overlap_vector is:" + str(len(word_overlap_vector)))
-    print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
+    #print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
 
-    print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
+    #print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
 
     combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,refuting_value_matrix])
-    print("shape of combined_vector is:" + str(combined_vector.shape))
+    #print("shape of combined_vector is:" + str(combined_vector.shape))
 
 
-    print(str(labels))
-    print("shape of labels is:" + str(labels.shape))
+    #print(str(labels))
+    #print("shape of labels is:" + str(labels.shape))
 
 
     #feed the vectors to an an svm, with labels.
     clf = svm.SVC(kernel='linear', C=1.0)
     #feature_vector=feature_vector.reshape(-1, 1)
     clf.fit(combined_vector, labels.ravel())
-    print("done training svm:" )
+    #print("done training svm:" )
 
     return clf,vectorizer_phase2
 
 
 def phase2_training_hollywood(data,vectorizer_phase2):
-    print("inside phase2_training_tf")
+    #print("inside phase2_training_tf")
     entire_corpus=[]
     labels = np.array([[]])
 
@@ -971,48 +971,48 @@ def phase2_training_hollywood(data,vectorizer_phase2):
                 if(gold_stance==2):
                     labels = np.append(labels, 2)
 
-    print("size of entire_corpus is:" + str(len(entire_corpus)))
-    print("going to vectorize teh related corpus :" )
+    #print("size of entire_corpus is:" + str(len(entire_corpus)))
+    #print("going to vectorize teh related corpus :" )
 
     tf_vector = vectorizer_phase2.fit_transform(entire_corpus)
     features=vectorizer_phase2.get_feature_names()
     writeToOutputFile("\n"+str(features),"featureNames_tfidf_vectorizer")
 
-    print("number of rows in label list is is:" + str(len(labels)))
-    print("going to feed this vectorized tf to a classifier:" )
+    #print("number of rows in label list is is:" + str(len(labels)))
+   # print("going to feed this vectorized tf to a classifier:" )
 
-    print("shape of corpus post vectorization is:" + str(tf_vector.shape))
+    #print("shape of corpus post vectorization is:" + str(tf_vector.shape))
     #print(tf_vector)
     #tf_vector_np=np.asarray(tf_vector)
     #print("shape of corpus post vectorization is:" + str(tf_vector_np.shape))
     #print(tf_vector_np)
 
     #print("number of rows in word_overlap_vector is:" + str(len(word_overlap_vector)))
-    print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
+    #print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
 
-    print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
+    #print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
 
     combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,refuting_value_matrix,
                                             hollywood_value_matrix,terrorism_value_matrix,health_value_matrix,
                                             religion_value_matrix,politics_value_matrix])
-    print("shape of combined_vector is:" + str(combined_vector.shape))
+    #print("shape of combined_vector is:" + str(combined_vector.shape))
 
 
-    print(str(labels))
-    print("shape of labels is:" + str(labels.shape))
+    #print(str(labels))
+    #print("shape of labels is:" + str(labels.shape))
 
 
     #feed the vectors to an an svm, with labels.
     clf = svm.SVC(kernel='linear', C=1.0)
     #feature_vector=feature_vector.reshape(-1, 1)
     clf.fit(combined_vector, labels.ravel())
-    print("done training svm:" )
+    #print("done training svm:" )
 
     return clf,vectorizer_phase2
 
 
 def phase2_training_with_lstm(data,vectorizer_phase2):
-    print("inside phase2_training_tf")
+    #print("inside phase2_training_tf")
     entire_corpus=[]
     labels = np.array([[]])
     #no_of_unrelated=0
@@ -1078,45 +1078,45 @@ def phase2_training_with_lstm(data,vectorizer_phase2):
                 if(gold_stance==2):
                     labels = np.append(labels, 2)
 
-    print("shape of  lstm_features_matrix is:" + str(lstm_features_matrix.shape))
+    #print("shape of  lstm_features_matrix is:" + str(lstm_features_matrix.shape))
     #print("shape of  lstm_features_matrix is:" + str(lstm_features_matrix))
 
     #sys.exit(1)
 
-    print("size of entire_corpus is:" + str(len(entire_corpus)))
-    print("going to vectorize teh related corpus :" )
+    #print("size of entire_corpus is:" + str(len(entire_corpus)))
+    #print("going to vectorize teh related corpus :" )
 
     tf_vector = vectorizer_phase2.fit_transform(entire_corpus)
     features=vectorizer_phase2.get_feature_names()
     writeToOutputFile("\n"+str(features),"featureNames_tfidf_vectorizer")
 
-    print("number of rows in label list is is:" + str(len(labels)))
-    print("going to feed this vectorized tf to a classifier:" )
+    #print("number of rows in label list is is:" + str(len(labels)))
+    #print("going to feed this vectorized tf to a classifier:" )
 
-    print("shape of corpus post vectorization is:" + str(tf_vector.shape))
+    #print("shape of corpus post vectorization is:" + str(tf_vector.shape))
     #print(tf_vector)
     #tf_vector_np=np.asarray(tf_vector)
     #print("shape of corpus post vectorization is:" + str(tf_vector_np.shape))
     #print(tf_vector_np)
 
     #print("number of rows in word_overlap_vector is:" + str(len(word_overlap_vector)))
-    print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
+    #print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
 
-    print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
+    #p rint("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
 
     combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,lstm_features_matrix,refuting_value_matrix])
-    print("shape of combined_vector is:" + str(combined_vector.shape))
+    #print("shape of combined_vector is:" + str(combined_vector.shape))
 
 
-    print(str(labels))
-    print("shape of labels is:" + str(labels.shape))
+    #print(str(labels))
+    #print("shape of labels is:" + str(labels.shape))
 
 
     #feed the vectors to an an svm, with labels.
     clf = svm.SVC(kernel='linear', C=1.0)
     #feature_vector=feature_vector.reshape(-1, 1)
     clf.fit(combined_vector, labels.ravel())
-    print("done training svm:" )
+    #print("done training svm:" )
 
     return clf,vectorizer_phase2
 
@@ -1294,7 +1294,7 @@ def tf_features(headlines, bodies,vectorizer_phase2):
 def tf_features_transform(headlines, bodies,vectorizer_phase2):
 
 
-    print("tf_features")
+    #print("tf_features")
     entire_corpus=[]
 
     for i, (headline, body) in tqdm(enumerate(zip(headlines, bodies))):
@@ -1427,7 +1427,7 @@ def train_svm(my_features,labels):
 
 def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
-    print("\ninside test_phase2_using_svm" )
+    #print("\ninside test_phase2_using_svm" )
 
     list_gold_label=[]
     entire_corpus=[]
@@ -1444,7 +1444,7 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
     gold_predicted_combined=[[],[]]
 
-    print("total number of rows in test_data:" +str(len(test_data)))
+    #print("total number of rows in test_data:" +str(len(test_data)))
 
 
     gold_int=[]
@@ -1490,24 +1490,24 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
 
 
-    print("\ngoing to vectorize headline_body_str :" )
-    print("\ntotal number of rows in entire_corpus:" +str(len(entire_corpus)))
+    #print("\ngoing to vectorize headline_body_str :" )
+    #print("\ntotal number of rows in entire_corpus:" +str(len(entire_corpus)))
 
-    print("\ntotal number of rows in word_overlap_vector:" + str(len(word_overlap_vector)))
+    #print("\ntotal number of rows in word_overlap_vector:" + str(len(word_overlap_vector)))
 
 
     tf_vector =  vectorizer_phase2_trained.transform(entire_corpus)
     #print(tf_vector)
-    print("number of rows in vectorized entire_corpus is:" + str(tf_vector.shape))
-    print("going to feed this vectorized tf to a classifier:" )
+    #print("number of rows in vectorized entire_corpus is:" + str(tf_vector.shape))
+    #print("going to feed this vectorized tf to a classifier:" )
 
     combined_vector=tf_vector+word_overlap_vector
 
-    print("going to predict class")
+    #print("going to predict class")
     #give that vector to your svm for prediction.
     pred_class=svm_phase2.predict(combined_vector)
-    print("going to print pred_class")
-    print("number of rows in pred_classis:" + str(pred_class.shape))
+    #print("going to print pred_class")
+    #print("number of rows in pred_classis:" + str(pred_class.shape))
     #print(pred_class)
 
 
@@ -1563,7 +1563,7 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
     #print("going to find number of rows in gold_int:" )
     numrows = len(gold_int)    # 3 rows in your example
     #numcols = len(gold_int[0]) # 2 columns in your example
-    print("number of rows in gold_int:" + str(numrows))
+    #print("number of rows in gold_int:" + str(numrows))
     #print("number of columns in gold_int:" + str(numcols))
     #print(gold_int)
 
@@ -1659,8 +1659,8 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
 
 
 
-    print("\ngoing to vectorize headline_body_str :" )
-    print("\ntotal number of rows in entire_corpus:" +str(len(entire_corpus)))
+    #print("\ngoing to vectorize headline_body_str :" )
+    #print("\ntotal number of rows in entire_corpus:" +str(len(entire_corpus)))
 
 
 
@@ -1668,21 +1668,21 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
 
     tf_vector =  vectorizer_phase2_trained.transform(entire_corpus)
     #print(tf_vector)
-    print("number of rows in vectorized entire_corpus is:" + str(tf_vector.shape))
-    print("going to feed this vectorized tf to a classifier:" )
+    #print("number of rows in vectorized entire_corpus is:" + str(tf_vector.shape))
+    #print("going to feed this vectorized tf to a classifier:" )
 
     #add the word overlap features
     #combined_vector = tf_vector + word_overlap_vector
 
     #combined_vector=np.concatenate(tf_vector,word_overlap_vector)
-    print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
-    print("shape of  lstm_features_matrix is:" + str(lstm_features_matrix.shape))
-    print("actual  lstm_features_matrix is:" + str(lstm_features_matrix))
-    print("lstm_features_matrix.dtype=" + str(lstm_features_matrix.dtype))
+    #print("shape of  word_overlap_vector is:" + str(word_overlap_vector.shape))
+    #print("shape of  lstm_features_matrix is:" + str(lstm_features_matrix.shape))
+    #print("actual  lstm_features_matrix is:" + str(lstm_features_matrix))
+    #print("lstm_features_matrix.dtype=" + str(lstm_features_matrix.dtype))
 
-    print("refuting_value_matrix.dtype=" + str(refuting_value_matrix.dtype))
+    #print("refuting_value_matrix.dtype=" + str(refuting_value_matrix.dtype))
 
-    print("refuting_value_matrix is =" + str(refuting_value_matrix))
+    #print("refuting_value_matrix is =" + str(refuting_value_matrix))
 
 
     flstm_features_matrix=lstm_features_matrix.astype(float)
@@ -1697,17 +1697,17 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
 
     # sparse.hstack(X, A.astype(float))
 
-    print("shape of combined_vector is:" + str(combined_vector.shape))
+    #print("shape of combined_vector is:" + str(combined_vector.shape))
     # print("shape of  lstm_features_matrix is:" + str(flstm_features_matrix.shape))
     # print("actual  lstm_features_matrix is:" + str(flstm_features_matrix))
     # print("lstm_features_matrix.dtype=" + str(flstm_features_matrix.dtype))
 
 
-    print("going to predict class")
+    #print("going to predict class")
     #give that vector to your svm for prediction.
     pred_class=svm_phase2.predict(combined_vector)
-    print("going to print pred_class")
-    print("number of rows in pred_classis:" + str(pred_class.shape))
+    #print("going to print pred_class")
+    #print("number of rows in pred_classis:" + str(pred_class.shape))
     #print(pred_class)
 
 
@@ -1752,13 +1752,13 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
 
 
 
-    print("going to find number of rows in gold_int:" )
+    #print("going to find number of rows in gold_int:" )
     numrows = len(gold_int)    # 3 rows in your example
     #numcols = len(gold_int[0]) # 2 columns in your example
-    print("number of rows in gold_int:" + str(numrows))
+    #print("number of rows in gold_int:" + str(numrows))
     #print("number of columns in gold_int:" + str(numcols))
     #print(gold_int)
-    print("number of rows in predicted_data:" + str(len(predicted_data)))
+    #print("number of rows in predicted_data:" + str(len(predicted_data)))
 
     return gold_int, pred_label_int,predicted_data
 
