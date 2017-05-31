@@ -1210,10 +1210,24 @@ def refuting_features_mithun(headline, body):
     ]
 
     length_hedge=len(refuting_words)
+    #reyan start
+    refuting_headline_vector = [0] * length_hedge
+    #reyan end
     refuting_body_vector = [0] * length_hedge
 
-    clean_headline = doAllWordProcessing(headline)
+    #reyan start
+    #clean_headline = doAllWordProcessing(headline)
+    clean_headline = get_tokenized_lemmas_headline(headline)
+    #reyan end
     clean_body = doAllWordProcessing(body)
+
+    #reyan start
+    for word in clean_headline:
+        if word in refuting_words:
+            index=refuting_words.index(word)
+            #print(index)
+            refuting_headline_vector[index]=1
+    #reyan end
 
     for word in clean_body:
         if word in refuting_words:
@@ -1222,7 +1236,10 @@ def refuting_features_mithun(headline, body):
             refuting_body_vector[index]=1
 
 
-    return refuting_body_vector
+    #reyan start
+    #return refuting_body_vector
+    return refuting_headline_vector + refuting_body_vector
+    #reyan end
 
 
 def lstm_features(obj_data):
@@ -1806,6 +1823,14 @@ def sendEmail(nameOfRun,toaddr):
 
 def normalize_word(w):
     return _wnl.lemmatize(w).lower()
+
+from nltk.corpus import wordnet as wn
+def get_tokenized_lemmas_headline(s):
+    z = [normalize_word(t) for t in nltk.word_tokenize(s)]
+    f = []
+    for y in z:
+            f = f + [x.lemma_names()[0] for x in wn.synsets(y)]
+    return np.unique(f)
 
 
 def get_tokenized_lemmas(s):
