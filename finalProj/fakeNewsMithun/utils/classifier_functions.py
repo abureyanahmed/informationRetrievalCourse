@@ -353,14 +353,14 @@ def return_related_data_only(data, unrelated_threshold):
 
     return related_matrix
 
-def split_cos_sim(data, unrelated_threshold):
+def split_cos_sim(testing_data_converted, unrelated_threshold):
 
     related_matrix=[]
     un_related_matrix = []
 
     print ("inside split_cos_sim")
 
-    for indivDataTuple in data:
+    for indivDataTuple in testing_data_converted:
 
         headline = indivDataTuple.headline
         bodyid=indivDataTuple.body_id
@@ -379,16 +379,17 @@ def split_cos_sim(data, unrelated_threshold):
 
 
         indivDataTuple.predicted_stance=pred_int
-        #separate out teh 'related data' into another data set based on the predicted value
+        #separate out teh 'related entire_testing_data_converted' into another entire_testing_data_converted set based on the predicted value
         #this will be fed as input for the 2nd classifier
         if(pred_label=="related"):
             related_matrix.append(indivDataTuple)
         else:
             un_related_matrix.append(indivDataTuple)
+            indivDataTuple.predicted_stance=3
 
 
 
-    return related_matrix,un_related_matrix
+    return related_matrix,un_related_matrix,testing_data_converted
 
 
 def split_phase1_gold_data_related_unrelated(data):
@@ -911,11 +912,12 @@ def phase2_training_hollywood(data,vectorizer_phase2):
     word_overlap_vector = np.empty((0, 1), float)
     hedging_words_vector = np.empty((0, 30), int)
     refuting_value_matrix= np.empty((0, 16), int)
-    hollywood_value_matrix = np.empty((0, 39), int)
-    terrorism_value_matrix = np.empty((0, 81), int)
-    health_value_matrix = np.empty((0, 38), int)
-    religion_value_matrix = np.empty((0, 14), int)
-    politics_value_matrix = np.empty((0, 36), int)
+
+    # hollywood_value_matrix = np.empty((0, 39), int)
+    # terrorism_value_matrix = np.empty((0, 81), int)
+    # health_value_matrix = np.empty((0, 38), int)
+    # religion_value_matrix = np.empty((0, 14), int)
+    # politics_value_matrix = np.empty((0, 36), int)
 
     for obj_indiv_headline_body in data:
 
@@ -942,25 +944,6 @@ def phase2_training_hollywood(data,vectorizer_phase2):
         refuting_value_array = np.array([refuting_value])
         refuting_value_matrix = np.vstack([refuting_value_matrix, refuting_value_array])
 
-        hollywood_value = Hollywood_features(headline, actualBody)
-        hollywood_value_value_array = np.array([hollywood_value])
-        hollywood_value_matrix = np.vstack([hollywood_value_matrix, hollywood_value_value_array])
-
-        terrorism_value = Terrorism_features(headline, actualBody)
-        terrorism_value_value_array = np.array([terrorism_value])
-        terrorism_value_matrix = np.vstack([terrorism_value_matrix, terrorism_value_value_array])
-
-        health_value = Health_features(headline, actualBody)
-        health_value_value_array = np.array([health_value])
-        health_value_matrix = np.vstack([health_value_matrix, health_value_value_array])
-
-        religion_value = Religion_features(headline, actualBody)
-        religion_value_value_array = np.array([religion_value])
-        religion_value_matrix = np.vstack([religion_value_matrix, religion_value_value_array])
-
-        politics_value = Politics_features(headline, actualBody)
-        politics_value_value_array = np.array([politics_value])
-        politics_value_matrix = np.vstack([politics_value_matrix, politics_value_value_array])
 
         if (gold_stance == 0):
             labels = np.append(labels, 0)
@@ -992,10 +975,15 @@ def phase2_training_hollywood(data,vectorizer_phase2):
 
     #print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
 
+<<<<<<< HEAD
     combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,refuting_value_matrix,
                                             hollywood_value_matrix,terrorism_value_matrix,health_value_matrix,
                                             religion_value_matrix,politics_value_matrix])
     #print("shape of combined_vector is:" + str(combined_vector.shape))
+=======
+    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,refuting_value_matrix])
+    print("shape of combined_vector is:" + str(combined_vector.shape))
+>>>>>>> 69752814f6cdd8d91537710fdf983881eab135ee
 
 
     #print(str(labels))
@@ -1569,7 +1557,7 @@ def test_phase2_using_svm(test_data, svm_phase2, vectorizer_phase2_trained):
 
     return gold_int, pred_label_int
 
-def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
+def test_phase2_tf_hollywood(test_data_related_only, svm_phase2, vectorizer_phase2_trained, entire_testing_data_converted):
 
     print("\ninside test_phase2_tf_hollywood" )
     list_obj_indiv_headline_body=[]
@@ -1589,18 +1577,19 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
     hedging_words_vector = np.empty((0, 30), int)
     lstm_features_matrix=np.empty((0, 4), float)
     refuting_value_matrix = np.empty((0, 16), int)
-    hollywood_value_matrix = np.empty((0, 39), int)
-    terrorism_value_matrix = np.empty((0, 81), int)
-    health_value_matrix = np.empty((0, 38), int)
-    religion_value_matrix = np.empty((0, 14), int)
-    politics_value_matrix = np.empty((0, 36), int)
+
+    # hollywood_value_matrix = np.empty((0, 39), int)
+    # terrorism_value_matrix = np.empty((0, 81), int)
+    # health_value_matrix = np.empty((0, 38), int)
+    # religion_value_matrix = np.empty((0, 14), int)
+    # politics_value_matrix = np.empty((0, 36), int)
 
     gold_predicted_combined=[[],[]]
 
-    print("total number of rows in test_data:" +str(len(test_data)))
+    print("total number of rows in test_data_related_only:" + str(len(test_data_related_only)))
 
     gold_int=[]
-    for obj_indiv_headline_body in test_data:
+    for obj_indiv_headline_body in test_data_related_only:
 
         gold_stance= obj_indiv_headline_body.gold_stance
         headline=obj_indiv_headline_body.headline
@@ -1619,29 +1608,31 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
         hedge_value_array = np.array([hedge_value])
         hedging_words_vector = np.vstack([hedging_words_vector, hedge_value_array])
 
-        hollywood_value = Hollywood_features(headline, actualBody)
-        hollywood_value_value_array = np.array([hollywood_value])
-        hollywood_value_matrix = np.vstack([hollywood_value_matrix, hollywood_value_value_array])
-
         refuting_value = refuting_features_mithun(headline, actualBody)
         refuting_value_array = np.array([refuting_value])
         refuting_value_matrix = np.vstack([refuting_value_matrix, refuting_value_array])
 
-        terrorism_value = Terrorism_features(headline, actualBody)
-        terrorism_value_value_array = np.array([terrorism_value])
-        terrorism_value_matrix = np.vstack([terrorism_value_matrix, terrorism_value_value_array])
+        # hollywood_value = Hollywood_features(headline, actualBody)
+        # hollywood_value_value_array = np.array([hollywood_value])
+        # hollywood_value_matrix = np.vstack([hollywood_value_matrix, hollywood_value_value_array])
+        #
 
-        health_value = Health_features(headline, actualBody)
-        health_value_value_array = np.array([health_value])
-        health_value_matrix = np.vstack([health_value_matrix, health_value_value_array])
-
-        religion_value = Religion_features(headline, actualBody)
-        religion_value_value_array = np.array([religion_value])
-        religion_value_matrix = np.vstack([religion_value_matrix, religion_value_value_array])
-
-        politics_value = Politics_features(headline, actualBody)
-        politics_value_value_array = np.array([politics_value])
-        politics_value_matrix = np.vstack([politics_value_matrix, politics_value_value_array])
+        #
+        # terrorism_value = Terrorism_features(headline, actualBody)
+        # terrorism_value_value_array = np.array([terrorism_value])
+        # terrorism_value_matrix = np.vstack([terrorism_value_matrix, terrorism_value_value_array])
+        #
+        # health_value = Health_features(headline, actualBody)
+        # health_value_value_array = np.array([health_value])
+        # health_value_matrix = np.vstack([health_value_matrix, health_value_value_array])
+        #
+        # religion_value = Religion_features(headline, actualBody)
+        # religion_value_value_array = np.array([religion_value])
+        # religion_value_matrix = np.vstack([religion_value_matrix, religion_value_value_array])
+        #
+        # politics_value = Politics_features(headline, actualBody)
+        # politics_value_value_array = np.array([politics_value])
+        # politics_value_matrix = np.vstack([politics_value_matrix, politics_value_value_array])
 
         gold_int.append(gold_stance)
         # if (gold_stance == 0):
@@ -1691,9 +1682,7 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
 
 
    # combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix])
-    combined_vector = scipy.sparse.hstack(
-        [tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix,
-         hollywood_value_matrix,terrorism_value_matrix,health_value_matrix,religion_value_matrix,politics_value_matrix])
+    combined_vector = scipy.sparse.hstack([tf_vector, word_overlap_vector, hedging_words_vector, refuting_value_matrix])
 
     # sparse.hstack(X, A.astype(float))
 
@@ -1722,24 +1711,28 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
     tuple_counter=0
 
 
-    for obj_indiv_headline_body,x in itertools.zip_longest (test_data,np.nditer(pred_class)):
+    for obj_indiv_headline_body,x,entire_testing_data in itertools.zip_longest (test_data_related_only, np.nditer(pred_class),entire_testing_data_converted):
 
 
         #add the predicted label to the corresponding data structure value
 
-        #obj_indiv_headline_body = test_data[tuple_counter]
+        #obj_indiv_headline_body = test_data_related_only[tuple_counter]
 
         if(x==value2_float):
             pred_label_int.append(2)
             obj_indiv_headline_body.predicted_stance = 2
+            entire_testing_data.predicted_stance = 2
+
         else:
             if(x==value1_float):
                 pred_label_int.append(1)
                 obj_indiv_headline_body.predicted_stance = 1
+                entire_testing_data.predicted_stance = 1
             else:
                 if(x==value0_float):
                     pred_label_int.append(0)
                     obj_indiv_headline_body.predicted_stance = 0
+                    entire_testing_data.predicted_stance = 0
 
         tuple_counter = tuple_counter + 1
         predicted_data.append(obj_indiv_headline_body)
@@ -1760,7 +1753,7 @@ def test_phase2_tf_hollywood(test_data, svm_phase2, vectorizer_phase2_trained):
     #print(gold_int)
     #print("number of rows in predicted_data:" + str(len(predicted_data)))
 
-    return gold_int, pred_label_int,predicted_data
+    return gold_int, pred_label_int,predicted_data,entire_testing_data_converted
 
 def sendEmail(nameOfRun,toaddr):
     #gmailUsername="nn7607"
