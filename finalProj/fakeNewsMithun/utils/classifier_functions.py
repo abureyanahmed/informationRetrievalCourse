@@ -975,15 +975,8 @@ def phase2_training_hollywood(data,vectorizer_phase2):
 
     #print("shape of  hedging_words_vector is:" + str(hedging_words_vector.shape))
 
-<<<<<<< HEAD
-    combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,refuting_value_matrix,
-                                            hollywood_value_matrix,terrorism_value_matrix,health_value_matrix,
-                                            religion_value_matrix,politics_value_matrix])
-    #print("shape of combined_vector is:" + str(combined_vector.shape))
-=======
     combined_vector =  scipy.sparse.hstack([tf_vector, word_overlap_vector,hedging_words_vector,refuting_value_matrix])
     print("shape of combined_vector is:" + str(combined_vector.shape))
->>>>>>> 69752814f6cdd8d91537710fdf983881eab135ee
 
 
     #print(str(labels))

@@ -191,7 +191,6 @@ if __name__ == "__main__":
             #related_data_gold_converted = convert_data_to_headline_body_stance_format(related_data_gold, lstm_output)
 
 
-<<<<<<< HEAD
             #print("first .body  of testing_data_converted"+str(related_data_gold_converted[0].body ))
             ##print("first .headline  of testing_data_converted:" + str(related_data_gold_converted[2865].headline))
             ##print("first .body_id  of testing_data_converted:" + str(related_data_gold_converted[2865].body_id))
@@ -203,19 +202,6 @@ if __name__ == "__main__":
             ##print("first .disagree_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].disagree_lstm))
             ##print("first .discuss_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].discuss_lstm))
             ##print("first .unrelated_lstm  of testing_data_converted:" + str(related_data_gold_converted[2865].unrelated_lstm))
-=======
-            #print("first .body  of entire_testing_data_converted"+str(related_data_gold_converted[0].body ))
-            # print("first .headline  of entire_testing_data_converted:" + str(related_data_gold_converted[2865].headline))
-            # print("first .body_id  of entire_testing_data_converted:" + str(related_data_gold_converted[2865].body_id))
-            # print("first .predicted_stance  of entire_testing_data_converted:" + str(related_data_gold_converted[2865].predicted_stance))
-            # print("first .gold_stance  of entire_testing_data_converted:" + str(related_data_gold_converted[2865].gold_stance))
-            # print("first .unique_tuple_id  of entire_testing_data_converted:" + str(related_data_gold_converted[2865].unique_tuple_id))
-            # print("first .confidence  of entire_testing_data_converted:" + str(related_data_gold_converted[2865].confidence))
-            # print("first .agree_lstm  of entire_testing_data_converted:" + str(related_data_gold_converted[2865].agree_lstm))
-            # print("first .disagree_lstm  of entire_testing_data_converted:" + str(related_data_gold_converted[2865].disagree_lstm))
-            # print("first .discuss_lstm  of entire_testing_data_converted:" + str(related_data_gold_converted[2865].discuss_lstm))
-            # print("first .unrelated_lstm  of entire_testing_data_converted:" + str(related_data_gold_converted[2865].unrelated_lstm))
->>>>>>> 69752814f6cdd8d91537710fdf983881eab135ee
 
 
             # start training for 2 classes agree-disagree within related
@@ -247,15 +233,9 @@ if __name__ == "__main__":
 
             entire_testing_data_converted=convert_data_to_headline_body_stance_format(testing_data)
 
-<<<<<<< HEAD
            #print("number of rows in testing data after conversion is:"+str(len(testing_data_converted )))
            #print("number of columns in testing data after conversion is:"+str(len(testing_data_converted[0])))
            #print ("done loading testing data. going to test agree-disagree-discuss using the trained svm ")
-=======
-            print("number of rows in testing data after conversion is:" + str(len(entire_testing_data_converted)))
-            print("number of columns in testing data after conversion is:" + str(len(entire_testing_data_converted[0])))
-            print ("done loading testing data. going to test agree-disagree-discuss using the trained svm ")
->>>>>>> 69752814f6cdd8d91537710fdf983881eab135ee
 
 
             #test accuracy on the same data of 6000 related tuples
@@ -305,10 +285,6 @@ if __name__ == "__main__":
             print("unique_tuple_id:" + str((entire_testing_data_converted[0].unique_tuple_id)))
 
 
-<<<<<<< HEAD
-           ##print("total number of rows in testing_data_converted matrix is:" + str(len(testing_data_converted)))
-=======
->>>>>>> 69752814f6cdd8d91537710fdf983881eab135ee
 
 
 
@@ -321,15 +297,11 @@ if __name__ == "__main__":
 
            #print ("going to retreive only related data based on threshold:" + str(unrelated_threshold))
 
-<<<<<<< HEAD
            #print ("total number of rows in testing_data_converted matrix is:"+str(len(testing_data_converted)))
 
            ##print(testing_data_converted)
-=======
-            print ("total number of rows in entire_testing_data_converted matrix is:" + str(len(entire_testing_data_converted)))
 
            # print(entire_testing_data_converted)
->>>>>>> 69752814f6cdd8d91537710fdf983881eab135ee
 
 
 
@@ -343,34 +315,6 @@ if __name__ == "__main__":
                 gold_phase1_only_unrelated.append(unr.gold_stance)
                 predicted_phase1_only_unrelated.append(unr.predicted_stance)
 
-<<<<<<< HEAD
-            with open('my_output1.csv', 'w', encoding='utf8') as f:
-                field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
-                spamwriter = csv.writer(f, delimiter=',')
-                spamwriter.writerow(field_names)
-
-            for eachTuple in un_related_matrix:
-                if(eachTuple.predicted_stance==0):
-                    pred_label="agree"
-                else:
-                    if(eachTuple.predicted_stance==1):
-                        pred_label="disagree"
-                    else:
-                        if (eachTuple.predicted_stance == 1):
-                            pred_label = "disagree"
-                        else:
-                            if (eachTuple.predicted_stance == 2):
-                                pred_label = "discuss"
-                            else:
-                                if (eachTuple.predicted_stance == 3):
-                                    pred_label = "unrelated"
-
-                with open('my_output.csv1', 'a+', encoding='utf8') as f:
-                    field_values=[eachTuple.headline,eachTuple.body_id,pred_label,eachTuple.confidence]
-                    spamwriter = csv.writer(f, delimiter=',')
-                    spamwriter.writerow(field_values)
-
-=======
             # with open('my_output.csv', 'w', encoding='utf8') as f:
             #     field_names = ['Headline', 'Body ID', 'Stance', 'Confidence']
             #     spamwriter = csv.writer(f, delimiter=',')
@@ -396,7 +340,6 @@ if __name__ == "__main__":
             #         field_values=[eachTuple.headline,eachTuple.body_id,pred_label,eachTuple.confidence]
             #         spamwriter = csv.writer(f, delimiter=',')
             #         spamwriter.writerow(field_values)
->>>>>>> 69752814f6cdd8d91537710fdf983881eab135ee
 
 
 
@@ -463,7 +406,6 @@ if __name__ == "__main__":
            #print("number of rows in actual_phase2  is:"+str(len(actual_phase2 )))
            #print(str(actual_phase2))
 
-<<<<<<< HEAD
            #print("number of rows in predicted_phase2 is:"+str(len(predicted_phase2 )))
            #print(" of rows in predicted_phase2 is:" + str((predicted_phase2)))
 
@@ -472,16 +414,6 @@ if __name__ == "__main__":
 
            #print("number of rows in predicted_phase1_only_unrelated  is:"+str(len(predicted_phase1_only_unrelated )))
            #print("number of rows in predicted_phase1_only_unrelated  is:" + str((predicted_phase1_only_unrelated)))
-=======
-            print("number of rows in predicted_phase2 is:"+str(len(predicted_phase2 )))
-            #print(" of rows in predicted_phase2 is:" + str((predicted_phase2)))
-
-            print("number of rows in actual_phase1_only_unrelated  is:" + str(len(gold_phase1_only_unrelated)))
-            #print("rows in actual_phase1_only_unrelated  is:" + str((gold_phase1_only_unrelated)))
-
-            print("number of rows in predicted_phase1_only_unrelated  is:"+str(len(predicted_phase1_only_unrelated )))
-            #print("number of rows in predicted_phase1_only_unrelated  is:" + str((predicted_phase1_only_unrelated)))
->>>>>>> 69752814f6cdd8d91537710fdf983881eab135ee
 
             #combining results from both phases
             actual= gold_phase1_only_unrelated + actual_phase2
@@ -537,36 +469,6 @@ if __name__ == "__main__":
             #         spamwriter.writerow(field_values)
 
 
-<<<<<<< HEAD
-            for eachTuple in post_prediction_data_phase2:
-                # agree, disagree, or discuss, (0,1,2) and attach that.
-                pred_label=""
-                if(eachTuple.predicted_stance==0):
-                    pred_label="agree"
-                else:
-                    if(eachTuple.predicted_stance==1):
-                        pred_label="disagree"
-                    else:
-                        if (eachTuple.predicted_stance == 1):
-                            pred_label = "disagree"
-                        else:
-                            if (eachTuple.predicted_stance == 2):
-                                pred_label = "discuss"
-                            else:
-                                if (eachTuple.predicted_stance == 3):
-                                    pred_label = "unrelated"
-                mydict = collections.OrderedDict()
-                mydict['Headline'] = eachTuple.headline
-                mydict['Body ID'] = eachTuple.body_id
-                mydict['Stance'] = pred_label
-                mydict['Confidence'] = eachTuple.confidence
-
-                with open('my_output1.csv', 'a+', encoding='utf8') as f:
-                    field_values=[eachTuple.headline,eachTuple.body_id,pred_label,eachTuple.confidence]
-                    spamwriter = csv.writer(f, delimiter=',')
-                    spamwriter.writerow(field_values)
-=======
->>>>>>> 69752814f6cdd8d91537710fdf983881eab135ee
 
 
         elapsed_time = time.time() - start_time
